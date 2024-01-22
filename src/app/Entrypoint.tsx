@@ -23,9 +23,8 @@ const router = createMemoryRouter(
  */
 export default function Entrypoint() {
   return (
-    <>
-      <h1>The Widget</h1>
+    <locator-app>
       <RouterProvider router={router} />
-    </>
+    </locator-app>
   );
 }

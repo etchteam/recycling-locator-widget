@@ -4,12 +4,27 @@
 		<meta charset="UTF-8" />
 		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="color-scheme" content="light dark" />
     <link rel="stylesheet" href="/src/style.css" />
 		<title>Recycling Locator widget</title>
+
+    <style>
+      main {
+        margin: 0 auto;
+        max-width: 1000px;
+        padding: 1rem;
+      }
+
+      h1 {
+        margin: 0 0 2rem;
+      }
+    </style>
 	</head>
 	<body>
-		<recycling-locator-widget></recycling-locator-widget>
+    <main>
+      <h1>Recycling Locator widget</h1>
+      <recycling-locator-widget></recycling-locator-widget>
+    </main>
+    <script type="module" src="/src/components/index.ts"></script>
 		<script type="module" src="/src/index.tsx"></script>
 	</body>
 </html>

@@ -12,21 +12,23 @@
 		"lint": "eslint 'src/**/*.{ts,tsx,js,jsx,yml,yaml,json}' && stylelint 'src/**/*.{css,scss}'"
 	},
 	"dependencies": {
-		"preact": "^10.13.1",
+		"lit": "^3.1.1",
+		"preact": "^10.19.3",
 		"react-router-dom": "^6.21.3"
 	},
 	"devDependencies": {
+		"@babel/plugin-proposal-decorators": "^7.23.7",
 		"@commitlint/cli": "^18.5.0",
 		"@commitlint/config-conventional": "^18.5.0",
 		"@etchteam/eslint-config": "^1.10.0",
 		"@etchteam/stylelint-config": "^1.5.0",
-		"@preact/preset-vite": "^2.5.0",
+		"@preact/preset-vite": "^2.8.1",
 		"eslint": "^8.56.0",
 		"husky": "^8.0.3",
 		"lint-staged": "^15.2.0",
 		"prettier": "^3.2.4",
 		"stylelint": "^15.11.0",
 		"typescript": "^5.3.3",
-		"vite": "^4.3.2"
+		"vite": "^5.0.12"
 	}
 }
