@@ -1,20 +1,28 @@
 {
 	"name": "recycling-locator-widget",
-  "version": "0.0.0",
-  "description": "Find places to recycle, refill or reuse items.",
+	"version": "0.0.0",
+	"description": "Find places to recycle, refill or reuse items.",
 	"type": "module",
-  "author": "Etch <hey@etch.co>",
-  "license": "MIT",
+	"author": "Etch <hey@etch.co>",
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+    "lint": "eslint 'src/**/*.{ts,tsx,js,jsx,yml,yaml,json}' && stylelint 'src/**/*.{css,scss}'"
 	},
 	"dependencies": {
 		"preact": "^10.13.1"
 	},
 	"devDependencies": {
+		"@etchteam/eslint-config": "^1.10.0",
+		"@etchteam/stylelint-config": "^1.5.0",
 		"@preact/preset-vite": "^2.5.0",
+		"eslint": "^8.56.0",
+		"husky": "^8.0.3",
+		"lint-staged": "^15.2.0",
+		"prettier": "^3.2.4",
+		"stylelint": "^15.11.0",
 		"typescript": "^5.3.3",
 		"vite": "^4.3.2"
 	}
