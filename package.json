@@ -1,0 +1,21 @@
+{
+	"name": "recycling-locator-widget",
+  "version": "0.0.0",
+  "description": "Find places to recycle, refill or reuse items.",
+	"type": "module",
+  "author": "Etch <hey@etch.co>",
+  "license": "MIT",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"preact": "^10.13.1"
+	},
+	"devDependencies": {
+		"@preact/preset-vite": "^2.5.0",
+		"typescript": "^5.3.3",
+		"vite": "^4.3.2"
+	}
+}
