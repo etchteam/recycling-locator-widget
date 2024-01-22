@@ -19,10 +19,14 @@ export const variables = css`
     );
 
     /* Container */
-    --locator-min-height: 540px;
+    --locator-container-height: 540px;
     --locator-container-border-color: var(
       --recycling-locator-container-border-color,
       var(--locator-color-border)
     );
+
+    @media (min-width: 768px) {
+      --locator-container-height: 640px;
+    }
   }
 `;

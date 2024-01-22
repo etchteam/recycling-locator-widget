@@ -14,15 +14,20 @@ export class App extends LitElement {
     variables,
     typography,
     css`
-      :host {
-        display: block;
+      article {
         border: 1px solid var(--locator-container-border-color);
+        height: var(--locator-container-height);
+        overflow-y: auto;
       }
     `,
   ];
 
   render() {
-    return html`<slot></slot>`;
+    return html`
+      <article>
+        <slot></slot>
+      </article>
+    `;
   }
 }
 
