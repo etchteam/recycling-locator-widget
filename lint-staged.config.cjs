@@ -1,4 +1,4 @@
 module.exports = {
-  '*.{ts,tsx,js,jsx,yml,yaml,json}': 'eslint --fix',
-  '*.{css,scss}': 'stylelint --fix'
+  'src/**/*.{ts,tsx,js,jsx,yml,yaml,json}': 'eslint --fix',
+  'src/**/*.{css,scss}': 'stylelint --fix'
 };
