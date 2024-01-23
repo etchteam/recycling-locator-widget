@@ -1,34 +1,45 @@
 {
-	"name": "recycling-locator-widget",
-	"version": "0.0.0",
-	"description": "Find places to recycle, refill or reuse items.",
-	"type": "module",
-	"author": "Etch <hey@etch.co>",
-	"license": "MIT",
-	"scripts": {
-		"start": "vite",
-		"build": "vite build",
-		"preview": "vite preview",
-		"lint": "eslint 'src/**/*.{ts,tsx,js,jsx,yml,yaml,json}' && stylelint 'src/**/*.{css,scss}'"
-	},
-	"dependencies": {
-		"lit": "^3.1.1",
-		"preact": "^10.19.3",
-		"react-router-dom": "^6.21.3"
-	},
-	"devDependencies": {
-		"@babel/plugin-proposal-decorators": "^7.23.7",
-		"@commitlint/cli": "^18.5.0",
-		"@commitlint/config-conventional": "^18.5.0",
-		"@etchteam/eslint-config": "^1.10.0",
-		"@etchteam/stylelint-config": "^1.5.0",
-		"@preact/preset-vite": "^2.8.1",
-		"eslint": "^8.56.0",
-		"husky": "^8.0.3",
-		"lint-staged": "^15.2.0",
-		"prettier": "^3.2.4",
-		"stylelint": "^15.11.0",
-		"typescript": "^5.3.3",
-		"vite": "^5.0.12"
-	}
+  "name": "recycling-locator-widget",
+  "version": "0.0.0",
+  "description": "Find places to recycle, refill or reuse items.",
+  "type": "module",
+  "author": "Etch <hey@etch.co>",
+  "license": "MIT",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint 'src/**/*.{ts,tsx,js,jsx,yml,yaml,json}' && stylelint 'src/**/*.{css,scss}'",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@etchteam/diamond-ui": "^1.0.3",
+    "lit": "^3.1.1",
+    "preact": "^10.19.3",
+    "react-router-dom": "^6.21.3"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.23.7",
+    "@commitlint/cli": "^18.5.0",
+    "@commitlint/config-conventional": "^18.5.0",
+    "@etchteam/eslint-config": "^1.10.0",
+    "@etchteam/stylelint-config": "^1.5.0",
+    "@preact/preset-vite": "^2.8.1",
+    "@storybook/addon-essentials": "^7.6.10",
+    "@storybook/addon-links": "^7.6.10",
+    "@storybook/blocks": "^7.6.10",
+    "@storybook/web-components": "^7.6.10",
+    "@storybook/web-components-vite": "^7.6.10",
+    "eslint": "^8.56.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.10",
+    "stylelint": "^15.11.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12"
+  }
 }
