@@ -1,11 +1,15 @@
+import { useTranslation } from 'react-i18next';
+
 export default function StartPage() {
+  const { t } = useTranslation();
+
   return (
     <locator-layout>
       <header slot="header">
         <locator-logo>Recycling Locator</locator-logo>
       </header>
       <div slot="main">
-        <h2>Find places to recycle</h2>
+        <h2>{t('start.title')}</h2>
         <form>
           <label htmlFor="location">Where are you?</label>
           <input type="text" name="location" id="location" />
