@@ -8,9 +8,8 @@ const meta: Meta = {
 };
 
 export default meta;
-type Story = StoryObj;
 
-export const Layout: Story = {
+export const Layout: StoryObj = {
   render: () => html`
     <locator-layout>
       <header slot="header">Header</header>

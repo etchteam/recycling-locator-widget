@@ -2,7 +2,7 @@ export default function StartPage() {
   return (
     <locator-layout>
       <header slot="header">
-        <locator-logo>Recycling Locator</locator-logo>
+        <locator-logo></locator-logo>
       </header>
       <div slot="main">
         <h2>Find places to recycle</h2>
