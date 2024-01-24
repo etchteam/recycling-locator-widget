@@ -3,7 +3,6 @@
  * Prevents Flash Of Unstyled Content (FOUC)
  */
 recycling-locator-widget {
-  container-type: inline-size;
   display: block;
   height: 540px;
 }
