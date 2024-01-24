@@ -3,5 +3,9 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.fixAll.stylelint": "explicit"
+  },
+  "sonarlint.connectedMode.project": {
+    "connectionId": "Etch",
+    "projectKey": "etchteam_recycling-locator-widget"
   }
 }
