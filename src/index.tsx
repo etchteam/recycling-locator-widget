@@ -2,7 +2,7 @@ import { LitElement, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { render as preactRender } from 'preact';
 
-import Entrypoint from './app/Entrypoint';
+import Entrypoint from './pages/Entrypoint';
 import { diamondUi } from './styles/diamond-ui';
 import { variables } from './styles/variables';
 
