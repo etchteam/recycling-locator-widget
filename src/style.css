@@ -4,4 +4,11 @@
  */
 recycling-locator-widget {
   display: block;
+  height: 540px;
+}
+
+@media (min-width: 768px) {
+  recycling-locator-widget {
+    height: 640px;
+  }
 }
