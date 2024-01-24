@@ -3,9 +3,8 @@ import { customElement } from 'lit/decorators.js';
 import { render as preactRender } from 'preact';
 
 import Entrypoint from './app/Entrypoint';
-import { typography } from './styles/typography';
+import { diamondUi } from './styles/diamond-ui';
 import { variables } from './styles/variables';
-import { vendor } from './styles/vendor';
 
 /**
  * The root web component
@@ -16,13 +15,17 @@ import { vendor } from './styles/vendor';
 @customElement('recycling-locator-widget')
 export class RecyclingLocatorWidget extends LitElement {
   static styles = [
-    vendor,
     variables,
-    typography,
+    diamondUi,
     css`
+      :host {
+        display: block;
+      }
+
       article {
-        border: 1px solid var(--locator-container-border-color);
-        height: var(--locator-container-height);
+        border: var(--container-border);
+        container-type: inline-size;
+        height: var(--container-height);
         overflow-y: auto;
       }
     `,

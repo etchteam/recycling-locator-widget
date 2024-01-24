@@ -9,7 +9,7 @@ export class Layout extends LitElement {
       display: block;
     }
 
-    @media (min-width: 768px) {
+    @container (min-width: 768px) {
       :host {
         display: grid;
         grid-template-columns: 1fr 1fr;

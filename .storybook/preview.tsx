@@ -2,12 +2,11 @@ import type { Preview } from '@storybook/web-components';
 
 import '@etchteam/diamond-ui/styles/base.css';
 
-import { LitElement, html } from 'lit';
+import { LitElement, css, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
-import { typography } from '../src/styles/typography';
 import { variables } from '../src/styles/variables';
-import { vendor } from '../src/styles/vendor';
+import { diamondUi } from '../src/styles/diamond-ui';
 
 /**
  * Wraps storybook stories with global styling in the same way as they are applied to the widget
@@ -15,9 +14,14 @@ import { vendor } from '../src/styles/vendor';
 @customElement('locator-storybook-decorator')
 export class StorybookDecorator extends LitElement {
   static styles = [
-    vendor,
     variables,
-    typography,
+    diamondUi,
+    css`
+      :host {
+        display: block;
+        container-type: inline-size;
+      }
+    `
   ];
 
   render() {
