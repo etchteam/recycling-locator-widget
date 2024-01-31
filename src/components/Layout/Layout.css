@@ -1,0 +1,27 @@
+locator-layout {
+  display: block;
+
+  @container (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'header aside'
+      'main aside';
+  }
+
+  ::slotted([slot='header']) {
+    background: var(--diamond-color-white);
+    border-bottom: var(--diamond-border);
+    grid-area: header;
+    position: sticky;
+    top: 0;
+  }
+
+  ::slotted([slot='main']) {
+    grid-area: main;
+  }
+
+  ::slotted([slot='aside']) {
+    grid-area: aside;
+  }
+}

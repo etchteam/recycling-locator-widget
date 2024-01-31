@@ -1,0 +1,15 @@
+@import url('../../node_modules/@etchteam/diamond-ui/styles/base.css');
+@import url('../../node_modules/@etchteam/diamond-ui/styles/tokens.css');
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
+@import-glob '../components/**/*.css';
+
+:host {
+  display: block;
+}
+
+article {
+  border: var(--container-border);
+  container-type: inline-size;
+  height: var(--container-height);
+  overflow-y: auto;
+}
