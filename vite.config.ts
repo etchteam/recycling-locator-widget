@@ -8,5 +8,18 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  plugins: [preact()],
+  plugins: [
+    preact(),
+    {
+      name: 'reload-on-public-file-change',
+      handleHotUpdate({ file, server }) {
+        if (file.includes('public')) {
+          server.ws.send({
+            type: 'full-reload',
+            path: '*',
+          });
+        }
+      },
+    },
+  ],
 });

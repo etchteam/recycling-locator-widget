@@ -10,7 +10,7 @@ const config = {
     // ...then inline all the @import statements
     inlineImports,
     autoprefixer,
-    // Swap :root with :host to fix the css variable scope
+    // Scope css variables to the web component :host instead of :root
     modifySelectors({
       replace: [
         {
