@@ -1,5 +1,5 @@
-@import url('../../node_modules/@etchteam/diamond-ui/styles/base.css');
-@import url('../../node_modules/@etchteam/diamond-ui/styles/tokens.css');
+@import '../../node_modules/@etchteam/diamond-ui/styles/tokens.css';
+@import '../../node_modules/@etchteam/diamond-ui/styles/base.css';
 
 /**
   * Redefine body styles from diamond because we don't have a <body> element

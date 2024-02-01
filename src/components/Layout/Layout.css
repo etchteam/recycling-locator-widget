@@ -3,13 +3,13 @@ locator-layout {
 
   @container (min-width: 768px) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-template-areas:
       'header aside'
       'main aside';
+    grid-template-columns: 1fr 1fr;
   }
 
-  ::slotted([slot='header']) {
+  &::part(header) {
     background: var(--diamond-color-white);
     border-bottom: var(--diamond-border);
     grid-area: header;
@@ -17,11 +17,11 @@ locator-layout {
     top: 0;
   }
 
-  ::slotted([slot='main']) {
+  &::part(main) {
     grid-area: main;
   }
 
-  ::slotted([slot='aside']) {
+  &::part(aside) {
     grid-area: aside;
   }
 }

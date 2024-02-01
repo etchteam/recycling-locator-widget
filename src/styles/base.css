@@ -1,11 +1,7 @@
-@import url('../../node_modules/@etchteam/diamond-ui/styles/base.css');
-@import url('../../node_modules/@etchteam/diamond-ui/styles/tokens.css');
+@import './variables.css';
+@import './diamond-ui.css';
 /* stylelint-disable-next-line scss/at-rule-no-unknown */
 @import-glob '../components/**/*.css';
-
-:host {
-  display: block;
-}
 
 article {
   border: var(--container-border);
