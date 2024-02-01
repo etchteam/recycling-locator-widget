@@ -13,8 +13,9 @@
     "build:css": "postcss src/styles/base.css -o public/styles.css",
     "preview": "vite preview",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx,yml,yaml,json}' && stylelint 'src/**/*.{css,scss}'",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook": "run-p build:css storybook:start",
+    "storybook:start": "storybook dev -p 6006",
+    "storybook:build": "storybook build"
   },
   "dependencies": {
     "@etchteam/diamond-ui": "^1.2.0",
@@ -35,8 +36,7 @@
     "@storybook/addon-links": "^7.6.10",
     "@storybook/blocks": "^7.6.10",
     "@storybook/preact": "^7.6.11",
-    "@storybook/web-components": "^7.6.10",
-    "@storybook/web-components-vite": "^7.6.10",
+    "@storybook/preact-vite": "^7.6.12",
     "autoprefixer": "^10.4.17",
     "eslint": "^8.56.0",
     "husky": "^8.0.3",
@@ -47,6 +47,7 @@
     "postcss-cli": "^11.0.0",
     "postcss-import": "^16.0.0",
     "postcss-import-ext-glob": "^2.1.1",
+    "preact-shadow-dom": "^1.0.1",
     "prettier": "^3.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
