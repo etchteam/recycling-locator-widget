@@ -1,0 +1,11 @@
+@import './variables.css';
+@import './diamond-ui.css';
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
+@import-glob '../components/**/*.css';
+
+article {
+  border: var(--container-border);
+  container-type: inline-size;
+  height: var(--container-height);
+  overflow-y: auto;
+}

@@ -1,5 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
+import '../components/Layout/Layout';
+import '../components/Logo/Logo';
+
 export default function StartPage() {
   const { t } = useTranslation();
 

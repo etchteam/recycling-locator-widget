@@ -1,0 +1,27 @@
+locator-layout {
+  display: block;
+
+  @container (min-width: 768px) {
+    display: grid;
+    grid-template-areas:
+      'header aside'
+      'main aside';
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &::part(header) {
+    background: var(--diamond-color-white);
+    border-bottom: var(--diamond-border);
+    grid-area: header;
+    position: sticky;
+    top: 0;
+  }
+
+  &::part(main) {
+    grid-area: main;
+  }
+
+  &::part(aside) {
+    grid-area: aside;
+  }
+}

@@ -1,0 +1,9 @@
+locator-logo {
+  display: block;
+
+  img {
+    display: block;
+    height: auto;
+    width: min(230px, 100%);
+  }
+}
