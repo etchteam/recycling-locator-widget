@@ -1,9 +1,11 @@
 import register from 'preact-custom-element';
 
+import config from '../../config';
+
 export default function Logo() {
   return (
     <img
-      src="/recycling-locator-logo.webp"
+      src={`${config.publicPath}recycling-locator-logo.webp`}
       alt="Recycling Locator"
       width="230"
       height="42"
