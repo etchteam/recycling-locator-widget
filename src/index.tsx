@@ -1,6 +1,7 @@
 import register from 'preact-custom-element';
 
 import Entrypoint from './pages/Entrypoint';
+import { Locale } from './types/locale';
 
 /**
  * The root web component
@@ -8,18 +9,22 @@ import Entrypoint from './pages/Entrypoint';
  * - Renders the Preact app within the shadow DOM for style encapsulation
  * - Provides global styles
  */
-export default function RecyclingLocatorWidget() {
+export default function RecyclingLocatorWidget({
+  locale,
+}: {
+  readonly locale: Locale;
+}) {
   return (
     <>
       <link rel="stylesheet" href="/styles.css" />
       <article>
-        <Entrypoint />
+        <Entrypoint locale={locale} />
       </article>
     </>
   );
 }
 
-register(RecyclingLocatorWidget, 'recycling-locator-widget', [], {
+register(RecyclingLocatorWidget, 'recycling-locator-widget', ['locale'], {
   shadow: true,
 });
 
