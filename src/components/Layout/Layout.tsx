@@ -1,4 +1,4 @@
-import { ComponentChildren } from 'preact';
+import type { ComponentChildren } from 'preact';
 import register from 'preact-custom-element';
 
 export default function Layout({

@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import '../components/Layout/Layout';
 import '../components/Logo/Logo';
+import '../components/Tip/Tip';
 
 export default function StartPage() {
   const { t } = useTranslation();
@@ -20,12 +21,15 @@ export default function StartPage() {
         </form>
       </div>
       <aside slot="aside">
-        <p>Use this service to:</p>
-        <ul>
-          <li>see your nearest places to recycle</li>
-          <li>find out how to recycle a specific item</li>
-          <li>check what you can recycle at home</li>
-        </ul>
+        <locator-tip>
+          <p>Use this service to:</p>
+          <ul>
+            <li>see your nearest places to recycle</li>
+            <li>find out how to recycle a specific item</li>
+            <li>check what you can recycle at home</li>
+          </ul>
+          <img src="/images/recycling-technology.webp" alt="" />
+        </locator-tip>
       </aside>
     </locator-layout>
   );

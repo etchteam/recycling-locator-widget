@@ -1,7 +1,7 @@
 locator-layout {
   display: block;
 
-  @container (min-width: 768px) {
+  @container (width > 768px) {
     display: grid;
     grid-template-areas:
       'header aside'

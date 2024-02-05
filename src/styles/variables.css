@@ -5,9 +5,12 @@
  * - Or fallback to the default value
  */
 :host {
-  /**
-    * Theme
-    */
+  /* Colors */
+
+  --color-green-lightest: #eef5e5;
+  --color-green: #219653;
+
+  /* Theme */
   --theme-heading-color-light: var(
     --recycling-locator-theme-heading-color-light,
     #333
@@ -18,18 +21,19 @@
     #bdbdbd
   );
 
-  /**
-    * Fonts
-    */
+  --theme-background-accent: var(--color-green-lightest);
+  --theme-color-accent: var(--theme-color-light);
+  --theme-heading-color-accent: var(--color-green);
+  --theme-link-color-accent: var(--color-green);
+
+  /* Fonts */
   --font-family-default: Arial, Helvetica, sans-serif;
   --font-family: var(
     --recycling-locator-font-family,
     var(--font-family-default)
   );
 
-  /**
-    * Container (The widgets outer wrapper)
-    */
+  /* Container (The widgets outer wrapper) */
   --container-height: 540px;
   --container-border-default: 1px solid var(--theme-border-color-light);
   --container-border: var(
