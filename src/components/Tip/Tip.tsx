@@ -1,3 +1,5 @@
+export {};
+
 declare module 'preact' {
   namespace JSX {
     interface IntrinsicElements {
