@@ -1,12 +1,19 @@
 locator-layout {
-  display: block;
+  display: grid;
+  grid-template-areas:
+    'header'
+    'main'
+    'aside';
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+  height: 100%;
 
   @container (width > 768px) {
-    display: grid;
     grid-template-areas:
       'header aside'
       'main aside';
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
   }
 
   &::part(header) {
@@ -23,5 +30,6 @@ locator-layout {
 
   &::part(aside) {
     grid-area: aside;
+    height: 100%;
   }
 }

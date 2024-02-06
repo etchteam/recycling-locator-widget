@@ -12,9 +12,9 @@ export default function Layout({
 }>) {
   return (
     <>
-      <div part="header">{header}</div>
+      <header part="header">{header}</header>
       <div part="main">{main}</div>
-      <div part="aside">{aside}</div>
+      <aside part="aside">{aside}</aside>
     </>
   );
 }
