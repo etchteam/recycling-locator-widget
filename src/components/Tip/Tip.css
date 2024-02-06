@@ -1,0 +1,31 @@
+locator-tip {
+  background: var(--theme-background-accent);
+  color: var(--theme-color-accent);
+  display: grid;
+  grid-template-columns: min(100%, 20em);
+  height: 100%;
+  padding: var(--diamond-spacing);
+  place-content: center;
+
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: var(--theme-heading-color-accent);
+  }
+
+  a {
+    color: var(--theme-link-color-accent);
+  }
+
+  img {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    width: min(100%, 10em);
+  }
+
+  &[text-align='center'] {
+    text-align: center;
+  }
+}
