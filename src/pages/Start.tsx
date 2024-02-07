@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import '../components/Layout/Layout';
 import '../components/Logo/Logo';
 import '../components/Tip/Tip';
+import '../components/LocationInput/LocationInput';
 
 export default function StartPage() {
   const { t } = useTranslation();
@@ -13,8 +14,8 @@ export default function StartPage() {
       <div slot="main">
         <h2>{t('start.title')}</h2>
         <form>
-          <label htmlFor="location">Where are you?</label>
-          <input type="text" name="location" id="location" />
+          <label htmlFor="location-input">Where are you?</label>
+          <locator-location-input></locator-location-input>
           <button type="submit">Get started</button>
         </form>
       </div>
