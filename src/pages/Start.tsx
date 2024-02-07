@@ -11,14 +11,16 @@ export default function StartPage() {
   return (
     <locator-layout>
       <locator-logo slot="header"></locator-logo>
-      <div slot="main">
+      <diamond-wrap slot="main">
         <h2>{t('start.title')}</h2>
         <form>
           <label htmlFor="location-input">Where are you?</label>
           <locator-location-input></locator-location-input>
-          <button type="submit">Get started</button>
+          <diamond-button width="full-width" variant="primary">
+            <button type="submit">Get started</button>
+          </diamond-button>
         </form>
-      </div>
+      </diamond-wrap>
       <locator-tip slot="aside">
         <p>Use this service to:</p>
         <ul>

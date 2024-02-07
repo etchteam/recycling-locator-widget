@@ -1,22 +1,16 @@
 locator-tip {
-  background: var(--theme-background-accent);
-  color: var(--theme-color-accent);
+  --diamond-theme-background: var(--theme-background-accent);
+  --diamond-theme-color: var(--theme-color-accent);
+  --diamond-theme-heading-color: var(--theme-heading-color-accent);
+  --diamond-theme-link-color: var(--theme-link-color-accent);
+
+  background: var(--diamond-theme-background);
+  color: var(--diamond-theme-color);
   display: grid;
   grid-template-columns: min(100%, 20em);
   height: 100%;
   padding: var(--diamond-spacing);
   place-content: center;
-
-  h2,
-  h3,
-  h4,
-  h5 {
-    color: var(--theme-heading-color-accent);
-  }
-
-  a {
-    color: var(--theme-link-color-accent);
-  }
 
   img {
     display: block;

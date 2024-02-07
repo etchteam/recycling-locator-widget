@@ -1,0 +1,7 @@
+:host {
+  --font-family-default: Arial, Helvetica, sans-serif;
+  --diamond-font-family: var(
+    --recycling-locator-font-family,
+    var(--font-family-default)
+  );
+}
