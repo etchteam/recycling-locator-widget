@@ -1,0 +1,18 @@
+:host {
+  --diamond-button-background: var(--color-white);
+  --diamond-button-background-hover: var(--diamond-button-background);
+  --diamond-button-background-disabled: var(--diamond-button-background);
+  --diamond-button-border-color: var(--color-green);
+  --diamond-button-border-color-hover: var(--color-green-dark);
+  --diamond-button-border-color-disabled: var(--color-green-light);
+  --diamond-button-color: var(--diamond-button-border-color);
+  --diamond-button-color-hover: var(--diamond-button-border-color-hover);
+  --diamond-button-color-disabled: var(--diamond-button-border-color-disabled);
+
+  --diamond-button-primary-background: var(--color-green);
+  --diamond-button-primary-background-hover: var(--color-green-dark);
+  --diamond-button-primary-background-disabled: var(--color-green-light);
+  --diamond-button-primary-color: var(--color-white);
+  --diamond-button-primary-color-hover: var(--diamond-button-primary-color);
+  --diamond-button-primary-color-disabled: var(--diamond-button-primary-color);
+}

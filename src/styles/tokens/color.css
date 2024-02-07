@@ -1,0 +1,14 @@
+:host {
+  --color-white: #fff;
+
+  --color-grey-lightest: #bdbdbd;
+  --color-grey-dark: #333;
+
+  --color-green-lightest: #eef5e5;
+  --color-green-light: #6fcf97;
+  --color-green: #219653;
+  --color-green-dark: #1c7d46;
+
+  --color-body: var(--color-grey-dark);
+  --color-border: var(--color-grey-lightest);
+}

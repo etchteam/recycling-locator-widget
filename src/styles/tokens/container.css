@@ -1,0 +1,19 @@
+/**
+  * These tokens control the widgets outer wrapping container
+  */
+:host {
+  --container-border-default: 1px solid var(--diamond-theme-border-color);
+  --container-border: var(
+    --recycling-locator-container-border,
+    var(--container-border-default)
+  );
+
+  /**
+   * This matches the height setup in the optional FOUC preventing css file
+   * /public/recycling-locator-widget.css
+   */
+  --container-height: 540px;
+  @media (min-width: 768px) {
+    --container-height: 640px;
+  }
+}

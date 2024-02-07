@@ -1,19 +1,9 @@
-@import '../../node_modules/@etchteam/diamond-ui/styles/tokens.css';
-@import '../../node_modules/@etchteam/diamond-ui/styles/base.css';
+@import '../../node_modules/@etchteam/diamond-ui/diamond-ui.css';
 
-:host {
-  /**
-  * Diamond variable overrides
-  */
-  --diamond-theme-heading-color: var(--theme-heading-color-light);
-  --diamond-theme-color: var(--theme-color-light);
-  --diamond-theme-border-color: var(--theme-border-color-light);
-
-  --diamond-font-family: var(--font-family);
-
-  /**
+/**
   * Redefine body styles from diamond because we don't have a <body> element
   */
+:host {
   font-family: var(--diamond-font-family);
   font-size: var(--diamond-font-size-base);
   -webkit-font-smoothing: antialiased;
