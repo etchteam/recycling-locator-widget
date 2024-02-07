@@ -25,8 +25,8 @@ export default class LocationInput extends Component<LocationInputProps> {
   resultTypes = 'address,place';
   locationSuggestions: Signal<string[]>;
 
-  constructor() {
-    super();
+  constructor(props: LocationInputProps) {
+    super(props);
     this.locationSuggestions = signal<string[]>([]);
   }
 
@@ -53,8 +53,9 @@ export default class LocationInput extends Component<LocationInputProps> {
     this.locationSuggestions.value = locations;
   };
 
-  render({ inputId = 'location-input' }) {
+  render() {
     const locations = this.locationSuggestions.value;
+    const inputId = this.props.inputId ?? 'location-input';
     const listId = `${inputId}-locations`;
 
     return (
