@@ -1,40 +1,88 @@
+import { Signal, signal } from '@preact/signals';
+import { Component } from 'preact';
 import register from 'preact-custom-element';
 
 import config from '../../config';
 
-async function locationAutosuggest(query: string) {
-  const apiKey = config.mapsPlacesKey;
-  const bbox = '-7.57216793459,49.959999905,1.68153079591,58.6350001085';
-  const resultTypes = 'address,place';
-  const url = 'https://autosuggest.search.hereapi.com/v1/autosuggest';
-
-  const response = await fetch(
-    `${url}?apiKey=${apiKey}&in=bbox:${bbox}&q=${query}&result_types=${resultTypes}`,
-  );
-  return response.json();
+interface HereMapsAutosuggestResult {
+  items: {
+    title: string;
+  }[];
 }
 
-export default function Logo() {
-  async function handleInput(event) {
-    const query = event.target.value;
+interface LocationInputProps {
+  readonly inputId?: string;
+}
+
+/**
+ * An autosuggest input for locations.
+ * The autosuggest list will appear after > 3 characters are entered.
+ */
+export default class LocationInput extends Component<LocationInputProps> {
+  apiKey = config.mapsPlacesKey;
+  autosuggestEndpoint = 'https://autosuggest.search.hereapi.com/v1/autosuggest';
+  boundingBox = '-7.57216793459,49.959999905,1.68153079591,58.6350001085';
+  resultTypes = 'address,place';
+  locationSuggestions: Signal<string[]>;
+
+  constructor() {
+    super();
+    this.locationSuggestions = signal<string[]>([]);
+  }
+
+  autosuggest = async (query: string): Promise<HereMapsAutosuggestResult> => {
+    const apiKey = `apiKey=${this.apiKey}`;
+    const bbox = `in=bbox:${this.boundingBox}`;
+    const resultTypes = `result_types=${this.resultTypes}`;
+
+    const response = await fetch(
+      `${this.autosuggestEndpoint}?q=${query}&${apiKey}&${bbox}&${resultTypes}`,
+    );
+    return response.json();
+  };
+
+  handleInput = async (event: preact.JSX.TargetedEvent<HTMLInputElement>) => {
+    const query = event.currentTarget.value;
 
     if (query.length <= 3) {
       return;
     }
 
-    const results = await locationAutosuggest(query);
-    console.log(results);
-  }
+    const result = await this.autosuggest(query);
+    const locations = result.items.map((item) => item.title);
+    this.locationSuggestions.value = locations;
+  };
 
-  return <input type="text" id="location-input" onInput={handleInput} />;
+  render({ inputId = 'location-input' }) {
+    const locations = this.locationSuggestions.value;
+    const listId = `${inputId}-locations`;
+
+    return (
+      <>
+        <input
+          type="text"
+          id={inputId}
+          list={listId}
+          onInput={this.handleInput}
+        />
+        <datalist id={listId}>
+          {locations.map((location) => (
+            <option value={location} key={location}>
+              {location}
+            </option>
+          ))}
+        </datalist>
+      </>
+    );
+  }
 }
 
-register(Logo, 'locator-location-input');
+register(LocationInput, 'locator-location-input', ['inputId']);
 
 declare module 'preact' {
   namespace JSX {
     interface IntrinsicElements {
-      'locator-location-input': preact.JSX.HTMLAttributes;
+      'locator-location-input': LocationInputProps & preact.JSX.HTMLAttributes;
     }
   }
 }
