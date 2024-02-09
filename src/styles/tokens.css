@@ -5,9 +5,10 @@
  * - Or fallback to the default value
  */
 
-@import './tokens/color.css';
-@import './tokens/theme.css';
 @import './tokens/border.css';
-@import './tokens/font.css';
-@import './tokens/container.css';
 @import './tokens/button.css';
+@import './tokens/color.css';
+@import './tokens/container.css';
+@import './tokens/font.css';
+@import './tokens/label.css';
+@import './tokens/theme.css';

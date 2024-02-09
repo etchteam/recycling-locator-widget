@@ -1,6 +1,8 @@
 import type { ComponentChildren } from 'preact';
 import register from 'preact-custom-element';
 
+import { CustomElement } from '../../types/custom-element';
+
 export default function Layout({
   header,
   main,
@@ -24,7 +26,7 @@ register(Layout, 'locator-layout', [], { shadow: true });
 declare module 'preact' {
   namespace JSX {
     interface IntrinsicElements {
-      'locator-layout': preact.JSX.HTMLAttributes;
+      'locator-layout': CustomElement;
     }
   }
 }

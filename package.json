@@ -18,7 +18,7 @@
     "storybook:build": "storybook build"
   },
   "dependencies": {
-    "@etchteam/diamond-ui": "^1.7.1",
+    "@etchteam/diamond-ui": "^1.16.0",
     "@preact/signals": "^1.2.2",
     "i18next": "^23.7.18",
     "i18next-http-backend": "^2.4.2",

@@ -3,6 +3,7 @@ import { Component } from 'preact';
 import register from 'preact-custom-element';
 
 import config from '../../config';
+import { CustomElement } from '../../types/custom-element';
 
 interface HereMapsAutosuggestResult {
   items: {
@@ -59,7 +60,7 @@ export default class LocationInput extends Component<LocationInputProps> {
     const listId = `${inputId}-locations`;
 
     return (
-      <>
+      <diamond-input>
         <input
           type="text"
           id={inputId}
@@ -73,7 +74,7 @@ export default class LocationInput extends Component<LocationInputProps> {
             </option>
           ))}
         </datalist>
-      </>
+      </diamond-input>
     );
   }
 }
@@ -83,7 +84,7 @@ register(LocationInput, 'locator-location-input', ['inputId']);
 declare module 'preact' {
   namespace JSX {
     interface IntrinsicElements {
-      'locator-location-input': LocationInputProps & preact.JSX.HTMLAttributes;
+      'locator-location-input': CustomElement<LocationInputProps>;
     }
   }
 }

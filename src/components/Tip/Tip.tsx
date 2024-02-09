@@ -1,11 +1,13 @@
-export {};
+import { CustomElement } from '../../types/custom-element';
+
+export interface TipAttributes {
+  'text-align'?: 'center';
+}
 
 declare module 'preact' {
   namespace JSX {
     interface IntrinsicElements {
-      'locator-tip': preact.JSX.HTMLAttributes & {
-        'text-align'?: 'center';
-      };
+      'locator-tip': CustomElement<TipAttributes>;
     }
   }
 }
