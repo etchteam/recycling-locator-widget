@@ -1,0 +1,12 @@
+locator-icon {
+  display: inline-flex;
+
+  path,
+  circle {
+    fill: currentColor;
+  }
+
+  &[color='primary'] {
+    color: var(--color-primary);
+  }
+}

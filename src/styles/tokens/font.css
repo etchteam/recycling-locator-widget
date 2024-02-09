@@ -4,4 +4,8 @@
     --recycling-locator-font-family,
     var(--font-family-default)
   );
+
+  @media (width >= 768px) {
+    --diamond-font-size-h2: 1.75rem;
+  }
 }

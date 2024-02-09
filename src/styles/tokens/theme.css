@@ -15,14 +15,18 @@
     --recycling-locator-theme-border-color-light,
     var(--color-border)
   );
+  --diamond-theme-border-color-hover: var(
+    --recycling-locator-theme-border-color-hover-light,
+    var(--color-primary)
+  );
 
   --theme-background-accent: var(
     --recycling-locator-theme-background-accent,
-    var(--color-green-lightest)
+    color-mix(in srgb, var(--color-primary) 10%, var(--color-white))
   );
   --theme-heading-color-accent: var(
     --recycling-locator-theme-heading-color-accent,
-    var(--color-green)
+    var(--color-primary)
   );
   --theme-color-accent: var(
     --recycling-locator-theme-color-accent,
@@ -30,6 +34,6 @@
   );
   --theme-link-color-accent: var(
     --recycling-locator-theme-link-color-accent,
-    var(--color-green)
+    var(--color-primary)
   );
 }

@@ -7,9 +7,8 @@ locator-tip {
   background: var(--diamond-theme-background);
   color: var(--diamond-theme-color);
   display: grid;
-  grid-template-columns: min(100%, 20em);
   height: 100%;
-  padding: var(--diamond-spacing);
+  padding-block: var(--diamond-spacing);
   place-content: center;
 
   img {

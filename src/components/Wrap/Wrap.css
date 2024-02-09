@@ -1,0 +1,6 @@
+locator-wrap {
+  display: block;
+  margin: 0 auto;
+  max-width: min(100%, var(--wrap-max-width));
+  padding-inline: var(--diamond-spacing);
+}

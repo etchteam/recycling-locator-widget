@@ -1,6 +1,7 @@
 import register from 'preact-custom-element';
 
 import config from '../../config';
+import { CustomElement } from '../../types/custom-element';
 
 export default function Logo() {
   return (
@@ -18,7 +19,7 @@ register(Logo, 'locator-logo');
 declare module 'preact' {
   namespace JSX {
     interface IntrinsicElements {
-      'locator-logo': preact.JSX.HTMLAttributes;
+      'locator-logo': CustomElement;
     }
   }
 }

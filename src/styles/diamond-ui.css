@@ -9,3 +9,10 @@
   -webkit-font-smoothing: antialiased;
   line-height: var(--diamond-font-line-height);
 }
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--diamond-font-weight-base);
+}

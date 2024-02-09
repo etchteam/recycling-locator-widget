@@ -11,4 +11,7 @@
 
   --color-body: var(--color-grey-dark);
   --color-border: var(--color-grey-lightest);
+
+  /* This is the main color that we expect people to change */
+  --color-primary: var(--recycling-locator-color-primary, var(--color-green));
 }
