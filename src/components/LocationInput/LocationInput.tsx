@@ -4,6 +4,7 @@ import register from 'preact-custom-element';
 
 import config from '../../config';
 import { CustomElement } from '../../types/custom-element';
+import '../Icon/Icon';
 
 interface HereMapsAutosuggestResult {
   items: {
@@ -60,13 +61,16 @@ export default class LocationInput extends Component<LocationInputProps> {
     const listId = `${inputId}-locations`;
 
     return (
-      <diamond-input>
-        <input
-          type="text"
-          id={inputId}
-          list={listId}
-          onInput={this.handleInput}
-        />
+      <>
+        <diamond-input>
+          <locator-icon icon="pin" color="primary" />
+          <input
+            type="text"
+            id={inputId}
+            list={listId}
+            onInput={this.handleInput}
+          />
+        </diamond-input>
         <datalist id={listId}>
           {locations.map((location) => (
             <option value={location} key={location}>
@@ -74,7 +78,7 @@ export default class LocationInput extends Component<LocationInputProps> {
             </option>
           ))}
         </datalist>
-      </diamond-input>
+      </>
     );
   }
 }

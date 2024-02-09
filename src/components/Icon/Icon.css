@@ -1,0 +1,10 @@
+locator-icon {
+  path,
+  circle {
+    fill: currentColor;
+  }
+
+  &[color='primary'] {
+    color: var(--color-primary);
+  }
+}
