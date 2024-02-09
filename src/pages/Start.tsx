@@ -13,7 +13,7 @@ export default function StartPage() {
     <locator-layout>
       <locator-logo slot="header"></locator-logo>
       <locator-wrap slot="main">
-        <diamond-section>
+        <diamond-section padding="lg">
           <h2>{t('start.title')}</h2>
           <form>
             <diamond-form-group class="diamond-spacing-bottom-md">

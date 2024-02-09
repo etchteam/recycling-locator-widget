@@ -1,4 +1,6 @@
 locator-icon {
+  display: inline-flex;
+
   path,
   circle {
     fill: currentColor;
