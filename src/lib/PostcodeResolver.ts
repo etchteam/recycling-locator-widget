@@ -2,6 +2,8 @@ import type { service } from '@here/maps-api-for-javascript';
 
 import config from '../config';
 
+import WidgetApi from './WidgetApi';
+
 interface HereMapsGeocodeResponse {
   items: {
     position: {
@@ -38,6 +40,10 @@ export default class PostCodeResolver {
     return result.items[0].position;
   }
 
+  private static formatPostcode(postcode: string): string {
+    return postcode.replace(/ /g, '').toUpperCase();
+  }
+
   private static extractPostcodeFromString(
     locationOrPostcode: string,
   ): string | null {
@@ -49,27 +55,26 @@ export default class PostCodeResolver {
       return null;
     }
 
-    return matches[0].toUpperCase().replace(/ /g, '');
+    return PostCodeResolver.formatPostcode(matches[0]);
   }
 
   static async fromLatLng(lat: number, lng: number): Promise<string> {
     // window.location.hostname === 'localhost' ? '' : '?callback=?'
     const safeLat = encodeURIComponent(lat);
     const safeLng = encodeURIComponent(lng);
-    const response = await fetch(
+    const response = await WidgetApi.request(
       `${config.widgetApiPath}postcode/${safeLat},${safeLng}`,
     );
-    const data = await response.json();
 
-    if (data.error) {
+    if (response.error || !response.postcode) {
       throw Error(
-        data.error === 'Not Found'
+        response.error === 'Not Found'
           ? PostCodeResolver.ERROR_POSTCODE_NOT_FOUND
           : PostCodeResolver.ERROR_SEARCH_FAILED,
       );
     }
 
-    return data.postcode;
+    return PostCodeResolver.formatPostcode(response.postcode);
   }
 
   static async fromString(locationOrPostcode: string): Promise<string> {

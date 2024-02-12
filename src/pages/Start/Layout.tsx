@@ -1,4 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
+import '@etchteam/diamond-ui/control/Button/Button';
+import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import '../../components/Layout/Layout';
 import '../../components/Logo/Logo';

@@ -8,9 +8,8 @@ import PostCodeResolver from '../../lib/PostcodeResolver';
 export async function startPageAction({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const location = formData.get('location') as string;
-  const postcode = PostCodeResolver.fromString(location);
-  console.log(postcode);
-  return redirect('/EX327RB');
+  const postcode = await PostCodeResolver.fromString(location);
+  return redirect(`/${postcode}`);
 }
 
 export default function StartPage() {
