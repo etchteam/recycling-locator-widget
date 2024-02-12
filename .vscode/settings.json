@@ -7,5 +7,6 @@
   "sonarlint.connectedMode.project": {
     "connectionId": "Etch",
     "projectKey": "etchteam_recycling-locator-widget"
-  }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -1,4 +1,4 @@
-import { Outlet, Link, useHref } from 'react-router-dom';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 
 import '../../components/Layout/Layout';
 import '../../components/Logo/Logo';
@@ -21,13 +21,13 @@ function InfoButton({ open }: { readonly open: boolean }) {
 }
 
 export default function StartLayout() {
-  const path = useHref();
+  const location = useLocation();
 
   return (
     <locator-layout>
       <locator-header slot="header">
         <locator-logo slot="header"></locator-logo>
-        <InfoButton open={path === '/about'} />
+        <InfoButton open={location.pathname === '/about'} />
       </locator-header>
       <locator-wrap slot="main">
         <diamond-section padding="lg">

@@ -4,7 +4,7 @@ export interface TipAttributes {
   'text-align'?: 'center';
 }
 
-declare module 'preact' {
+declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
       'locator-tip': CustomElement<TipAttributes>;

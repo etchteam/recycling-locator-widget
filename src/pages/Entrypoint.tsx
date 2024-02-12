@@ -12,13 +12,15 @@ import { Locale } from '../types/locale';
 import NotFound from './404';
 import AboutPage from './Start/About';
 import StartLayout from './Start/Layout';
-import StartPage from './Start/Start';
+import StartLocationPage from './Start/Location';
+import StartPage, { startPageAction } from './Start/Start';
 
 const router = createMemoryRouter(
   createRoutesFromElements(
-    <Route element={<StartLayout />} errorElement={NotFound}>
-      <Route path="/" element={<StartPage />} />
+    <Route element={<StartLayout />} errorElement={<NotFound />}>
+      <Route path="/" element={<StartPage />} action={startPageAction} />
       <Route path="/about" element={<AboutPage />} />
+      <Route path="/:postcode" element={<StartLocationPage />} />
     </Route>,
   ),
 );
