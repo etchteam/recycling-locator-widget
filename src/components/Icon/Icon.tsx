@@ -7,7 +7,7 @@ import { CustomElement } from '../../types/custom-element';
 import BlankSvg from './svg/blank.svg?react';
 
 export interface IconAttributes {
-  readonly icon: 'pin' | 'info';
+  readonly icon: 'pin' | 'info' | 'close';
   readonly color?: 'primary';
   readonly label?: string;
 }
@@ -22,7 +22,7 @@ export default function Icon({ icon, label }: IconAttributes) {
   );
 }
 
-register(Icon, 'locator-icon');
+register(Icon, 'locator-icon', ['icon']);
 
 declare module 'preact' {
   namespace JSX {

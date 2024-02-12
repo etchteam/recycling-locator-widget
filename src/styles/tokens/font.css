@@ -5,7 +5,11 @@
     var(--font-family-default)
   );
 
-  @media (width >= 768px) {
+  --diamond-font-size-h3: 1.5rem;
+}
+
+@media (width >= 768px) {
+  :host {
     --diamond-font-size-h2: 1.75rem;
   }
 }
