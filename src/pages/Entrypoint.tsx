@@ -9,12 +9,17 @@ import {
 import { i18nInit } from '../lib/i18n';
 import { Locale } from '../types/locale';
 
-import NotFound from './404.js';
-import StartPage from './Start.js';
+import NotFound from './404';
+import AboutPage from './Start/About';
+import StartLayout from './Start/Layout';
+import StartPage from './Start/Start';
 
 const router = createMemoryRouter(
   createRoutesFromElements(
-    <Route path="/" element={<StartPage />} errorElement={NotFound} />,
+    <Route element={<StartLayout />} errorElement={NotFound}>
+      <Route path="/" element={<StartPage />} />
+      <Route path="/about" element={<AboutPage />} />
+    </Route>,
   ),
 );
 

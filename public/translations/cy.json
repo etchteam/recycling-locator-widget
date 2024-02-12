@@ -1,5 +1,21 @@
 {
   "start": {
     "title": "Dod o hyd i leoedd i ailgylchu."
+  },
+  "about": {
+    "title": "About this service",
+    "intro": "Powered by RecycleNow.com, this tool can be used to search and find recycling locations throughout the United Kingdom.",
+    "becomeAPartner": {
+      "title": "Add this tool to your website",
+      "description": "It’s been created as an embeddable widget that can be added to any website to help visitors discover more recycling options. For example, a beverage manufacturer could use the tool to show places to recycle drinks cans.",
+      "cta": "Become a partner",
+      "url": "https://wrap.org.uk/taking-action/citizen-behaviour-change/recycle-now/recycling-locator-tool"
+    },
+    "feedback": {
+      "title": "Improving this service",
+      "description": "We’re always looking to improve this tool and would be interested to hear about your experience whilst using it, good or bad.",
+      "cta": "Feedback on this tool",
+      "url": "https://wrapcymru.org.uk/contact-wrap-cymru"
+    }
   }
 }

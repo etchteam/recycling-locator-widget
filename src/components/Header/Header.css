@@ -1,0 +1,7 @@
+locator-header {
+  align-items: center;
+  display: flex;
+  gap: var(--diamond-spacing);
+  justify-content: space-between;
+  padding: var(--diamond-spacing-sm) var(--diamond-spacing);
+}
