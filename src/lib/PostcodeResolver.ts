@@ -53,24 +53,23 @@ export default class PostCodeResolver {
   }
 
   static async fromLatLng(lat: number, lng: number): Promise<string> {
-    // var url = config.widgetRoutePrefix + '/postcode/' +
-    //   encodeURIComponent(latitude) + ',' +
-    //   encodeURIComponent(longitude) +
-    //   (window.location.hostname === 'localhost' ? '' : '?callback=?');
-    // $.getJSON({
-    //   url: url
-    // }).done(function(data) {
-    //   if (data.error && data.error == 'Not Found') {
-    //     deferred.reject(resolver.ERROR_POSTCODE_NOT_FOUND);
-    //   } else if (data.error) {
-    //     deferred.reject(resolver.ERROR_SEARCH_FAILED);
-    //   } else {
-    //     deferred.resolve(data.postcode);
-    //   }
-    // }).fail(function() {
-    //   deferred.reject(resolver.ERROR_SEARCH_FAILED);
-    // });
-    return `${lat} ${lng}`;
+    // window.location.hostname === 'localhost' ? '' : '?callback=?'
+    const safeLat = encodeURIComponent(lat);
+    const safeLng = encodeURIComponent(lng);
+    const response = await fetch(
+      `${config.widgetApiPath}postcode/${safeLat},${safeLng}`,
+    );
+    const data = await response.json();
+
+    if (data.error) {
+      throw Error(
+        data.error === 'Not Found'
+          ? PostCodeResolver.ERROR_POSTCODE_NOT_FOUND
+          : PostCodeResolver.ERROR_SEARCH_FAILED,
+      );
+    }
+
+    return data.postcode;
   }
 
   static async fromString(locationOrPostcode: string): Promise<string> {
