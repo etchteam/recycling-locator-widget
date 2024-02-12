@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import '../components/Layout/Layout';
 import '../components/Logo/Logo';
+import '../components/Icon/Icon';
+import '../components/Header/Header';
 import '../components/Tip/Tip';
 import '../components/LocationInput/LocationInput';
 import '../components/Wrap/Wrap';
@@ -11,7 +13,14 @@ export default function StartPage() {
 
   return (
     <locator-layout>
-      <locator-logo slot="header"></locator-logo>
+      <locator-header slot="header">
+        <locator-logo slot="header"></locator-logo>
+        <diamond-button variant="text">
+          <button>
+            <locator-icon icon="info" color="primary"></locator-icon>
+          </button>
+        </diamond-button>
+      </locator-header>
       <locator-wrap slot="main">
         <diamond-section padding="lg">
           <h2>{t('start.title')}</h2>
