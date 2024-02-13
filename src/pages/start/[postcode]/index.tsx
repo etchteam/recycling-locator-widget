@@ -1,3 +1,6 @@
+import { useSignal } from '@preact/signals';
+import { useEffect } from 'preact/hooks';
+import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
@@ -8,14 +11,31 @@ import '../../../components/Wrap/Wrap';
 import '../../../components/ContextHeader/ContextHeader';
 import '../../../components/Icon/Icon';
 
+import PostCodeResolver from '../../../lib/PostcodeResolver';
+
 export default function PostcodePage() {
+  const { t } = useTranslation();
   const { postcode } = useParams();
-  console.log(postcode);
+  const city = useSignal<string>('');
+
+  useEffect(() => {
+    // Get the city and validate geo data again in case the user has navigated
+    // directly to this page
+    async function setCity() {
+      const geocode = await PostCodeResolver.getValidGeocodeData(postcode);
+      city.value = geocode.items[0].address.city;
+    }
+    setCity();
+  }, [postcode]);
+
   return (
     <>
       <locator-context-header>
         <diamond-grid>
-          <diamond-grid-item grow="grow">{postcode}</diamond-grid-item>
+          <diamond-grid-item grow>
+            <span class="text-weight-bold">{postcode}</span>
+            {city.value && <>&nbsp;&ndash; {city.value}</>}
+          </diamond-grid-item>
           <diamond-grid-item>
             <diamond-button variant="text" size="sm">
               <Link to="/">
@@ -27,7 +47,7 @@ export default function PostcodePage() {
       </locator-context-header>
       <locator-wrap>
         <diamond-section padding="lg">
-          <h2>What do you need to recycle?</h2>
+          <h2>{t('start.location.title')}</h2>
         </diamond-section>
       </locator-wrap>
     </>

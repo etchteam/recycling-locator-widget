@@ -27,9 +27,10 @@ export default class PostCodeResolver {
   static readonly ERROR_SEARCH_FAILED = 'Search failed';
   static readonly NOT_IN_UK = 'Not in the UK';
 
-  static async getGeocodeData(
+  static async getValidGeocodeData(
     location: string,
   ): Promise<HereMapsGeocodeResponse> {
+    console.log(location);
     const { default: H } = await import(
       // @ts-expect-error TS can't find the maps types
       '@here/maps-api-for-javascript/bin/mapsjs.bundle'
@@ -37,9 +38,23 @@ export default class PostCodeResolver {
     const apikey = config.mapsPlacesKey;
     const platform = new H.service.Platform({ apikey });
     const service = platform.getSearchService() as service.GeocodingService;
-    return await new Promise((resolve, reject) => {
-      service.geocode({ q: location }, resolve, reject);
-    });
+    const geocode: HereMapsGeocodeResponse = await new Promise(
+      (resolve, reject) => {
+        service.geocode({ q: location }, resolve, reject);
+      },
+    );
+
+    if (geocode?.items?.length === 0) {
+      throw new Error(PostCodeResolver.ERROR_SEARCH_FAILED);
+    }
+
+    const { countryName } = geocode.items[0].address;
+
+    if (countryName.toLowerCase() !== 'united kingdom') {
+      throw new Error(PostCodeResolver.NOT_IN_UK);
+    }
+
+    return geocode;
   }
 
   static extractPostcodeFromString(locationOrPostcode: string): string | null {
@@ -90,18 +105,7 @@ export default class PostCodeResolver {
    * 3. If the location does not contain a postcode use the lat/lng to get the postcode
    */
   static async fromString(location: string): Promise<string> {
-    const geocode = await PostCodeResolver.getGeocodeData(location);
-
-    if (geocode?.items?.length === 0) {
-      throw new Error(PostCodeResolver.ERROR_SEARCH_FAILED);
-    }
-
-    const { countryName } = geocode.items[0].address;
-    const { lat, lng } = geocode.items[0].position;
-
-    if (countryName.toLowerCase() !== 'united kingdom') {
-      throw new Error(PostCodeResolver.NOT_IN_UK);
-    }
+    const geocode = await PostCodeResolver.getValidGeocodeData(location);
 
     const extractedPostcode =
       PostCodeResolver.extractPostcodeFromString(location);
@@ -109,6 +113,8 @@ export default class PostCodeResolver {
     if (extractedPostcode) {
       return extractedPostcode;
     }
+
+    const { lat, lng } = geocode.items[0].position;
 
     return PostCodeResolver.fromLatLng(lat, lng);
   }
