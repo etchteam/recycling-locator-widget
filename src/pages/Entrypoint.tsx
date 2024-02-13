@@ -13,14 +13,21 @@ import NotFound from './404';
 import AboutPage from './Start/About';
 import StartLayout from './Start/Layout';
 import StartLocationPage from './Start/Location';
-import StartPage, { startPageAction } from './Start/Start';
+import LocationForm, { locationFormAction } from './Start/LocationForm';
+import LocationMenu from './Start/LocationMenu';
+import StartPage from './Start/Start';
 
 const router = createMemoryRouter(
   createRoutesFromElements(
     <Route element={<StartLayout />} errorElement={<NotFound />}>
-      <Route path="/" element={<StartPage />} action={startPageAction} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/:postcode" element={<StartLocationPage />} />
+      <Route path="/" element={<StartPage />}>
+        <Route index element={<LocationForm />} action={locationFormAction} />
+        <Route path="/about" element={<AboutPage />} />
+      </Route>
+      <Route path="/:postcode" element={<StartLocationPage />}>
+        <Route index element={<LocationMenu />} />
+        <Route path="/:postcode/about" element={<AboutPage />} />
+      </Route>
     </Route>,
   ),
 );

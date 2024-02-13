@@ -6,11 +6,12 @@ import '../../components/Layout/Layout';
 import '../../components/Logo/Logo';
 import '../../components/Icon/Icon';
 import '../../components/Header/Header';
-import '../../components/Tip/Tip';
-import '../../components/Wrap/Wrap';
 
-function InfoButton({ open }: { readonly open: boolean }) {
-  const to = open ? '/' : '/about';
+function InfoButton({ pathname }: { readonly pathname: string }) {
+  const open = pathname.includes('/about');
+  const previousPath = pathname.replace('/about', '') || '/';
+  const aboutPath = `${previousPath === '/' ? '' : previousPath}/about`;
+  const to = open ? previousPath : aboutPath;
   const icon = open ? 'close' : 'info';
 
   return (
@@ -29,24 +30,9 @@ export default function StartLayout() {
     <locator-layout>
       <locator-header slot="header">
         <locator-logo slot="header"></locator-logo>
-        <InfoButton open={location.pathname === '/about'} />
+        <InfoButton pathname={location.pathname} />
       </locator-header>
-      <locator-wrap slot="main">
-        <diamond-section padding="lg">
-          <Outlet />
-        </diamond-section>
-      </locator-wrap>
-      <locator-tip slot="aside">
-        <locator-wrap>
-          <p>Use this service to:</p>
-          <ul>
-            <li>see your nearest places to recycle</li>
-            <li>find out how to recycle a specific item</li>
-            <li>check what you can recycle at home</li>
-          </ul>
-          <img src="/images/recycling-technology.webp" alt="" />
-        </locator-wrap>
-      </locator-tip>
+      <Outlet />
     </locator-layout>
   );
 }

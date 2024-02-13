@@ -2,7 +2,8 @@
   "start": {
     "title": "Find places to recycle.",
     "location": {
-      "title": "What do you need to recycle?"
+      "title": "What do you need to recycle?",
+      "exploreTheMap": "Explore the map"
     },
     "about": {
       "title": "About this service",
