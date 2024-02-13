@@ -2,17 +2,17 @@ import { useTranslation } from 'react-i18next';
 import { Form, redirect, ActionFunctionArgs } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 
-import '../../components/LocationInput/LocationInput';
-import PostCodeResolver from '../../lib/PostcodeResolver';
+import '../../../components/LocationInput/LocationInput';
+import PostCodeResolver from '../../../lib/PostcodeResolver';
 
-export async function locationFormAction({ request }: ActionFunctionArgs) {
+export async function locationAction({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const location = formData.get('location') as string;
   const postcode = await PostCodeResolver.fromString(location);
   return redirect(`/${postcode}`);
 }
 
-export default function LocationForm() {
+export default function Location() {
   const { t } = useTranslation();
 
   return (

@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
-import '../../components/Wrap/Wrap';
-import '../../components/Tip/Tip';
+import '../../../components/Wrap/Wrap';
+import '../../../components/Tip/Tip';
 
-export default function StartIndexPage() {
+export default function LocationLayout() {
   return (
     <>
       <locator-wrap slot="main">

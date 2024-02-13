@@ -1,24 +1,7 @@
-import { useTranslation } from 'react-i18next';
-import { Outlet } from 'react-router-dom';
-import '@etchteam/diamond-ui/control/Button/Button';
+import { useParams } from 'react-router-dom';
 
-import '../../../components/Wrap/Wrap';
+export default function Postcode() {
+  const { postcode } = useParams();
 
-export default function StartLocationPage() {
-  const { t } = useTranslation();
-
-  return (
-    <>
-      <locator-wrap slot="main">
-        <diamond-section padding="lg">
-          <Outlet />
-        </diamond-section>
-      </locator-wrap>
-      <div slot="aside">
-        <diamond-button>
-          <button>{t('start.location.exploreTheMap')}</button>
-        </diamond-button>
-      </div>
-    </>
-  );
+  return <h2>{postcode}</h2>;
 }

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import '@etchteam/diamond-ui/control/Button/Button';
 
-export default function AboutPage() {
+export default function About() {
   const { t } = useTranslation();
 
   return (

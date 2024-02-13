@@ -2,31 +2,30 @@ import { Suspense } from 'preact/compat';
 import {
   createMemoryRouter,
   createRoutesFromElements,
-  Route,
   RouterProvider,
+  Route,
 } from 'react-router-dom';
 
 import { i18nInit } from '../lib/i18n';
 import { Locale } from '../types/locale';
 
-import NotFound from './404';
-import AboutPage from './start/About';
-import StartIndexPage from './start/Index';
-import StartLayout from './start/Layout';
-import LocationForm, { locationFormAction } from './start/LocationForm';
-import PostcodeIndexPage from './start/[postcode]/Index';
-import PostcodeMenu from './start/[postcode]/Menu';
+import Postcode from './start/[postcode]/index';
+import PostcodeLayout from './start/[postcode]/layout';
+import About from './start/about';
+import StartLayout from './start/layout';
+import Location, { locationAction } from './start/location/index';
+import LocationLayout from './start/location/layout';
 
 const router = createMemoryRouter(
   createRoutesFromElements(
-    <Route element={<StartLayout />} errorElement={<NotFound />}>
-      <Route path="/" element={<StartIndexPage />}>
-        <Route index element={<LocationForm />} action={locationFormAction} />
-        <Route path="/about" element={<AboutPage />} />
+    <Route element={<StartLayout />}>
+      <Route path="/" element={<LocationLayout />}>
+        <Route index element={<Location />} action={locationAction} />
+        <Route path="/about" element={<About />} />
       </Route>
-      <Route path="/:postcode" element={<PostcodeIndexPage />}>
-        <Route index element={<PostcodeMenu />} />
-        <Route path="/:postcode/about" element={<AboutPage />} />
+      <Route path="/:postcode" element={<PostcodeLayout />}>
+        <Route index element={<Postcode />} />
+        <Route path="/:postcode/about" element={<About />} />
       </Route>
     </Route>,
   ),
