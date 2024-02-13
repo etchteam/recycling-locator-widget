@@ -10,22 +10,22 @@ import { i18nInit } from '../lib/i18n';
 import { Locale } from '../types/locale';
 
 import NotFound from './404';
-import AboutPage from './Start/About';
-import StartLayout from './Start/Layout';
-import StartLocationPage from './Start/Location';
-import LocationForm, { locationFormAction } from './Start/LocationForm';
-import LocationMenu from './Start/LocationMenu';
-import StartPage from './Start/Start';
+import AboutPage from './start/About';
+import StartIndexPage from './start/Index';
+import StartLayout from './start/Layout';
+import LocationForm, { locationFormAction } from './start/LocationForm';
+import PostcodeIndexPage from './start/[postcode]/Index';
+import PostcodeMenu from './start/[postcode]/Menu';
 
 const router = createMemoryRouter(
   createRoutesFromElements(
     <Route element={<StartLayout />} errorElement={<NotFound />}>
-      <Route path="/" element={<StartPage />}>
+      <Route path="/" element={<StartIndexPage />}>
         <Route index element={<LocationForm />} action={locationFormAction} />
         <Route path="/about" element={<AboutPage />} />
       </Route>
-      <Route path="/:postcode" element={<StartLocationPage />}>
-        <Route index element={<LocationMenu />} />
+      <Route path="/:postcode" element={<PostcodeIndexPage />}>
+        <Route index element={<PostcodeMenu />} />
         <Route path="/:postcode/about" element={<AboutPage />} />
       </Route>
     </Route>,

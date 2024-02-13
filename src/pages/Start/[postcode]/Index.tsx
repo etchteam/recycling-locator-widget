@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 
-import '../../components/Wrap/Wrap';
+import '../../../components/Wrap/Wrap';
 
 export default function StartLocationPage() {
   const { t } = useTranslation();

@@ -4,7 +4,7 @@ import '@etchteam/diamond-ui/canvas/Section/Section';
 import '../../components/Wrap/Wrap';
 import '../../components/Tip/Tip';
 
-export default function StartPage() {
+export default function StartIndexPage() {
   return (
     <>
       <locator-wrap slot="main">
