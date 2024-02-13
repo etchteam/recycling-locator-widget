@@ -14,10 +14,10 @@ interface HereMapsGeocodeResponse {
 }
 
 export default class PostCodeResolver {
-  private static ERROR_POSTCODE_NOT_FOUND = 'Postcode not found';
-  private static ERROR_SEARCH_FAILED = 'Search failed';
+  static readonly ERROR_POSTCODE_NOT_FOUND = 'Postcode not found';
+  static readonly ERROR_SEARCH_FAILED = 'Search failed';
 
-  private static async getLatLng(
+  static async getLatLng(
     location: string,
   ): Promise<{ lat: number; lng: number }> {
     const { default: H } = await import(
@@ -40,13 +40,11 @@ export default class PostCodeResolver {
     return result.items[0].position;
   }
 
-  private static formatPostcode(postcode: string): string {
+  static formatPostcode(postcode: string): string {
     return postcode.replace(/ /g, '').toUpperCase();
   }
 
-  private static extractPostcodeFromString(
-    locationOrPostcode: string,
-  ): string | null {
+  static extractPostcodeFromString(locationOrPostcode: string): string | null {
     const matches = locationOrPostcode.match(
       /(GIR ?0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]([0-9ABEHMNPRV-Y])?)|[0-9][A-HJKPS-UW]) ?[0-9][ABD-HJLNP-UW-Z]{2})/i,
     );
@@ -59,7 +57,6 @@ export default class PostCodeResolver {
   }
 
   static async fromLatLng(lat: number, lng: number): Promise<string> {
-    // window.location.hostname === 'localhost' ? '' : '?callback=?'
     const safeLat = encodeURIComponent(lat);
     const safeLng = encodeURIComponent(lng);
     const response = await WidgetApi.request(
