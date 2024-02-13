@@ -9,11 +9,9 @@ export default function PostcodeLayout() {
 
   return (
     <>
-      <locator-wrap slot="main">
-        <diamond-section padding="lg">
-          <Outlet />
-        </diamond-section>
-      </locator-wrap>
+      <div slot="main">
+        <Outlet />
+      </div>
       <div slot="aside">
         <diamond-button>
           <button>{t('start.location.exploreTheMap')}</button>
