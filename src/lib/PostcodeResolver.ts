@@ -42,6 +42,18 @@ export default class PostCodeResolver {
     });
   }
 
+  static extractPostcodeFromString(locationOrPostcode: string): string | null {
+    const matches = locationOrPostcode.match(
+      /(GIR ?0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]([0-9ABEHMNPRV-Y])?)|[0-9][A-HJKPS-UW]) ?[0-9][ABD-HJLNP-UW-Z]{2})/i,
+    );
+
+    if (!matches) {
+      return null;
+    }
+
+    return PostCodeResolver.formatPostcode(matches[0]);
+  }
+
   /**
    * Return a url safe postcode
    */
@@ -72,7 +84,10 @@ export default class PostCodeResolver {
   }
 
   /**
-   * Get a valid UK postcode from a location
+   * Take a location string then:
+   * 1. Test it’s a valid UK address
+   * 2. If the location contains a postcode return it
+   * 3. If the location does not contain a postcode use the lat/lng to get the postcode
    */
   static async fromString(location: string): Promise<string> {
     const geocode = await PostCodeResolver.getGeocodeData(location);
@@ -86,6 +101,13 @@ export default class PostCodeResolver {
 
     if (countryName.toLowerCase() !== 'united kingdom') {
       throw new Error(PostCodeResolver.NOT_IN_UK);
+    }
+
+    const extractedPostcode =
+      PostCodeResolver.extractPostcodeFromString(location);
+
+    if (extractedPostcode) {
+      return extractedPostcode;
     }
 
     return PostCodeResolver.fromLatLng(lat, lng);
