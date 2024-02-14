@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -10,29 +10,11 @@ import '@/components/canvas/ContextHeader/ContextHeader';
 import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/IconLink/IconLink';
-
-import PostCodeResolver from '@/lib/PostcodeResolver';
-
-interface PostcodeLoaderResponse {
-  postcode: string;
-  city: string;
-}
-
-export async function postcodeLoader({
-  params,
-}: LoaderFunctionArgs): Promise<PostcodeLoaderResponse> {
-  const postcode = params.postcode;
-  const geocode = await PostCodeResolver.getValidGeocodeData(postcode);
-
-  return {
-    postcode,
-    city: geocode.items[0].address.city,
-  };
-}
+import { usePostcodeLoaderData } from '@/lib/loaders/postcode';
 
 export default function PostcodePage() {
   const { t } = useTranslation();
-  const { postcode, city } = useLoaderData() as PostcodeLoaderResponse;
+  const { postcode, city } = usePostcodeLoaderData();
 
   return (
     <>
