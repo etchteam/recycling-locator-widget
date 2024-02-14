@@ -7,6 +7,10 @@
   font-weight: var(--diamond-font-weight-bold);
 }
 
+.text-size-h3 {
+  font-size: var(--diamond-font-size-h3);
+}
+
 article {
   border: var(--container-border);
   container-type: inline-size;

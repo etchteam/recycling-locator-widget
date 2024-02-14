@@ -1,5 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+import {
+  ActionFunctionArgs,
+  Link,
+  LoaderFunctionArgs,
+  redirect,
+  useLoaderData,
+  Form,
+} from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -11,8 +18,9 @@ import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/IconLink/IconLink';
 import '@/components/control/MaterialSearchInput/MaterialSearchInput';
-
 import PostCodeResolver from '@/lib/PostcodeResolver';
+import WidgetApi from '@/lib/WidgetApi';
+import { MaterialSearchResponse } from '@/types/widgetApi';
 
 interface PostcodeLoaderResponse {
   postcode: string;
@@ -29,6 +37,23 @@ export async function postcodeLoader({
     postcode,
     city: geocode.items[0].address.city,
   };
+}
+
+export async function postcodeAction({ request, params }: ActionFunctionArgs) {
+  const formData = await request.formData();
+  const materials = await WidgetApi.post<MaterialSearchResponse[]>(
+    'materials',
+    formData,
+  );
+  const { name, id } = materials?.[0] ?? {};
+  const postcode = params.postcode;
+
+  if (name === formData.get('search')) {
+    const safeName = encodeURIComponent(name);
+    return redirect(`/${postcode}/material?id=${id}&name=${safeName}`);
+  }
+
+  return redirect(`/${postcode}/material/not-found`);
 }
 
 export default function PostcodePage() {
@@ -54,13 +79,20 @@ export default function PostcodePage() {
       </locator-context-header>
       <locator-wrap>
         <diamond-section padding="lg">
-          <h2 id="material-search-title">{t('start.location.title')}</h2>
+          <h2
+            id="material-search-title"
+            className="text-size-h3 diamond-spacing-bottom-md"
+          >
+            {t('start.location.title')}
+          </h2>
 
-          <locator-material-search-input
-            className="diamond-spacing-bottom-lg"
-            placeholder={t('start.location.placeholder')}
-            inputLabelledBy="material-search-title"
-          ></locator-material-search-input>
+          <Form method="post">
+            <locator-material-search-input
+              className="diamond-spacing-bottom-lg"
+              placeholder={t('start.location.placeholder')}
+              inputLabelledBy="material-search-title"
+            ></locator-material-search-input>
+          </Form>
 
           <locator-bordered-list>
             <nav>

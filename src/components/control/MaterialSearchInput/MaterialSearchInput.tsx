@@ -4,7 +4,9 @@ import register from 'preact-custom-element';
 import '@etchteam/diamond-ui/control/Input/Input';
 import '@etchteam/diamond-ui/control/Button/Button';
 
+import WidgetApi from '@/lib/WidgetApi';
 import { CustomElement } from '@/types/custom-element';
+import { MaterialSearchResponse } from '@/types/widgetApi';
 
 import '@/components/content/Icon/Icon';
 
@@ -19,16 +21,17 @@ interface MaterialSearchInputProps {
  * The autosuggest list will appear after > 3 characters are entered.
  */
 export default class MaterialSearchInput extends Component<MaterialSearchInputProps> {
-  materialSuggestions: Signal<string[]>;
+  materialSuggestions: Signal<MaterialSearchResponse[]>;
 
   constructor(props: MaterialSearchInputProps) {
     super(props);
-    this.materialSuggestions = signal<string[]>([]);
+    this.materialSuggestions = signal([]);
   }
 
-  autosuggest = async (query: string): Promise<string[]> => {
-    console.log(query);
-    return [];
+  autosuggest = async (query: string): Promise<MaterialSearchResponse[]> => {
+    const body = new FormData();
+    body.append('search', query);
+    return WidgetApi.post('materials', body);
   };
 
   handleInput = async (event: preact.JSX.TargetedEvent<HTMLInputElement>) => {
@@ -52,7 +55,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
         <diamond-input>
           <input
             type="text"
-            name="material"
+            name="search"
             aria-labelledby={this.props.inputLabelledBy}
             placeholder={this.props.placeholder}
             id={inputId}
@@ -67,8 +70,8 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
         </diamond-button>
         <datalist id={listId}>
           {materials.map((material) => (
-            <option value={material} key={material}>
-              {material}
+            <option value={material.name} key={material.id}>
+              {material.name}
             </option>
           ))}
         </datalist>
