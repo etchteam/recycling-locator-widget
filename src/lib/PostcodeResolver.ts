@@ -25,7 +25,9 @@ interface WidgetApiPostcodeResponse {
 export default class PostCodeResolver {
   static readonly ERROR_POSTCODE_NOT_FOUND = 'Postcode not found';
   static readonly ERROR_SEARCH_FAILED = 'Search failed';
-  static readonly NOT_IN_UK = 'Not in the UK';
+  static readonly ERROR_NOT_IN_UK = 'Not in the UK';
+  static readonly POSTCODE_REGEX =
+    /(GIR ?0AA|[A-PR-UWYZ](\d{1,2}|([A-HK-Y]\d([\dABEHMNPRV-Y])?)|\d[A-HJKPS-UW]) ?\d[ABD-HJLNP-UW-Z]{2})/i;
 
   static async getValidGeocodeData(
     location: string,
@@ -51,16 +53,14 @@ export default class PostCodeResolver {
     const { countryName } = geocode.items[0].address;
 
     if (countryName.toLowerCase() !== 'united kingdom') {
-      throw new Error(PostCodeResolver.NOT_IN_UK);
+      throw new Error(PostCodeResolver.ERROR_NOT_IN_UK);
     }
 
     return geocode;
   }
 
   static extractPostcodeFromString(locationOrPostcode: string): string | null {
-    const matches = locationOrPostcode.match(
-      /(GIR ?0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]([0-9ABEHMNPRV-Y])?)|[0-9][A-HJKPS-UW]) ?[0-9][ABD-HJLNP-UW-Z]{2})/i,
-    );
+    const matches = PostCodeResolver.POSTCODE_REGEX.exec(locationOrPostcode);
 
     if (!matches) {
       return null;
