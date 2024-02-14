@@ -33,7 +33,7 @@ export default function PostcodePage() {
       <locator-context-header>
         <diamond-grid>
           <diamond-grid-item grow>
-            <span class="text-weight-bold">{postcode}</span>
+            <span className="text-weight-bold">{postcode}</span>
             {city.value && <>&nbsp;&ndash; {city.value}</>}
           </diamond-grid-item>
           <diamond-grid-item>
