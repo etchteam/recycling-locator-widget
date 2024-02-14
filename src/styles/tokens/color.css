@@ -1,7 +1,8 @@
 :host {
   --color-white: #fff;
 
-  --color-grey-lightest: #bdbdbd;
+  --color-grey-lightest: #f2f2f2;
+  --color-grey-light: #bdbdbd;
   --color-grey-dark: #333;
 
   --color-green-lightest: #eef5e5;
@@ -10,8 +11,13 @@
   --color-green-dark: #1c7d46;
 
   --color-body: var(--color-grey-dark);
-  --color-border: var(--color-grey-lightest);
+  --color-border: var(--color-grey-light);
 
   /* This is the main color that we expect people to change */
+  --color-primary-lightest: color-mix(
+    in srgb,
+    var(--color-primary) 10%,
+    var(--color-white)
+  );
   --color-primary: var(--recycling-locator-color-primary, var(--color-green));
 }
