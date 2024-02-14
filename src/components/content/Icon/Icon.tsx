@@ -7,7 +7,14 @@ import { CustomElement } from '@/types/custom-element';
 import BlankSvg from './svg/blank.svg?react';
 
 export interface IconAttributes {
-  readonly icon: 'pin' | 'info' | 'close' | 'home' | 'distance' | 'map';
+  readonly icon:
+    | 'pin'
+    | 'info'
+    | 'close'
+    | 'home'
+    | 'distance'
+    | 'search'
+    | 'map';
   readonly color?: 'primary';
   readonly label?: string;
 }

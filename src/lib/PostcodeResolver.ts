@@ -1,6 +1,7 @@
 import type { service } from '@here/maps-api-for-javascript';
 
 import config from '@/config';
+import { PostcodeResponse } from '@/types/widgetApi';
 
 import WidgetApi from './WidgetApi';
 
@@ -15,11 +16,6 @@ interface HereMapsGeocodeResponse {
       lng: number;
     };
   }[];
-}
-
-interface WidgetApiPostcodeResponse {
-  error?: string;
-  postcode?: string;
 }
 
 export default class PostCodeResolver {
@@ -82,8 +78,8 @@ export default class PostCodeResolver {
   static async fromLatLng(lat: number, lng: number): Promise<string> {
     const safeLat = encodeURIComponent(lat);
     const safeLng = encodeURIComponent(lng);
-    const response = await WidgetApi.request<WidgetApiPostcodeResponse>(
-      `${config.widgetApiPath}postcode/${safeLat},${safeLng}`,
+    const response = await WidgetApi.get<PostcodeResponse>(
+      `postcode/${safeLat},${safeLng}`,
     );
 
     if (response.error || !response.postcode) {

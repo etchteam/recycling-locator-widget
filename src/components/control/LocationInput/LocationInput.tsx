@@ -15,6 +15,7 @@ interface HereMapsAutosuggestResult {
 
 interface LocationInputProps {
   readonly inputId?: string;
+  readonly placeholder?: string;
 }
 
 /**
@@ -68,6 +69,7 @@ export default class LocationInput extends Component<LocationInputProps> {
           <input
             type="text"
             name="location"
+            placeholder={this.props.placeholder}
             id={inputId}
             list={listId}
             onInput={this.handleInput}
@@ -85,7 +87,7 @@ export default class LocationInput extends Component<LocationInputProps> {
   }
 }
 
-register(LocationInput, 'locator-location-input', ['inputId']);
+register(LocationInput, 'locator-location-input', ['inputId', 'placeholder']);
 
 declare module 'react' {
   namespace JSX {
