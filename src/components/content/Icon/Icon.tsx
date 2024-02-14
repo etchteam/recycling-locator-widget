@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'preact/compat';
 import register from 'preact-custom-element';
 
-import { CustomElement } from '../../types/custom-element';
+import { CustomElement } from '@/types/custom-element';
 
 // The blank svg takes up the same space as an icon would whilst the icon is loading
 import BlankSvg from './svg/blank.svg?react';

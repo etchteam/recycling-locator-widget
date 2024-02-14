@@ -1,7 +1,7 @@
 import type { ComponentChildren } from 'preact';
 import register from 'preact-custom-element';
 
-import { CustomElement } from '../../types/custom-element';
+import { CustomElement } from '@/types/custom-element';
 
 export default function Layout({
   header,

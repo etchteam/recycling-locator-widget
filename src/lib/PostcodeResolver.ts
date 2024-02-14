@@ -1,6 +1,6 @@
 import type { service } from '@here/maps-api-for-javascript';
 
-import config from '../config';
+import config from '@/config';
 
 import WidgetApi from './WidgetApi';
 

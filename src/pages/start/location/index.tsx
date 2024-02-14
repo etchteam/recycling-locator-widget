@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { Form, redirect, ActionFunctionArgs } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 
-import '../../../components/LocationInput/LocationInput';
-import PostCodeResolver from '../../../lib/PostcodeResolver';
+import '@/components/control/LocationInput/LocationInput';
+import PostCodeResolver from '@/lib/PostcodeResolver';
 
 export async function locationAction({ request }: ActionFunctionArgs) {
   const formData = await request.formData();

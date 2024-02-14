@@ -1,4 +1,4 @@
-import config from '../config';
+import config from '@/config';
 
 export default class WidgetApi {
   static async request<T>(url: string): Promise<T> {

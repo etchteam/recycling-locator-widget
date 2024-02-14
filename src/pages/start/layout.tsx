@@ -2,10 +2,10 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
-import '../../components/Layout/Layout';
-import '../../components/Logo/Logo';
-import '../../components/Icon/Icon';
-import '../../components/Header/Header';
+import '@/components/composition/Layout/Layout';
+import '@/components/composition/Header/Header';
+import '@/components/content/Logo/Logo';
+import '@/components/content/Icon/Icon';
 
 function InfoButton({ pathname }: { readonly pathname: string }) {
   const open = pathname.includes('/about');

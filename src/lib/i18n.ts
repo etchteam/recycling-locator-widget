@@ -2,8 +2,8 @@ import i18n from 'i18next';
 import HttpBackend, { HttpBackendOptions } from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
-import config from '../config';
-import { Locale } from '../types/locale';
+import config from '@/config';
+import { Locale } from '@/types/locale';
 
 i18n
   // load translation using http -> see /public/translations
