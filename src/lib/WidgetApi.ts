@@ -6,10 +6,10 @@ interface WidgetApiRequestOptions {
 }
 
 export default class WidgetApi {
-  static async request(
+  static async request<T>(
     url: string,
     options: WidgetApiRequestOptions,
-  ): Promise<any> {
+  ): Promise<T> {
     const response = await fetch(`${config.widgetApiPath}${url}`, {
       headers: {
         'X-Requested-With': config.packageVersion,
@@ -20,10 +20,10 @@ export default class WidgetApi {
   }
 
   static async get<T>(url: string): Promise<T> {
-    return WidgetApi.request(url, { method: 'get' });
+    return WidgetApi.request<T>(url, { method: 'get' });
   }
 
   static async post<T>(url: string, body: FormData): Promise<T> {
-    return WidgetApi.request(url, { method: 'post', body });
+    return WidgetApi.request<T>(url, { method: 'post', body });
   }
 }
