@@ -23,7 +23,7 @@ export default function Layout({
 
 register(Layout, 'locator-layout', [], { shadow: true });
 
-declare module 'preact' {
+declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
       'locator-layout': CustomElement;

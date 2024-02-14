@@ -1,0 +1,5 @@
+locator-context-header {
+  border-bottom: var(--diamond-border);
+  display: block;
+  padding: var(--diamond-spacing-sm) var(--diamond-spacing);
+}

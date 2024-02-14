@@ -16,7 +16,7 @@ export default function Logo() {
 
 register(Logo, 'locator-logo');
 
-declare module 'preact' {
+declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
       'locator-logo': CustomElement;

@@ -6,6 +6,8 @@
   );
 
   --diamond-font-size-h3: 1.5rem;
+
+  --diamond-icon-size: calc(1em * var(--diamond-font-line-height));
 }
 
 @media (width >= 768px) {

@@ -1,6 +1,6 @@
 import register from 'preact-custom-element';
 
-import Entrypoint from './pages/Entrypoint';
+import Entrypoint from './pages/entrypoint';
 import { Locale } from './types/locale';
 
 /**

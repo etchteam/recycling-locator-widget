@@ -24,7 +24,7 @@ export default function Icon({ icon, label }: IconAttributes) {
 
 register(Icon, 'locator-icon', ['icon']);
 
-declare module 'preact' {
+declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
       'locator-icon': CustomElement<IconAttributes>;
