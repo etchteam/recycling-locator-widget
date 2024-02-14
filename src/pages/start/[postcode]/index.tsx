@@ -5,13 +5,13 @@ import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@etchteam/diamond-ui/control/Button/Button';
 
-import '../../../components/Icon/Icon';
-import '../../../components/Wrap/Wrap';
-import '../../../components/ContextHeader/ContextHeader';
-import '../../../components/BorderedList/BorderedList';
-import '../../../components/IconLink/IconLink';
+import '@/components/composition/Wrap/Wrap';
+import '@/components/canvas/ContextHeader/ContextHeader';
+import '@/components/content/Icon/Icon';
+import '@/components/composition/BorderedList/BorderedList';
+import '@/components/control/IconLink/IconLink';
 
-import PostCodeResolver from '../../../lib/PostcodeResolver';
+import PostCodeResolver from '@/lib/PostcodeResolver';
 
 interface PostcodeLoaderResponse {
   postcode: string;

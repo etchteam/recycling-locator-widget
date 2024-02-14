@@ -1,4 +1,4 @@
-import { CustomElement } from '../../types/custom-element';
+import { CustomElement } from '@/types/custom-element';
 
 export interface TipAttributes {
   'text-align'?: 'center';

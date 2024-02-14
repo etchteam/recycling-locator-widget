@@ -6,8 +6,8 @@ import {
   Route,
 } from 'react-router-dom';
 
-import { i18nInit } from '../lib/i18n';
-import { Locale } from '../types/locale';
+import { i18nInit } from '@/lib/i18n';
+import { Locale } from '@/types/locale';
 
 import Postcode, { postcodeLoader } from './start/[postcode]/index';
 import PostcodeLayout from './start/[postcode]/layout';

@@ -1,3 +1,5 @@
+import path from 'node:path';
+
 import { preact } from '@preact/preset-vite';
 import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
@@ -8,6 +10,11 @@ import svgr from 'vite-plugin-svgr';
 export default defineConfig({
   server: {
     port: 3000,
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
   },
   plugins: [
     svgr(),
