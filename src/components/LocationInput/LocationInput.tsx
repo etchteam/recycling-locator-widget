@@ -1,6 +1,7 @@
 import { Signal, signal } from '@preact/signals';
 import { Component } from 'preact';
 import register from 'preact-custom-element';
+import '@etchteam/diamond-ui/control/Input/Input';
 
 import config from '../../config';
 import { CustomElement } from '../../types/custom-element';
@@ -66,6 +67,7 @@ export default class LocationInput extends Component<LocationInputProps> {
           <locator-icon icon="pin" color="primary" />
           <input
             type="text"
+            name="location"
             id={inputId}
             list={listId}
             onInput={this.handleInput}
@@ -85,7 +87,7 @@ export default class LocationInput extends Component<LocationInputProps> {
 
 register(LocationInput, 'locator-location-input', ['inputId']);
 
-declare module 'preact' {
+declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
       'locator-location-input': CustomElement<LocationInputProps>;

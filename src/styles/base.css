@@ -3,6 +3,10 @@
 /* stylelint-disable-next-line scss/at-rule-no-unknown */
 @import-glob '../components/**/*.css';
 
+.text-weight-bold {
+  font-weight: var(--diamond-font-weight-bold);
+}
+
 article {
   border: var(--container-border);
   container-type: inline-size;
