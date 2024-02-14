@@ -1,0 +1,31 @@
+locator-map-svg {
+  background-color: var(--color-grey-lightest);
+  display: grid;
+  height: 100%;
+  width: 100%;
+
+  &::part(image),
+  &::part(content) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  &::part(image) {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &::part(content) {
+    margin: 0 auto;
+    padding: var(--diamond-spacing);
+    width: min(100%, calc(var(--wrap-max-width) - var(--diamond-spacing-lg)));
+  }
+
+  @container (width > 768px) {
+    &::part(content) {
+      place-self: end;
+      width: calc(var(--wrap-max-width) - var(--diamond-spacing-xl));
+    }
+  }
+}

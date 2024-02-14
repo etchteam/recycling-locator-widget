@@ -1,12 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import {
-  ActionFunctionArgs,
-  Link,
-  LoaderFunctionArgs,
-  redirect,
-  useLoaderData,
-  Form,
-} from 'react-router-dom';
+import { ActionFunctionArgs, Link, redirect, Form } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -17,27 +10,9 @@ import '@/components/canvas/ContextHeader/ContextHeader';
 import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/IconLink/IconLink';
-import '@/components/control/MaterialSearchInput/MaterialSearchInput';
-import PostCodeResolver from '@/lib/PostcodeResolver';
 import WidgetApi from '@/lib/WidgetApi';
+import { usePostcodeLoaderData } from '@/lib/loaders/postcode';
 import { MaterialSearchResponse } from '@/types/widgetApi';
-
-interface PostcodeLoaderResponse {
-  postcode: string;
-  city: string;
-}
-
-export async function postcodeLoader({
-  params,
-}: LoaderFunctionArgs): Promise<PostcodeLoaderResponse> {
-  const postcode = params.postcode;
-  const geocode = await PostCodeResolver.getValidGeocodeData(postcode);
-
-  return {
-    postcode,
-    city: geocode.items[0].address.city,
-  };
-}
 
 export async function postcodeAction({ request, params }: ActionFunctionArgs) {
   const formData = await request.formData();
@@ -58,7 +33,7 @@ export async function postcodeAction({ request, params }: ActionFunctionArgs) {
 
 export default function PostcodePage() {
   const { t } = useTranslation();
-  const { postcode, city } = useLoaderData() as PostcodeLoaderResponse;
+  const { postcode, city } = usePostcodeLoaderData();
 
   return (
     <>

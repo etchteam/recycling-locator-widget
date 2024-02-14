@@ -7,12 +7,10 @@ import {
 } from 'react-router-dom';
 
 import { i18nInit } from '@/lib/i18n';
+import { postcodeLoader } from '@/lib/loaders/postcode';
 import { Locale } from '@/types/locale';
 
-import Postcode, {
-  postcodeAction,
-  postcodeLoader,
-} from './start/[postcode]/index';
+import Postcode, { postcodeAction } from './start/[postcode]/index';
 import PostcodeLayout from './start/[postcode]/layout';
 import About from './start/about';
 import StartLayout from './start/layout';
@@ -26,13 +24,13 @@ const router = createMemoryRouter(
         <Route index element={<Location />} action={locationAction} />
         <Route path="/about" element={<About />} />
       </Route>
-      <Route path="/:postcode" element={<PostcodeLayout />}>
-        <Route
-          index
-          element={<Postcode />}
-          loader={postcodeLoader}
-          action={postcodeAction}
-        />
+      <Route
+        path="/:postcode"
+        id="postcode"
+        element={<PostcodeLayout />}
+        loader={postcodeLoader}
+      >
+        <Route index element={<Postcode />} action={postcodeAction} />
         <Route path="/:postcode/about" element={<About />} />
       </Route>
     </Route>,
