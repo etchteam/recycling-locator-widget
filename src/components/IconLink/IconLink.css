@@ -1,0 +1,31 @@
+locator-icon-link {
+  a {
+    align-items: center;
+    color: var(--color-body);
+    display: flex;
+    gap: var(--diamond-spacing-sm);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+
+  locator-icon {
+    align-self: flex-start;
+    background: var(--color-grey-lightest);
+    border-radius: 50%;
+    color: var(--color-primary);
+    flex-shrink: 0;
+    padding: 3px;
+
+    svg {
+      block-size: var(--diamond-font-size-xl);
+      inline-size: var(--diamond-font-size-xl);
+    }
+
+    a:hover & {
+      background: var(--color-primary-lightest);
+    }
+  }
+}

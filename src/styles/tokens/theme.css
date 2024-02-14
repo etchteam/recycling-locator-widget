@@ -22,7 +22,7 @@
 
   --theme-background-accent: var(
     --recycling-locator-theme-background-accent,
-    color-mix(in srgb, var(--color-primary) 10%, var(--color-white))
+    var(--color-primary-lightest)
   );
   --theme-heading-color-accent: var(
     --recycling-locator-theme-heading-color-accent,
