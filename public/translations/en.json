@@ -3,7 +3,11 @@
     "title": "Find places to recycle.",
     "location": {
       "title": "What do you need to recycle?",
-      "exploreTheMap": "Explore the map"
+      "exploreTheMap": "Explore the map",
+      "options": {
+        "home": "Home recycling collection",
+        "nearest": "Nearest places to recycle"
+      }
     },
     "about": {
       "title": "About this service",
