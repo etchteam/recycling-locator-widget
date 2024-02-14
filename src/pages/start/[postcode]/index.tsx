@@ -8,6 +8,8 @@ import '@etchteam/diamond-ui/control/Button/Button';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/canvas/ContextHeader/ContextHeader';
 import '@/components/content/Icon/Icon';
+import '@/components/composition/BorderedList/BorderedList';
+import '@/components/control/IconLink/IconLink';
 
 import PostCodeResolver from '@/lib/PostcodeResolver';
 
@@ -35,7 +37,7 @@ export default function PostcodePage() {
   return (
     <>
       <locator-context-header>
-        <diamond-grid>
+        <diamond-grid alignItems="center">
           <diamond-grid-item grow>
             <span className="text-weight-bold">{postcode}</span>
             {city && <>&nbsp;&ndash; {city}</>}
@@ -52,6 +54,29 @@ export default function PostcodePage() {
       <locator-wrap>
         <diamond-section padding="lg">
           <h2>{t('start.location.title')}</h2>
+
+          <locator-bordered-list>
+            <nav>
+              <ul>
+                <li>
+                  <locator-icon-link>
+                    <Link to={`/${postcode}/home`}>
+                      <locator-icon icon="home"></locator-icon>
+                      {t('start.location.options.home')}
+                    </Link>
+                  </locator-icon-link>
+                </li>
+                <li>
+                  <locator-icon-link>
+                    <Link to={`/${postcode}/places`}>
+                      <locator-icon icon="distance"></locator-icon>
+                      {t('start.location.options.nearest')}
+                    </Link>
+                  </locator-icon-link>
+                </li>
+              </ul>
+            </nav>
+          </locator-bordered-list>
         </diamond-section>
       </locator-wrap>
     </>
