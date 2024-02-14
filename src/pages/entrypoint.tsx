@@ -9,7 +9,7 @@ import {
 import { i18nInit } from '../lib/i18n';
 import { Locale } from '../types/locale';
 
-import Postcode from './start/[postcode]/index';
+import Postcode, { postcodeLoader } from './start/[postcode]/index';
 import PostcodeLayout from './start/[postcode]/layout';
 import About from './start/about';
 import StartLayout from './start/layout';
@@ -24,7 +24,7 @@ const router = createMemoryRouter(
         <Route path="/about" element={<About />} />
       </Route>
       <Route path="/:postcode" element={<PostcodeLayout />}>
-        <Route index element={<Postcode />} />
+        <Route index element={<Postcode />} loader={postcodeLoader} />
         <Route path="/:postcode/about" element={<About />} />
       </Route>
     </Route>,
