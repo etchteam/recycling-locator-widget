@@ -1,8 +1,10 @@
 {
   "start": {
     "title": "Find places to recycle.",
+    "placeholder": "Enter a town or postcode...",
     "location": {
       "title": "What do you need to recycle?",
+      "placeholder": "Enter the name of an item...",
       "exploreTheMap": "Explore the map",
       "options": {
         "home": "Home recycling collection",

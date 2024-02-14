@@ -10,6 +10,7 @@ import '@/components/canvas/ContextHeader/ContextHeader';
 import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/IconLink/IconLink';
+import '@/components/control/MaterialSearchInput/MaterialSearchInput';
 
 import PostCodeResolver from '@/lib/PostcodeResolver';
 
@@ -53,7 +54,13 @@ export default function PostcodePage() {
       </locator-context-header>
       <locator-wrap>
         <diamond-section padding="lg">
-          <h2>{t('start.location.title')}</h2>
+          <h2 id="material-search-title">{t('start.location.title')}</h2>
+
+          <locator-material-search-input
+            className="diamond-spacing-bottom-lg"
+            placeholder={t('start.location.placeholder')}
+            inputLabelledBy="material-search-title"
+          ></locator-material-search-input>
 
           <locator-bordered-list>
             <nav>

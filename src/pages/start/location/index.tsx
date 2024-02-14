@@ -21,7 +21,9 @@ export default function Location() {
       <Form method="post">
         <diamond-form-group class="diamond-spacing-bottom-md">
           <label htmlFor="location-input">Where are you?</label>
-          <locator-location-input></locator-location-input>
+          <locator-location-input
+            placeholder={t('start.placeholder')}
+          ></locator-location-input>
         </diamond-form-group>
         <diamond-button width="full-width" variant="primary">
           <button type="submit">Get started</button>

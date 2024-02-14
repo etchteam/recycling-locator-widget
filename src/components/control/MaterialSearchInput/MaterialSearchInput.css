@@ -1,0 +1,16 @@
+locator-material-search-input {
+  display: flex;
+  width: 100%;
+
+  diamond-input {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    flex-grow: 1;
+  }
+
+  button {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    flex-shrink: 0;
+  }
+}

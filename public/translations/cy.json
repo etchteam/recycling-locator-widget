@@ -1,8 +1,10 @@
 {
   "start": {
     "title": "Dod o hyd i leoedd i ailgylchu.",
+    "placeholder": "Enter a town or postcode...",
     "location": {
       "title": "What do you need to recycle?",
+      "placeholder": "Enter the name of an item...",
       "exploreTheMap": "Explore the map",
       "options": {
         "home": "Home recycling collection",

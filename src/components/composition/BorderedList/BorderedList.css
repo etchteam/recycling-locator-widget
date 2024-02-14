@@ -7,6 +7,6 @@ locator-bordered-list {
 
   li {
     border-top: var(--diamond-border);
-    padding-block: var(--diamond-spacing-sm);
+    padding-block: var(--diamond-spacing);
   }
 }
