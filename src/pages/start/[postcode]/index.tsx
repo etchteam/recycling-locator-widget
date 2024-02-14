@@ -21,7 +21,7 @@ export async function postcodeLoader({
 }: LoaderFunctionArgs): Promise<PostcodeLoaderResponse> {
   const postcode = params.postcode;
   const geocode = await PostCodeResolver.getValidGeocodeData(postcode);
-  console.log({ postcode, geocode });
+
   return {
     postcode,
     city: geocode.items[0].address.city,
