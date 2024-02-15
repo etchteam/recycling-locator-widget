@@ -4,6 +4,7 @@
   * Redefine body styles from diamond because we don't have a <body> element
   */
 :host {
+  color: var(--diamond-theme-color);
   font-family: var(--diamond-font-family);
   font-size: var(--diamond-font-size-base);
   -webkit-font-smoothing: antialiased;
