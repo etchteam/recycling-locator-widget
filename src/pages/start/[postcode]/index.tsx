@@ -10,6 +10,7 @@ import '@/components/canvas/ContextHeader/ContextHeader';
 import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/IconLink/IconLink';
+import '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import WidgetApi from '@/lib/WidgetApi';
 import { usePostcodeLoaderData } from '@/lib/loaders/postcode';
 import { MaterialSearchResponse } from '@/types/widgetApi';
