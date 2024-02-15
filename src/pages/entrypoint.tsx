@@ -10,30 +10,22 @@ import { i18nInit } from '@/lib/i18n';
 import { postcodeLoader } from '@/lib/loaders/postcode';
 import { Locale } from '@/types/locale';
 
-import Postcode, { postcodeAction } from './start/[postcode]/index';
-import PostcodeLayout from './start/[postcode]/layout';
-import About from './start/about';
-import StartLayout from './start/layout';
-import Location, { locationAction } from './start/location/index';
-import LocationLayout from './start/location/layout';
+import PostcodePage, { postcodeAction } from './[postcode]/index';
+
+import IndexPage, { indexAction } from './index';
 
 const router = createMemoryRouter(
   createRoutesFromElements(
-    <Route element={<StartLayout />}>
-      <Route path="/" element={<LocationLayout />}>
-        <Route index element={<Location />} action={locationAction} />
-        <Route path="/about" element={<About />} />
-      </Route>
+    <>
+      <Route path="/" element={<IndexPage />} action={indexAction} />
       <Route
         path="/:postcode"
         id="postcode"
-        element={<PostcodeLayout />}
+        element={<PostcodePage />}
+        action={postcodeAction}
         loader={postcodeLoader}
-      >
-        <Route index element={<Postcode />} action={postcodeAction} />
-        <Route path="/:postcode/about" element={<About />} />
-      </Route>
-    </Route>,
+      />
+    </>,
   ),
 );
 

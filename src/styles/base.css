@@ -11,6 +11,10 @@
   font-size: var(--diamond-font-size-h3);
 }
 
+.display-contents {
+  display: contents;
+}
+
 article {
   border: var(--container-border);
   container-type: inline-size;
