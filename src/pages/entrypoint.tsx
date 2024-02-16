@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import '@/lib/sentry';
-import { RecyclingLocatorWidgetAttributes } from '@/index';
+import { RecyclingLocatorAttributes } from '@/index';
 import { i18nInit } from '@/lib/i18n';
 
 import postcodeRoutes from './[postcode]/postcode.routes';
@@ -43,7 +43,7 @@ export default function Entrypoint({
   locale,
   variant,
   basename,
-}: RecyclingLocatorWidgetAttributes) {
+}: RecyclingLocatorAttributes) {
   i18nInit(locale);
 
   const router =

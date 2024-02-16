@@ -19,7 +19,7 @@ article {
   container-type: inline-size;
 }
 
-.widget {
+.recycling-locator-variant-widget {
   border: var(--container-border);
   height: var(--container-height);
   overflow-y: auto;

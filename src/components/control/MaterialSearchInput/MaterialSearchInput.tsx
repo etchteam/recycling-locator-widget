@@ -4,9 +4,9 @@ import register from 'preact-custom-element';
 import '@etchteam/diamond-ui/control/Input/Input';
 import '@etchteam/diamond-ui/control/Button/Button';
 
-import WidgetApi from '@/lib/WidgetApi';
-import { CustomElement } from '@/types/custom-element';
-import { MaterialSearchResponse } from '@/types/widgetApi';
+import LocatorApi from '@/lib/LocatorApi';
+import { CustomElement } from '@/types/customElement';
+import { MaterialSearchResponse } from '@/types/locatorApi';
 
 import '@/components/content/Icon/Icon';
 
@@ -32,7 +32,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
   autosuggest = async (query: string): Promise<MaterialSearchResponse[]> => {
     const body = new FormData();
     body.append('search', query);
-    return WidgetApi.post('materials', body);
+    return LocatorApi.post('materials', body);
   };
 
   handleInput = async (event: preact.JSX.TargetedEvent<HTMLInputElement>) => {

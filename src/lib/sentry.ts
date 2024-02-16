@@ -7,7 +7,7 @@ const DSN = import.meta.env.VITE_SENTRY_DSN;
 Sentry.init({
   enabled: Boolean(DSN),
   dsn: DSN,
-  release: `recycling-locator-widget@${config.packageVersion}`,
+  release: `recycling-locator@${config.packageVersion}`,
   integrations: [
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration(),

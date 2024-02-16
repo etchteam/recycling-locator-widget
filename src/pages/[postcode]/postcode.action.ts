@@ -1,14 +1,14 @@
 import { ActionFunctionArgs, redirect } from 'react-router-dom';
 
-import WidgetApi from '@/lib/WidgetApi';
-import { MaterialSearchResponse } from '@/types/widgetApi';
+import LocatorApi from '@/lib/LocatorApi';
+import { MaterialSearchResponse } from '@/types/locatorApi';
 
 export default async function postcodeAction({
   request,
   params,
 }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const materials = await WidgetApi.post<MaterialSearchResponse[]>(
+  const materials = await LocatorApi.post<MaterialSearchResponse[]>(
     'materials',
     formData,
   );

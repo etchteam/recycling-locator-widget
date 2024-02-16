@@ -1,16 +1,16 @@
 import register from 'preact-custom-element';
 
 import Entrypoint from './pages/entrypoint';
-import { CustomElement } from './types/custom-element';
+import { CustomElement } from './types/customElement';
 import { Locale } from './types/locale';
 
-export interface RecyclingLocatorWidgetAttributes {
+export interface RecyclingLocatorAttributes {
   /**
    * The language to use currently only Welsh and English are supported
    */
   readonly locale?: Locale;
   /**
-   * How to render the widget
+   * How to render
    * - Widget will render as an embed within a page
    * - Standalone will render as a full page and change the browser history upon navigation
    */
@@ -23,19 +23,19 @@ export interface RecyclingLocatorWidgetAttributes {
 
 /**
  * The root web component
- * - Registers the recycling-locator-widget custom element
+ * - Registers the recycling-locator custom element
  * - Renders the Preact app within the shadow DOM for style encapsulation
  * - Provides global styles
  */
-export default function RecyclingLocatorWidget({
+export default function RecyclingLocator({
   locale,
   variant = 'widget',
   basename = '/',
-}: RecyclingLocatorWidgetAttributes) {
+}: RecyclingLocatorAttributes) {
   return (
     <>
       <link rel="stylesheet" href="/styles.css" />
-      <article className={variant}>
+      <article className={`recycling-locator-variant-${variant}`}>
         <Entrypoint locale={locale} variant={variant} basename={basename} />
       </article>
     </>
@@ -43,8 +43,8 @@ export default function RecyclingLocatorWidget({
 }
 
 register(
-  RecyclingLocatorWidget,
-  'recycling-locator-widget',
+  RecyclingLocator,
+  'recycling-locator',
   ['locale', 'variant', 'basename'],
   {
     shadow: true,
@@ -53,6 +53,6 @@ register(
 
 declare global {
   interface HTMLElementTagNameMap {
-    'recycling-locator-widget': CustomElement<RecyclingLocatorWidgetAttributes>;
+    'recycling-locator': CustomElement<RecyclingLocatorAttributes>;
   }
 }
