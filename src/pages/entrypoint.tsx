@@ -6,6 +6,7 @@ import {
   Route,
 } from 'react-router-dom';
 
+import '@/lib/sentry';
 import { i18nInit } from '@/lib/i18n';
 import { postcodeLoader } from '@/lib/loaders/postcode';
 import { Locale } from '@/types/locale';
@@ -43,7 +44,8 @@ const router = createMemoryRouter(
  * - Load up the router
  * - Setup the start page routes
  * - Lazily register sub routes
- * - Initialise i18n (using suspense to wait for them to load in)
+ * - Init i18n (using suspense to wait for them to load in)
+ * - Init Sentry
  */
 export default function Entrypoint({ locale }: { readonly locale: Locale }) {
   i18nInit(locale);

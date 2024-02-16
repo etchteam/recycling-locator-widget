@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser';
 import { useRouteError } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/control/Button/Button';
@@ -15,8 +16,8 @@ import { IndexAside } from './index';
  */
 export default function ErrorPage() {
   const error = useRouteError();
-  // TODO: throw sentry error
-  console.error(error);
+  console.log(error);
+  Sentry.captureException(error, { tags: { route: 'Global error boundary' } });
 
   return (
     <StartLayout aside={<IndexAside />}>
