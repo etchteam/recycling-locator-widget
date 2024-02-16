@@ -1,16 +1,16 @@
 import config from '@/config';
 
-interface WidgetApiRequestOptions {
+interface LocatorApiRequestOptions {
   method?: 'get' | 'post';
   body?: FormData;
 }
 
-export default class WidgetApi {
+export default class LocatorApi {
   static async request<T>(
     url: string,
-    options: WidgetApiRequestOptions,
+    options: LocatorApiRequestOptions,
   ): Promise<T> {
-    const response = await fetch(`${config.widgetApiPath}${url}`, {
+    const response = await fetch(`${config.locatorApiPath}${url}`, {
       headers: {
         'X-Requested-With': config.packageVersion,
       },
@@ -20,10 +20,10 @@ export default class WidgetApi {
   }
 
   static async get<T>(url: string): Promise<T> {
-    return WidgetApi.request<T>(url, { method: 'get' });
+    return LocatorApi.request<T>(url, { method: 'get' });
   }
 
   static async post<T>(url: string, body: FormData): Promise<T> {
-    return WidgetApi.request<T>(url, { method: 'post', body });
+    return LocatorApi.request<T>(url, { method: 'post', body });
   }
 }

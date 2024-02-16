@@ -8,6 +8,10 @@ locator-layout {
   grid-template-rows: auto auto 1fr;
   height: 100%;
 
+  .recycling-locator-variant-standalone & {
+    height: 100cqh;
+  }
+
   @container (width > 768px) {
     grid-template-areas:
       'header aside'

@@ -4,7 +4,7 @@ import register from 'preact-custom-element';
 import '@etchteam/diamond-ui/control/Input/Input';
 
 import config from '@/config';
-import { CustomElement } from '@/types/custom-element';
+import { CustomElement } from '@/types/customElement';
 import '@/components/content/Icon/Icon';
 
 interface HereMapsAutosuggestResult {

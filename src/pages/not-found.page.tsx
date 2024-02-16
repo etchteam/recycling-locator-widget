@@ -11,7 +11,7 @@ import '@/components/control/LocationInput/LocationInput';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import StartLayout from '@/pages/layout';
 
-function NotFoundAside() {
+function Aside() {
   const { t } = useTranslation();
 
   const links = [
@@ -65,7 +65,7 @@ export default function NotFoundPage() {
   const notInUk = error?.data === PostCodeResolver.ERROR_NOT_IN_UK;
 
   return (
-    <StartLayout aside={<NotFoundAside />}>
+    <StartLayout aside={<Aside />}>
       <locator-wrap>
         <diamond-section padding="lg">
           <h2>

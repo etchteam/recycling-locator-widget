@@ -1,9 +1,9 @@
 import type { service } from '@here/maps-api-for-javascript';
 
 import config from '@/config';
-import { PostcodeResponse } from '@/types/widgetApi';
+import { PostcodeResponse } from '@/types/locatorApi';
 
-import WidgetApi from './WidgetApi';
+import LocatorApi from './LocatorApi';
 
 interface HereMapsGeocodeResponse {
   items: {
@@ -78,7 +78,7 @@ export default class PostCodeResolver {
   static async fromLatLng(lat: number, lng: number): Promise<string> {
     const safeLat = encodeURIComponent(lat);
     const safeLng = encodeURIComponent(lng);
-    const response = await WidgetApi.get<PostcodeResponse>(
+    const response = await LocatorApi.get<PostcodeResponse>(
       `postcode/${safeLat},${safeLng}`,
     );
 

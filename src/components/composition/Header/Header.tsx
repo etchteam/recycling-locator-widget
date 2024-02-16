@@ -1,4 +1,4 @@
-import { CustomElement } from '@/types/custom-element';
+import { CustomElement } from '@/types/customElement';
 
 declare module 'react' {
   namespace JSX {

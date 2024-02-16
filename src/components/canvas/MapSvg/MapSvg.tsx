@@ -2,7 +2,7 @@ import { ComponentChildren } from 'preact';
 import register from 'preact-custom-element';
 
 import config from '@/config';
-import { CustomElement } from '@/types/custom-element';
+import { CustomElement } from '@/types/customElement';
 
 export default function MapSvg({
   children,

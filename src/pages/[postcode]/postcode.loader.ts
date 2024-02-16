@@ -1,13 +1,13 @@
 import { LoaderFunctionArgs, useRouteLoaderData } from 'react-router-dom';
 
-import PostCodeResolver from '../PostcodeResolver';
+import PostCodeResolver from '@/lib/PostcodeResolver';
 
 interface PostcodeLoaderResponse {
   postcode: string;
   city: string;
 }
 
-export async function postcodeLoader({
+export default async function postcodeLoader({
   params,
 }: LoaderFunctionArgs): Promise<PostcodeLoaderResponse> {
   try {

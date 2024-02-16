@@ -1,6 +1,6 @@
 import { useSignal } from '@preact/signals';
 import { useTranslation } from 'react-i18next';
-import { ActionFunctionArgs, Link, redirect, Form } from 'react-router-dom';
+import { Link, Form } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -13,29 +13,11 @@ import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/IconLink/IconLink';
 import '@/components/control/MaterialSearchInput/MaterialSearchInput';
-import WidgetApi from '@/lib/WidgetApi';
-import { usePostcodeLoaderData } from '@/lib/loaders/postcode';
 import StartLayout from '@/pages/layout';
-import { MaterialSearchResponse } from '@/types/widgetApi';
 
-export async function postcodeAction({ request, params }: ActionFunctionArgs) {
-  const formData = await request.formData();
-  const materials = await WidgetApi.post<MaterialSearchResponse[]>(
-    'materials',
-    formData,
-  );
-  const { name, id } = materials?.[0] ?? {};
-  const postcode = params.postcode;
+import { usePostcodeLoaderData } from './postcode.loader';
 
-  if (name === formData.get('search')) {
-    const safeName = encodeURIComponent(name);
-    return redirect(`/${postcode}/material?id=${id}&name=${safeName}`);
-  }
-
-  return redirect(`/${postcode}/material/not-found`);
-}
-
-function PostcodeAside({ postcode }: { readonly postcode: string }) {
+function Aside({ postcode }: { readonly postcode: string }) {
   const { t } = useTranslation();
 
   return (
@@ -56,7 +38,7 @@ export default function PostcodePage() {
   const submitting = useSignal(false);
 
   return (
-    <StartLayout aside={<PostcodeAside postcode={postcode} />}>
+    <StartLayout aside={<Aside postcode={postcode} />}>
       <locator-context-header>
         <diamond-grid alignItems="center">
           <diamond-grid-item grow>

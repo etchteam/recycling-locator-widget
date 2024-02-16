@@ -1,43 +1,35 @@
 import { Suspense } from 'preact/compat';
 import {
   createMemoryRouter,
-  createRoutesFromElements,
   RouterProvider,
-  Route,
+  RouteObject,
+  createBrowserRouter,
 } from 'react-router-dom';
 
 import '@/lib/sentry';
+import { RecyclingLocatorAttributes } from '@/index';
 import { i18nInit } from '@/lib/i18n';
-import { postcodeLoader } from '@/lib/loaders/postcode';
-import { Locale } from '@/types/locale';
 
-import PostcodePage, { postcodeAction } from './[postcode]/index';
-import ErrorPage from './error';
-import NotFoundPage from './not-found';
+import postcodeRoutes from './[postcode]/postcode.routes';
+import ErrorPage from './error.page';
+import NotFoundPage from './not-found.page';
+import startAction from './start.action';
+import startRoutes from './start.routes';
 
-import IndexPage, { indexAction } from './index';
-
-const router = createMemoryRouter(
-  createRoutesFromElements(
-    <Route errorElement={<ErrorPage />}>
-      <Route
-        path="/"
-        element={<IndexPage />}
-        action={indexAction}
-        errorElement={<NotFoundPage />}
-      />
-      <Route
-        path="/:postcode"
-        id="postcode"
-        element={<PostcodePage />}
-        action={postcodeAction}
-        loader={postcodeLoader}
-        errorElement={<NotFoundPage />}
-      />
-      <Route path="/*" element={<NotFoundPage />} action={indexAction} />
-    </Route>,
-  ),
-);
+const routes: RouteObject[] = [
+  {
+    errorElement: <ErrorPage />,
+    children: [
+      ...startRoutes,
+      ...postcodeRoutes,
+      {
+        path: '/*',
+        element: <NotFoundPage />,
+        action: startAction,
+      },
+    ],
+  },
+];
 
 /**
  * Jobs of the entrypoint:
@@ -47,8 +39,17 @@ const router = createMemoryRouter(
  * - Init i18n (using suspense to wait for them to load in)
  * - Init Sentry
  */
-export default function Entrypoint({ locale }: { readonly locale: Locale }) {
+export default function Entrypoint({
+  locale,
+  variant,
+  basename,
+}: Readonly<RecyclingLocatorAttributes>) {
   i18nInit(locale);
+
+  const router =
+    variant === 'standalone'
+      ? createBrowserRouter(routes, { basename })
+      : createMemoryRouter(routes);
 
   return (
     <Suspense fallback={<h2>loading...</h2>}>
