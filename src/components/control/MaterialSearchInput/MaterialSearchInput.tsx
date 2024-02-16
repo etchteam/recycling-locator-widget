@@ -14,6 +14,7 @@ interface MaterialSearchInputProps {
   readonly inputId?: string;
   readonly inputLabelledBy?: string;
   readonly placeholder?: string;
+  readonly submitting?: boolean | string;
 }
 
 /**
@@ -49,6 +50,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     const materials = this.materialSuggestions.value;
     const inputId = this.props.inputId ?? 'material-input';
     const listId = `${inputId}-locations`;
+    const submitting = this.props.submitting ?? false;
 
     return (
       <>
@@ -64,7 +66,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
           />
         </diamond-input>
         <diamond-button width="square" variant="primary">
-          <button>
+          <button type="submit" disabled={submitting && submitting !== 'false'}>
             <locator-icon icon="search"></locator-icon>
           </button>
         </diamond-button>
@@ -84,6 +86,7 @@ register(MaterialSearchInput, 'locator-material-search-input', [
   'inputId',
   'inputLabelledBy',
   'placeholder',
+  'submitting',
 ]);
 
 declare module 'react' {
