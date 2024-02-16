@@ -43,7 +43,7 @@ export default function Entrypoint({
   locale,
   variant,
   basename,
-}: RecyclingLocatorAttributes) {
+}: Readonly<RecyclingLocatorAttributes>) {
   i18nInit(locale);
 
   const router =
