@@ -1,3 +1,4 @@
+import { useSignal } from '@preact/signals';
 import { useTranslation } from 'react-i18next';
 import { Form, useRouteError, ErrorResponse } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
@@ -54,6 +55,7 @@ function NotFoundAside() {
 export default function NotFoundPage() {
   const { t } = useTranslation();
   const error = useRouteError() as ErrorResponse | undefined;
+  const submitting = useSignal(false);
 
   if (error && error.status !== 404) {
     // If this isn't a 404, bubble the exception up to the generic error boundary
@@ -70,7 +72,7 @@ export default function NotFoundPage() {
             {t(`start.notFound.title.${notInUk ? 'notInTheUK' : 'default'}`)}
           </h2>
           {notInUk && <p>{t('start.notFound.ukOnly')}</p>}
-          <Form method="post">
+          <Form method="post" onSubmit={() => (submitting.value = true)}>
             <diamond-form-group class="diamond-spacing-bottom-md">
               <label htmlFor="location-input">
                 {t('start.notFound.label')}
@@ -80,7 +82,9 @@ export default function NotFoundPage() {
               ></locator-location-input>
             </diamond-form-group>
             <diamond-button width="full-width" variant="primary">
-              <button type="submit">{t('start.notFound.cta')}</button>
+              <button type="submit" disabled={submitting.value}>
+                {t('start.notFound.cta')}
+              </button>
             </diamond-button>
           </Form>
         </diamond-section>
