@@ -2,6 +2,15 @@
   "start": {
     "title": "Dod o hyd i leoedd i ailgylchu.",
     "placeholder": "Enter a town or postcode...",
+    "notFound": {
+      "title": {
+        "default": "Mae'n ddrwg gennym, ni allem ddod o hyd i'r lleoliad hwnnw.",
+        "notInTheUK": "Mae'n ddrwg gennym, nid yw'r gwasanaeth hwn ar gael yn eich ardal chi."
+      },
+      "ukOnly": "Dim ond rhanbarthau tir mawr y DU y mae’r data yn yr offeryn hwn yn eu cwmpasu.",
+      "label": "Rhowch gynnig ar leoliad arall?",
+      "button": "Chwiliwch eto"
+    },
     "location": {
       "title": "What do you need to recycle?",
       "placeholder": "Enter the name of an item...",

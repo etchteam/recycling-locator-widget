@@ -11,21 +11,30 @@ import { postcodeLoader } from '@/lib/loaders/postcode';
 import { Locale } from '@/types/locale';
 
 import PostcodePage, { postcodeAction } from './[postcode]/index';
+import ErrorPage from './error';
+import NotFoundPage from './not-found';
 
 import IndexPage, { indexAction } from './index';
 
 const router = createMemoryRouter(
   createRoutesFromElements(
-    <>
-      <Route path="/" element={<IndexPage />} action={indexAction} />
+    <Route errorElement={<ErrorPage />}>
+      <Route
+        path="/"
+        element={<IndexPage />}
+        action={indexAction}
+        errorElement={<NotFoundPage />}
+      />
       <Route
         path="/:postcode"
         id="postcode"
         element={<PostcodePage />}
         action={postcodeAction}
         loader={postcodeLoader}
+        errorElement={<NotFoundPage />}
       />
-    </>,
+      <Route path="/*" element={<NotFoundPage />} action={indexAction} />
+    </Route>,
   ),
 );
 

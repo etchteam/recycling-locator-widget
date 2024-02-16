@@ -2,6 +2,15 @@
   "start": {
     "title": "Find places to recycle.",
     "placeholder": "Enter a town or postcode...",
+    "notFound": {
+      "title": {
+        "default": "Sorry, we couldn’t find that location.",
+        "notInTheUK": "Sorry, this service isn’t available in your area."
+      },
+      "ukOnly": "The data in this tool only covers mainland regions of the UK.",
+      "label": "Try another location?",
+      "button": "Search again"
+    },
     "location": {
       "title": "What do you need to recycle?",
       "placeholder": "Enter the name of an item...",
