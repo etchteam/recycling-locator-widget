@@ -1,12 +1,12 @@
 {
+  "error": {
+    "title": "Something went wrong.",
+    "message": "Our team have been alerted and we’ll be patching the issue up as soon as possible.",
+    "cta": "Start again"
+  },
   "start": {
     "title": "Find places to recycle.",
     "placeholder": "Enter a town or postcode...",
-    "error": {
-      "title": "Something went wrong.",
-      "message": "Our team have been alerted and we’ll be patching the issue up as soon as possible.",
-      "cta": "Start again"
-    },
     "notFound": {
       "title": {
         "default": "Sorry, we couldn’t find that location.",
