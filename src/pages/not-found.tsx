@@ -54,7 +54,7 @@ function NotFoundAside() {
 export default function NotFoundPage() {
   const { t } = useTranslation();
   const error = useRouteError() as ErrorResponse | undefined;
-  throw error;
+
   if (error && error.status !== 404) {
     // If this isn't a 404, bubble the exception up to the generic error boundary
     throw error;
