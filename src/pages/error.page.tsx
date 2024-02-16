@@ -1,16 +1,11 @@
 import * as Sentry from '@sentry/browser';
 import { useTranslation } from 'react-i18next';
 import { Link, useRouteError } from 'react-router-dom';
-import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import '@/components/composition/Wrap/Wrap';
-import '@/components/canvas/Tip/Tip';
-import '@/components/control/LocationInput/LocationInput';
 import StartLayout from '@/pages/layout';
-
-import { IndexAside } from './index';
 
 /**
  * Global app error boundary
@@ -21,7 +16,7 @@ export default function ErrorPage() {
   Sentry.captureException(error, { tags: { route: 'Global error boundary' } });
 
   return (
-    <StartLayout aside={<IndexAside />}>
+    <StartLayout>
       <locator-wrap>
         <diamond-section padding="lg">
           <h2>{t('start.error.title')}</h2>

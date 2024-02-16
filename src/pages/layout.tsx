@@ -6,15 +6,33 @@ import '@/components/composition/Layout/Layout';
 import '@/components/composition/Header/Header';
 import '@/components/content/Logo/Logo';
 import '@/components/content/Icon/Icon';
+import '@/components/canvas/Tip/Tip';
+import '@/components/composition/Wrap/Wrap';
 
 import About from './about';
+
+export function DefaultAside() {
+  return (
+    <locator-tip slot="aside">
+      <locator-wrap>
+        <p>Use this service to:</p>
+        <ul>
+          <li>see your nearest places to recycle</li>
+          <li>find out how to recycle a specific item</li>
+          <li>check what you can recycle at home</li>
+        </ul>
+        <img src="/images/recycling-technology.webp" alt="" />
+      </locator-wrap>
+    </locator-tip>
+  );
+}
 
 export default function StartLayout({
   children,
   aside,
 }: {
   readonly children: ComponentChildren;
-  readonly aside: ComponentChildren;
+  readonly aside?: ComponentChildren;
 }) {
   const open = useSignal(false);
 
@@ -33,7 +51,7 @@ export default function StartLayout({
       </locator-header>
       <div slot="main">{open.value ? <About /> : children}</div>
       <div slot="aside" className="display-contents">
-        {aside}
+        {aside ?? <DefaultAside />}
       </div>
     </locator-layout>
   );
