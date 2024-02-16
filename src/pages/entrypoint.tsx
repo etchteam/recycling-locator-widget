@@ -8,6 +8,7 @@ import {
 
 import '@/lib/sentry';
 import { RecyclingLocatorAttributes } from '@/index';
+import { AppState, createAppState } from '@/lib/AppState';
 import { i18nInit } from '@/lib/i18n';
 
 import postcodeRoutes from './[postcode]/postcode.routes';
@@ -39,11 +40,11 @@ const routes: RouteObject[] = [
  * - Init i18n (using suspense to wait for them to load in)
  * - Init Sentry
  */
-export default function Entrypoint({
-  locale,
-  variant,
-  basename,
-}: Readonly<RecyclingLocatorAttributes>) {
+export default function Entrypoint(
+  props: Readonly<RecyclingLocatorAttributes>,
+) {
+  const { locale, variant, basename } = props;
+
   i18nInit(locale);
 
   const router =
@@ -53,7 +54,9 @@ export default function Entrypoint({
 
   return (
     <Suspense fallback={<h2>loading...</h2>}>
-      <RouterProvider router={router} />
+      <AppState.Provider value={createAppState(props)}>
+        <RouterProvider router={router} />
+      </AppState.Provider>
     </Suspense>
   );
 }
