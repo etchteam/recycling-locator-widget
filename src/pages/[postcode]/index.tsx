@@ -8,11 +8,14 @@ import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/composition/Wrap/Wrap';
 import '@/components/canvas/ContextHeader/ContextHeader';
+import '@/components/canvas/MapSvg/MapSvg';
 import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/IconLink/IconLink';
+import '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import WidgetApi from '@/lib/WidgetApi';
 import { usePostcodeLoaderData } from '@/lib/loaders/postcode';
+import StartLayout from '@/pages/layout';
 import { MaterialSearchResponse } from '@/types/widgetApi';
 
 export async function postcodeAction({ request, params }: ActionFunctionArgs) {
@@ -32,13 +35,28 @@ export async function postcodeAction({ request, params }: ActionFunctionArgs) {
   return redirect(`/${postcode}/material/not-found`);
 }
 
+function PostcodeAside({ postcode }: { readonly postcode: string }) {
+  const { t } = useTranslation();
+
+  return (
+    <locator-map-svg slot="aside">
+      <diamond-button width="full-width">
+        <Link to={`/${postcode}/places/map`}>
+          {t('start.location.exploreTheMap')}
+          <locator-icon icon="map" color="primary"></locator-icon>
+        </Link>
+      </diamond-button>
+    </locator-map-svg>
+  );
+}
+
 export default function PostcodePage() {
   const { t } = useTranslation();
   const { postcode, city } = usePostcodeLoaderData();
   const submitting = useSignal(false);
 
   return (
-    <>
+    <StartLayout aside={<PostcodeAside postcode={postcode} />}>
       <locator-context-header>
         <diamond-grid alignItems="center">
           <diamond-grid-item grow>
@@ -96,6 +114,6 @@ export default function PostcodePage() {
           </locator-bordered-list>
         </diamond-section>
       </locator-wrap>
-    </>
+    </StartLayout>
   );
 }
