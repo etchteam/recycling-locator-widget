@@ -74,7 +74,7 @@ export default function NotFoundPage() {
             <diamond-form-group class="diamond-spacing-bottom-md">
               <label htmlFor="location-input">{t('notFound.label')}</label>
               <locator-location-input
-                placeholder={t('start.placeholder')}
+                placeholder={t('components.locationInput.placeholder')}
               ></locator-location-input>
             </diamond-form-group>
             <diamond-button width="full-width" variant="primary">

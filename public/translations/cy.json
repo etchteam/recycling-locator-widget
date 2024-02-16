@@ -1,4 +1,12 @@
 {
+  "components": {
+    "locationInput": {
+      "placeholder": "Rhowch dref neu god post..."
+    },
+    "materialSearchInput": {
+      "placeholder": "Rhowch enw eitem..."
+    }
+  },
   "error": {
     "title": "Aeth rhywbeth o'i le.",
     "message": "Mae ein tîm wedi cael gwybod a byddwn yn datrys y mater cyn gynted â phosibl.",
@@ -37,15 +45,23 @@
   },
   "start": {
     "title": "Dod o hyd i leoedd i ailgylchu.",
-    "placeholder": "Enter a town or postcode...",
-    "location": {
-      "title": "What do you need to recycle?",
-      "placeholder": "Enter the name of an item...",
-      "exploreTheMap": "Explore the map",
-      "options": {
-        "home": "Home recycling collection",
-        "nearest": "Nearest places to recycle"
-      }
+    "label": "Ble wyt ti?",
+    "cta": "Dechrau",
+    "aside": {
+      "paragraph": "Defnyddiwch y gwasanaeth hwn i:",
+      "list": [
+        "gweld eich lleoedd agosaf i ailgylchu",
+        "darganfod sut i ailgylchu eitem benodol",
+        "gwirio beth allwch chi ei ailgylchu gartref"
+      ]
+    }
+  },
+  "postcode": {
+    "title": "Beth sydd angen i chi ei ailgylchu?",
+    "exploreTheMap": "Archwiliwch y map",
+    "options": {
+      "home": "Casgliad ailgylchu cartref",
+      "nearest": "Lleoedd agosaf i ailgylchu"
     }
   }
 }

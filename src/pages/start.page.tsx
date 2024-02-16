@@ -20,14 +20,14 @@ export default function StartPage() {
           <h2>{t('start.title')}</h2>
           <Form method="post" onSubmit={() => (submitting.value = true)}>
             <diamond-form-group class="diamond-spacing-bottom-md">
-              <label htmlFor="location-input">Where are you?</label>
+              <label htmlFor="location-input">{t('start.label')}</label>
               <locator-location-input
-                placeholder={t('start.placeholder')}
+                placeholder={t('components.locationInput.placeholder')}
               ></locator-location-input>
             </diamond-form-group>
             <diamond-button width="full-width" variant="primary">
               <button type="submit" disabled={submitting.value}>
-                Get started
+                {t('start.cta')}
               </button>
             </diamond-button>
           </Form>

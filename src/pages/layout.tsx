@@ -1,5 +1,6 @@
 import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
+import { useTranslation } from 'react-i18next';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/composition/Layout/Layout';
@@ -12,14 +13,16 @@ import '@/components/composition/Wrap/Wrap';
 import About from './about';
 
 export function DefaultAside() {
+  const { t } = useTranslation();
+
   return (
     <locator-tip slot="aside">
       <locator-wrap>
-        <p>Use this service to:</p>
+        <p>{t('start.aside.paragraph')}</p>
         <ul>
-          <li>see your nearest places to recycle</li>
-          <li>find out how to recycle a specific item</li>
-          <li>check what you can recycle at home</li>
+          {t('start.aside.list').map((item) => (
+            <li key={item}>{item}</li>
+          ))}
         </ul>
         <img src="/images/recycling-technology.webp" alt="" />
       </locator-wrap>

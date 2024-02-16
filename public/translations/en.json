@@ -1,4 +1,12 @@
 {
+  "components": {
+    "locationInput": {
+      "placeholder": "Enter a town or postcode..."
+    },
+    "materialSearchInput": {
+      "placeholder": "Enter the name of an item..."
+    }
+  },
   "error": {
     "title": "Something went wrong.",
     "message": "Our team have been alerted and we’ll be patching the issue up as soon as possible.",
@@ -37,15 +45,23 @@
   },
   "start": {
     "title": "Find places to recycle.",
-    "placeholder": "Enter a town or postcode...",
-    "location": {
-      "title": "What do you need to recycle?",
-      "placeholder": "Enter the name of an item...",
-      "exploreTheMap": "Explore the map",
-      "options": {
-        "home": "Home recycling collection",
-        "nearest": "Nearest places to recycle"
-      }
-    },
+    "label": "Where are you?",
+    "cta": "Get started",
+    "aside": {
+      "paragraph": "Use this service to:",
+      "list": [
+        "see your nearest places to recycle",
+        "find out how to recycle a specific item",
+        "check what you can recycle at home"
+      ]
+    }
+  },
+  "postcode": {
+    "title": "What do you need to recycle?",
+    "exploreTheMap": "Explore the map",
+    "options": {
+      "home": "Home recycling collection",
+      "nearest": "Nearest places to recycle"
+    }
   }
 }
