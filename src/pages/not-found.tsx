@@ -11,12 +11,36 @@ import PostCodeResolver from '@/lib/PostcodeResolver';
 import StartLayout from '@/pages/layout';
 
 function NotFoundAside() {
+  const { t } = useTranslation();
+
+  const links = [
+    {
+      href: 'https://www.gov.im/categories/home-and-neighbourhood/recycling/recycling-locations/',
+      label: t('start.notFound.aside.isleOfMan'),
+    },
+    {
+      href: 'https://www.gov.je/Environment/WasteReduceReuseRecycle/pages/default.aspx',
+      label: t('start.notFound.aside.jersey'),
+    },
+    {
+      href: 'https://www.gov.gg/recycling',
+      label: t('start.notFound.aside.guernsey'),
+    },
+  ];
+
   return (
     <locator-tip slot="aside">
       <locator-wrap>
-        <p>
-          Recycling information is available elsewhere for these UK regions:
-        </p>
+        <p>{t('start.notFound.aside.content')}</p>
+        <ul>
+          {links.map(({ href, label }) => (
+            <li key={label}>
+              <a href={href} target="_blank" rel="noopener noreferrer">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
       </locator-wrap>
     </locator-tip>
   );

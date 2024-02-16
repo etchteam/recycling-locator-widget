@@ -9,7 +9,13 @@
       },
       "ukOnly": "Dim ond rhanbarthau tir mawr y DU y mae’r data yn yr offeryn hwn yn eu cwmpasu.",
       "label": "Rhowch gynnig ar leoliad arall?",
-      "button": "Chwiliwch eto"
+      "button": "Chwiliwch eto",
+      "aside": {
+        "content": "Mae gwybodaeth ailgylchu ar gael mewn mannau eraill ar gyfer y rhanbarthau hyn yn y DU:",
+        "isleOfMan": "Ynys Manaw",
+        "jersey": "Jersey",
+        "guernsey": "Guernsey"
+      }
     },
     "location": {
       "title": "What do you need to recycle?",

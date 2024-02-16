@@ -10,6 +10,9 @@ import StartLayout from '@/pages/layout';
 
 import { IndexAside } from './index';
 
+/**
+ * Global app error boundary
+ */
 export default function ErrorPage() {
   const error = useRouteError();
   // TODO: throw sentry error

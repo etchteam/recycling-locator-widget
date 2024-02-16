@@ -9,7 +9,13 @@
       },
       "ukOnly": "The data in this tool only covers mainland regions of the UK.",
       "label": "Try another location?",
-      "button": "Search again"
+      "button": "Search again",
+      "aside": {
+        "content": "Recycling information is available elsewhere for these UK regions:",
+        "isleOfMan": "Isle of Man",
+        "jersey": "Jersey",
+        "guernsey": "Guernsey"
+      }
     },
     "location": {
       "title": "What do you need to recycle?",
