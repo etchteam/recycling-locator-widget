@@ -2,6 +2,11 @@
   "start": {
     "title": "Find places to recycle.",
     "placeholder": "Enter a town or postcode...",
+    "error": {
+      "title": "Something went wrong.",
+      "message": "Our team have been alerted and we’ll be patching the issue up as soon as possible.",
+      "cta": "Start again"
+    },
     "notFound": {
       "title": {
         "default": "Sorry, we couldn’t find that location.",
@@ -9,7 +14,7 @@
       },
       "ukOnly": "The data in this tool only covers mainland regions of the UK.",
       "label": "Try another location?",
-      "button": "Search again",
+      "cta": "Search again",
       "aside": {
         "content": "Recycling information is available elsewhere for these UK regions:",
         "isleOfMan": "Isle of Man",

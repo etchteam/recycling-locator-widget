@@ -54,7 +54,7 @@ function NotFoundAside() {
 export default function NotFoundPage() {
   const { t } = useTranslation();
   const error = useRouteError() as ErrorResponse | undefined;
-
+  throw error;
   if (error && error.status !== 404) {
     // If this isn't a 404, bubble the exception up to the generic error boundary
     throw error;
@@ -80,7 +80,7 @@ export default function NotFoundPage() {
               ></locator-location-input>
             </diamond-form-group>
             <diamond-button width="full-width" variant="primary">
-              <button type="submit">{t('start.notFound.button')}</button>
+              <button type="submit">{t('start.notFound.cta')}</button>
             </diamond-button>
           </Form>
         </diamond-section>

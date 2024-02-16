@@ -2,6 +2,11 @@
   "start": {
     "title": "Dod o hyd i leoedd i ailgylchu.",
     "placeholder": "Enter a town or postcode...",
+    "error": {
+      "title": "Aeth rhywbeth o'i le.",
+      "message": "Mae ein tîm wedi cael gwybod a byddwn yn datrys y mater cyn gynted â phosibl.",
+      "cta": "Dechrau eto"
+    },
     "notFound": {
       "title": {
         "default": "Mae'n ddrwg gennym, ni allem ddod o hyd i'r lleoliad hwnnw.",
