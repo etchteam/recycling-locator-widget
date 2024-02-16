@@ -17,22 +17,22 @@ function Aside() {
   const links = [
     {
       href: 'https://www.gov.im/categories/home-and-neighbourhood/recycling/recycling-locations/',
-      label: t('start.notFound.aside.isleOfMan'),
+      label: t('notFound.aside.isleOfMan'),
     },
     {
       href: 'https://www.gov.je/Environment/WasteReduceReuseRecycle/pages/default.aspx',
-      label: t('start.notFound.aside.jersey'),
+      label: t('notFound.aside.jersey'),
     },
     {
       href: 'https://www.gov.gg/recycling',
-      label: t('start.notFound.aside.guernsey'),
+      label: t('notFound.aside.guernsey'),
     },
   ];
 
   return (
     <locator-tip slot="aside">
       <locator-wrap>
-        <p>{t('start.notFound.aside.content')}</p>
+        <p>{t('notFound.aside.content')}</p>
         <ul>
           {links.map(({ href, label }) => (
             <li key={label}>
@@ -68,22 +68,18 @@ export default function NotFoundPage() {
     <StartLayout aside={<Aside />}>
       <locator-wrap>
         <diamond-section padding="lg">
-          <h2>
-            {t(`start.notFound.title.${notInUk ? 'notInTheUK' : 'default'}`)}
-          </h2>
-          {notInUk && <p>{t('start.notFound.ukOnly')}</p>}
+          <h2>{t(`notFound.title.${notInUk ? 'notInTheUK' : 'default'}`)}</h2>
+          {notInUk && <p>{t('notFound.ukOnly')}</p>}
           <Form method="post" onSubmit={() => (submitting.value = true)}>
             <diamond-form-group class="diamond-spacing-bottom-md">
-              <label htmlFor="location-input">
-                {t('start.notFound.label')}
-              </label>
+              <label htmlFor="location-input">{t('notFound.label')}</label>
               <locator-location-input
                 placeholder={t('start.placeholder')}
               ></locator-location-input>
             </diamond-form-group>
             <diamond-button width="full-width" variant="primary">
               <button type="submit" disabled={submitting.value}>
-                {t('start.notFound.cta')}
+                {t('notFound.cta')}
               </button>
             </diamond-button>
           </Form>
