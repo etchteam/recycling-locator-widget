@@ -1,3 +1,4 @@
+import { useSignal } from '@preact/signals';
 import { useTranslation } from 'react-i18next';
 import { Form, redirect, ActionFunctionArgs } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
@@ -14,11 +15,12 @@ export async function locationAction({ request }: ActionFunctionArgs) {
 
 export default function Location() {
   const { t } = useTranslation();
+  const submitting = useSignal(false);
 
   return (
     <>
       <h2>{t('start.title')}</h2>
-      <Form method="post">
+      <Form method="post" onSubmit={() => (submitting.value = true)}>
         <diamond-form-group class="diamond-spacing-bottom-md">
           <label htmlFor="location-input">Where are you?</label>
           <locator-location-input
@@ -26,7 +28,9 @@ export default function Location() {
           ></locator-location-input>
         </diamond-form-group>
         <diamond-button width="full-width" variant="primary">
-          <button type="submit">Get started</button>
+          <button type="submit" disabled={submitting.value}>
+            Get started
+          </button>
         </diamond-button>
       </Form>
     </>

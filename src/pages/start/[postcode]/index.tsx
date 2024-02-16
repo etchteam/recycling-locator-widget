@@ -1,3 +1,4 @@
+import { useSignal } from '@preact/signals';
 import { useTranslation } from 'react-i18next';
 import { ActionFunctionArgs, Link, redirect, Form } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
@@ -34,6 +35,7 @@ export async function postcodeAction({ request, params }: ActionFunctionArgs) {
 export default function PostcodePage() {
   const { t } = useTranslation();
   const { postcode, city } = usePostcodeLoaderData();
+  const submitting = useSignal(false);
 
   return (
     <>
@@ -61,11 +63,12 @@ export default function PostcodePage() {
             {t('start.location.title')}
           </h2>
 
-          <Form method="post">
+          <Form method="post" onSubmit={() => (submitting.value = true)}>
             <locator-material-search-input
               className="diamond-spacing-bottom-lg"
               placeholder={t('start.location.placeholder')}
               inputLabelledBy="material-search-title"
+              submitting={submitting.value}
             ></locator-material-search-input>
           </Form>
 

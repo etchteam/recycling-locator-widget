@@ -14,6 +14,7 @@ interface MaterialSearchInputProps {
   readonly inputId?: string;
   readonly inputLabelledBy?: string;
   readonly placeholder?: string;
+  readonly submitting?: boolean;
 }
 
 /**
@@ -64,7 +65,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
           />
         </diamond-input>
         <diamond-button width="square" variant="primary">
-          <button>
+          <button type="submit" disabled={this.props.submitting}>
             <locator-icon icon="search"></locator-icon>
           </button>
         </diamond-button>
@@ -84,6 +85,7 @@ register(MaterialSearchInput, 'locator-material-search-input', [
   'inputId',
   'inputLabelledBy',
   'placeholder',
+  'submitting',
 ]);
 
 declare module 'react' {
