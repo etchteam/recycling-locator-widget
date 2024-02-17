@@ -66,9 +66,9 @@ Storybook will be available on http://localhost:6006/
 
 ## Public asset URLs
 
-All asset urls must be prefixed with `config.publicPath` so that the asset is loaded via a full publicly accessible web address.
+All asset URLs must be prefixed with `config.publicPath` so that the asset is loaded via a full publicly accessible web address.
 
-This is because the embedded version of the widget is designed to be placed within the context of third party websites where the assets won't exist.
+This is because the embedded version of the widget is designed to be placed within the context of third party sites where the assets won't exist.
 
 ## Translations
 
