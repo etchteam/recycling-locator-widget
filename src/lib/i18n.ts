@@ -27,6 +27,7 @@ export function i18nInit(locale: Locale = 'en') {
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
+    returnObjects: true,
   });
 }
 

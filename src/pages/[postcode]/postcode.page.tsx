@@ -24,7 +24,7 @@ function Aside({ postcode }: { readonly postcode: string }) {
     <locator-map-svg slot="aside">
       <diamond-button width="full-width">
         <Link to={`/${postcode}/places/map`}>
-          {t('start.location.exploreTheMap')}
+          {t('postcode.exploreTheMap')}
           <locator-icon icon="map" color="primary"></locator-icon>
         </Link>
       </diamond-button>
@@ -60,13 +60,13 @@ export default function PostcodePage() {
             id="material-search-title"
             className="text-size-h3 diamond-spacing-bottom-md"
           >
-            {t('start.location.title')}
+            {t('postcode.title')}
           </h2>
 
           <Form method="post" onSubmit={() => (submitting.value = true)}>
             <locator-material-search-input
               className="diamond-spacing-bottom-lg"
-              placeholder={t('start.location.placeholder')}
+              placeholder={t('components.materialSearchInput.placeholder')}
               inputLabelledBy="material-search-title"
               submitting={submitting.value}
             ></locator-material-search-input>
@@ -79,7 +79,7 @@ export default function PostcodePage() {
                   <locator-icon-link>
                     <Link to={`/${postcode}/home`}>
                       <locator-icon icon="home"></locator-icon>
-                      {t('start.location.options.home')}
+                      {t('postcode.options.home')}
                     </Link>
                   </locator-icon-link>
                 </li>
@@ -87,7 +87,7 @@ export default function PostcodePage() {
                   <locator-icon-link>
                     <Link to={`/${postcode}/places`}>
                       <locator-icon icon="distance"></locator-icon>
-                      {t('start.location.options.nearest')}
+                      {t('postcode.options.nearest')}
                     </Link>
                   </locator-icon-link>
                 </li>

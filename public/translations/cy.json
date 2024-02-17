@@ -1,51 +1,67 @@
 {
+  "components": {
+    "locationInput": {
+      "placeholder": "Rhowch dref neu god post..."
+    },
+    "materialSearchInput": {
+      "placeholder": "Rhowch enw eitem..."
+    }
+  },
+  "error": {
+    "title": "Aeth rhywbeth o'i le.",
+    "message": "Mae ein tîm wedi cael gwybod a byddwn yn datrys y mater cyn gynted â phosibl.",
+    "cta": "Dechrau eto"
+  },
+  "notFound": {
+    "title": {
+      "default": "Mae'n ddrwg gennym, ni allem ddod o hyd i'r lleoliad hwnnw.",
+      "notInTheUK": "Mae'n ddrwg gennym, nid yw'r gwasanaeth hwn ar gael yn eich ardal chi."
+    },
+    "ukOnly": "Dim ond rhanbarthau tir mawr y DU y mae’r data yn yr offeryn hwn yn eu cwmpasu.",
+    "label": "Rhowch gynnig ar leoliad arall?",
+    "button": "Chwiliwch eto",
+    "aside": {
+      "content": "Mae gwybodaeth ailgylchu ar gael mewn mannau eraill ar gyfer y rhanbarthau hyn yn y DU:",
+      "isleOfMan": "Ynys Manaw",
+      "jersey": "Jersey",
+      "guernsey": "Guernsey"
+    }
+  },
+  "about": {
+    "title": "Am y gwasanaeth hwn",
+    "intro": "Wedi'i bweru gan RecycleNow.com, gellir defnyddio'r offeryn hwn i chwilio a dod o hyd i leoliadau ailgylchu ledled y Deyrnas Unedig.",
+    "becomeAPartner": {
+      "title": "Ychwanegwch yr offeryn hwn i'ch gwefan",
+      "description": "Mae wedi'i greu fel teclyn mewnosodadwy y gellir ei ychwanegu at unrhyw wefan i helpu ymwelwyr i ddarganfod mwy o opsiynau ailgylchu. Er enghraifft, gallai gwneuthurwr diodydd ddefnyddio'r offeryn i ddangos lleoedd i ailgylchu caniau diod.",
+      "cta": "Dod yn bartner",
+      "url": "https://wrap.org.uk/taking-action/citizen-behaviour-change/recycle-now/recycling-locator-tool"
+    },
+    "feedback": {
+      "title": "Gwella'r gwasanaeth hwn",
+      "description": "Rydym bob amser yn ceisio gwella’r offeryn hwn a byddai gennym ddiddordeb mewn clywed am eich profiad wrth ei ddefnyddio, boed yn dda neu’n ddrwg.",
+      "cta": "Adborth ar yr offeryn hwn",
+      "url": "https://wrapcymru.org.uk/contact-wrap-cymru"
+    }
+  },
   "start": {
     "title": "Dod o hyd i leoedd i ailgylchu.",
-    "placeholder": "Enter a town or postcode...",
-    "error": {
-      "title": "Aeth rhywbeth o'i le.",
-      "message": "Mae ein tîm wedi cael gwybod a byddwn yn datrys y mater cyn gynted â phosibl.",
-      "cta": "Dechrau eto"
-    },
-    "notFound": {
-      "title": {
-        "default": "Mae'n ddrwg gennym, ni allem ddod o hyd i'r lleoliad hwnnw.",
-        "notInTheUK": "Mae'n ddrwg gennym, nid yw'r gwasanaeth hwn ar gael yn eich ardal chi."
-      },
-      "ukOnly": "Dim ond rhanbarthau tir mawr y DU y mae’r data yn yr offeryn hwn yn eu cwmpasu.",
-      "label": "Rhowch gynnig ar leoliad arall?",
-      "button": "Chwiliwch eto",
-      "aside": {
-        "content": "Mae gwybodaeth ailgylchu ar gael mewn mannau eraill ar gyfer y rhanbarthau hyn yn y DU:",
-        "isleOfMan": "Ynys Manaw",
-        "jersey": "Jersey",
-        "guernsey": "Guernsey"
-      }
-    },
-    "location": {
-      "title": "What do you need to recycle?",
-      "placeholder": "Enter the name of an item...",
-      "exploreTheMap": "Explore the map",
-      "options": {
-        "home": "Home recycling collection",
-        "nearest": "Nearest places to recycle"
-      }
-    },
-    "about": {
-      "title": "About this service",
-      "intro": "Powered by RecycleNow.com, this tool can be used to search and find recycling locations throughout the United Kingdom.",
-      "becomeAPartner": {
-        "title": "Add this tool to your website",
-        "description": "It’s been created as an embeddable widget that can be added to any website to help visitors discover more recycling options. For example, a beverage manufacturer could use the tool to show places to recycle drinks cans.",
-        "cta": "Become a partner",
-        "url": "https://wrap.org.uk/taking-action/citizen-behaviour-change/recycle-now/recycling-locator-tool"
-      },
-      "feedback": {
-        "title": "Improving this service",
-        "description": "We’re always looking to improve this tool and would be interested to hear about your experience whilst using it, good or bad.",
-        "cta": "Feedback on this tool",
-        "url": "https://wrapcymru.org.uk/contact-wrap-cymru"
-      }
+    "label": "Ble wyt ti?",
+    "cta": "Dechrau",
+    "aside": {
+      "paragraph": "Defnyddiwch y gwasanaeth hwn i:",
+      "list": [
+        "gweld eich lleoedd agosaf i ailgylchu",
+        "darganfod sut i ailgylchu eitem benodol",
+        "gwirio beth allwch chi ei ailgylchu gartref"
+      ]
+    }
+  },
+  "postcode": {
+    "title": "Beth sydd angen i chi ei ailgylchu?",
+    "exploreTheMap": "Archwiliwch y map",
+    "options": {
+      "home": "Casgliad ailgylchu cartref",
+      "nearest": "Lleoedd agosaf i ailgylchu"
     }
   }
 }

@@ -19,12 +19,10 @@ export default function ErrorPage() {
     <StartLayout>
       <locator-wrap>
         <diamond-section padding="lg">
-          <h2>{t('start.error.title')}</h2>
-          <p className="diamond-spacing-bottom-md">
-            {t('start.error.message')}
-          </p>
+          <h2>{t('error.title')}</h2>
+          <p className="diamond-spacing-bottom-md">{t('error.message')}</p>
           <diamond-button width="full-width" variant="primary">
-            <Link to="/">{t('start.error.cta')}</Link>
+            <Link to="/">{t('error.cta')}</Link>
           </diamond-button>
         </diamond-section>
       </locator-wrap>
