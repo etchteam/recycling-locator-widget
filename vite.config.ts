@@ -25,7 +25,12 @@ export default defineConfig(({ mode }) => {
     plugins: [svgr(), preact()],
 
     test: {
-      environment: 'happy-dom',
+      browser: {
+        enabled: true,
+        name: 'chrome',
+        provider: 'none',
+        headless: false,
+      },
     },
 
     build: {
