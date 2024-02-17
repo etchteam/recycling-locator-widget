@@ -6,25 +6,25 @@ Guidelines for contributions to the Recycling Locator codebase.
 
 Make sure you're using the right node version:
 
-```
+```bash
 nvm use
 ```
 
 Install the dependencies
 
-```
+```bash
 npm install
 ```
 
 Setup your .env
 
-```
+```bash
 cp .env.example .env
 ```
 
-Start the local development server on http://localhost:3000
+Start the local development server on [http://localhost:3000](http://localhost:3000)
 
-```
+```bash
 npm start
 ```
 
@@ -38,11 +38,11 @@ There's 3 preset configurations that are available to test with locally:
 
 For component documentation run:
 
-```
+```bash
 npm run storybook
 ```
 
-Storybook will be available on http://localhost:6006/
+Storybook will be available on [http://localhost:6006/](http://localhost:6006/)
 
 ## Folder structure
 
