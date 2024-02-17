@@ -10,6 +10,10 @@ export interface RecyclingLocatorAttributes {
    */
   readonly locale?: Locale;
   /**
+   * Prefill the postcode to skip the start view
+   */
+  readonly postcode?: string;
+  /**
    * How to render
    * - Widget will render as an embed within a page
    * - Standalone will render as a full page and change the browser history upon navigation
@@ -29,6 +33,7 @@ export interface RecyclingLocatorAttributes {
  */
 export default function RecyclingLocator({
   locale,
+  postcode,
   variant = 'widget',
   basename = '/',
 }: RecyclingLocatorAttributes) {
@@ -36,7 +41,12 @@ export default function RecyclingLocator({
     <>
       <link rel="stylesheet" href="/styles.css" />
       <article className={`recycling-locator-variant-${variant}`}>
-        <Entrypoint locale={locale} variant={variant} basename={basename} />
+        <Entrypoint
+          locale={locale}
+          postcode={postcode}
+          variant={variant}
+          basename={basename}
+        />
       </article>
     </>
   );
@@ -45,7 +55,7 @@ export default function RecyclingLocator({
 register(
   RecyclingLocator,
   'recycling-locator',
-  ['locale', 'variant', 'basename'],
+  ['locale', 'postcode', 'variant', 'basename'],
   {
     shadow: true,
   },
