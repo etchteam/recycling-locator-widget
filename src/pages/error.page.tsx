@@ -5,7 +5,7 @@ import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import '@/components/composition/Wrap/Wrap';
-import StartLayout from '@/pages/layout';
+import StartLayout from '@/pages/start.layout';
 
 /**
  * Global app error boundary

@@ -47,7 +47,7 @@ Storybook will be available on [http://localhost:6006/](http://localhost:6006/)
 ## Folder structure
 
 - /public - static assets
-- index.html - default English embedded widget example
+- index.html - default embedded widget
 - welsh.html - Welsh language embedded widget example
 - standalone.html - Full page app example
 - /src
@@ -56,13 +56,15 @@ Storybook will be available on [http://localhost:6006/](http://localhost:6006/)
   - /styles - global styles
   - /types - global types
   - /pages - app routes using a file naming convention
-    - *.loader.ts – loader for a route
-    - *.action.ts – form submission action for a route
-    - *.page.ts – renders as a page on a route
-    - *.routes.ts – holds routes
+    - entrypoint.tsx - sets up the app and routes
+    - *.loader.ts - data loader for a route
+    - *.action.ts - form submission action for a route
+    - *.page.tsx - renders as a page on a route
+    - *.routes.ts - route definitions
+    - *.layout.tsx - wraps a page routes to provide layout
     - /\[route\] - dynamic route segment
   - config.ts - global app config variables
-  - index.tsx - registers the recycling-locator web app and renders entrypoint.tsx
+  - index.tsx - registers the recycling-locator web app and renders /pages/entrypoint.tsx
 
 ## Public asset URLs
 

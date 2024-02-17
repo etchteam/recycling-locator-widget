@@ -23,6 +23,10 @@ export interface RecyclingLocatorAttributes {
    * The base URL for the standalone variant
    */
   readonly basename?: string;
+  /**
+   * The path to load
+   */
+  readonly path?: string;
 }
 
 /**
@@ -36,6 +40,7 @@ export default function RecyclingLocator({
   postcode,
   variant = 'widget',
   basename = '/',
+  path,
 }: RecyclingLocatorAttributes) {
   return (
     <>
@@ -46,6 +51,7 @@ export default function RecyclingLocator({
           postcode={postcode}
           variant={variant}
           basename={basename}
+          path={path}
         />
       </article>
     </>
@@ -55,7 +61,7 @@ export default function RecyclingLocator({
 register(
   RecyclingLocator,
   'recycling-locator',
-  ['locale', 'postcode', 'variant', 'basename'],
+  ['locale', 'postcode', 'variant', 'basename', 'path'],
   {
     shadow: true,
   },

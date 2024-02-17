@@ -9,7 +9,7 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/canvas/Tip/Tip';
 import '@/components/control/LocationInput/LocationInput';
 import PostCodeResolver from '@/lib/PostcodeResolver';
-import StartLayout from '@/pages/layout';
+import StartLayout from '@/pages/start.layout';
 
 function Aside() {
   const { t } = useTranslation();

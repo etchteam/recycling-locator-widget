@@ -14,12 +14,14 @@ import { i18nInit } from '@/lib/i18n';
 import postcodeRoutes from './[postcode]/postcode.routes';
 import ErrorPage from './error.page';
 import NotFoundPage from './not-found.page';
+import RootLayout from './root.layout';
 import startAction from './start.action';
 import startRoutes from './start.routes';
 
 const routes: RouteObject[] = [
   {
     errorElement: <ErrorPage />,
+    element: <RootLayout />,
     children: [
       ...startRoutes,
       ...postcodeRoutes,
@@ -35,10 +37,11 @@ const routes: RouteObject[] = [
 /**
  * Jobs of the entrypoint:
  * - Load up the router
- * - Setup the start page routes
- * - Lazily register sub routes
  * - Init i18n (using suspense to wait for them to load in)
  * - Init Sentry
+ * - Create the AppState
+ * - Setup the start page routes
+ * - Lazily register sub routes
  */
 export default function Entrypoint(
   props: Readonly<RecyclingLocatorAttributes>,
