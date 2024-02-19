@@ -4,6 +4,7 @@
       "placeholder": "Enter a town or postcode..."
     },
     "materialSearchInput": {
+      "buttonLabel": "Search",
       "placeholder": "Enter the name of an item..."
     }
   },
