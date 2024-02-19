@@ -16,7 +16,7 @@ function About() {
   const { t } = useTranslation();
 
   return (
-    <locator-wrap slot="main">
+    <locator-wrap slot="main" data-testid="about-content">
       <diamond-section padding="lg">
         <h2>{t('about.title')}</h2>
         <p>{t('about.intro')}</p>
@@ -81,7 +81,11 @@ export default function StartLayout({
       <locator-header slot="header">
         <locator-logo></locator-logo>
         <diamond-button variant="text">
-          <button type="button" onClick={() => (open.value = !open.value)}>
+          <button
+            type="button"
+            data-testid="about-button"
+            onClick={() => (open.value = !open.value)}
+          >
             <locator-icon
               icon={open.value ? 'close' : 'info'}
               color="primary"

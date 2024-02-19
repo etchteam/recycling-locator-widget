@@ -1,16 +1,39 @@
-export function getHostElement() {
-  return document.body.querySelector('recycling-locator')?.shadowRoot;
-}
+import { chromium } from 'playwright';
+import type { Browser, Page } from 'playwright';
+import { preview } from 'vite';
+import type { PreviewServer } from 'vite';
+import { afterAll, beforeAll, beforeEach, describe } from 'vitest';
+const PORT = 3001;
 
-export async function setup() {
-  document.body.innerHTML = '<recycling-locator></recycling-locator>';
-  const locator = document.querySelector('recycling-locator');
+export function describeEndToEndTest(
+  description: string,
+  callback: () => void,
+) {
+  describe(description, () => {
+    let server: PreviewServer;
+    let browser: Browser;
+    let page: Page;
 
-  return new Promise((resolve) => {
-    const listener = () => {
-      locator.removeEventListener('ready', listener);
-      resolve(true);
-    };
-    locator.addEventListener('ready', listener);
+    beforeAll(async () => {
+      server = await preview({ preview: { port: PORT } });
+      browser = await chromium.launch({ headless: true });
+      page = await browser.newPage();
+      await page.goto(`http://localhost:${PORT}`);
+    });
+
+    afterAll(async () => {
+      await browser.close();
+      await new Promise<void>((resolve, reject) => {
+        server.httpServer.close((error) => (error ? reject(error) : resolve()));
+      });
+    });
+
+    beforeEach(async (context) => {
+      context.browser = browser;
+      context.server = server;
+      context.page = page;
+    });
+
+    callback();
   });
 }
