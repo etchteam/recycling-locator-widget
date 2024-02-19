@@ -29,7 +29,7 @@ export default function Icon({ icon, label }: IconAttributes) {
   );
 }
 
-register(Icon, 'locator-icon', ['icon']);
+register(Icon, 'locator-icon', ['icon', 'label']);
 
 declare module 'react' {
   namespace JSX {
