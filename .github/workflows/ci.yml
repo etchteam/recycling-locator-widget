@@ -32,5 +32,7 @@
             VALIDATE_JSX: false
             VALIDATE_TSX: false
             VALIDATE_TYPESCRIPT_STANDARD: false
-        - run: npm run test
-        - run: npm run build
+        - name: Run Tests
+          run: npm run test
+        - name: Build
+          run: npm run build
