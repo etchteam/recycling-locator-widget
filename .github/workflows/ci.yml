@@ -35,4 +35,4 @@
         - name: Build
           run: npm run build
         - name: Run Tests
-          run: npx playwright install --with-deps chromium && npm run vitest
+          run: npx playwright install --with-deps chromium && npm run test
