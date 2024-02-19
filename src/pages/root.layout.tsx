@@ -17,6 +17,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loadedStartPath.value !== startPath && startPath !== currentPath) {
+      console.log('navigating to start path', startPath);
       navigateTo(startPath);
     }
 
