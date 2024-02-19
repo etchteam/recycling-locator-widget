@@ -1,10 +1,12 @@
 import { Signal, signal } from '@preact/signals';
-import { Component } from 'preact';
+import uniq from 'lodash/uniq';
+import { Component, createRef } from 'preact';
 import register from 'preact-custom-element';
 import '@etchteam/diamond-ui/control/Input/Input';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import LocatorApi from '@/lib/LocatorApi';
+import i18n from '@/lib/i18n';
 import { CustomElement } from '@/types/customElement';
 import { MaterialSearchResponse } from '@/types/locatorApi';
 
@@ -23,6 +25,7 @@ interface MaterialSearchInputProps {
  */
 export default class MaterialSearchInput extends Component<MaterialSearchInputProps> {
   materialSuggestions: Signal<MaterialSearchResponse[]>;
+  inputRef = createRef<HTMLInputElement>();
 
   constructor(props: MaterialSearchInputProps) {
     super(props);
@@ -48,8 +51,8 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
 
   render() {
     const materials = this.materialSuggestions.value;
-    const inputId = this.props.inputId ?? 'material-input';
-    const listId = `${inputId}-locations`;
+    const inputId = this.props.inputId ?? 'locator-material-input';
+    const listId = `locator-${inputId}-locations`;
     const submitting = this.props.submitting ?? false;
 
     return (
@@ -63,19 +66,29 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
             id={inputId}
             list={listId}
             onInput={this.handleInput}
+            ref={this.inputRef}
           />
         </diamond-input>
         <diamond-button width="square" variant="primary">
           <button type="submit" disabled={submitting && submitting !== 'false'}>
-            <locator-icon icon="search"></locator-icon>
+            <locator-icon
+              icon="search"
+              label={i18n.t('components.materialSearchInput.buttonLabel')}
+            ></locator-icon>
           </button>
         </diamond-button>
         <datalist id={listId}>
-          {materials.map((material) => (
-            <option value={material.name} key={material.id}>
-              {material.name}
-            </option>
-          ))}
+          {uniq(materials).map((material) => {
+            if (material.name === this.inputRef?.current?.value) {
+              return null;
+            }
+
+            return (
+              <option value={material.name} key={material.id}>
+                {material.name}
+              </option>
+            );
+          })}
         </datalist>
       </>
     );

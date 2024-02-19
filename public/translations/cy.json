@@ -4,6 +4,7 @@
       "placeholder": "Rhowch dref neu god post..."
     },
     "materialSearchInput": {
+      "buttonLabel": "Chwiliwch",
       "placeholder": "Rhowch enw eitem..."
     }
   },

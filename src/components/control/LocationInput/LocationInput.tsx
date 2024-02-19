@@ -1,10 +1,12 @@
 import { Signal, signal } from '@preact/signals';
-import { Component } from 'preact';
+import uniq from 'lodash/uniq';
+import { Component, createRef } from 'preact';
 import register from 'preact-custom-element';
 import '@etchteam/diamond-ui/control/Input/Input';
 
 import config from '@/config';
 import { CustomElement } from '@/types/customElement';
+
 import '@/components/content/Icon/Icon';
 
 interface HereMapsAutosuggestResult {
@@ -28,6 +30,7 @@ export default class LocationInput extends Component<LocationInputProps> {
   boundingBox = '-7.57216793459,49.959999905,1.68153079591,58.6350001085';
   resultTypes = 'address,place';
   locationSuggestions: Signal<string[]>;
+  inputRef = createRef<HTMLInputElement>();
 
   constructor(props: LocationInputProps) {
     super(props);
@@ -59,8 +62,8 @@ export default class LocationInput extends Component<LocationInputProps> {
 
   render() {
     const locations = this.locationSuggestions.value;
-    const inputId = this.props.inputId ?? 'location-input';
-    const listId = `${inputId}-locations`;
+    const inputId = this.props.inputId ?? 'locator-location-input';
+    const listId = `locator-${inputId}-locations`;
 
     return (
       <>
@@ -73,14 +76,21 @@ export default class LocationInput extends Component<LocationInputProps> {
             id={inputId}
             list={listId}
             onInput={this.handleInput}
+            ref={this.inputRef}
           />
         </diamond-input>
         <datalist id={listId}>
-          {locations.map((location) => (
-            <option value={location} key={location}>
-              {location}
-            </option>
-          ))}
+          {uniq(locations).map((location) => {
+            if (location === this.inputRef?.current?.value) {
+              return null;
+            }
+
+            return (
+              <option value={location} key={location}>
+                {location}
+              </option>
+            );
+          })}
         </datalist>
       </>
     );
