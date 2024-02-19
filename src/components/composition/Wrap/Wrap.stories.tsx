@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/preact';
 import './Wrap';
 
 const meta: Meta = {
-  title: 'Components/Wrap',
+  title: 'Components/Composition/Wrap',
 };
 
 export default meta;

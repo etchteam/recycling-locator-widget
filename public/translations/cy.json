@@ -1,10 +1,13 @@
 {
+  "actions": {
+    "back": "Yn ol",
+    "search": "Chwiliwch"
+  },
   "components": {
     "locationInput": {
       "placeholder": "Rhowch dref neu god post..."
     },
     "materialSearchInput": {
-      "buttonLabel": "Chwiliwch",
       "placeholder": "Rhowch enw eitem..."
     }
   },
@@ -68,5 +71,8 @@
       "home": "Casgliad ailgylchu cartref",
       "nearest": "Lleoedd agosaf i ailgylchu"
     }
+  },
+  "material": {
+    "title": "Ailgylchu eitem benodol"
   }
 }

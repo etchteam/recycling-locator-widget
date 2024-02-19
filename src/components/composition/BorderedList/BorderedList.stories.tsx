@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/preact';
 import './BorderedList';
 
 const meta: Meta = {
-  title: 'Components/BorderedList',
+  title: 'Components/Composition/BorderedList',
 };
 
 export default meta;

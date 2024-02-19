@@ -2,6 +2,7 @@ import { RouteObject } from 'react-router-dom';
 
 import NotFoundPage from '@/pages/not-found.page';
 
+import materialRoutes from './material/material.routes';
 import postcodeAction from './postcode.action';
 import postcodeLoader from './postcode.loader';
 import PostcodePage from './postcode.page';
@@ -15,6 +16,7 @@ const routes: RouteObject[] = [
     loader: postcodeLoader,
     errorElement: <NotFoundPage />,
   },
+  ...materialRoutes,
 ];
 
 export default routes;

@@ -4,7 +4,7 @@ import '@/components/content/Icon/Icon';
 import './IconLink';
 
 const meta: Meta = {
-  title: 'Components/IconLink',
+  title: 'Components/Control/IconLink',
 };
 
 export default meta;

@@ -14,7 +14,8 @@ export interface IconAttributes {
     | 'home'
     | 'distance'
     | 'search'
-    | 'map';
+    | 'map'
+    | 'arrow-left';
   readonly color?: 'primary';
   readonly label?: string;
 }

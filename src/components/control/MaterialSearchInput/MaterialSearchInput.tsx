@@ -73,7 +73,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
           <button type="submit" disabled={submitting && submitting !== 'false'}>
             <locator-icon
               icon="search"
-              label={i18n.t('components.materialSearchInput.buttonLabel')}
+              label={i18n.t('actions.search')}
             ></locator-icon>
           </button>
         </diamond-button>

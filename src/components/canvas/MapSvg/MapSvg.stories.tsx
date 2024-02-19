@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/preact';
 import './MapSvg';
 
 const meta: Meta = {
-  title: 'Components/MapSvg',
+  title: 'Components/Canvas/MapSvg',
 };
 
 export default meta;

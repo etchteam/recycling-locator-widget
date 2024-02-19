@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/preact';
 import './Tip';
 
 const meta: Meta = {
-  title: 'Components/Tip',
+  title: 'Components/Canvas/Tip',
 };
 
 export default meta;
