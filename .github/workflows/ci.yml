@@ -33,6 +33,6 @@
             VALIDATE_TSX: false
             VALIDATE_TYPESCRIPT_STANDARD: false
         - name: Run Tests
-          run: npx playwright install --with-deps chromium && npm run test
+          run: npx playwright install --with-deps chromium && npx run vitest
         - name: Build
           run: npm run build
