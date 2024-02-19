@@ -28,6 +28,10 @@
     }
   },
   "about": {
+    "button": {
+      "view": "Gweld gwybodaeth",
+      "close": "Gwybodaeth clos"
+    },
     "title": "Am y gwasanaeth hwn",
     "intro": "Wedi'i bweru gan RecycleNow.com, gellir defnyddio'r offeryn hwn i chwilio a dod o hyd i leoliadau ailgylchu ledled y Deyrnas Unedig.",
     "becomeAPartner": {

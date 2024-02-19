@@ -2,6 +2,7 @@ import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { useTranslation } from 'react-i18next';
 import '@etchteam/diamond-ui/control/Button/Button';
+import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import '@/components/composition/Layout/Layout';
 import '@/components/composition/Header/Header';
@@ -9,8 +10,6 @@ import '@/components/content/Logo/Logo';
 import '@/components/content/Icon/Icon';
 import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
-
-import '@etchteam/diamond-ui/canvas/Section/Section';
 
 function About() {
   const { t } = useTranslation();
@@ -74,6 +73,7 @@ export default function StartLayout({
   readonly children: ComponentChildren;
   readonly aside?: ComponentChildren;
 }) {
+  const { t } = useTranslation();
   const open = useSignal(false);
 
   return (
@@ -84,16 +84,21 @@ export default function StartLayout({
           <button
             type="button"
             data-testid="about-button"
+            aria-expanded={open.value}
+            aria-controls="locator-layout-main"
             onClick={() => (open.value = !open.value)}
           >
             <locator-icon
               icon={open.value ? 'close' : 'info'}
+              label={t(`about.button.${open.value ? 'close' : 'view'}`)}
               color="primary"
             ></locator-icon>
           </button>
         </diamond-button>
       </locator-header>
-      <div slot="main">{open.value ? <About /> : children}</div>
+      <div slot="main" id="locator-layout-main">
+        {open.value ? <About /> : children}
+      </div>
       <div slot="aside" className="display-contents">
         {aside ?? <DefaultAside />}
       </div>
