@@ -3,8 +3,10 @@ import { useContext } from 'preact/hooks';
 
 import { RecyclingLocatorAttributes } from '..';
 
+import getStartPath from './getStartPath';
+
 interface AppStateContext extends RecyclingLocatorAttributes {
-  startRoute: string;
+  startPath: string;
 }
 
 export const AppState = createContext<AppStateContext>(null);
@@ -12,12 +14,9 @@ export const AppState = createContext<AppStateContext>(null);
 export function createAppState(
   attributes: RecyclingLocatorAttributes,
 ): AppStateContext {
-  const { postcode } = attributes;
-  const startRoute = postcode ? `/${postcode}` : '/';
-
   return {
     ...attributes,
-    startRoute,
+    startPath: getStartPath(attributes),
   };
 }
 

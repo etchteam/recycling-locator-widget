@@ -20,7 +20,7 @@ export function i18nInit(locale: Locale = 'en') {
   i18n.init<HttpBackendOptions>({
     fallbackLng: 'en',
     lng: locale,
-    debug: import.meta.env.DEV,
+    debug: import.meta.env.MODE === 'development',
     backend: {
       loadPath: `${config.publicPath}translations/{{lng}}.json`,
     },

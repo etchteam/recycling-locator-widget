@@ -13,7 +13,7 @@ import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/IconLink/IconLink';
 import '@/components/control/MaterialSearchInput/MaterialSearchInput';
-import StartLayout from '@/pages/layout';
+import StartLayout from '@/pages/start.layout';
 
 import { usePostcodeLoaderData } from './postcode.loader';
 
