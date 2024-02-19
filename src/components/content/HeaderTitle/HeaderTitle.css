@@ -1,0 +1,32 @@
+locator-header-title {
+  align-items: center;
+  display: grid;
+  gap: var(--diamond-spacing-sm);
+  grid-template-areas: 'button title';
+  grid-template-columns: auto 1fr;
+
+  > * {
+    grid-area: title;
+  }
+
+  diamond-button {
+    grid-area: button;
+    --diamond-button-border-radius: 50%;
+    --diamond-button-padding-block: var(--diamond-spacing-sm);
+    --diamond-button-padding-inline: var(--diamond-spacing-sm);
+  }
+
+  h2,
+  p {
+    margin-block-end: 0;
+  }
+
+  h2 {
+    font-size: var(--diamond-font-size-lg);
+    font-weight: var(--diamond-font-weight-bold);
+  }
+
+  p {
+    font-size: var(--diamond-font-size-sm);
+  }
+}

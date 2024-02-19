@@ -1,10 +1,13 @@
 {
+  "actions": {
+    "back": "Back",
+    "search": "Search"
+  },
   "components": {
     "locationInput": {
       "placeholder": "Enter a town or postcode..."
     },
     "materialSearchInput": {
-      "buttonLabel": "Search",
       "placeholder": "Enter the name of an item..."
     }
   },
@@ -68,5 +71,8 @@
       "home": "Home recycling collection",
       "nearest": "Nearest places to recycle"
     }
+  },
+  "material": {
+    "title": "Recycle a specific item"
   }
 }

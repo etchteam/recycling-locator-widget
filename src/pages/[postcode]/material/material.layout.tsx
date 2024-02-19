@@ -1,4 +1,4 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
@@ -6,6 +6,7 @@ import '@/components/composition/Layout/Layout';
 import '@/components/composition/Header/Header';
 import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
+import '@/components/content/HeaderTitle/HeaderTitle';
 
 export default function MaterialLayout() {
   const { postcode } = useParams();
@@ -13,8 +14,17 @@ export default function MaterialLayout() {
   return (
     <locator-layout>
       <locator-header slot="header">
-        <h2>Recycle a specific item</h2>
-        <p>{postcode}</p>
+        <locator-header-title>
+          <diamond-button>
+            <Link to={`/${postcode}`}>
+              <locator-icon icon="arrow-left" label="Back"></locator-icon>
+            </Link>
+          </diamond-button>
+          <div>
+            <h2>Recycle a specific item</h2>
+            <p>{postcode}</p>
+          </div>
+        </locator-header-title>
       </locator-header>
       <div slot="main">
         <Outlet />
