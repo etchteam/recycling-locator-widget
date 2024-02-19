@@ -32,6 +32,8 @@
             VALIDATE_JSX: false
             VALIDATE_TSX: false
             VALIDATE_TYPESCRIPT_STANDARD: false
+        - name: Install test dependencies
+          run: npx playwright install
         - name: Run Tests
           run: npm run test
         - name: Build
