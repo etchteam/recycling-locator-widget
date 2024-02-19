@@ -27,9 +27,8 @@ export default defineConfig(({ mode }) => {
     test: {
       browser: {
         enabled: true,
-        name: 'chrome',
-        provider: 'none',
-        headless: false,
+        name: 'chromium',
+        provider: 'playwright',
       },
     },
 
