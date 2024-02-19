@@ -32,5 +32,5 @@
             VALIDATE_JSX: false
             VALIDATE_TSX: false
             VALIDATE_TYPESCRIPT_STANDARD: false
-        - run: npm run test -- --browser.headless=true
+        - run: npm run test
         - run: npm run build
