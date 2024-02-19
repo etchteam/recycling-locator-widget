@@ -1,4 +1,5 @@
 import { useSignal } from '@preact/signals';
+import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Form } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
@@ -12,6 +13,11 @@ import StartLayout from '@/pages/start.layout';
 export default function StartPage() {
   const { t } = useTranslation();
   const submitting = useSignal(false);
+
+  useEffect(() => {
+    const host = document.querySelector('recycling-locator');
+    host.dispatchEvent(new CustomEvent('ready'));
+  }, []);
 
   return (
     <StartLayout>

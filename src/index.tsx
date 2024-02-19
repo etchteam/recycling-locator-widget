@@ -69,6 +69,7 @@ register(
 
 declare global {
   interface HTMLElementTagNameMap {
-    'recycling-locator': CustomElement<RecyclingLocatorAttributes>;
+    'recycling-locator': EventSource &
+      CustomElement<RecyclingLocatorAttributes>;
   }
 }
