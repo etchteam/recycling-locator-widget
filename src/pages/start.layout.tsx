@@ -73,6 +73,7 @@ export default function StartLayout({
   readonly children: ComponentChildren;
   readonly aside?: ComponentChildren;
 }) {
+  const { t } = useTranslation();
   const open = useSignal(false);
 
   return (
@@ -89,7 +90,7 @@ export default function StartLayout({
           >
             <locator-icon
               icon={open.value ? 'close' : 'info'}
-              label={open.value ? 'Close information' : 'View information'}
+              label={t(`about.button.${open.value ? 'close' : 'view'}`)}
               color="primary"
             ></locator-icon>
           </button>
