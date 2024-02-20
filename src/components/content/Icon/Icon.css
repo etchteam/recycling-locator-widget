@@ -1,6 +1,11 @@
 locator-icon {
   display: inline-flex;
 
+  svg {
+    height: 1em;
+    width: 1em;
+  }
+
   path,
   circle {
     fill: currentColor;

@@ -15,7 +15,10 @@ export interface IconAttributes {
     | 'distance'
     | 'search'
     | 'map'
-    | 'arrow-left';
+    | 'arrow-left'
+    | 'warning'
+    | 'cross-circle'
+    | 'tick-circle';
   readonly color?: 'primary';
   readonly label?: string;
 }
