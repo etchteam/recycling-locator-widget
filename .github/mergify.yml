@@ -41,3 +41,10 @@ pull_request_rules:
           - ella-etch
           - Carl-J-M
         random_count: 2
+  - name: Assign the PR to its author
+    conditions:
+      - author~=!^dependabot(|-preview)\[bot\]$
+    actions:
+      assign:
+        users:
+          - {{author}}
