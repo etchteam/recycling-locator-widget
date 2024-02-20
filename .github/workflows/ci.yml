@@ -1,38 +1,71 @@
 ---
-  name: CI
-  on:
-    pull_request:
-      branches: ['main']
-  jobs:
-    lint:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
-          with:
-            fetch-depth: 0
-        - uses: actions/setup-node@v4
-          with:
-            node-version-file: .nvmrc
-            cache: 'npm'
-        - run: npm ci
-        - name: Lint Code Base
-          uses: github/super-linter/slim@v5
-          env:
-            DISABLE_V8_COMPILE_CACHE: true
-            DEFAULT_BRANCH: 'main'
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.cjs
-            LINTER_RULES_PATH: /
-            TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.cjs
-            CSS_FILE_NAME: stylelint.config.cjs
-            VALIDATE_ALL_CODEBASE: false
-            VALIDATE_JAVASCRIPT_STANDARD: false
-            VALIDATE_JSCPD: false
-            VALIDATE_JSX: false
-            VALIDATE_TSX: false
-            VALIDATE_TYPESCRIPT_STANDARD: false
-        - name: Build
-          run: npm run build
-        - name: Run Tests
-          run: npx playwright install --with-deps chromium && npm run test
+name: CI
+on:
+  pull_request:
+    branches: ['main']
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  lint:
+    permissions:
+      contents: read
+      pull-requests: write
+    name: MegaLinter
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: MegaLinter
+        uses: oxsecurity/megalinter/flavors/javascript@v7.8.0
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright
+        run: npx playwright install --with-deps chromium
+      - name: Run tests
+        run: npm test
