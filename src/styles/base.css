@@ -11,6 +11,10 @@
   font-size: var(--diamond-font-size-h3);
 }
 
+.text-decoration-none {
+  text-decoration: none;
+}
+
 .display-contents {
   display: contents;
 }

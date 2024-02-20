@@ -40,19 +40,15 @@ export default function PostcodePage() {
   return (
     <StartLayout aside={<Aside postcode={postcode} />}>
       <locator-context-header>
-        <diamond-grid alignItems="center">
-          <diamond-grid-item grow>
-            <span className="text-weight-bold">{postcode}</span>
-            {city && <>&nbsp;&ndash; {city}</>}
-          </diamond-grid-item>
-          <diamond-grid-item>
-            <diamond-button variant="text" size="sm">
-              <Link to="/">
-                <locator-icon icon="close" color="primary"></locator-icon>
-              </Link>
-            </diamond-button>
-          </diamond-grid-item>
-        </diamond-grid>
+        <div>
+          <span className="text-weight-bold">{postcode}</span>
+          {city && <>&nbsp;&ndash; {city}</>}
+        </div>
+        <diamond-button variant="text" size="sm">
+          <Link to="/">
+            <locator-icon icon="close" color="primary"></locator-icon>
+          </Link>
+        </diamond-button>
       </locator-context-header>
       <locator-wrap>
         <diamond-section padding="lg">
