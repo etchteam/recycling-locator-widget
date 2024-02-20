@@ -8,6 +8,7 @@ import postcodeLoader from './postcode.loader';
 import PostcodePage from './postcode.page';
 
 const routes: RouteObject[] = [
+  ...materialRoutes,
   {
     path: '/:postcode',
     id: 'postcode',
@@ -16,7 +17,6 @@ const routes: RouteObject[] = [
     loader: postcodeLoader,
     errorElement: <NotFoundPage />,
   },
-  ...materialRoutes,
 ];
 
 export default routes;

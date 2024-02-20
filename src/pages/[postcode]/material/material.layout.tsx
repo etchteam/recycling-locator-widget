@@ -1,15 +1,22 @@
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams, useSearchParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
+import '@etchteam/diamond-ui/composition/Grid/Grid';
+import '@etchteam/diamond-ui/composition/Grid/GridItem';
 
 import '@/components/composition/Layout/Layout';
 import '@/components/composition/Header/Header';
+import '@/components/canvas/ContextHeader/ContextHeader';
 import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
+import '@/components/content/Icon/Icon';
 
 export default function MaterialLayout() {
   const { postcode } = useParams();
+  const [searchParams] = useSearchParams();
+  const materialId = searchParams.get('id');
+  const materialName = searchParams.get('name');
 
   return (
     <locator-layout>
@@ -27,6 +34,20 @@ export default function MaterialLayout() {
         </locator-header-title>
       </locator-header>
       <div slot="main">
+        {materialId && (
+          <locator-context-header>
+            <Link to={`/${postcode}/search`}>
+              <diamond-grid alignItems="center">
+                <diamond-grid-item grow shrink>
+                  <span className="text-weight-bold">{materialName}</span>
+                </diamond-grid-item>
+                <diamond-grid-item>
+                  <locator-icon icon="search" color="primary" />
+                </diamond-grid-item>
+              </diamond-grid>
+            </Link>
+          </locator-context-header>
+        )}
         <Outlet />
       </div>
       <locator-tip slot="aside" text-align="center">

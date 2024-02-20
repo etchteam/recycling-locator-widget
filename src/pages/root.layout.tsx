@@ -13,17 +13,17 @@ export default function RootLayout() {
   const navigateTo = useNavigate();
   const location = useLocation();
   const loadedStartPath = useSignal<string>('');
-  const currentPath = location.pathname;
+  const currentHref = `${location.pathname}${location.search}${location.hash}`;
 
   useEffect(() => {
-    if (loadedStartPath.value !== startPath && startPath !== currentPath) {
+    if (loadedStartPath.value !== startPath && startPath !== currentHref) {
       navigateTo(startPath);
     }
 
-    if (currentPath === startPath) {
+    if (currentHref === startPath) {
       loadedStartPath.value = startPath;
     }
-  }, [startPath, currentPath]);
+  }, [startPath, currentHref]);
 
   if (!loadedStartPath.value) {
     return null;
