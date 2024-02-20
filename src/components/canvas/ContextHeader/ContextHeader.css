@@ -1,5 +1,18 @@
 locator-context-header {
+  align-items: center;
   border-bottom: var(--diamond-border);
-  display: block;
+  color: var(--diamond-theme-color);
+  display: grid;
+  grid-template-areas: 'content action';
+  grid-template-columns: 1fr auto;
   padding: var(--diamond-spacing-sm) var(--diamond-spacing);
+
+  &:first-child {
+    grid-area: content;
+    text-decoration: none;
+  }
+
+  &:last-child {
+    grid-area: action;
+  }
 }

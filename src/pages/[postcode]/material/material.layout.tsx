@@ -35,18 +35,12 @@ export default function MaterialLayout() {
       </locator-header>
       <div slot="main">
         {materialId && (
-          <locator-context-header>
-            <Link to={`/${postcode}/search`}>
-              <diamond-grid alignItems="center">
-                <diamond-grid-item grow shrink>
-                  <span className="text-weight-bold">{materialName}</span>
-                </diamond-grid-item>
-                <diamond-grid-item>
-                  <locator-icon icon="search" color="primary" />
-                </diamond-grid-item>
-              </diamond-grid>
-            </Link>
-          </locator-context-header>
+          <Link to={`/${postcode}/search`} className="text-decoration-none">
+            <locator-context-header>
+              <div className="text-weight-bold">{materialName}</div>
+              <locator-icon icon="search" color="primary" />
+            </locator-context-header>
+          </Link>
         )}
         <Outlet />
       </div>
