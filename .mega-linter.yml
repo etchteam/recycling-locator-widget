@@ -27,8 +27,8 @@ FILEIO_REPORTER: false
 
 # Config paths
 CSS_STYLELINT_CONFIG_FILE: stylelint.config.js
-JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
-TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
+JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.cjs
+TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.cjs
 
 # Executable overrides
 CSS_STYLELINT_CLI_EXECUTABLE: ['./node_modules/.bin/stylelint']
