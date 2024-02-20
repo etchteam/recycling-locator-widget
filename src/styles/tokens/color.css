@@ -1,5 +1,6 @@
 :host {
   --color-white: #fff;
+  --color-black: #000;
 
   --color-grey-lightest: #f2f2f2;
   --color-grey-light: #bdbdbd;
@@ -12,6 +13,10 @@
 
   --color-body: var(--color-grey-dark);
   --color-border: var(--color-grey-light);
+
+  --color-positive: #8dc63f;
+  --color-negative: #ca250a;
+  --color-hazardous: #ffe500;
 
   /* This is the main color that we expect people to change */
   --color-primary-lightest: color-mix(

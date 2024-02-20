@@ -1,3 +1,10 @@
 export default function MaterialPage() {
-  return <h2>Yes, it can be recycled!</h2>;
+  return (
+    <locator-hero variant="positive">
+      <locator-wrap>
+        <locator-icon icon="tick-circle" />
+        <h3>Yes, it can be recycled!</h3>
+      </locator-wrap>
+    </locator-hero>
+  );
 }

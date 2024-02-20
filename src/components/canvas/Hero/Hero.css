@@ -1,0 +1,45 @@
+locator-hero {
+  --_background: var(--diamond-theme-background-muted);
+  --_color: var(--diamond-theme-color-muted);
+  --_icon-color: var(--color-primary);
+  --diamond-theme-heading-color: var(--_color);
+  --diamond-theme-color: var(--_color);
+  background: var(--_background);
+  color: var(--_color);
+  display: block;
+  margin-bottom: calc(var(--diamond-spacing) * -1);
+  padding-block: var(--diamond-spacing-lg);
+  text-align: center;
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: var(--diamond-font-weight-bold);
+  }
+
+  locator-icon {
+    color: var(--_icon-color);
+    /* Giant icon just for the hero */
+    font-size: 3rem;
+    margin-block-end: var(--diamond-spacing);
+  }
+
+  &[variant='positive'] {
+    --_icon-color: var(--color-white);
+    --_color: var(--color-black);
+    --_background: var(--color-positive);
+  }
+
+  &[variant='negative'] {
+    --_icon-color: var(--color-white);
+    --_color: var(--color-white);
+    --_background: var(--color-negative);
+  }
+
+  &[variant='hazardous'] {
+    --_icon-color: var(--color-black);
+    --_color: var(--color-black);
+    --_background: var(--color-hazardous);
+  }
+}
