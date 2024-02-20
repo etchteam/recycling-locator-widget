@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Link, Outlet, useParams, useSearchParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
@@ -13,6 +14,7 @@ import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 
 export default function MaterialLayout() {
+  const { t } = useTranslation();
   const { postcode } = useParams();
   const [searchParams] = useSearchParams();
   const materialId = searchParams.get('id');
@@ -28,7 +30,7 @@ export default function MaterialLayout() {
             </Link>
           </diamond-button>
           <div>
-            <h2>Recycle a specific item</h2>
+            <h2>{t('material.title')}</h2>
             <p>{postcode}</p>
           </div>
         </locator-header-title>
