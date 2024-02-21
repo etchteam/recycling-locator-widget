@@ -9,6 +9,7 @@ import '@etchteam/diamond-ui/control/Button/Button';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/canvas/ContextHeader/ContextHeader';
 import '@/components/canvas/MapSvg/MapSvg';
+import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/IconLink/IconLink';
@@ -74,7 +75,9 @@ export default function PostcodePage() {
                 <li>
                   <locator-icon-link>
                     <Link to={`/${postcode}/home`}>
-                      <locator-icon icon="home"></locator-icon>
+                      <locator-icon-circle>
+                        <locator-icon icon="home"></locator-icon>
+                      </locator-icon-circle>
                       {t('postcode.options.home')}
                     </Link>
                   </locator-icon-link>
@@ -82,7 +85,9 @@ export default function PostcodePage() {
                 <li>
                   <locator-icon-link>
                     <Link to={`/${postcode}/places`}>
-                      <locator-icon icon="distance"></locator-icon>
+                      <locator-icon-circle>
+                        <locator-icon icon="distance"></locator-icon>
+                      </locator-icon-circle>
                       {t('postcode.options.nearest')}
                     </Link>
                   </locator-icon-link>

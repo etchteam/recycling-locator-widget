@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/preact';
 
 import '@/components/content/Icon/Icon';
+import '@/components/canvas/IconCircle/IconCircle';
 import './IconLink';
 
 const meta: Meta = {
@@ -13,7 +14,9 @@ export const IconLink: StoryObj = {
   render: () => (
     <locator-icon-link>
       <a href="#id">
-        <locator-icon icon="pin" />
+        <locator-icon-circle>
+          <locator-icon icon="pin" />
+        </locator-icon-circle>
         Nearest places to recycle
       </a>
     </locator-icon-link>
