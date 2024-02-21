@@ -74,6 +74,10 @@
   },
   "material": {
     "title": "Recycle a specific item",
+    "hero": {
+      "yes": "Yes, it can be recycled!",
+      "no": "No, it can’t be recycled!"
+    },
     "notFound": {
       "title": "We couldn’t find a match for",
       "label": "Search again",

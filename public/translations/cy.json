@@ -74,6 +74,10 @@
   },
   "material": {
     "title": "Ailgylchu eitem benodol",
+    "hero": {
+      "yes": "Oes, gellir ei ailgylchu!",
+      "no": "Na, ni ellir ei ailgylchu!"
+    },
     "notFound": {
       "title": "Ni allem ddod o hyd i gyfatebiaeth ar gyfer",
       "label": "Chwiliwch eto",
