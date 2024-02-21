@@ -14,4 +14,12 @@ locator-icon {
   &[color='primary'] {
     color: var(--color-primary);
   }
+
+  &[color='positive'] {
+    color: var(--color-positive);
+  }
+
+  &[color='negative'] {
+    color: var(--color-negative-light);
+  }
 }

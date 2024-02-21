@@ -21,6 +21,14 @@
         margin: 0 0 2rem;
       }
 
+      ul {
+        padding: 0;
+      }
+
+      ul ul {
+        padding-left: 1rem;
+      }
+
       @media (min-width: 768px) {
         .wrap {
           display: grid;
@@ -41,15 +49,28 @@
             </li>
             <li>
               <a href="/EX327RB">Postcode</a>
-            </li>
-            <li>
-              <a href="/notapostcode">Postcode not found</a>
+              <ul>
+                <li>
+                  <a href="/notapostcode">Not found</a>
+                </li>
+              </ul>
             </li>
             <li>
               <a href="/EX327RB/material?id=43&name=Plastic%20milk%20bottles">Material</a>
-            </li>
-            <li>
-              <a href="/EX327RB/material/not-found?name=Not%20a%20material">Material not found</a>
+              <ul>
+                <li>
+                  <a href="/EX327RB/material/not-found?name=Not%20a%20material">Not found</a>
+                </li>
+                <li>
+                  <a href="/YO231LY/material?id=6&name=Food%20and%20drink%20cartons">Some home recycling options</a>
+                </li>
+                <li>
+                  <a href="/YO231LY/material?id=43&name=Plastic%20milk%20bottles">All home recycling options</a>
+                </li>
+                <li>
+                  <a href="/EX327RB/material?id=79&name=Car%20batteries">No home recycling</a>
+                </li>
+              </ul>
             </li>
           </ul>
         </nav>

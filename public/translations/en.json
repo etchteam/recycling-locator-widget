@@ -78,6 +78,22 @@
       "yes": "Yes, it can be recycled!",
       "no": "No, it can’t be recycled!"
     },
+    "recycleAtHome": {
+      "cta": "Check your home collection",
+      "noSchemes": {
+        "title": "This item cannot be recycled at home",
+        "content": "Check what you can put in your home recycling bins and if you have a food and garden waste collection."
+      },
+      "manySchemes": {
+        "title": "Recycle at home",
+        "collectionSome": "This item is collected from <bold>some properties</bold> in the area.",
+        "collectionAll": "This item is collected from <bold>all properties</bold> in the area."
+      },
+      "oneScheme": {
+        "title": "Recycle at home",
+        "collection": "This item is collected in these containers:"
+      }
+    },
     "notFound": {
       "title": "We couldn’t find a match for",
       "label": "Search again",
