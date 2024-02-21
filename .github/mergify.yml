@@ -10,8 +10,8 @@ pull_request_rules:
           - check-success=MegaLinter
           - check-success=Test
           - or:
-            - check-success=CodeQL
-            - check-neutral=CodeQL
+              - check-success=CodeQL
+              - check-neutral=CodeQL
     actions:
       review:
         type: APPROVE
@@ -27,8 +27,8 @@ pull_request_rules:
           - check-success=MegaLinter
           - check-success=Test
           - or:
-            - check-success=CodeQL
-            - check-neutral=CodeQL
+              - check-success=CodeQL
+              - check-neutral=CodeQL
     actions:
       merge:
         method: merge
