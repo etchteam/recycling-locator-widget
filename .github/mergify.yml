@@ -8,6 +8,7 @@ pull_request_rules:
           - check-success=SonarCloud Code Analysis
           - check-success=build
           - check-success=lint
+          - check-success=test
     actions:
       review:
         type: APPROVE
@@ -20,12 +21,13 @@ pull_request_rules:
           - check-success=SonarCloud Code Analysis
           - check-success=build
           - check-success=lint
+          - check-success=test
           - "#review-requested=0"
           - "#approved-reviews-by>=1"
     actions:
       merge:
         method: merge
-  - name: Ask an old fart to review the code
+  - name: Get some eyes on it
     conditions:
       - -closed
       - -draft
@@ -36,15 +38,13 @@ pull_request_rules:
           - JoshTheWanderer
           - DanWebb
           - gavmck
-        random_count: 1
-  - name: Get some more eyes on it
-    conditions:
-      - -closed
-      - -draft
-      - author~=!^dependabot(|-preview)\[bot\]$
-    actions:
-      request_reviews:
-        users:
           - ella-etch
           - Carl-J-M
-        random_count: 1
+        random_count: 2
+  - name: Assign the PR to its author
+    conditions:
+      - author~=!^dependabot(|-preview)\[bot\]$
+    actions:
+      assign:
+        users:
+          - "{{author}}"
