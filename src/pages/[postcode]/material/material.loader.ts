@@ -5,13 +5,7 @@ import getDryContainersByMaterial from '@/lib/getDryContainersByMaterial';
 import { DryScheme, LocalAuthority } from '@/types/locatorApi';
 
 export interface MaterialLoaderResponse {
-  recycleAtHome: {
-    localAuthority: {
-      name: string;
-      url: string;
-    };
-    schemes: DryScheme[];
-  };
+  recycleAtHome: DryScheme[];
 }
 
 export default async function materialLoader({
@@ -26,12 +20,6 @@ export default async function materialLoader({
   );
 
   return {
-    recycleAtHome: {
-      localAuthority: {
-        name: home.name,
-        url: home.coreInformation.recyclingUri,
-      },
-      schemes: getDryContainersByMaterial(materialId, home.dryStreams),
-    },
+    recycleAtHome: getDryContainersByMaterial(materialId, home.dryStreams),
   };
 }
