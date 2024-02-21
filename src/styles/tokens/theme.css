@@ -11,6 +11,10 @@
     --recycling-locator-theme-color-light,
     var(--color-body)
   );
+  --diamond-theme-color-hover: var(
+    --recycling-locator-theme-color-hover,
+    var(--color-primary)
+  );
   --diamond-theme-border-color: var(
     --recycling-locator-theme-border-color-light,
     var(--color-border)

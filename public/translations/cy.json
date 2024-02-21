@@ -77,7 +77,8 @@
     "notFound": {
       "title": "Ni allem ddod o hyd i gyfatebiaeth ar gyfer",
       "label": "Chwiliwch eto",
-      "help": "Ceisiwch ddefnyddio enw arall ar ei gyfer, neu chwiliwch am eitem neu ddeunydd tebyg."
+      "help": "Ceisiwch ddefnyddio enw arall ar ei gyfer, neu chwiliwch am eitem neu ddeunydd tebyg.",
+      "popular": "Chwiliadau poblogaidd"
     }
   }
 }

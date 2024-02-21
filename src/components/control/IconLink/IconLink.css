@@ -8,7 +8,7 @@ locator-icon-link {
     transition: color var(--diamond-transition);
 
     &:hover {
-      color: var(--color-primary);
+      color: var(--diamond-theme-color-hover);
     }
   }
 

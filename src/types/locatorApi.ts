@@ -1,4 +1,4 @@
-export interface MaterialSearchResponse {
+export interface Material {
   id: number;
   name: string;
   popular: boolean;

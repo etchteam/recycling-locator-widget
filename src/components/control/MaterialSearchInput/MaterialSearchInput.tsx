@@ -8,7 +8,7 @@ import '@etchteam/diamond-ui/control/Button/Button';
 import LocatorApi from '@/lib/LocatorApi';
 import i18n from '@/lib/i18n';
 import { CustomElement } from '@/types/customElement';
-import { MaterialSearchResponse } from '@/types/locatorApi';
+import { Material } from '@/types/locatorApi';
 
 import '@/components/content/Icon/Icon';
 
@@ -24,7 +24,7 @@ interface MaterialSearchInputProps {
  * The autosuggest list will appear after > 3 characters are entered.
  */
 export default class MaterialSearchInput extends Component<MaterialSearchInputProps> {
-  materialSuggestions: Signal<MaterialSearchResponse[]>;
+  materialSuggestions: Signal<Material[]>;
   inputRef = createRef<HTMLInputElement>();
 
   constructor(props: MaterialSearchInputProps) {
@@ -32,7 +32,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     this.materialSuggestions = signal([]);
   }
 
-  autosuggest = async (query: string): Promise<MaterialSearchResponse[]> => {
+  autosuggest = async (query: string): Promise<Material[]> => {
     const body = new FormData();
     body.append('search', query);
     return LocatorApi.post('materials', body);

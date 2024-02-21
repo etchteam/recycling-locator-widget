@@ -1,17 +1,14 @@
 import { ActionFunctionArgs, redirect } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
-import { MaterialSearchResponse } from '@/types/locatorApi';
+import { Material } from '@/types/locatorApi';
 
 export default async function postcodeAction({
   request,
   params,
 }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const materials = await LocatorApi.post<MaterialSearchResponse[]>(
-    'materials',
-    formData,
-  );
+  const materials = await LocatorApi.post<Material[]>('materials', formData);
   const { name, id } = materials?.[0] ?? {};
   const postcode = params.postcode;
 
