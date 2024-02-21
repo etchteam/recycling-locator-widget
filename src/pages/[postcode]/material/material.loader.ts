@@ -18,24 +18,20 @@ export default async function materialLoader({
   request,
   params,
 }: LoaderFunctionArgs): Promise<MaterialLoaderResponse> {
-  try {
-    const url = new URL(request.url);
-    const materialId = Number(url.searchParams.get('id'));
-    const postcode = params.postcode;
-    const home = await LocatorApi.get<LocalAuthority>(
-      `local-authority/${postcode}`,
-    );
+  const url = new URL(request.url);
+  const materialId = Number(url.searchParams.get('id'));
+  const postcode = params.postcode;
+  const home = await LocatorApi.get<LocalAuthority>(
+    `local-authority/${postcode}`,
+  );
 
-    return {
-      recycleAtHome: {
-        localAuthority: {
-          name: home.name,
-          url: home.coreInformation.recyclingUri,
-        },
-        schemes: getDryContainersByMaterial(materialId, home.dryStreams),
+  return {
+    recycleAtHome: {
+      localAuthority: {
+        name: home.name,
+        url: home.coreInformation.recyclingUri,
       },
-    };
-  } catch (error) {
-    throw error;
-  }
+      schemes: getDryContainersByMaterial(materialId, home.dryStreams),
+    },
+  };
 }
