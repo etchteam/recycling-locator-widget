@@ -9,19 +9,16 @@ import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/IconLink/IconLink';
+import '@/components/content/ContainerSvg/ContainerSvg';
 
-import { MaterialLoaderResponse } from './material.loader';
-
-export interface RecycleAtHomeProps {
-  readonly schemes: MaterialLoaderResponse['recycleAtHome'];
-}
+import { DryScheme } from '@/types/locatorApi';
 
 function ManySchemes({
   schemes,
   schemesWithContainers,
 }: {
-  readonly schemes: MaterialLoaderResponse['recycleAtHome'];
-  readonly schemesWithContainers: MaterialLoaderResponse['recycleAtHome'];
+  readonly schemes: DryScheme[];
+  readonly schemesWithContainers: DryScheme[];
 }) {
   const { postcode } = useParams();
   const tContext = 'material.recycleAtHome.manySchemes';
@@ -66,10 +63,28 @@ function ManySchemes({
   );
 }
 
+function OneScheme({ scheme }: { readonly scheme: DryScheme }) {
+  const { t } = useTranslation();
+  const tContext = 'material.recycleAtHome.oneScheme';
+
+  return (
+    <>
+      <p className="text-size-sm">{t(`${tContext}.collection`)}</p>
+      <ul role="list" className="list-style-none diamond-spacing-bottom-md">
+        {scheme.containers.map((container) => (
+          <li key={container.name} className="diamond-spacing-bottom-sm">
+            <locator-container-svg name={container.name} />
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
 export default function RecycleAtHome({
   schemes,
 }: {
-  readonly schemes: MaterialLoaderResponse['recycleAtHome'];
+  readonly schemes: DryScheme[];
 }) {
   const { postcode } = useParams();
   const { t } = useTranslation();
@@ -78,11 +93,11 @@ export default function RecycleAtHome({
   );
   let type: 'oneScheme' | 'noSchemes' | 'manySchemes' = 'noSchemes';
 
-  if (schemesWithContainers.length === 1) {
+  if (schemes.length === 1 && schemesWithContainers.length === 1) {
     type = 'oneScheme';
   }
 
-  if (schemes.length > 1) {
+  if (schemes.length > 1 && schemesWithContainers.length >= 1) {
     type = 'manySchemes';
   }
 
@@ -111,7 +126,7 @@ export default function RecycleAtHome({
         </p>
       )}
 
-      {type === 'oneScheme' && <p>Todo</p>}
+      {type === 'oneScheme' && <OneScheme scheme={schemes[0]} />}
 
       {type === 'manySchemes' && (
         <ManySchemes
