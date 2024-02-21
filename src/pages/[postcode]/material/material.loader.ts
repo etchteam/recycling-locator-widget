@@ -14,10 +14,6 @@ export interface MaterialLoaderResponse {
   };
 }
 
-/**
- * Recycle at home: local-authority/{postcode} then look through the dry stream containers to find the accepted containers/streams
- * Recycle at a nearby place: use locations/{postcode}?materials={id}
- */
 export default async function materialLoader({
   request,
   params,
