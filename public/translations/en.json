@@ -73,6 +73,11 @@
     }
   },
   "material": {
-    "title": "Recycle a specific item"
+    "title": "Recycle a specific item",
+    "notFound": {
+      "title": "We couldn’t find a match for",
+      "label": "Search again",
+      "help": "Try using an alternative name for it, or search for a similar item or material."
+    }
   }
 }
