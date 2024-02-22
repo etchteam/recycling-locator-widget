@@ -8,9 +8,11 @@ import '@etchteam/diamond-ui/control/Button/Button';
 import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
+import '@/components/composition/Container/Container';
 import '@/components/control/IconLink/IconLink';
 import '@/components/content/ContainerSvg/ContainerSvg';
 
+import containerName from '@/lib/containerName';
 import { DryScheme } from '@/types/locatorApi';
 
 function ManySchemes({
@@ -73,7 +75,14 @@ function OneScheme({ scheme }: { readonly scheme: DryScheme }) {
       <ul role="list" className="list-style-none diamond-spacing-bottom-md">
         {scheme.containers.map((container) => (
           <li key={container.name} className="diamond-spacing-bottom-sm">
-            <locator-container-svg name={container.name} />
+            <locator-container>
+              <locator-container-svg
+                name={container.name}
+                body-colour={container.bodyColour}
+                lid-colour={container.lidColour}
+              />
+              {containerName(container)}
+            </locator-container>
           </li>
         ))}
       </ul>

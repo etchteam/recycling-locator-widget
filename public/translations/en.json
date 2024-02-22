@@ -1,4 +1,7 @@
 {
+  "common": {
+    "and": "and"
+  },
   "actions": {
     "back": "Back",
     "search": "Search"
@@ -9,6 +12,31 @@
     },
     "materialSearchInput": {
       "placeholder": "Enter the name of an item..."
+    },
+    "container": {
+      "#2d9cdb": "Blue",
+      "#1579c6": "Mid blue",
+      "#2262b9": "Dark blue",
+      "#56ccf2": "Light blue",
+      "#d7e7f5": "Muted blue",
+      "#828282": "Grey",
+      "#4f4f4f": "Black",
+      "#bdbdbd": "Light grey",
+      "#3cb848": "Green",
+      "#219653": "Dark green",
+      "#6fcf97": "Light green",
+      "#e1d9c0": "Cream",
+      "#f2c94c": "Yellow",
+      "#f4f7f9": "White",
+      "#f24545": "Red",
+      "#ad7849": "Brown",
+      "#f2994a": "Orange",
+      "#ff649e": "Pink",
+      "#d12767": "Magenta",
+      "#a62f5a": "Maroon",
+      "#9946db": "Purple",
+      "#89c1ab": "Duck egg",
+      "#ffffff00": "Transparent"
     }
   },
   "error": {

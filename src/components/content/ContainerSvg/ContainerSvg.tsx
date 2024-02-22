@@ -34,7 +34,7 @@ function ContainerSvg({
   label,
 }: ContainerSvgAttributes) {
   const cssVariables = {
-    '--lid-colour': lidColour ? 'transparent' : lidColour,
+    '--lid-colour': lidColour ? lidColour : 'transparent',
     '--body-colour': bodyColour,
   };
 
@@ -56,6 +56,7 @@ function ContainerSvg({
 
 register(ContainerSvg, 'locator-container-svg', [
   'name',
+  'displayName',
   'lid-colour',
   'body-colour',
   'label',
