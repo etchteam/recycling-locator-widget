@@ -1,6 +1,28 @@
-import { expect, test } from 'vitest';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import { expect, test, beforeAll } from 'vitest';
 
+import en from '../../../public/translations/en.json';
 import containerName from '@/lib/containerName';
+
+beforeAll(() => {
+  return new Promise<void>((resolve) => {
+    i18n.use(initReactI18next).init(
+      {
+        lng: 'en',
+        debug: false,
+        ns: ['translations'],
+        defaultNS: 'translations',
+        resources: {
+          en: {
+            translations: en,
+          },
+        },
+      },
+      () => resolve(),
+    );
+  });
+});
 
 test('returns displayName if no colours are provided', () => {
   expect(containerName({ displayName: 'Box' })).toBe('Box');

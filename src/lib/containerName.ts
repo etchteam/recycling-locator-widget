@@ -19,10 +19,10 @@ export default function containerName({
   });
 
   if (lidColourName && lidColourName !== bodyColourName) {
-    return `${bodyColourName} ${i18n.t('common.and')} ${lidColourName}`;
+    return `${bodyColourName} ${i18n.t('common.and')} ${lidColourName} ${displayName}`;
   }
 
-  if (bodyColour) {
+  if (bodyColourName) {
     return `${bodyColourName} ${displayName}`;
   }
 
