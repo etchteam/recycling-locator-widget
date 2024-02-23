@@ -22,7 +22,7 @@ function Aside({ postcode }: { readonly postcode: string }) {
   const { t } = useTranslation();
 
   return (
-    <locator-map-svg slot="aside">
+    <locator-map-svg slot="layout-aside">
       <diamond-button width="full-width">
         <Link to={`/${postcode}/places/map`}>
           {t('postcode.exploreTheMap')}
@@ -42,7 +42,7 @@ export default function PostcodePage() {
     <StartLayout aside={<Aside postcode={postcode} />}>
       <locator-context-header>
         <div>
-          <span className="text-weight-bold">{postcode}</span>
+          <span className="diamond-text-weight-bold">{postcode}</span>
           {city && <>&nbsp;&ndash; {city}</>}
         </div>
         <diamond-button variant="text" size="sm">
@@ -55,7 +55,7 @@ export default function PostcodePage() {
         <diamond-section padding="lg">
           <h2
             id="material-search-title"
-            className="text-size-h3 diamond-spacing-bottom-md"
+            className="diamond-text-size-h3 diamond-spacing-bottom-md"
           >
             {t('postcode.title')}
           </h2>

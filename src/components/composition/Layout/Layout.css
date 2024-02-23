@@ -5,7 +5,7 @@ locator-layout {
     'main'
     'aside';
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto max-content 1fr;
   height: 100%;
 
   .recycling-locator-variant-standalone & {
@@ -34,6 +34,7 @@ locator-layout {
 
   &::part(main) {
     grid-area: main;
+    min-height: 100%;
   }
 
   &::part(aside) {

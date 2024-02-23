@@ -102,6 +102,7 @@
   },
   "material": {
     "title": "Ailgylchu eitem benodol",
+    "loading": "Wrthi'n chwilio'r ardal hon...",
     "hero": {
       "yes": "Oes, gellir ei ailgylchu!",
       "no": "Na, ni ellir ei ailgylchu!"

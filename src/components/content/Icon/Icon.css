@@ -1,9 +1,11 @@
 locator-icon {
+  --_size: var(--diamond-icon-size);
+
   display: inline-flex;
 
   svg {
-    height: var(--diamond-icon-size);
-    width: var(--diamond-icon-size);
+    height: var(--_size);
+    width: var(--_size);
   }
 
   path,
@@ -13,6 +15,10 @@ locator-icon {
 
   &[color='primary'] {
     color: var(--color-primary);
+  }
+
+  &[color='muted'] {
+    color: var(--color-grey-light);
   }
 
   &[color='positive'] {

@@ -1,11 +1,14 @@
 import { Suspense } from 'preact/compat';
 import {
   createMemoryRouter,
-  RouterProvider,
   RouteObject,
   createBrowserRouter,
+  RouterProvider,
 } from 'react-router-dom';
 
+import '@/components/content/Icon/Icon';
+import '@/components/canvas/Loading/Loading';
+import '@/components/canvas/Hero/Hero';
 import '@/lib/sentry';
 import { RecyclingLocatorAttributes } from '@/index';
 import { AppState, createAppState } from '@/lib/AppState';
@@ -34,6 +37,16 @@ const routes: RouteObject[] = [
   },
 ];
 
+function Loading() {
+  return (
+    <locator-loading>
+      <locator-hero>
+        <locator-icon icon="distance" color="muted"></locator-icon>
+      </locator-hero>
+    </locator-loading>
+  );
+}
+
 /**
  * Jobs of the entrypoint:
  * - Load up the router
@@ -56,7 +69,7 @@ export default function Entrypoint(
       : createMemoryRouter(routes);
 
   return (
-    <Suspense fallback={<h2>loading...</h2>}>
+    <Suspense fallback={<Loading />}>
       <AppState.Provider value={createAppState(props)}>
         <RouterProvider router={router} />
       </AppState.Provider>

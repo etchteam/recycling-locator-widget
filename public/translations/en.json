@@ -102,6 +102,7 @@
   },
   "material": {
     "title": "Recycle a specific item",
+    "loading": "Searching this area...",
     "hero": {
       "yes": "Yes, it can be recycled!",
       "no": "No, it can’t be recycled!"

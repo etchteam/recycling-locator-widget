@@ -1,20 +1,19 @@
-import { LoaderFunctionArgs } from 'react-router-dom';
+import { defer, LoaderFunctionArgs } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
-import getDryContainersByMaterial from '@/lib/getDryContainersByMaterial';
 import {
-  DryScheme,
   LocalAuthority,
   Location,
   LocationsResponse,
 } from '@/types/locatorApi';
 
 export interface MaterialLoaderResponse {
-  recycleAtHome: DryScheme[];
+  materialId: number;
+  home: LocalAuthority;
   locations: Location[];
 }
 
-export default async function materialLoader({
+async function getData({
   request,
   params,
 }: LoaderFunctionArgs): Promise<MaterialLoaderResponse> {
@@ -29,7 +28,15 @@ export default async function materialLoader({
   );
 
   return {
-    recycleAtHome: getDryContainersByMaterial(materialId, home.dryStreams),
+    home,
+    materialId,
     locations: locations.items,
   };
+}
+
+export default async function materialLoader({
+  request,
+  params,
+}: LoaderFunctionArgs) {
+  return defer({ data: getData({ request, params }) });
 }

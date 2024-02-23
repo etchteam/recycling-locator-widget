@@ -3,22 +3,6 @@
 /* stylelint-disable-next-line scss/at-rule-no-unknown */
 @import-glob '../components/**/*.css';
 
-.text-weight-bold {
-  font-weight: var(--diamond-font-weight-bold);
-}
-
-.text-size-h3 {
-  font-size: var(--diamond-font-size-h3);
-}
-
-.text-size-sm {
-  font-size: var(--diamond-font-size-sm);
-}
-
-.text-decoration-none {
-  text-decoration: none;
-}
-
 .display-contents {
   display: contents;
 }
