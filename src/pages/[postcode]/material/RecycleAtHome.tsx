@@ -6,10 +6,11 @@ import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/canvas/IconCircle/IconCircle';
-import '@/components/content/Icon/Icon';
+import '@/components/composition/IconText/IconText';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/composition/Container/Container';
 import '@/components/control/IconLink/IconLink';
+import '@/components/content/Icon/Icon';
 import '@/components/content/ContainerSvg/ContainerSvg';
 
 import containerName from '@/lib/containerName';
@@ -74,7 +75,7 @@ function OneScheme({ scheme }: { readonly scheme: DryScheme }) {
 
   return (
     <>
-      <p className="text-size-sm">
+      <p className="diamond-text-size-sm">
         {t(`${tContext}.collection`, { count: scheme.containers.length })}
       </p>
       <ul role="list" className="list-style-none diamond-spacing-bottom-md">
@@ -124,25 +125,17 @@ export default function RecycleAtHome({
 
   return (
     <diamond-card border radius>
-      <diamond-grid
-        gap="sm"
-        align-items="center"
-        className="diamond-spacing-bottom-xs"
-      >
-        <diamond-grid-item>
-          <locator-icon-circle
-            variant={type === 'noSchemes' ? 'negative' : 'positive'}
-          >
-            <locator-icon icon="home"></locator-icon>
-          </locator-icon-circle>
-        </diamond-grid-item>
-        <diamond-grid-item grow shrink>
-          <h3>{t(`material.recycleAtHome.${type}.title`)}</h3>
-        </diamond-grid-item>
-      </diamond-grid>
+      <locator-icon-text className="diamond-spacing-bottom-xs">
+        <locator-icon-circle
+          variant={type === 'noSchemes' ? 'negative' : 'positive'}
+        >
+          <locator-icon icon="home"></locator-icon>
+        </locator-icon-circle>
+        <h3>{t(`material.recycleAtHome.${type}.title`)}</h3>
+      </locator-icon-text>
 
       {type === 'noSchemes' && (
-        <p className="text-size-sm">
+        <p className="diamond-text-size-sm">
           {t('material.recycleAtHome.noSchemes.content')}
         </p>
       )}

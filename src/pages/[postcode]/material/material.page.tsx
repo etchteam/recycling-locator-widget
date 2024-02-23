@@ -1,6 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { useLoaderData } from 'react-router-dom';
+import '@etchteam/diamond-ui/canvas/Section/Section';
 
+import '@/components/composition/Wrap/Wrap';
+import '@/components/canvas/Hero/Hero';
+import '@/components/content/Icon/Icon';
+import NearbyPlaces from './NearbyPlaces';
 import RecycleAtHome from './RecycleAtHome';
 import { MaterialLoaderResponse } from './material.loader';
 
@@ -23,7 +28,12 @@ export default function MaterialPage() {
         </locator-wrap>
       </locator-hero>
       <locator-wrap>
-        <RecycleAtHome schemes={recycleAtHome} />
+        <section className="diamond-spacing-bottom-lg">
+          <RecycleAtHome schemes={recycleAtHome} />
+        </section>
+        <section className="diamond-spacing-bottom-lg">
+          <NearbyPlaces locations={locations} />
+        </section>
       </locator-wrap>
     </>
   );

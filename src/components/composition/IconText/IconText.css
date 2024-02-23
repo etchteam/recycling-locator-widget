@@ -1,0 +1,10 @@
+locator-icon-text {
+  align-items: center;
+  display: grid;
+  gap: var(--diamond-spacing-sm);
+  grid-template-columns: auto 1fr;
+
+  :last-child {
+    margin-block-end: 0;
+  }
+}

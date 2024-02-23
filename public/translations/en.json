@@ -125,6 +125,21 @@
         "otherContainers_other": "+{{count}} other bins"
       }
     },
+    "nearbyPlaces": {
+      "noPlaces": {
+        "title": "There are no nearby places to recycle this item.",
+        "content": "No places within 25 miles of {{ postcode }}",
+        "cta": "Search again"
+      },
+      "places": {
+        "title": "Recycle at a nearby place",
+        "content_one": "This item can be recycled at <bold>1 place</bold> in the area.",
+        "content_other": "This item can be recycled at <bold>{{count}} places</bold> in the area.",
+        "contentThirtyPlus": "This item can be recycled at 30+ places in the area.",
+        "listCta": "List places",
+        "mapCta": "Show map"
+      }
+    },
     "notFound": {
       "title": "We couldn’t find a match for",
       "label": "Search again",
