@@ -6,11 +6,13 @@ import { MaterialLoaderResponse } from './material.loader';
 
 export default function MaterialPage() {
   const { t } = useTranslation();
-  const { recycleAtHome } = useLoaderData() as MaterialLoaderResponse;
+  const { recycleAtHome, locations } =
+    useLoaderData() as MaterialLoaderResponse;
   const recyclableAtHome = recycleAtHome.some(
     (scheme) => scheme.containers.length > 0,
   );
-  const recyclable = recyclableAtHome;
+  const recyclableNearby = locations.length > 0;
+  const recyclable = recyclableAtHome || recyclableNearby;
 
   return (
     <>

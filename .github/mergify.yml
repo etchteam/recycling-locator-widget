@@ -3,12 +3,15 @@ pull_request_rules:
   - name: Auto-squash dependabot updates when checks pass
     conditions:
       - and:
-          - author~=^dependabot(|-preview)\[bot\]$
+          - author=dependabot[bot]
           - label!=wontfix
           - check-success=SonarCloud Code Analysis
-          - check-success=build
-          - check-success=lint
-          - check-success=test
+          - check-success=Build
+          - check-success=MegaLinter
+          - check-success=Test
+          - or:
+              - check-success=CodeQL
+              - check-neutral=CodeQL
     actions:
       review:
         type: APPROVE
@@ -18,20 +21,21 @@ pull_request_rules:
   - name: Auto-squash when all checks pass and the PR has been approved
     conditions:
       - and:
-          - check-success=SonarCloud Code Analysis
-          - check-success=build
-          - check-success=lint
-          - check-success=test
-          - "#review-requested=0"
           - "#approved-reviews-by>=1"
+          - check-success=SonarCloud Code Analysis
+          - check-success=Build
+          - check-success=MegaLinter
+          - check-success=Test
+          - or:
+              - check-success=CodeQL
+              - check-neutral=CodeQL
     actions:
       merge:
         method: merge
   - name: Get some eyes on it
     conditions:
-      - -closed
       - -draft
-      - author~=!^dependabot(|-preview)\[bot\]$
+      - author!=dependabot[bot]
     actions:
       request_reviews:
         users:
@@ -43,7 +47,7 @@ pull_request_rules:
         random_count: 2
   - name: Assign the PR to its author
     conditions:
-      - author~=!^dependabot(|-preview)\[bot\]$
+      - author!=dependabot[bot]
     actions:
       assign:
         users:
