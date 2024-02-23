@@ -24,11 +24,18 @@ export const Container: StoryObj = {
         Blue Box (35 to 60L)
       </locator-container>
       <locator-container>
-        <locator-container-svg name="Box"></locator-container-svg>
+        <locator-container-svg
+          body-colour="#2d9cdb"
+          lid-colour="#2d9cdb"
+          name="Box"
+        ></locator-container-svg>
         Blue Box (35 to 60L)
       </locator-container>
       <locator-container>
-        <locator-container-svg name="Kitchen Caddy"></locator-container-svg>
+        <locator-container-svg
+          body-colour="#2d9cdb"
+          name="Kitchen Caddy"
+        ></locator-container-svg>
         Blue Box (35 to 60L)
       </locator-container>
     </>

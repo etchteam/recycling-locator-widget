@@ -9,8 +9,8 @@ import BlankSvg from './svg/blank.svg?react';
 
 export interface ContainerSvgAttributes {
   readonly name: ContainerName;
-  readonly lidColour?: string;
-  readonly bodyColour?: string;
+  readonly 'body-colour': string;
+  readonly 'lid-colour'?: string;
   readonly label?: string;
 }
 
@@ -29,12 +29,12 @@ const containerNameToSvgName: { [key in ContainerName]: string } = {
 
 function ContainerSvg({
   name,
-  lidColour = '#2d9cdb',
-  bodyColour = '#2d9cdb',
+  'lid-colour': lidColour,
+  'body-colour': bodyColour,
   label,
 }: ContainerSvgAttributes) {
   const cssVariables = {
-    '--lid-colour': lidColour ? lidColour : 'transparent',
+    '--lid-colour': lidColour ?? 'transparent',
     '--body-colour': bodyColour,
   };
 

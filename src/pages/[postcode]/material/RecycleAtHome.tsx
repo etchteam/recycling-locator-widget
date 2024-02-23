@@ -25,7 +25,7 @@ function ManySchemes({
   const { postcode } = useParams();
   const tContext = 'material.recycleAtHome.manySchemes';
   const allSchemesRecycle = schemesWithContainers.length === schemes.length;
-  const sortedSchemes = schemes.sort((scheme) => {
+  const sortedSchemes = schemes.toSorted((scheme) => {
     return scheme.containers.length > 0 ? -1 : 1;
   });
 
