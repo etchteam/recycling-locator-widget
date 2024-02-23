@@ -17,3 +17,11 @@ h3,
 h4 {
   font-weight: var(--diamond-font-weight-base);
 }
+
+diamond-card {
+  h3,
+  h4 {
+    font-size: var(--diamond-font-size-base);
+    font-weight: var(--diamond-font-weight-bold);
+  }
+}

@@ -32,3 +32,8 @@ article {
   height: var(--container-height);
   overflow-y: auto;
 }
+
+.list-style-none {
+  list-style: none;
+  padding: 0;
+}

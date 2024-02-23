@@ -32,8 +32,20 @@ export interface CoreInformation {
   gardenWasteUri: string;
 }
 
+export type ContainerName =
+  | 'Box'
+  | 'Communal Wheeled Bin'
+  | 'Inner Caddy'
+  | 'Kerbside Caddy'
+  | 'Kitchen Caddy'
+  | 'Reusable Sack'
+  | 'Non-Reusable Sack'
+  | 'Householder Provided Carrier Bag'
+  | 'Trollibox'
+  | 'Wheeled Bin';
+
 export interface Container {
-  name: string;
+  name: ContainerName;
   displayName: string;
   bodyColour: string;
   lidColour?: string;

@@ -12,19 +12,10 @@ locator-icon-link {
     }
   }
 
-  locator-icon {
+  locator-icon-circle {
     align-self: flex-start;
-    background: var(--color-grey-lightest);
-    border-radius: 50%;
-    color: var(--color-primary);
     flex-shrink: 0;
-    padding: 3px;
     transition: background var(--diamond-transition);
-
-    svg {
-      block-size: var(--diamond-font-size-xl);
-      inline-size: var(--diamond-font-size-xl);
-    }
 
     a:hover & {
       background: var(--color-primary-lightest);

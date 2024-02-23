@@ -10,13 +10,7 @@ import {
 } from '@/types/locatorApi';
 
 export interface MaterialLoaderResponse {
-  recycleAtHome: {
-    localAuthority: {
-      name: string;
-      url: string;
-    };
-    schemes: DryScheme[];
-  };
+  recycleAtHome: DryScheme[];
   locations: Location[];
 }
 
@@ -35,13 +29,7 @@ export default async function materialLoader({
   );
 
   return {
-    recycleAtHome: {
-      localAuthority: {
-        name: home.name,
-        url: home.coreInformation.recyclingUri,
-      },
-      schemes: getDryContainersByMaterial(materialId, home.dryStreams),
-    },
+    recycleAtHome: getDryContainersByMaterial(materialId, home.dryStreams),
     locations: locations.items,
   };
 }

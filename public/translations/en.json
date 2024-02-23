@@ -1,4 +1,7 @@
 {
+  "common": {
+    "and": "and"
+  },
   "actions": {
     "back": "Back",
     "search": "Search"
@@ -9,6 +12,31 @@
     },
     "materialSearchInput": {
       "placeholder": "Enter the name of an item..."
+    },
+    "container": {
+      "#2d9cdb": "Blue",
+      "#1579c6": "Mid blue",
+      "#2262b9": "Dark blue",
+      "#56ccf2": "Light blue",
+      "#d7e7f5": "Muted blue",
+      "#828282": "Grey",
+      "#4f4f4f": "Black",
+      "#bdbdbd": "Light grey",
+      "#3cb848": "Green",
+      "#219653": "Dark green",
+      "#6fcf97": "Light green",
+      "#e1d9c0": "Cream",
+      "#f2c94c": "Yellow",
+      "#f4f7f9": "White",
+      "#f24545": "Red",
+      "#ad7849": "Brown",
+      "#f2994a": "Orange",
+      "#ff649e": "Pink",
+      "#d12767": "Magenta",
+      "#a62f5a": "Maroon",
+      "#9946db": "Purple",
+      "#89c1ab": "Duck egg",
+      "#ffffff00": "Transparent"
     }
   },
   "error": {
@@ -77,6 +105,25 @@
     "hero": {
       "yes": "Yes, it can be recycled!",
       "no": "No, it can’t be recycled!"
+    },
+    "recycleAtHome": {
+      "cta": "Check your home collection",
+      "noSchemes": {
+        "title": "This item cannot be recycled at home",
+        "content": "Check what you can put in your home recycling bins and if you have a food and garden waste collection."
+      },
+      "manySchemes": {
+        "title": "Recycle at home",
+        "collectionSome": "This item is collected from <bold>some properties</bold> in the area.",
+        "collectionAll": "This item is collected from <bold>all properties</bold> in the area."
+      },
+      "oneScheme": {
+        "title": "Recycle at home",
+        "collection_one": "This item is collected in this bin:",
+        "collection_other": "This item is collected in these bins:",
+        "otherContainers_one": "+1 other bin",
+        "otherContainers_other": "+{{count}} other bins"
+      }
     },
     "notFound": {
       "title": "We couldn’t find a match for",

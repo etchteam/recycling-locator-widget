@@ -1,3 +1,4 @@
 :host {
   --diamond-border-radius: 4px;
+  --diamond-radius: var(--diamond-border-radius);
 }
