@@ -5,8 +5,8 @@ import postcodeAction from '../postcode.action';
 import MaterialLayout from './material.layout';
 import materialLoader from './material.loader';
 import MaterialPage from './material.page';
-import notFoundLoader from './not-found.loader';
-import NotFoundPage from './not-found.page';
+import materialSearchLoader from './search.loader';
+import MaterialSearchPage from './search.page';
 
 const routes: RouteObject[] = [
   {
@@ -15,10 +15,10 @@ const routes: RouteObject[] = [
     children: [
       { index: true, element: <MaterialPage />, loader: materialLoader },
       {
-        path: 'not-found',
-        element: <NotFoundPage />,
+        path: 'search',
+        element: <MaterialSearchPage />,
         action: postcodeAction,
-        loader: notFoundLoader,
+        loader: materialSearchLoader,
       },
     ],
   },

@@ -18,5 +18,5 @@ export default async function postcodeAction({
   }
 
   const safeSearchTerm = encodeURIComponent(formData.get('search') as string);
-  return redirect(`/${postcode}/material/not-found?name=${safeSearchTerm}`);
+  return redirect(`/${postcode}/material/search?name=${safeSearchTerm}`);
 }

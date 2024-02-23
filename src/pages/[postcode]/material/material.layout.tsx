@@ -38,7 +38,7 @@ export default function MaterialLayout() {
       <div slot="layout-main">
         {materialId && (
           <Link
-            to={`/${postcode}/search`}
+            to={`/${postcode}/material/search`}
             className="diamond-text-decoration-none"
           >
             <locator-context-header>

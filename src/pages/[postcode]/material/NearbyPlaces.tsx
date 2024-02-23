@@ -1,5 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -14,6 +14,7 @@ import { Location } from '@/types/locatorApi';
 
 function NoPlaces() {
   const { t } = useTranslation();
+  const { postcode } = useParams();
   const tContext = 'material.nearbyPlaces.noPlaces';
 
   return (
@@ -24,9 +25,11 @@ function NoPlaces() {
         </locator-icon-circle>
         <h3>{t(`${tContext}.title`)}</h3>
       </locator-icon-text>
-      <p className="diamond-text-size-sm">{t(`${tContext}.content`)}</p>
-      <diamond-button>
-        <Link to="/">{t(`${tContext}.cta`)}</Link>
+      <p className="diamond-text-size-sm">
+        {t(`${tContext}.content`, { postcode })}
+      </p>
+      <diamond-button width="full-width">
+        <Link to={`/${postcode}/material/search`}>{t(`${tContext}.cta`)}</Link>
       </diamond-button>
     </diamond-card>
   );
@@ -34,6 +37,8 @@ function NoPlaces() {
 
 function Places({ locations }: { readonly locations: Location[] }) {
   const { t } = useTranslation();
+  const { postcode } = useParams();
+  const location = useLocation();
   const tContext = 'material.nearbyPlaces.places';
   const count = locations.length;
 
@@ -48,7 +53,7 @@ function Places({ locations }: { readonly locations: Location[] }) {
         </locator-icon-text>
         <p className="diamond-text-size-sm">
           <Trans
-            i18nKey={`${tContext}.content${count >= 30 ? 'Thirty' : ''}`}
+            i18nKey={`${tContext}.content${count >= 30 ? 'ThirtyPlus' : ''}`}
             components={{ bold: <strong /> }}
             values={{ count }}
           />
@@ -66,12 +71,16 @@ function Places({ locations }: { readonly locations: Location[] }) {
         <diamond-grid>
           <diamond-grid-item small-mobile="6">
             <diamond-button width="full-width">
-              <Link to="/">{t(`${tContext}.listCta`)}</Link>
+              <Link to={`/${postcode}/places-list?${location.search}`}>
+                {t(`${tContext}.listCta`)}
+              </Link>
             </diamond-button>
           </diamond-grid-item>
           <diamond-grid-item small-mobile="6">
             <diamond-button width="full-width">
-              <Link to="/">{t(`${tContext}.mapCta`)}</Link>
+              <Link to={`/${postcode}/places-map?${location.search}`}>
+                {t(`${tContext}.mapCta`)}
+              </Link>
             </diamond-button>
           </diamond-grid-item>
         </diamond-grid>
