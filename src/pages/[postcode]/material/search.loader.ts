@@ -26,8 +26,6 @@ export default function materialSearchLoader() {
       tags: { route: 'Material search loader' },
     });
     // Let the user carry on without the popularMaterials
-    return new Promise((resolve) => {
-      resolve({ popularMaterials: [] });
-    });
+    return Promise.resolve({ popularMaterials: [] });
   }
 }
