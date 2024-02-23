@@ -1,4 +1,7 @@
 {
+  "common": {
+    "and": "a"
+  },
   "actions": {
     "back": "Yn ol",
     "search": "Chwiliwch"
@@ -9,6 +12,31 @@
     },
     "materialSearchInput": {
       "placeholder": "Rhowch enw eitem..."
+    },
+    "container": {
+      "#2d9cdb": "Glas",
+      "#1579c6": "Glas canol",
+      "#2262b9": "Glas tywyll",
+      "#56ccf2": "Glas golau",
+      "#d7e7f5": "Glas tawel",
+      "#828282": "Llwyd",
+      "#4f4f4f": "Du",
+      "#bdbdbd": "Llwyd golau",
+      "#3cb848": "Gwyrdd",
+      "#219653": "Gwyrdd tywyll",
+      "#6fcf97": "Gwyrdd golau",
+      "#e1d9c0": "Hufen",
+      "#f2c94c": "Melyn",
+      "#f4f7f9": "Gwyn",
+      "#f24545": "Coch",
+      "#ad7849": "Brown",
+      "#f2994a": "Oren",
+      "#ff649e": "Pinc",
+      "#d12767": "Magenta",
+      "#a62f5a": "Marwn",
+      "#9946db": "Porffor",
+      "#89c1ab": "Wy hwyaden",
+      "#ffffff00": "Tryloyw"
     }
   },
   "error": {
@@ -78,6 +106,25 @@
     "hero": {
       "yes": "Oes, gellir ei ailgylchu!",
       "no": "Na, ni ellir ei ailgylchu!"
+    },
+    "recycleAtHome": {
+      "cta": "Gwiriwch eich casgliad cartref",
+      "noSchemes": {
+        "title": "Ni ellir ailgylchu'r eitem hon gartref",
+        "content": "Gwiriwch beth allwch chi ei roi yn eich biniau ailgylchu cartref ac a oes gennych chi gasgliad gwastraff bwyd a gardd."
+      },
+      "manySchemes": {
+        "title": "Ailgylchu gartref",
+        "collectionSome": "Cesglir yr eitem hon o rai eiddo yn yr ardal.",
+        "collectionAll": "Cesglir yr eitem hon o bob eiddo yn yr ardal."
+      },
+      "oneScheme": {
+        "title": "Ailgylchu gartref",
+        "collection_one": "Cesglir yr eitem hon yn y bin hwn:",
+        "collection_other": "Cesglir yr eitem hon yn y biniau hyn:",
+        "otherContainers_one": "+1 bin arall",
+        "otherContainers_other": "+{{count}} bin arall"
+      }
     },
     "notFound": {
       "title": "Ni allem ddod o hyd i gyfatebiaeth ar gyfer",

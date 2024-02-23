@@ -1,11 +1,16 @@
 import { defer, LoaderFunctionArgs } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
-import { LocalAuthority } from '@/types/locatorApi';
+import {
+  LocalAuthority,
+  Location,
+  LocationsResponse,
+} from '@/types/locatorApi';
 
 export interface MaterialLoaderResponse {
   materialId: number;
   home: LocalAuthority;
+  locations: Location[];
 }
 
 async function getData({
@@ -18,10 +23,14 @@ async function getData({
   const home = await LocatorApi.get<LocalAuthority>(
     `local-authority/${postcode}`,
   );
+  const locations = await LocatorApi.get<LocationsResponse>(
+    `locations/${postcode}?materials=${materialId}`,
+  );
 
   return {
     home,
     materialId,
+    locations: locations.items,
   };
 }
 

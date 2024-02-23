@@ -15,7 +15,9 @@
   --color-body: var(--color-grey-dark);
   --color-border: var(--color-grey-light);
 
+  --color-positive-light: #8cc63f;
   --color-positive: #8dc63f;
+  --color-negative-light: #eb5757;
   --color-negative: #ca250a;
   --color-hazardous: #ffe500;
 

@@ -18,8 +18,9 @@ export interface IconAttributes {
     | 'arrow-left'
     | 'warning'
     | 'cross-circle'
-    | 'tick-circle';
-  readonly color?: 'primary' | 'muted';
+    | 'tick-circle'
+    | 'tick';
+  readonly color?: 'primary' | 'muted' | 'positive' | 'negative';
   readonly label?: string;
 }
 

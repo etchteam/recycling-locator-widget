@@ -9,6 +9,12 @@ export interface Material {
   popular: boolean;
 }
 
+export interface ValpakMaterial {
+  category: string;
+  code: string;
+  name: string;
+}
+
 export interface MaterialCategory {
   id: number;
   name: string;
@@ -26,8 +32,20 @@ export interface CoreInformation {
   gardenWasteUri: string;
 }
 
+export type ContainerName =
+  | 'Box'
+  | 'Communal Wheeled Bin'
+  | 'Inner Caddy'
+  | 'Kerbside Caddy'
+  | 'Kitchen Caddy'
+  | 'Reusable Sack'
+  | 'Non-Reusable Sack'
+  | 'Householder Provided Carrier Bag'
+  | 'Trollibox'
+  | 'Wheeled Bin';
+
 export interface Container {
-  name: string;
+  name: ContainerName;
   displayName: string;
   bodyColour: string;
   lidColour?: string;
@@ -65,4 +83,22 @@ export interface LocalAuthority {
   dryStreams: DryScheme[];
   organicStreams: OrganicScheme[];
   residualStreams: ResidualScheme[];
+}
+
+export interface Location {
+  id: number;
+  distance: number;
+  name: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  materials: ValpakMaterial[];
+  data_source: string;
+  is_hwrc: boolean;
+}
+
+export interface LocationsResponse {
+  items: Location[];
+  latitude: number;
+  longitude: number;
 }

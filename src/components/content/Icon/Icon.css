@@ -20,4 +20,12 @@ locator-icon {
   &[color='muted'] {
     color: var(--color-grey-light);
   }
+
+  &[color='positive'] {
+    color: var(--color-positive);
+  }
+
+  &[color='negative'] {
+    color: var(--color-negative-light);
+  }
 }

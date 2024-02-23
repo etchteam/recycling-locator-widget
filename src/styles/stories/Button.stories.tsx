@@ -1,16 +1,10 @@
 import { Meta, StoryObj } from '@storybook/preact';
-
-function ButtonComponent() {
-  return (
-    <diamond-button>
-      <button>Button</button>
-    </diamond-button>
-  );
-}
+import '@etchteam/diamond-ui/composition/Grid/Grid';
+import '@etchteam/diamond-ui/composition/Grid/GridItem';
+import '@etchteam/diamond-ui/control/Button/Button';
 
 const meta: Meta = {
   title: 'Styles/Button',
-  component: ButtonComponent,
 };
 
 export default meta;

@@ -6,6 +6,7 @@ import '@/components/canvas/Loading/Loading';
 import '@/components/content/Icon/Icon';
 import getDryContainersByMaterial from '@/lib/getDryContainersByMaterial';
 
+import RecycleAtHome from './RecycleAtHome';
 import { MaterialLoaderResponse } from './material.loader';
 
 function Loading() {
@@ -23,19 +24,27 @@ function Loading() {
 
 function MaterialPageContent() {
   const { t } = useTranslation();
-  const { home, materialId } = useAsyncValue() as MaterialLoaderResponse;
-  console.log(home);
+  const { home, locations, materialId } =
+    useAsyncValue() as MaterialLoaderResponse;
   const schemes = getDryContainersByMaterial(materialId, home.dryStreams);
-
-  const recyclable = schemes.some((scheme) => scheme.containers.length > 0);
+  const recyclableAtHome = schemes.some(
+    (scheme) => scheme.containers.length > 0,
+  );
+  const recyclableNearby = locations.length > 0;
+  const recyclable = recyclableAtHome || recyclableNearby;
 
   return (
-    <locator-hero variant={recyclable ? 'positive' : 'negative'}>
+    <>
+      <locator-hero variant={recyclable ? 'positive' : 'negative'}>
+        <locator-wrap>
+          <locator-icon icon={recyclable ? 'tick-circle' : 'cross-circle'} />
+          <h3>{t(`material.hero.${recyclable ? 'yes' : 'no'}`)}</h3>
+        </locator-wrap>
+      </locator-hero>
       <locator-wrap>
-        <locator-icon icon={recyclable ? 'tick-circle' : 'cross-circle'} />
-        <h3>{t(`material.hero.${recyclable ? 'yes' : 'no'}`)}</h3>
+        <RecycleAtHome schemes={schemes} />
       </locator-wrap>
-    </locator-hero>
+    </>
   );
 }
 
