@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useLoaderData } from 'react-router-dom';
-import '@etchteam/diamond-ui/canvas/Card/Card';
 
-import '@/components/composition/Wrap/Wrap';
 import { MaterialLoaderResponse } from './material.loader';
 
 export default function MaterialPage() {
