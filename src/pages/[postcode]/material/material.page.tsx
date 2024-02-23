@@ -5,10 +5,13 @@ import { MaterialLoaderResponse } from './material.loader';
 
 export default function MaterialPage() {
   const { t } = useTranslation();
-  const { recycleAtHome } = useLoaderData() as MaterialLoaderResponse;
-  const recyclable = recycleAtHome.schemes.some(
+  const { recycleAtHome, locations } =
+    useLoaderData() as MaterialLoaderResponse;
+  const recyclableAtHome = recycleAtHome.schemes.some(
     (scheme) => scheme.containers.length > 0,
   );
+  const recyclableNearby = locations.length > 0;
+  const recyclable = recyclableAtHome || recyclableNearby;
 
   return (
     <locator-hero variant={recyclable ? 'positive' : 'negative'}>

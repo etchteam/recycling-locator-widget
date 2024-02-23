@@ -2,7 +2,12 @@ import { LoaderFunctionArgs } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
 import getDryContainersByMaterial from '@/lib/getDryContainersByMaterial';
-import { DryScheme, LocalAuthority } from '@/types/locatorApi';
+import {
+  DryScheme,
+  LocalAuthority,
+  Location,
+  LocationsResponse,
+} from '@/types/locatorApi';
 
 export interface MaterialLoaderResponse {
   recycleAtHome: {
@@ -12,6 +17,7 @@ export interface MaterialLoaderResponse {
     };
     schemes: DryScheme[];
   };
+  locations: Location[];
 }
 
 export default async function materialLoader({
@@ -24,6 +30,9 @@ export default async function materialLoader({
   const home = await LocatorApi.get<LocalAuthority>(
     `local-authority/${postcode}`,
   );
+  const locations = await LocatorApi.get<LocationsResponse>(
+    `locations/${postcode}?materials=${materialId}`,
+  );
 
   return {
     recycleAtHome: {
@@ -33,5 +42,6 @@ export default async function materialLoader({
       },
       schemes: getDryContainersByMaterial(materialId, home.dryStreams),
     },
+    locations: locations.items,
   };
 }
