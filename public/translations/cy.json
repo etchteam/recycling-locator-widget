@@ -126,8 +126,23 @@
         "otherContainers_other": "+{{count}} bin arall"
       }
     },
-    "notFound": {
-      "title": "Ni allem ddod o hyd i gyfatebiaeth ar gyfer",
+    "nearbyPlaces": {
+      "noPlaces": {
+        "title": "Nid oes unrhyw leoedd cyfagos i ailgylchu'r eitem hon.",
+        "content": "Dim lleoedd o fewn 25 milltir i {{ postcode }}",
+        "cta": "Chwiliwch eto"
+      },
+      "places": {
+        "title": "Ailgylchu mewn man cyfagos",
+        "content_one": "Gellir ailgylchu'r eitem hon mewn <bold>1 lle</bold> yn yr ardal.",
+        "content_other": "Mae modd ailgylchu'r eitem hon mewn <bold>{{count}} o lefydd</bold> yn yr ardal.",
+        "contentThirtyPlus": "Gellir ailgylchu'r eitem hon mewn 30+ o leoedd yn yr ardal.",
+        "listCta": "Rhestru lleoedd",
+        "mapCta": "Dangos map"
+      }
+    },
+    "search": {
+      "notFound": "Ni allem ddod o hyd i gyfatebiaeth ar gyfer",
       "label": "Chwiliwch eto",
       "help": "Ceisiwch ddefnyddio enw arall ar ei gyfer, neu chwiliwch am eitem neu ddeunydd tebyg.",
       "popular": "Chwiliadau poblogaidd"

@@ -7,6 +7,9 @@ import '@/components/canvas/Loading/Loading';
 import '@/components/content/Icon/Icon';
 import getDryContainersByMaterial from '@/lib/getDryContainersByMaterial';
 
+import '@/components/composition/Wrap/Wrap';
+import '@/components/canvas/Hero/Hero';
+import NearbyPlaces from './NearbyPlaces';
 import RecycleAtHome from './RecycleAtHome';
 import { MaterialLoaderResponse } from './material.loader';
 
@@ -44,7 +47,12 @@ function MaterialPageContent() {
       </locator-hero>
       <diamond-enter type="fade-in-up" delay={0.25}>
         <locator-wrap>
-          <RecycleAtHome schemes={schemes} />
+          <section className="diamond-spacing-bottom-lg">
+            <RecycleAtHome schemes={schemes} />
+          </section>
+          <section className="diamond-spacing-bottom-lg">
+            <NearbyPlaces locations={locations} />
+          </section>
         </locator-wrap>
       </diamond-enter>
     </diamond-enter>
