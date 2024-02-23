@@ -4,13 +4,13 @@ import register from 'preact-custom-element';
 import { CustomElement } from '@/types/customElement';
 
 export default function Layout({
-  header,
-  main,
-  aside,
+  'layout-header': header,
+  'layout-main': main,
+  'layout-aside': aside,
 }: Readonly<{
-  header: ComponentChildren;
-  main: ComponentChildren;
-  aside: ComponentChildren;
+  'layout-header': ComponentChildren;
+  'layout-main': ComponentChildren;
+  'layout-aside': ComponentChildren;
 }>) {
   return (
     <>

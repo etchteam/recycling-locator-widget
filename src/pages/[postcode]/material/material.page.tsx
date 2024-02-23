@@ -1,30 +1,64 @@
+import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useAsyncValue, Await } from 'react-router-dom';
+import '@etchteam/diamond-ui/composition/Enter/Enter';
+
+import '@/components/canvas/Loading/Loading';
+import '@/components/content/Icon/Icon';
+import getDryContainersByMaterial from '@/lib/getDryContainersByMaterial';
 
 import RecycleAtHome from './RecycleAtHome';
 import { MaterialLoaderResponse } from './material.loader';
 
-export default function MaterialPage() {
+function Loading() {
   const { t } = useTranslation();
-  const { recycleAtHome, locations } =
-    useLoaderData() as MaterialLoaderResponse;
-  const recyclableAtHome = recycleAtHome.some(
+
+  return (
+    <locator-loading>
+      <locator-hero>
+        <locator-icon icon="distance" color="muted" />
+        <h3>{t('material.loading')}</h3>
+      </locator-hero>
+    </locator-loading>
+  );
+}
+
+function MaterialPageContent() {
+  const { t } = useTranslation();
+  const { home, locations, materialId } =
+    useAsyncValue() as MaterialLoaderResponse;
+  const schemes = getDryContainersByMaterial(materialId, home.dryStreams);
+  const recyclableAtHome = schemes.some(
     (scheme) => scheme.containers.length > 0,
   );
   const recyclableNearby = locations.length > 0;
   const recyclable = recyclableAtHome || recyclableNearby;
 
   return (
-    <>
+    <diamond-enter>
       <locator-hero variant={recyclable ? 'positive' : 'negative'}>
         <locator-wrap>
           <locator-icon icon={recyclable ? 'tick-circle' : 'cross-circle'} />
           <h3>{t(`material.hero.${recyclable ? 'yes' : 'no'}`)}</h3>
         </locator-wrap>
       </locator-hero>
-      <locator-wrap>
-        <RecycleAtHome schemes={recycleAtHome} />
-      </locator-wrap>
-    </>
+      <diamond-enter type="fade-in-up" delay={0.25}>
+        <locator-wrap>
+          <RecycleAtHome schemes={schemes} />
+        </locator-wrap>
+      </diamond-enter>
+    </diamond-enter>
+  );
+}
+
+export default function MaterialPage() {
+  const { data } = useLoaderData() as { data: Promise<MaterialLoaderResponse> };
+
+  return (
+    <Suspense fallback={<Loading />}>
+      <Await resolve={data}>
+        <MaterialPageContent />
+      </Await>
+    </Suspense>
   );
 }

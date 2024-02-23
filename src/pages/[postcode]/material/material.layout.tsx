@@ -22,7 +22,7 @@ export default function MaterialLayout() {
 
   return (
     <locator-layout>
-      <locator-header slot="header">
+      <locator-header slot="layout-header">
         <locator-header-title>
           <diamond-button>
             <Link to={`/${postcode}`}>
@@ -35,21 +35,24 @@ export default function MaterialLayout() {
           </div>
         </locator-header-title>
       </locator-header>
-      <div slot="main">
+      <div slot="layout-main">
         {materialId && (
-          <Link to={`/${postcode}/search`} className="text-decoration-none">
+          <Link
+            to={`/${postcode}/search`}
+            className="diamond-text-decoration-none"
+          >
             <locator-context-header>
-              <div className="text-weight-bold">{materialName}</div>
+              <div className="diamond-text-weight-bold">{materialName}</div>
               <locator-icon icon="search" color="primary" />
             </locator-context-header>
           </Link>
         )}
         <Outlet />
       </div>
-      <locator-tip slot="aside" text-align="center">
+      <locator-tip slot="layout-aside" text-align="center">
         <locator-wrap>
           <img src="/images/recycling-technology.webp" alt="" />
-          <p className="text-weight-bold">Hints and tips</p>
+          <p className="diamond-text-weight-bold">Hints and tips</p>
           <h2>How to check if your electricals can be recycled</h2>
           <p>
             Any items that have a plug, use batteries, need charging or have a

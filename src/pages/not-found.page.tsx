@@ -30,7 +30,7 @@ function Aside() {
   ];
 
   return (
-    <locator-tip slot="aside">
+    <locator-tip slot="layout-aside">
       <locator-wrap>
         <p>{t('notFound.aside.content')}</p>
         <ul>

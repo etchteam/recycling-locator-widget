@@ -15,7 +15,7 @@ function About() {
   const { t } = useTranslation();
 
   return (
-    <locator-wrap slot="main" data-testid="about-content">
+    <locator-wrap data-testid="about-content">
       <diamond-section padding="lg">
         <h2>{t('about.title')}</h2>
         <p>{t('about.intro')}</p>
@@ -52,7 +52,7 @@ export function DefaultAside() {
   const { t } = useTranslation();
 
   return (
-    <locator-tip slot="aside">
+    <locator-tip slot="layout-aside">
       <locator-wrap>
         <p>{t('start.aside.paragraph')}</p>
         <ul>
@@ -78,7 +78,7 @@ export default function StartLayout({
 
   return (
     <locator-layout>
-      <locator-header slot="header">
+      <locator-header slot="layout-header">
         <locator-logo></locator-logo>
         <diamond-button variant="text">
           <button
@@ -96,10 +96,10 @@ export default function StartLayout({
           </button>
         </diamond-button>
       </locator-header>
-      <div slot="main" id="locator-layout-main">
+      <div slot="layout-main" id="locator-layout-main">
         {open.value ? <About /> : children}
       </div>
-      <div slot="aside" className="display-contents">
+      <div slot="layout-aside" className="display-contents">
         {aside ?? <DefaultAside />}
       </div>
     </locator-layout>

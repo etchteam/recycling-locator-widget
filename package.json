@@ -19,7 +19,7 @@
     "test": "vitest --ui"
   },
   "dependencies": {
-    "@etchteam/diamond-ui": "^1.18.0",
+    "@etchteam/diamond-ui": "^1.25.2",
     "@here/maps-api-for-javascript": "^1.50.0",
     "@preact/signals": "^1.2.2",
     "@sentry/browser": "^7.101.1",

@@ -16,7 +16,8 @@ export const Postcode: StoryObj = {
   render: () => (
     <locator-context-header>
       <div>
-        <span className="text-weight-bold">EX327RB</span> &ndash; Barnstaple
+        <span className="diamond-text-weight-bold">EX327RB</span> &ndash;
+        Barnstaple
       </div>
       <diamond-button variant="text" size="sm">
         <a href="#link">
@@ -29,9 +30,9 @@ export const Postcode: StoryObj = {
 
 export const Search: StoryObj = {
   render: () => (
-    <a href="#link" className="text-decoration-none">
+    <a href="#link" className="diamond-text-decoration-none">
       <locator-context-header>
-        <div className="text-weight-bold">Plastic milk bottles</div>
+        <div className="diamond-text-weight-bold">Plastic milk bottles</div>
         <locator-icon icon="search" color="primary"></locator-icon>
       </locator-context-header>
     </a>
