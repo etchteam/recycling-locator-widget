@@ -11,8 +11,8 @@ export default meta;
 export const Layout: StoryObj = {
   render: () => (
     <locator-layout>
-      <header slot="header">Header</header>
-      <div slot="main">
+      <header slot="layout-header">Header</header>
+      <div slot="layout-main">
         <h2>Main</h2>
         <p>This is the main content part of the layout</p>
         <p>
@@ -78,7 +78,7 @@ export const Layout: StoryObj = {
         <p>.</p>
         <p>See?</p>
       </div>
-      <aside slot="aside">
+      <aside slot="layout-aside">
         <p>This is an optional aside for hints and stuff</p>
       </aside>
     </locator-layout>

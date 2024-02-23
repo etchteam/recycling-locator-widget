@@ -32,7 +32,7 @@ export default function NotFoundPage() {
       <diamond-section padding="lg">
         <h3>
           {t('material.notFound.title')}{' '}
-          <span className="text-weight-bold">
+          <span className="diamond-text-weight-bold">
             {materialName.toLocaleLowerCase()}
           </span>
         </h3>
@@ -45,7 +45,9 @@ export default function NotFoundPage() {
               placeholder={t('components.materialSearchInput.placeholder')}
               submitting={submitting.value}
             ></locator-material-search-input>
-            <p className="text-size-sm">{t('material.notFound.help')}</p>
+            <p className="diamond-text-size-sm">
+              {t('material.notFound.help')}
+            </p>
           </diamond-form-group>
         </Form>
 

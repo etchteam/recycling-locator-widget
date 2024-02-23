@@ -1,20 +1,14 @@
-import { LoaderFunctionArgs } from 'react-router-dom';
+import { defer, LoaderFunctionArgs } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
-import getDryContainersByMaterial from '@/lib/getDryContainersByMaterial';
-import { DryScheme, LocalAuthority } from '@/types/locatorApi';
+import { LocalAuthority } from '@/types/locatorApi';
 
 export interface MaterialLoaderResponse {
-  recycleAtHome: {
-    localAuthority: {
-      name: string;
-      url: string;
-    };
-    schemes: DryScheme[];
-  };
+  materialId: number;
+  home: LocalAuthority;
 }
 
-export default async function materialLoader({
+async function getData({
   request,
   params,
 }: LoaderFunctionArgs): Promise<MaterialLoaderResponse> {
@@ -26,12 +20,14 @@ export default async function materialLoader({
   );
 
   return {
-    recycleAtHome: {
-      localAuthority: {
-        name: home.name,
-        url: home.coreInformation.recyclingUri,
-      },
-      schemes: getDryContainersByMaterial(materialId, home.dryStreams),
-    },
+    home,
+    materialId,
   };
+}
+
+export default async function materialLoader({
+  request,
+  params,
+}: LoaderFunctionArgs) {
+  return defer({ data: getData({ request, params }) });
 }

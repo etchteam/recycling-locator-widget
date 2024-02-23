@@ -19,7 +19,7 @@ export interface IconAttributes {
     | 'warning'
     | 'cross-circle'
     | 'tick-circle';
-  readonly color?: 'primary';
+  readonly color?: 'primary' | 'muted';
   readonly label?: string;
 }
 
