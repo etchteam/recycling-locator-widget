@@ -119,9 +119,10 @@
       },
       "oneScheme": {
         "title": "Ailgylchu gartref",
-        "collection": "Cesglir yr eitem hon yn y cynwysyddion hyn:",
-        "otherContainers_one": "+1 cynhwysydd arall",
-        "otherContainers_other": "+{{count}} cynhwysydd arall"
+        "collection_one": "Cesglir yr eitem hon yn y bin hwn:",
+        "collection_other": "Cesglir yr eitem hon yn y biniau hyn:",
+        "otherContainers_one": "+1 bin arall",
+        "otherContainers_other": "+{{count}} bin arall"
       }
     },
     "notFound": {

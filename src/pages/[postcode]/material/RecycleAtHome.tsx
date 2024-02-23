@@ -73,7 +73,9 @@ function OneScheme({ scheme }: { readonly scheme: DryScheme }) {
 
   return (
     <>
-      <p className="text-size-sm">{t(`${tContext}.collection`)}</p>
+      <p className="text-size-sm">
+        {t(`${tContext}.collection`, { count: scheme.containers.length })}
+      </p>
       <ul role="list" className="list-style-none diamond-spacing-bottom-md">
         {firstTwoContainers.map((container) => (
           <li key={container.name} className="diamond-spacing-bottom-sm">
