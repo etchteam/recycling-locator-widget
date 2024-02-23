@@ -17,14 +17,15 @@ import { DryScheme } from '@/types/locatorApi';
 
 function ManySchemes({
   schemes,
-  schemesWithContainers,
+  schemesCollectingThisMaterial,
 }: {
   readonly schemes: DryScheme[];
-  readonly schemesWithContainers: DryScheme[];
+  readonly schemesCollectingThisMaterial: DryScheme[];
 }) {
   const { postcode } = useParams();
   const tContext = 'material.recycleAtHome.manySchemes';
-  const allSchemesRecycle = schemesWithContainers.length === schemes.length;
+  const allSchemesRecycle =
+    schemesCollectingThisMaterial.length === schemes.length;
   const sortedSchemes = schemes.toSorted((scheme) => {
     return scheme.containers.length > 0 ? -1 : 1;
   });
@@ -108,16 +109,16 @@ export default function RecycleAtHome({
 }) {
   const { postcode } = useParams();
   const { t } = useTranslation();
-  const schemesWithContainers = schemes.filter(
+  const schemesCollectingThisMaterial = schemes.filter(
     (scheme) => scheme.containers.length > 0,
   );
   let type: 'oneScheme' | 'noSchemes' | 'manySchemes' = 'noSchemes';
 
-  if (schemes.length === 1 && schemesWithContainers.length === 1) {
+  if (schemes.length === 1 && schemesCollectingThisMaterial.length === 1) {
     type = 'oneScheme';
   }
 
-  if (schemes.length > 1 && schemesWithContainers.length >= 1) {
+  if (schemes.length > 1 && schemesCollectingThisMaterial.length >= 1) {
     type = 'manySchemes';
   }
 
@@ -151,7 +152,7 @@ export default function RecycleAtHome({
       {type === 'manySchemes' && (
         <ManySchemes
           schemes={schemes}
-          schemesWithContainers={schemesWithContainers}
+          schemesCollectingThisMaterial={schemesCollectingThisMaterial}
         />
       )}
 
