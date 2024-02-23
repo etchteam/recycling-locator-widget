@@ -119,7 +119,9 @@
       },
       "oneScheme": {
         "title": "Recycle at home",
-        "collection": "This item is collected in these containers:"
+        "collection": "This item is collected in these containers:",
+        "otherContainers_one": "+1 other container",
+        "otherContainers_other": "+{{count}} other containers"
       }
     },
     "notFound": {

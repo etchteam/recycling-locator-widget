@@ -68,12 +68,14 @@ function ManySchemes({
 function OneScheme({ scheme }: { readonly scheme: DryScheme }) {
   const { t } = useTranslation();
   const tContext = 'material.recycleAtHome.oneScheme';
+  const firstTwoContainers = scheme.containers.slice(0, 2);
+  const remainingContainers = scheme.containers.slice(2);
 
   return (
     <>
       <p className="text-size-sm">{t(`${tContext}.collection`)}</p>
       <ul role="list" className="list-style-none diamond-spacing-bottom-md">
-        {scheme.containers.map((container) => (
+        {firstTwoContainers.map((container) => (
           <li key={container.name} className="diamond-spacing-bottom-sm">
             <locator-container>
               <locator-container-svg
@@ -85,6 +87,13 @@ function OneScheme({ scheme }: { readonly scheme: DryScheme }) {
             </locator-container>
           </li>
         ))}
+        {remainingContainers.length > 0 && (
+          <li>
+            {t(`${tContext}.otherContainers`, {
+              count: remainingContainers.length,
+            })}
+          </li>
+        )}
       </ul>
     </>
   );
