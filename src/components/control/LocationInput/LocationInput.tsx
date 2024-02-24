@@ -72,7 +72,6 @@ export default class LocationInput extends Component<LocationInputProps> {
           <input
             type="text"
             name="location"
-            data-testid="location-input"
             placeholder={this.props.placeholder}
             id={inputId}
             list={listId}
