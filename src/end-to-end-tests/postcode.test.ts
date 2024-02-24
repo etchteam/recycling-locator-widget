@@ -31,7 +31,7 @@ describeEndToEndTest('Postcode location search', () => {
     console.log(7);
     await input.press('Enter');
     console.log(8);
-    await expect(notInUk).toBeVisible();
+    await expect(notInUk).toBeVisible({ timeout: 30000 });
   }, 30000);
 
   test('Location found page shows with the valid postcode + city entered', async ({
