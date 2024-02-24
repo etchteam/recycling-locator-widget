@@ -44,6 +44,7 @@ export function describeEndToEndTest(
       browserContext = await browser.newContext();
       const page = await browserContext.newPage();
       await page.route('**/translations/en.json', (route) => {
+        console.log('mocking translations response');
         route.fulfill({ status: 200, json: en });
       });
       page.goto(`http://localhost:${PORT}`);
