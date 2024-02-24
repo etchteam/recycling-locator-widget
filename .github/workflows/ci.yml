@@ -64,7 +64,7 @@ jobs:
           node-version-file: .nvmrc
           cache: 'npm'
       - name: Install dependencies
-        run: npm ci
+        run: npm config set @here:registry https://repo.platform.here.com/artifactory/api/npm/maps-api-for-javascript/ && npm ci
       - name: Build
         run: npm run build
       - name: Install Playwright
