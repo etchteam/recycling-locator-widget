@@ -66,7 +66,7 @@ export default function NotFoundPage() {
 
   return (
     <StartLayout aside={<Aside />}>
-      <locator-wrap>
+      <locator-wrap data-testid="not-found-page">
         <diamond-section padding="lg">
           <h2>{t(`notFound.title.${notInUk ? 'notInTheUK' : 'default'}`)}</h2>
           {notInUk && <p>{t('notFound.ukOnly')}</p>}

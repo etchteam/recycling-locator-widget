@@ -18,7 +18,6 @@ export function describeEndToEndTest(
       server = await preview({ preview: { port: PORT } });
       browser = await chromium.launch({ headless: true });
       page = await browser.newPage();
-      await page.goto(`http://localhost:${PORT}`);
     });
 
     afterAll(async () => {
@@ -29,6 +28,7 @@ export function describeEndToEndTest(
     });
 
     beforeEach(async (context) => {
+      await page.goto(`http://localhost:${PORT}`);
       context.browser = browser;
       context.server = server;
       context.page = page;

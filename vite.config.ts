@@ -25,6 +25,7 @@ export default defineConfig(({ mode }) => {
     plugins: [svgr(), preact()],
 
     test: {
+      fileParallelism: false,
       environment: 'happy-dom',
     },
 
