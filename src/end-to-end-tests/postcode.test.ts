@@ -2,12 +2,19 @@ import { expect } from '@playwright/test';
 import i18n from 'i18next';
 import { test } from 'vitest';
 
+import { GuernseyGeocodeResponse } from './mocks/geocode';
 import { describeEndToEndTest } from './utils';
 
 describeEndToEndTest('Postcode location search', () => {
   test('Location not found page shows when a non-mainland England address is entered', async ({
     page,
   }) => {
+    await page.route('**/v1/geocode**', (route) => {
+      route.fulfill({
+        status: 200,
+        body: JSON.stringify(GuernseyGeocodeResponse),
+      });
+    });
     const input = page.getByLabel(i18n.t('start.label')).first();
     const notInUk = page.getByText(i18n.t('notFound.title.notInTheUK')).first();
     await expect(input).toBeVisible();
