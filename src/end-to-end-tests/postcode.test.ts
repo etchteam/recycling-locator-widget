@@ -16,4 +16,22 @@ describeEndToEndTest('Postcode location search', () => {
     await input.press('Enter');
     await expect(notInUk).toBeVisible();
   });
+
+  test('Location found page shows with the valid postcode + city entered', async ({
+    page,
+  }) => {
+    const input = page.getByLabel(i18n.t('start.label')).first();
+    const postcode = page.getByText('EX327RB').first();
+    const city = page.getByText('Barnstaple').first();
+    const postcodePageTitle = page.getByText(i18n.t('postcode.title')).first();
+    await expect(input).toBeVisible();
+    await expect(postcode).not.toBeVisible();
+    await expect(city).not.toBeVisible();
+    await expect(postcodePageTitle).not.toBeVisible();
+    await input.fill('EX32 7RB');
+    await input.press('Enter');
+    await expect(postcode).toBeVisible();
+    await expect(city).toBeVisible();
+    await expect(postcodePageTitle).toBeVisible();
+  });
 });
