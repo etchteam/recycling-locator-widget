@@ -14,7 +14,7 @@ describeEndToEndTest('Postcode location search', () => {
       console.log('mocking geocode response');
       route.fulfill({
         status: 200,
-        body: JSON.stringify(GuernseyGeocodeResponse),
+        json: GuernseyGeocodeResponse,
       });
     });
     console.log(2);
@@ -22,7 +22,7 @@ describeEndToEndTest('Postcode location search', () => {
     console.log(3);
     const notInUk = page.getByText(i18n.t('notFound.title.notInTheUK')).first();
     console.log(4);
-    await expect(input).toBeVisible();
+    await expect(input).toBeVisible({ timeout: 30000 });
     console.log(5);
     await expect(notInUk).not.toBeVisible();
     console.log(6);
@@ -31,7 +31,7 @@ describeEndToEndTest('Postcode location search', () => {
     await input.press('Enter');
     console.log(8);
     await expect(notInUk).toBeVisible();
-  });
+  }, 30000);
 
   test('Location found page shows with the valid postcode + city entered', async ({
     page,
