@@ -9,18 +9,27 @@ describeEndToEndTest('Postcode location search', () => {
   test('Location not found page shows when a non-mainland England address is entered', async ({
     page,
   }) => {
+    console.log(1);
     await page.route('**/v1/geocode**', (route) => {
+      console.log('mocking geocode response');
       route.fulfill({
         status: 200,
         body: JSON.stringify(GuernseyGeocodeResponse),
       });
     });
+    console.log(2);
     const input = page.getByLabel(i18n.t('start.label')).first();
+    console.log(3);
     const notInUk = page.getByText(i18n.t('notFound.title.notInTheUK')).first();
+    console.log(4);
     await expect(input).toBeVisible();
+    console.log(5);
     await expect(notInUk).not.toBeVisible();
+    console.log(6);
     await input.fill('Guernsey');
+    console.log(7);
     await input.press('Enter');
+    console.log(8);
     await expect(notInUk).toBeVisible();
   });
 
