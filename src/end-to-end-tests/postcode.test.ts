@@ -12,13 +12,16 @@ describeEndToEndTest('Postcode location search', () => {
   test('Location not found page shows when a non-mainland England address is entered', async ({
     page,
   }) => {
-    await page.route('**/v1/geocode**', (route) => {
-      console.log('mocking geocode response');
-      route.fulfill({
-        status: 200,
-        json: GuernseyGeocodeResponse,
-      });
-    });
+    await page.route(
+      'https://geocode.search.hereapi.com/v1/geocode**',
+      (route) => {
+        console.log('mocking geocode response');
+        route.fulfill({
+          status: 200,
+          json: GuernseyGeocodeResponse,
+        });
+      },
+    );
 
     const input = page.locator('input').first();
     const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
@@ -26,20 +29,25 @@ describeEndToEndTest('Postcode location search', () => {
     await expect(notInUk).not.toBeVisible();
     await input.fill('Guernsey');
     await input.press('Enter');
-    await page.waitForRequest('**/v1/geocode**');
+    await page.waitForRequest(
+      'https://geocode.search.hereapi.com/v1/geocode**',
+    );
     await expect(notInUk).toBeVisible();
   });
 
   test('Location found page shows with the valid postcode + city entered', async ({
     page,
   }) => {
-    await page.route('**/v1/geocode**', (route) => {
-      console.log('mocking geocode response');
-      route.fulfill({
-        status: 200,
-        json: PostcodeGeocodeResponse,
-      });
-    });
+    await page.route(
+      'https://geocode.search.hereapi.com/v1/geocode**',
+      (route) => {
+        console.log('mocking geocode response');
+        route.fulfill({
+          status: 200,
+          json: PostcodeGeocodeResponse,
+        });
+      },
+    );
 
     const input = page.locator('input').first();
     const postcode = page.getByText('EX327RB').first();
@@ -51,7 +59,9 @@ describeEndToEndTest('Postcode location search', () => {
     await expect(postcodePageTitle).not.toBeVisible();
     await input.fill('EX32 7RB');
     await input.press('Enter');
-    await page.waitForRequest('**/v1/geocode**');
+    await page.waitForRequest(
+      'https://geocode.search.hereapi.com/v1/geocode**',
+    );
     await expect(postcode).toBeVisible();
     await expect(city).toBeVisible();
     await expect(postcodePageTitle).toBeVisible();
