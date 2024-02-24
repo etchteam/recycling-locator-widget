@@ -78,7 +78,7 @@ export default function MaterialSearchPage() {
         <Form method="post" onSubmit={() => (submitting.value = true)}>
           <diamond-form-group>
             <label htmlFor="locator-material-input">
-              {t('material.search.label')}
+              {t('actions.searchAgain')}
             </label>
             <locator-material-search-input
               placeholder={t('components.materialSearchInput.placeholder')}

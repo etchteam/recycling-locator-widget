@@ -4,7 +4,8 @@
   },
   "actions": {
     "back": "Back",
-    "search": "Search"
+    "search": "Search",
+    "searchAgain": "Search again"
   },
   "components": {
     "locationInput": {
@@ -129,8 +130,7 @@
     "nearbyPlaces": {
       "noPlaces": {
         "title": "There are no nearby places to recycle this item.",
-        "content": "No places within 25 miles of {{ postcode }}",
-        "cta": "Search again"
+        "content": "No places within 25 miles of {{ postcode }}"
       },
       "places": {
         "title": "Recycle at a nearby place",
@@ -143,9 +143,11 @@
     },
     "search": {
       "notFound": "We couldn’t find a match for",
-      "label": "Search again",
       "help": "Try using an alternative name for it, or search for a similar item or material.",
       "popular": "Popular searches"
+    },
+    "error": {
+      "message": "An unexpected error occurred whilst searching for places to recycle this item."
     }
   }
 }
