@@ -18,7 +18,7 @@ describeEndToEndTest('Postcode location search', () => {
       });
     });
     console.log(2);
-    const label = page.getByText(i18n.t('start.label'));
+    const label = page.getByText(i18n.t('start.label')).first();
     // const input = page.getByLabel(i18n.t('start.label')).first();
     console.log(3);
     // const notInUk = page.getByText(i18n.t('notFound.title.notInTheUK')).first();
