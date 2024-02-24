@@ -1,4 +1,5 @@
 import { Signal, signal } from '@preact/signals';
+import * as Sentry from '@sentry/browser';
 import uniq from 'lodash/uniq';
 import { Component, createRef } from 'preact';
 import register from 'preact-custom-element';
@@ -38,14 +39,20 @@ export default class LocationInput extends Component<LocationInputProps> {
   }
 
   autosuggest = async (query: string): Promise<HereMapsAutosuggestResult> => {
-    const apiKey = `apiKey=${this.apiKey}`;
-    const bbox = `in=bbox:${this.boundingBox}`;
-    const resultTypes = `result_types=${this.resultTypes}`;
-
-    const response = await fetch(
-      `${this.autosuggestEndpoint}?q=${query}&${apiKey}&${bbox}&${resultTypes}`,
-    );
-    return response.json();
+    try {
+      const apiKey = `apiKey=${this.apiKey}`;
+      const bbox = `in=bbox:${this.boundingBox}`;
+      const resultTypes = `result_types=${this.resultTypes}`;
+      const response = await fetch(
+        `${this.autosuggestEndpoint}?q=${query}&${apiKey}&${bbox}&${resultTypes}`,
+      );
+      return response.json();
+    } catch (error) {
+      Sentry.captureException(error, {
+        tags: { component: 'LocationInput' },
+      });
+      return Promise.resolve({ items: [] });
+    }
   };
 
   handleInput = async (event: preact.JSX.TargetedEvent<HTMLInputElement>) => {

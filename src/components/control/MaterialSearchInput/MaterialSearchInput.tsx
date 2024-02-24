@@ -1,4 +1,5 @@
 import { Signal, signal } from '@preact/signals';
+import * as Sentry from '@sentry/browser';
 import uniq from 'lodash/uniq';
 import { Component, createRef } from 'preact';
 import register from 'preact-custom-element';
@@ -33,9 +34,16 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
   }
 
   autosuggest = async (query: string): Promise<Material[]> => {
-    const body = new FormData();
-    body.append('search', query);
-    return LocatorApi.post('materials', body);
+    try {
+      const body = new FormData();
+      body.append('search', query);
+      return LocatorApi.post('materials', body);
+    } catch (error) {
+      Sentry.captureException(error, {
+        tags: { component: 'MaterialSearchInput' },
+      });
+      return Promise.resolve([]);
+    }
   };
 
   handleInput = async (event: preact.JSX.TargetedEvent<HTMLInputElement>) => {
