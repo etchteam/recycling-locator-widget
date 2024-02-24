@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { chromium } from 'playwright';
 import type { Browser, BrowserContext } from 'playwright';
+import { initReactI18next } from 'react-i18next';
 import { preview } from 'vite';
 import type { PreviewServer } from 'vite';
 import { afterAll, beforeAll, beforeEach, describe } from 'vitest';
@@ -19,7 +20,7 @@ export function describeEndToEndTest(
 
     beforeAll(async () => {
       await new Promise<void>((resolve) => {
-        i18n.init(
+        i18n.use(initReactI18next).init(
           {
             lng: 'en',
             debug: false,
