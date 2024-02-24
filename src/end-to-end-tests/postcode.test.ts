@@ -18,10 +18,13 @@ describeEndToEndTest('Postcode location search', () => {
       });
     });
     console.log(2);
+    const label = page.getByText(i18n.t('start.label'));
     const input = page.getByLabel(i18n.t('start.label')).first();
     console.log(3);
     const notInUk = page.getByText(i18n.t('notFound.title.notInTheUK')).first();
-    console.log(4);
+    console.log(4, i18n.t('start.label'));
+    await expect(label).toBeVisible({ timeout: 30000 });
+    console.log(5);
     await expect(input).toBeVisible({ timeout: 30000 });
     console.log(5);
     await expect(notInUk).not.toBeVisible();
