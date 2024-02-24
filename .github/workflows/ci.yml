@@ -70,4 +70,4 @@ jobs:
       - name: Install Playwright
         run: npx playwright install --with-deps chromium
       - name: Run tests
-        run: DEBUG=true VITE_PUBLIC_PATH=/ VITE_PACKAGE_VERSION=1 VITE_HERE_MAPS_PLACES_KEY=t0h16lXAkzxhrxwfplFAw_atcazckt8BJeNop_JzZdE npm test
+        run: DEBUG=pw:api VITE_PUBLIC_PATH=/ VITE_PACKAGE_VERSION=1 VITE_HERE_MAPS_PLACES_KEY=t0h16lXAkzxhrxwfplFAw_atcazckt8BJeNop_JzZdE npm test
