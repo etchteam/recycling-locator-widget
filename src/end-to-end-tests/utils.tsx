@@ -23,7 +23,7 @@ export function describeEndToEndTest(
         i18n.use(initReactI18next).init(
           {
             lng: 'en',
-            debug: false,
+            debug: true,
             ns: ['translations'],
             defaultNS: 'translations',
             resources: {
