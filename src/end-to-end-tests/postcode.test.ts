@@ -3,8 +3,11 @@ import { t } from 'i18next';
 import { test } from 'vitest';
 
 import { GEOCODE_ENDPOINT, GuernseyGeocodeResponse } from './mocks/geocode';
-import { LOCAL_AUTHORITY_ENDPOINT } from './mocks/localAuthority';
-import { LOCATIONS_ENDPOINT } from './mocks/locations';
+import {
+  LOCAL_AUTHORITY_ENDPOINT,
+  LocalAuthorityResponse,
+} from './mocks/localAuthority';
+import { LOCATIONS_ENDPOINT, LocationsResponse } from './mocks/locations';
 import {
   EmptyMaterialsResponse,
   MATERIALS_ENDPOINT,
@@ -78,11 +81,11 @@ describeEndToEndTest('Postcode page', () => {
     });
 
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
-      route.fulfill({ json: ValidMaterialsResponse });
+      route.fulfill({ json: LocalAuthorityResponse });
     });
 
     await page.route(LOCATIONS_ENDPOINT, (route) => {
-      route.fulfill({ json: ValidMaterialsResponse });
+      route.fulfill({ json: LocationsResponse });
     });
 
     const material = 'Plastic milk bottles';
