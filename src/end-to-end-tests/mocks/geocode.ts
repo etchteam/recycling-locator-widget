@@ -1,3 +1,6 @@
+export const GEOCODE_ENDPOINT =
+  'https://geocode.search.hereapi.com/v1/geocode**';
+
 export const GuernseyGeocodeResponse = {
   items: [
     {

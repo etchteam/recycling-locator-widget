@@ -1,5 +1,5 @@
+import { expect } from '@playwright/test';
 import { t } from 'i18next';
-import { expect } from 'playwright/test';
 import { test } from 'vitest';
 
 import describeEndToEndTest from './utils/describeEndToEndTest';

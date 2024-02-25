@@ -1,23 +1,20 @@
+import { expect } from '@playwright/test';
 import { t } from 'i18next';
-import { expect } from 'playwright/test';
 import { test } from 'vitest';
 
-import config from '@/config';
-
 import {
+  GEOCODE_ENDPOINT,
   GuernseyGeocodeResponse,
   PostcodeGeocodeResponse,
 } from './mocks/geocode';
 import {
+  POSTCODE_ENDPOINT,
   InvalidPostcodeResponse,
   ValidPostcodeResponse,
 } from './mocks/postcode';
 import describeEndToEndTest from './utils/describeEndToEndTest';
 
-const GEOCODE_ENDPOINT = 'https://geocode.search.hereapi.com/v1/geocode**';
-const POSTCODE_ENDPOINT = `${config.locatorApiPath}postcode/**`;
-
-describeEndToEndTest('Postcode location search', () => {
+describeEndToEndTest('Start page', () => {
   test('Address outside mainland England', async ({ page }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: GuernseyGeocodeResponse });
