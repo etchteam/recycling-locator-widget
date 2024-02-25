@@ -15,7 +15,6 @@ describeEndToEndTest('Postcode location search', () => {
     await page.route(
       'https://geocode.search.hereapi.com/v1/geocode**',
       (route) => {
-        console.log('mocking geocode response');
         route.fulfill({
           status: 200,
           json: GuernseyGeocodeResponse,
@@ -41,7 +40,6 @@ describeEndToEndTest('Postcode location search', () => {
     await page.route(
       'https://geocode.search.hereapi.com/v1/geocode**',
       (route) => {
-        console.log('mocking geocode response');
         route.fulfill({
           status: 200,
           json: PostcodeGeocodeResponse,

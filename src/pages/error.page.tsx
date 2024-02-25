@@ -13,7 +13,6 @@ import StartLayout from '@/pages/start.layout';
 export default function ErrorPage() {
   const { t } = useTranslation();
   const error = useRouteError();
-  console.log(error);
   Sentry.captureException(error, { tags: { route: 'Global error boundary' } });
 
   return (

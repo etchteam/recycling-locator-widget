@@ -10,7 +10,6 @@ export default async function startAction({ request }: ActionFunctionArgs) {
     const postcode = await PostCodeResolver.fromString(location);
     return redirect(`/${postcode}`);
   } catch (error) {
-    console.log(error);
     if (error instanceof Error) {
       if (
         [

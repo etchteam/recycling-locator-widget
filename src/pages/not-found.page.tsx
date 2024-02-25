@@ -55,7 +55,6 @@ function Aside() {
 export default function NotFoundPage() {
   const { t } = useTranslation();
   const error = useRouteError() as ErrorResponse | undefined;
-  console.log(error);
   const submitting = useSignal(false);
 
   if (error && error.status !== 404) {
