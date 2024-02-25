@@ -25,6 +25,7 @@ export default defineConfig(({ mode }) => {
     plugins: [svgr(), preact()],
 
     test: {
+      testTimeout: env.PWDEBUG ? 0 : 5000,
       fileParallelism: false,
       environment: 'happy-dom',
     },

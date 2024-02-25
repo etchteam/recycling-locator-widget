@@ -5,10 +5,10 @@ import { preview } from 'vite';
 import type { PreviewServer } from 'vite';
 import { afterAll, afterEach, beforeAll, beforeEach, describe } from 'vitest';
 
-import en from '../../public/translations/en.json';
+import en from '../../../public/translations/en.json';
 const PORT = 3001;
 
-export function describeEndToEndTest(
+export default function describeEndToEndTest(
   description: string,
   callback: () => void,
 ) {
@@ -44,7 +44,8 @@ export function describeEndToEndTest(
       browserContext = await browser.newContext();
       const page = await browserContext.newPage();
       await page.route('**/translations/en.json', (route) => {
-        route.fulfill({ status: 200, json: en });
+        // Mock the response for the translations to speed it up slightly
+        route.fulfill({ json: en });
       });
       page.goto(`http://localhost:${PORT}`);
 
