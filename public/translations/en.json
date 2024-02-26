@@ -5,7 +5,9 @@
   "actions": {
     "back": "Back",
     "search": "Search",
-    "searchAgain": "Search again"
+    "searchAgain": "Search again",
+    "listPlaces": "List places",
+    "showMap": "Show map"
   },
   "components": {
     "locationInput": {
@@ -137,8 +139,6 @@
         "content_one": "This item can be recycled at <bold>1 place</bold> in the area.",
         "content_other": "This item can be recycled at <bold>{{count}} places</bold> in the area.",
         "contentThirtyPlus": "This item can be recycled at 30+ places in the area.",
-        "listCta": "List places",
-        "mapCta": "Show map"
       }
     },
     "search": {
@@ -159,6 +159,19 @@
         "Order additional bins",
         "Arrange collection of large or bulky items"
       ]
+    },
+    "hwrc": {
+      "title": "Take items to a Recycling Centre in your area.",
+      "content_one": "1 Recycling Centre within 25 miles",
+      "content_other": "{{ count }} Recycling Centres within 25 miles",
+      "contentThirtyPlus": "30+ Recycling Centres within 25 miles",
+      "info": "Some Recycling Centres are open to local residents only. Please check before you make your journey.",
+      "nearbyPlaces": {
+        "title": "Recycle at a nearby place",
+        "content_one": "1 place within 25 miles",
+        "content_other": "{{count}} places within 25 miles",
+        "contentThirtyPlus": "30+ places within 25 miles"
+      }
     }
   }
 }

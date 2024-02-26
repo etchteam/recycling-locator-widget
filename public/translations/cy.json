@@ -5,7 +5,9 @@
   "actions": {
     "back": "Yn ol",
     "search": "Chwiliwch",
-    "searchAgain": "Chwiliwch eto"
+    "searchAgain": "Chwiliwch eto",
+    "listPlaces": "Rhestru lleoedd",
+    "showMap": "Dangos map"
   },
   "components": {
     "locationInput": {
@@ -137,8 +139,6 @@
         "content_one": "Gellir ailgylchu'r eitem hon mewn <bold>1 lle</bold> yn yr ardal.",
         "content_other": "Mae modd ailgylchu'r eitem hon mewn <bold>{{count}} o lefydd</bold> yn yr ardal.",
         "contentThirtyPlus": "Gellir ailgylchu'r eitem hon mewn 30+ o leoedd yn yr ardal.",
-        "listCta": "Rhestru lleoedd",
-        "mapCta": "Dangos map"
       }
     },
     "search": {
@@ -159,6 +159,19 @@
         "Archebwch finiau ychwanegol",
         "Trefnwch gasgliad o eitemau mawr neu swmpus"
       ]
+    }
+  },
+  "hwrc": {
+    "title": "Ewch ag eitemau i Ganolfan Ailgylchu yn eich ardal.",
+    "content_one": "1 Canolfan Ailgylchu o fewn 25 milltir",
+    "content_other": "{{ count }} Canolfan Ailgylchu o fewn 25 milltir",
+    "contentThirtyPlus": "30+ o Ganolfannau Ailgylchu o fewn 25 milltir",
+    "info": "Mae rhai Canolfannau Ailgylchu ar agor i drigolion lleol yn unig. Gwiriwch cyn i chi wneud eich taith.",
+    "nearbyPlaces": {
+      "title": "Ailgylchu mewn man cyfagos",
+      "content_one": "1 lle o fewn 25 milltir",
+      "content_other": "{{count}} lle o fewn 25 milltir",
+      "contentThirtyPlus": "30+ o leoedd o fewn 25 milltir"
     }
   }
 }
