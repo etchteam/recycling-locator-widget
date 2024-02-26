@@ -149,5 +149,16 @@
     "error": {
       "message": "An unexpected error occurred whilst searching for places to recycle this item."
     }
+  },
+  "homeRecycling": {
+    "title": "Home Recycling",
+    "aside": {
+      "paragraph": "Contact this service provider if you need to:",
+      "list": [
+        "Report a missed collection",
+        "Order additional bins",
+        "Arrange collection of large or bulky items"
+      ]
+    }
   }
 }

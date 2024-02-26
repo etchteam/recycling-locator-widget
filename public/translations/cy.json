@@ -149,5 +149,16 @@
     "error": {
       "message": "Digwyddodd gwall annisgwyl wrth chwilio am leoedd i ailgylchu'r eitem hon."
     }
+  },
+  "homeRecycling": {
+    "title": "Ailgylchu Cartref",
+    "aside": {
+      "paragraph": "Cysylltwch â’r darparwr gwasanaeth hwn os oes angen:",
+      "list": [
+        "Rhoi gwybod am gasgliad a gollwyd",
+        "Archebwch finiau ychwanegol",
+        "Trefnwch gasgliad o eitemau mawr neu swmpus"
+      ]
+    }
   }
 }

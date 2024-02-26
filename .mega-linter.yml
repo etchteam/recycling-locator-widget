@@ -32,3 +32,6 @@ TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.cjs
 
 # Executable overrides
 CSS_STYLELINT_CLI_EXECUTABLE: ['./node_modules/.bin/stylelint']
+
+# Linters configuration
+REPOSITORY_GITLEAKS_DISABLE_ERRORS: true
