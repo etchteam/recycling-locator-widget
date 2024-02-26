@@ -51,7 +51,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_HERE_MAPS_PLACES_KEY: ${{ secrets.VITE_HERE_MAPS_PLACES_KEY }}
+          VITE_HERE_MAPS_PLACES_KEY: ${{ vars.VITE_HERE_MAPS_PLACES_KEY }}
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -70,7 +70,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_HERE_MAPS_PLACES_KEY: ${{ secrets.VITE_HERE_MAPS_PLACES_KEY }}
+          VITE_HERE_MAPS_PLACES_KEY: ${{ vars.VITE_HERE_MAPS_PLACES_KEY }}
       - name: Install Playwright
         run: npx playwright install --with-deps chromium
       - name: Run tests
