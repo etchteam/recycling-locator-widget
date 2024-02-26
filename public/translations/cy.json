@@ -171,12 +171,14 @@
     },
     "hwrc": {
       "title": "Ewch ag eitemau i Ganolfan Ailgylchu yn eich ardal.",
+      "content_zero": "Dim Canolfannau Ailgylchu o fewn 25 milltir",
       "content_one": "1 Canolfan Ailgylchu o fewn 25 milltir",
       "content_other": "{{ count }} Canolfan Ailgylchu o fewn 25 milltir",
       "contentThirtyPlus": "30+ o Ganolfannau Ailgylchu o fewn 25 milltir",
       "info": "Mae rhai Canolfannau Ailgylchu ar agor i drigolion lleol yn unig. Gwiriwch cyn i chi wneud eich taith.",
       "nearbyPlaces": {
         "title": "Ailgylchu mewn man cyfagos",
+        "content_zero": "Dim lleoedd o fewn 25 milltir",
         "content_one": "1 lle o fewn 25 milltir",
         "content_other": "{{count}} lle o fewn 25 milltir",
         "contentThirtyPlus": "30+ o leoedd o fewn 25 milltir"

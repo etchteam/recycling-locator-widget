@@ -4,6 +4,7 @@ import HomeRecyclingContactPage from './contact.page';
 import HomeRecyclingLayout from './home.layout';
 import homeRecyclingLoader from './home.loader';
 import HomeRecyclingPage from './home.page';
+import homeRecyclingCentreLoader from './recycling-centre.loader';
 import HomeRecyclingCentrePage from './recycling-centre.page';
 
 const routes: RouteObject[] = [
@@ -17,6 +18,7 @@ const routes: RouteObject[] = [
       {
         path: 'recycling-centre',
         element: <HomeRecyclingCentrePage />,
+        loader: homeRecyclingCentreLoader,
       },
       {
         path: 'contact',

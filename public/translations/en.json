@@ -171,12 +171,14 @@
     },
     "hwrc": {
       "title": "Take items to a Recycling Centre in your area.",
+      "content_zero": "No Recycling Centres within 25 miles",
       "content_one": "1 Recycling Centre within 25 miles",
       "content_other": "{{ count }} Recycling Centres within 25 miles",
       "contentThirtyPlus": "30+ Recycling Centres within 25 miles",
       "info": "Some Recycling Centres are open to local residents only. Please check before you make your journey.",
       "nearbyPlaces": {
         "title": "Recycle at a nearby place",
+        "content_zero": "No places within 25 miles",
         "content_one": "1 place within 25 miles",
         "content_other": "{{count}} places within 25 miles",
         "contentThirtyPlus": "30+ places within 25 miles"
