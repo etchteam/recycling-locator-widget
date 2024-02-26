@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs } from 'react-router-dom';
+import { LoaderFunctionArgs, useRouteLoaderData } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
 import { LocalAuthority } from '@/types/locatorApi';
@@ -18,4 +18,8 @@ export default async function homeRecyclingLoader({
   return {
     localAuthority,
   };
+}
+
+export function useHomeRecyclingLoaderData() {
+  return useRouteLoaderData('home-recycling') as HomeRecyclingLoaderResponse;
 }
