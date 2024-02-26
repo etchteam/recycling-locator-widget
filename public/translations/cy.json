@@ -152,6 +152,11 @@
   },
   "homeRecycling": {
     "title": "Ailgylchu Cartref",
+    "nav": {
+      "collections": "Casgliadau",
+      "hwrc": "Canolfan Ailgylchu",
+      "contact": "Cysylltwch"
+    },
     "aside": {
       "paragraph": "Cysylltwch â’r darparwr gwasanaeth hwn os oes angen:",
       "list": [
@@ -159,19 +164,23 @@
         "Archebwch finiau ychwanegol",
         "Trefnwch gasgliad o eitemau mawr neu swmpus"
       ]
-    }
-  },
-  "hwrc": {
-    "title": "Ewch ag eitemau i Ganolfan Ailgylchu yn eich ardal.",
-    "content_one": "1 Canolfan Ailgylchu o fewn 25 milltir",
-    "content_other": "{{ count }} Canolfan Ailgylchu o fewn 25 milltir",
-    "contentThirtyPlus": "30+ o Ganolfannau Ailgylchu o fewn 25 milltir",
-    "info": "Mae rhai Canolfannau Ailgylchu ar agor i drigolion lleol yn unig. Gwiriwch cyn i chi wneud eich taith.",
-    "nearbyPlaces": {
-      "title": "Ailgylchu mewn man cyfagos",
-      "content_one": "1 lle o fewn 25 milltir",
-      "content_other": "{{count}} lle o fewn 25 milltir",
-      "contentThirtyPlus": "30+ o leoedd o fewn 25 milltir"
+    },
+    "collections": {
+      "title": "Gwiriwch beth allwch chi ei roi yn eich ailgylchu cartref.",
+      "help": "Dewiswch eich bin i weld manylion y casgliad."
+    },
+    "hwrc": {
+      "title": "Ewch ag eitemau i Ganolfan Ailgylchu yn eich ardal.",
+      "content_one": "1 Canolfan Ailgylchu o fewn 25 milltir",
+      "content_other": "{{ count }} Canolfan Ailgylchu o fewn 25 milltir",
+      "contentThirtyPlus": "30+ o Ganolfannau Ailgylchu o fewn 25 milltir",
+      "info": "Mae rhai Canolfannau Ailgylchu ar agor i drigolion lleol yn unig. Gwiriwch cyn i chi wneud eich taith.",
+      "nearbyPlaces": {
+        "title": "Ailgylchu mewn man cyfagos",
+        "content_one": "1 lle o fewn 25 milltir",
+        "content_other": "{{count}} lle o fewn 25 milltir",
+        "contentThirtyPlus": "30+ o leoedd o fewn 25 milltir"
+      }
     }
   }
 }

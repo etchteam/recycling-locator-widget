@@ -1,11 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import {
-  Link,
-  NavLink,
-  Outlet,
-  useLoaderData,
-  useParams,
-} from 'react-router-dom';
+import { Link, NavLink, Outlet, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
@@ -18,12 +12,12 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
-import { HomeRecyclingLoaderResponse } from './home.loader';
+import { useHomeRecyclingLoaderData } from './home.loader';
 
 export default function HomeRecyclingLayout() {
   const { t } = useTranslation();
   const { postcode } = useParams();
-  const { localAuthority } = useLoaderData() as HomeRecyclingLoaderResponse;
+  const { localAuthority } = useHomeRecyclingLoaderData();
 
   return (
     <locator-layout>
@@ -46,21 +40,27 @@ export default function HomeRecyclingLayout() {
             <ul>
               <li>
                 <NavLink to={`/${postcode}/home`} end>
-                  Collections
+                  {t('homeRecycling.nav.collections')}
                 </NavLink>
               </li>
               <li>
                 <NavLink to={`/${postcode}/home/recycling-centre`}>
-                  Recycling Centre
+                  {t('homeRecycling.nav.hwrc')}
                 </NavLink>
               </li>
               <li>
-                <NavLink to={`/${postcode}/home/contact`}>Contact</NavLink>
+                <NavLink to={`/${postcode}/home/contact`}>
+                  {t('homeRecycling.nav.contact')}
+                </NavLink>
               </li>
             </ul>
           </nav>
         </locator-nav-bar>
-        <Outlet />
+        <diamond-section padding="lg">
+          <locator-wrap>
+            <Outlet />
+          </locator-wrap>
+        </diamond-section>
       </div>
       <locator-tip slot="layout-aside">
         <locator-wrap>
