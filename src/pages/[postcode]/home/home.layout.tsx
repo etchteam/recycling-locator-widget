@@ -17,7 +17,7 @@ import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
-import '@/components/control/Tabs/Tabs';
+import '@/components/control/NavBar/NavBar';
 import { HomeRecyclingLoaderResponse } from './home.loader';
 
 export default function HomeRecyclingLayout() {
@@ -41,7 +41,7 @@ export default function HomeRecyclingLayout() {
         </locator-header-title>
       </locator-header>
       <div slot="layout-main">
-        <locator-tabs>
+        <locator-nav-bar>
           <nav>
             <ul>
               <li>
@@ -59,7 +59,7 @@ export default function HomeRecyclingLayout() {
               </li>
             </ul>
           </nav>
-        </locator-tabs>
+        </locator-nav-bar>
         <Outlet />
       </div>
       <locator-tip slot="layout-aside">

@@ -1,31 +1,31 @@
 import { Meta, StoryObj } from '@storybook/preact';
 
-import './Tabs';
+import './NavBar';
 
 const meta: Meta = {
-  title: 'Components/Control/Tabs',
+  title: 'Components/Control/NavBar',
 };
 
 export default meta;
 
-export const Tabs: StoryObj = {
+export const NavBar: StoryObj = {
   render: () => (
-    <locator-tabs>
+    <locator-nav-bar>
       <nav>
         <ul>
           <li>
             <a href="#tab-1" aria-current="page">
-              Tab 1
+              Link 1
             </a>
           </li>
           <li>
-            <a href="#tab-2">Tab 2</a>
+            <a href="#tab-2">Link 2</a>
           </li>
           <li>
-            <a href="#tab-3">Tab 3</a>
+            <a href="#tab-3">Link 3</a>
           </li>
         </ul>
       </nav>
-    </locator-tabs>
+    </locator-nav-bar>
   ),
 };

@@ -1,6 +1,4 @@
-/* stylelint-disable selector-no-qualifying-type */
-
-locator-tabs {
+locator-nav-bar {
   border-bottom: var(--diamond-border);
   display: block;
 
@@ -24,7 +22,6 @@ locator-tabs {
       color var(--diamond-transition);
 
     &:hover,
-    &.active,
     &[aria-current='page'] {
       color: var(--diamond-theme-color-hover);
     }
@@ -37,7 +34,6 @@ locator-tabs {
       );
     }
 
-    &.active,
     &[aria-current='page'] {
       border-bottom-color: var(--diamond-theme-border-color-hover);
     }
