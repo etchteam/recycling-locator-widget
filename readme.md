@@ -24,7 +24,7 @@ The `<recycling-locator>` will dispatch a custom "ready" event when the UI has r
 document
   .querySelector('recycling-locator')
   .addEventListener('ready', () => {
-    console.log('Ready to recycle');
+    console.info('Ready to recycle');
   });
 ```
 

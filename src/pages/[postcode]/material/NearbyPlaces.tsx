@@ -29,7 +29,9 @@ function NoPlaces() {
         {t(`${tContext}.content`, { postcode })}
       </p>
       <diamond-button width="full-width">
-        <Link to={`/${postcode}/material/search`}>{t(`${tContext}.cta`)}</Link>
+        <Link to={`/${postcode}/material/search`}>
+          {t('actions.searchAgain')}
+        </Link>
       </diamond-button>
     </diamond-card>
   );

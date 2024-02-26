@@ -15,7 +15,7 @@ function About() {
   const { t } = useTranslation();
 
   return (
-    <locator-wrap data-testid="about-content">
+    <locator-wrap>
       <diamond-section padding="lg">
         <h2>{t('about.title')}</h2>
         <p>{t('about.intro')}</p>

@@ -80,3 +80,29 @@ The translation files can be found under /public/translations.
 
 - en.json – English language (default)
 - cy.json – Welsh language
+
+## Tests
+
+### Running tests
+
+Tests will run through `vitest`, for the end-to-end tests a Playwright  launches a chromium instance.
+
+```bash
+npm test
+```
+
+To enable end-to-end test debugging use the debug command.
+
+```bash
+npm run test:debug
+```
+
+This will launch Playwright in `PWDEBUG=console` mode with an infinite timeout.
+
+### Structure
+
+Unit tests exist for lib functions in /lib/tests using Vitest.
+
+End-to-end tests exist for route coverage in /end-to-end-tests using Playwright.
+
+All end-to-end tests must be wrapped in the `describeEndToEndTest` function which handles setting up the Playwright browser `page` context.

@@ -4,7 +4,7 @@ const LOCATOR_API =
   'https://rl.recyclenow.com/widget/';
 
 const config = {
-  packageVersion: import.meta.env.VITE_PACKAGE_VERSION,
+  packageVersion: import.meta.env.VITE_PACKAGE_VERSION ?? 0,
   publicPath: PUBLIC_PATH,
   imagePath: `${PUBLIC_PATH}images/`,
   mapsPlacesKey: import.meta.env.VITE_HERE_MAPS_PLACES_KEY,

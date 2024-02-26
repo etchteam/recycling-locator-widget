@@ -16,7 +16,9 @@
     "storybook": "run-p start:css storybook:start",
     "storybook:start": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "test": "vitest --ui"
+    "test": "vitest --ui",
+    "test:ci": "vitest",
+    "test:debug": "PWDEBUG=console vitest --ui"
   },
   "dependencies": {
     "@etchteam/diamond-ui": "^1.25.2",

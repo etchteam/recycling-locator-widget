@@ -25,6 +25,8 @@ export default defineConfig(({ mode }) => {
     plugins: [svgr(), preact()],
 
     test: {
+      testTimeout: env.PWDEBUG ? 0 : 5000,
+      fileParallelism: false,
       environment: 'happy-dom',
     },
 
@@ -33,7 +35,7 @@ export default defineConfig(({ mode }) => {
     },
   };
 
-  if (mode === 'production') {
+  if (mode === 'production' && env.VITE_SENTRY_DSN) {
     config.plugins.push(
       sentryVitePlugin({
         org: env.SENTRY_ORG,

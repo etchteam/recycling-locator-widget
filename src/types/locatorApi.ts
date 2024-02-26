@@ -51,9 +51,6 @@ export interface Container {
   lidColour?: string;
   interiorColour?: string;
   notes?: string;
-}
-
-export interface DryStreamContainer extends Container {
   materials?: MaterialWithCategory[];
 }
 
@@ -73,7 +70,7 @@ export interface OrganicScheme {
 
 export interface DryScheme {
   name: string;
-  containers: DryStreamContainer[];
+  containers: Container[];
 }
 
 export interface LocalAuthority {
