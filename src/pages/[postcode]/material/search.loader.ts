@@ -9,18 +9,14 @@ export interface MaterialSearchLoaderResponse {
 }
 
 async function getData(): Promise<MaterialSearchLoaderResponse> {
-  const popularMaterials = await LocatorApi.get<Material[]>(
-    'materials?popular=true',
-  );
-
-  return {
-    popularMaterials,
-  };
-}
-
-export default function materialSearchLoader() {
   try {
-    return defer({ data: getData() });
+    const popularMaterials = await LocatorApi.get<Material[]>(
+      'materials?popular=true',
+    );
+
+    return {
+      popularMaterials,
+    };
   } catch (error) {
     Sentry.captureException(error, {
       tags: { route: 'Material search loader' },
@@ -28,4 +24,8 @@ export default function materialSearchLoader() {
     // Let the user carry on without the popularMaterials
     return Promise.resolve({ popularMaterials: [] });
   }
+}
+
+export default function materialSearchLoader() {
+  return defer({ data: getData() });
 }
