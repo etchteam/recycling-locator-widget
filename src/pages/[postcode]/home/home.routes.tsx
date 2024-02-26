@@ -11,6 +11,7 @@ const routes: RouteObject[] = [
     path: '/:postcode/home',
     element: <HomeRecyclingLayout />,
     loader: homeRecyclingLoader,
+    id: 'home-recycling',
     children: [
       { index: true, element: <HomeRecyclingPage /> },
       {

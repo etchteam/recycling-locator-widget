@@ -152,6 +152,11 @@
   },
   "homeRecycling": {
     "title": "Ailgylchu Cartref",
+    "nav": {
+      "collections": "Casgliadau",
+      "hwrc": "Canolfan Ailgylchu",
+      "contact": "Cysylltwch"
+    },
     "aside": {
       "paragraph": "Cysylltwch â’r darparwr gwasanaeth hwn os oes angen:",
       "list": [
@@ -159,6 +164,10 @@
         "Archebwch finiau ychwanegol",
         "Trefnwch gasgliad o eitemau mawr neu swmpus"
       ]
+    },
+    "collections": {
+      "title": "Gwiriwch beth allwch chi ei roi yn eich ailgylchu cartref.",
+      "help": "Dewiswch eich bin i weld manylion y casgliad."
     }
   }
 }

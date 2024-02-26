@@ -152,6 +152,11 @@
   },
   "homeRecycling": {
     "title": "Home Recycling",
+    "nav": {
+      "collections": "Collections",
+      "hwrc": "Recycling Centre",
+      "contact": "Contact"
+    },
     "aside": {
       "paragraph": "Contact this service provider if you need to:",
       "list": [
@@ -159,6 +164,10 @@
         "Order additional bins",
         "Arrange collection of large or bulky items"
       ]
+    },
+    "collections": {
+      "title": "Check what you can put in your home recycling.",
+      "help": "Select your bin to see collection details."
     }
   }
 }
