@@ -138,7 +138,7 @@
         "title": "Ailgylchu mewn man cyfagos",
         "content_one": "Gellir ailgylchu'r eitem hon mewn <bold>1 lle</bold> yn yr ardal.",
         "content_other": "Mae modd ailgylchu'r eitem hon mewn <bold>{{count}} o lefydd</bold> yn yr ardal.",
-        "contentThirtyPlus": "Gellir ailgylchu'r eitem hon mewn 30+ o leoedd yn yr ardal.",
+        "contentThirtyPlus": "Gellir ailgylchu'r eitem hon mewn 30+ o leoedd yn yr ardal."
       }
     },
     "search": {

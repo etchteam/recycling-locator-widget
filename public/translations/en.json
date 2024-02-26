@@ -138,7 +138,7 @@
         "title": "Recycle at a nearby place",
         "content_one": "This item can be recycled at <bold>1 place</bold> in the area.",
         "content_other": "This item can be recycled at <bold>{{count}} places</bold> in the area.",
-        "contentThirtyPlus": "This item can be recycled at 30+ places in the area.",
+        "contentThirtyPlus": "This item can be recycled at 30+ places in the area."
       }
     },
     "search": {

@@ -48,4 +48,28 @@
     --recycling-locator-theme-link-color-accent,
     var(--color-primary)
   );
+
+  --theme-background-info: var(
+    --recycling-locator-theme-background-info,
+    var(--color-blue-lightest)
+  );
+  --theme-heading-color-info: var(
+    --recycling-locator-theme-heading-color-info,
+    var(--color-blue)
+  );
+  --theme-color-info: var(
+    --recycling-locator-theme-color-info,
+    var(--color-blue)
+  );
+  --theme-link-color-info: var(
+    --recycling-locator-theme-link-color-info,
+    var(--color-blue)
+  );
+}
+
+.theme-info {
+  --diamond-theme-background: var(--theme-background-info);
+  --diamond-theme-heading-color: var(--theme-heading-color-info);
+  --diamond-theme-color: var(--theme-color-info);
+  --diamond-theme-link-color: var(--theme-link-color-info);
 }
