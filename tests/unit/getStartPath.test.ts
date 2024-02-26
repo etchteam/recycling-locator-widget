@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import getStartPath from '../getStartPath';
+import getStartPath from '@/lib/getStartPath';
 
 test('Default path is /', () => {
   expect(getStartPath({})).toBe('/');

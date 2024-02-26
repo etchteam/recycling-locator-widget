@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import getDryContainersByMaterial from '../getDryContainersByMaterial';
+import getDryContainersByMaterial from '../../src/lib/getDryContainersByMaterial';
 import { DryScheme } from '@/types/locatorApi';
 
 test('Returns dry containers that accept the given material', () => {

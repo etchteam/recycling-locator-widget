@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 
-import PostCodeResolver from '../PostcodeResolver';
+import PostCodeResolver from '@/lib/PostcodeResolver';
 
 describe('extractPostcodeFromString', () => {
   test('extracts postcodes from a given string', () => {

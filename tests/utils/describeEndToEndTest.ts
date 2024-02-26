@@ -1,11 +1,12 @@
-import i18n from 'i18next';
 import { chromium } from 'playwright';
 import type { Browser, BrowserContext } from 'playwright';
 import { preview } from 'vite';
 import type { PreviewServer } from 'vite';
 import { afterAll, afterEach, beforeAll, beforeEach, describe } from 'vitest';
 
-import en from '../../../public/translations/en.json';
+import en from '../../public/translations/en.json';
+
+import provideI18n from './providei18n';
 const PORT = 3001;
 
 export default function describeEndToEndTest(
@@ -18,23 +19,7 @@ export default function describeEndToEndTest(
     let browserContext: BrowserContext;
 
     beforeAll(async () => {
-      await new Promise<void>((resolve) => {
-        i18n.init(
-          {
-            lng: 'en',
-            debug: false,
-            ns: ['translations'],
-            defaultNS: 'translations',
-            resources: {
-              en: {
-                translations: en,
-              },
-            },
-          },
-          () => resolve(),
-        );
-      });
-
+      await provideI18n();
       server = await preview({ preview: { port: PORT } });
       browser = await chromium.launch({ headless: true });
       browserContext = await browser.newContext();

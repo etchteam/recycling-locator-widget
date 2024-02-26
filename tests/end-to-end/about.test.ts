@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { t } from 'i18next';
 import { test } from 'vitest';
 
-import describeEndToEndTest from './utils/describeEndToEndTest';
+import describeEndToEndTest from '../utils/describeEndToEndTest';
 
 describeEndToEndTest('About page', () => {
   test('About page displays when info button is clicked', async ({ page }) => {

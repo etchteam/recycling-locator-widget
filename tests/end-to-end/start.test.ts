@@ -6,13 +6,13 @@ import {
   GEOCODE_ENDPOINT,
   GuernseyGeocodeResponse,
   PostcodeGeocodeResponse,
-} from './mocks/geocode';
+} from '../mocks/geocode';
 import {
   POSTCODE_ENDPOINT,
   InvalidPostcodeResponse,
   ValidPostcodeResponse,
-} from './mocks/postcode';
-import describeEndToEndTest from './utils/describeEndToEndTest';
+} from '../mocks/postcode';
+import describeEndToEndTest from '../utils/describeEndToEndTest';
 
 describeEndToEndTest('Start page', () => {
   test('Address outside mainland England', async ({ page }) => {
