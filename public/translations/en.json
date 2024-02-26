@@ -147,5 +147,16 @@
       "help": "Try using an alternative name for it, or search for a similar item or material.",
       "popular": "Popular searches"
     }
+  },
+  "homeRecycling": {
+    "title": "Home Recycling",
+    "aside": {
+      "paragraph": "Contact this service provider if you need to:",
+      "list": [
+        "Report a missed collection",
+        "Order additional bins",
+        "Arrange collection of large or bulky items"
+      ]
+    }
   }
 }

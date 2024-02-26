@@ -146,6 +146,17 @@
       "label": "Chwiliwch eto",
       "help": "Ceisiwch ddefnyddio enw arall ar ei gyfer, neu chwiliwch am eitem neu ddeunydd tebyg.",
       "popular": "Chwiliadau poblogaidd"
+    },
+    "homeRecycling": {
+      "title": "Ailgylchu Cartref",
+      "aside": {
+        "paragraph": "Cysylltwch â’r darparwr gwasanaeth hwn os oes angen:",
+        "list": [
+          "Rhoi gwybod am gasgliad a gollwyd",
+          "Archebwch finiau ychwanegol",
+          "Trefnwch gasgliad o eitemau mawr neu swmpus"
+        ]
+      }
     }
   }
 }
