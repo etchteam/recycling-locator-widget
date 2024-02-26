@@ -1,5 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import { Link, Outlet, useLoaderData, useParams } from 'react-router-dom';
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLoaderData,
+  useParams,
+} from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
@@ -7,11 +13,11 @@ import '@etchteam/diamond-ui/composition/Grid/GridItem';
 
 import '@/components/composition/Layout/Layout';
 import '@/components/composition/Header/Header';
-import '@/components/canvas/ContextHeader/ContextHeader';
 import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
+import '@/components/control/Tabs/Tabs';
 import { HomeRecyclingLoaderResponse } from './home.loader';
 
 export default function HomeRecyclingLayout() {
@@ -35,6 +41,25 @@ export default function HomeRecyclingLayout() {
         </locator-header-title>
       </locator-header>
       <div slot="layout-main">
+        <locator-tabs>
+          <nav>
+            <ul>
+              <li>
+                <NavLink to={`/${postcode}/home`} end>
+                  Collections
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={`/${postcode}/home/recycling-centre`}>
+                  Recycling Centre
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={`/${postcode}/home/contact`}>Contact</NavLink>
+              </li>
+            </ul>
+          </nav>
+        </locator-tabs>
         <Outlet />
       </div>
       <locator-tip slot="layout-aside">
