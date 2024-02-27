@@ -20,6 +20,8 @@ DISABLE_LINTERS:
   - REPOSITORY_TRIVY
   # Disable in favour of eslint
   - TYPESCRIPT_STANDARD
+  # Link check flags localhost links in the contributing docs
+  - MARKDOWN_MARKDOWN_LINK_CHECK
 
 SHOW_ELAPSED_TIME: true
 

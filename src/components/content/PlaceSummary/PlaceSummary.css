@@ -1,0 +1,57 @@
+locator-place-summary {
+  h3,
+  h4 {
+    font-size: var(--diamond-font-size-base);
+    font-weight: var(--diamond-font-weight-bold);
+    margin-block-end: var(--diamond-spacing-xs);
+  }
+
+  h3,
+  h4,
+  p {
+    margin-block-end: var(--diamond-spacing-xs);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  p,
+  dl {
+    font-size: var(--diamond-font-size-sm);
+  }
+
+  p {
+    color: var(--diamond-theme-color-muted);
+  }
+
+  dl,
+  dd {
+    margin: 0;
+  }
+
+  dl {
+    display: flex;
+    gap: var(--diamond-spacing-xs);
+  }
+
+  dt {
+    font-weight: var(--diamond-font-weight-bold);
+    position: relative;
+
+    &:not(:last-child) {
+      margin-inline-end: var(--diamond-spacing-xs);
+      padding-inline-end: var(--diamond-spacing-sm);
+
+      &::after {
+        background: var(--color-grey-light);
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 1px;
+      }
+    }
+  }
+}

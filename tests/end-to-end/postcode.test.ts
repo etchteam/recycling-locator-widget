@@ -2,18 +2,18 @@ import { expect } from '@playwright/test';
 import { t } from 'i18next';
 import { test } from 'vitest';
 
-import { GEOCODE_ENDPOINT, GuernseyGeocodeResponse } from './mocks/geocode';
+import { GEOCODE_ENDPOINT, GuernseyGeocodeResponse } from '../mocks/geocode';
 import {
   LOCAL_AUTHORITY_ENDPOINT,
   LocalAuthorityResponse,
-} from './mocks/localAuthority';
-import { LOCATIONS_ENDPOINT, LocationsResponse } from './mocks/locations';
+} from '../mocks/localAuthority';
+import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import {
   EmptyMaterialsResponse,
   MATERIALS_ENDPOINT,
   ValidMaterialsResponse,
-} from './mocks/materials';
-import describeEndToEndTest from './utils/describeEndToEndTest';
+} from '../mocks/materials';
+import describeEndToEndTest from '../utils/describeEndToEndTest';
 
 describeEndToEndTest('Postcode page', () => {
   test('Load route with invalid postcode', async ({ page }) => {

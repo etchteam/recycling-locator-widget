@@ -12,6 +12,9 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
+
+import tArray from '@/lib/tArray';
+
 import { useHomeRecyclingLoaderData } from './home.loader';
 
 export default function HomeRecyclingLayout() {
@@ -67,7 +70,7 @@ export default function HomeRecyclingLayout() {
           <img src="/images/recycling-technology.webp" alt="" />
           <p>{t('homeRecycling.aside.paragraph')}</p>
           <ul>
-            {t('homeRecycling.aside.list').map((item) => (
+            {tArray('homeRecycling.aside.list').map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>

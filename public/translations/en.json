@@ -1,11 +1,15 @@
 {
   "common": {
-    "and": "and"
+    "and": "and",
+    "miles": "miles",
+    "materialsAccepted": "materials accepted"
   },
   "actions": {
     "back": "Back",
     "search": "Search",
-    "searchAgain": "Search again"
+    "searchAgain": "Search again",
+    "listPlaces": "List places",
+    "showMap": "Show map"
   },
   "components": {
     "locationInput": {
@@ -136,9 +140,7 @@
         "title": "Recycle at a nearby place",
         "content_one": "This item can be recycled at <bold>1 place</bold> in the area.",
         "content_other": "This item can be recycled at <bold>{{count}} places</bold> in the area.",
-        "contentThirtyPlus": "This item can be recycled at 30+ places in the area.",
-        "listCta": "List places",
-        "mapCta": "Show map"
+        "contentThirtyPlus": "This item can be recycled at 30+ places in the area."
       }
     },
     "search": {
@@ -168,6 +170,21 @@
     "collections": {
       "title": "Check what you can put in your home recycling.",
       "help": "Select your bin to see collection details."
+    },
+    "hwrc": {
+      "title": "Take items to a Recycling Centre in your area.",
+      "content_zero": "No Recycling Centres within 25 miles",
+      "content_one": "1 Recycling Centre within 25 miles",
+      "content_other": "{{ count }} Recycling Centres within 25 miles",
+      "contentThirtyPlus": "30+ Recycling Centres within 25 miles",
+      "info": "Some Recycling Centres are open to local residents only. Please check before you make your journey.",
+      "nearbyPlaces": {
+        "title": "Recycle at a nearby place",
+        "content_zero": "No places within 25 miles",
+        "content_one": "1 place within 25 miles",
+        "content_other": "{{count}} places within 25 miles",
+        "contentThirtyPlus": "30+ places within 25 miles"
+      }
     },
     "contact": {
       "title": "Find more information about the services in your area.",

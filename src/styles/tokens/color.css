@@ -12,6 +12,9 @@
   --color-green: #219653;
   --color-green-dark: #1c7d46;
 
+  --color-blue-lightest: #d4f5ff;
+  --color-blue: #0048a9;
+
   --color-body: var(--color-grey-dark);
   --color-border: var(--color-grey-light);
 

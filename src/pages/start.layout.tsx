@@ -10,6 +10,7 @@ import '@/components/content/Logo/Logo';
 import '@/components/content/Icon/Icon';
 import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
+import tArray from '@/lib/tArray';
 
 function About() {
   const { t } = useTranslation();
@@ -56,7 +57,7 @@ export function DefaultAside() {
       <locator-wrap>
         <p>{t('start.aside.paragraph')}</p>
         <ul>
-          {t('start.aside.list').map((item) => (
+          {tArray('start.aside.list').map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>

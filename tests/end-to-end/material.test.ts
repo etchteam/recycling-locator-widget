@@ -2,14 +2,13 @@ import { expect } from '@playwright/test';
 import { t } from 'i18next';
 import { test } from 'vitest';
 
-import { DryScheme } from '@/types/locatorApi';
-
 import {
   LOCAL_AUTHORITY_ENDPOINT,
   LocalAuthorityResponse,
-} from './mocks/localAuthority';
-import { LOCATIONS_ENDPOINT, LocationsResponse } from './mocks/locations';
-import describeEndToEndTest from './utils/describeEndToEndTest';
+} from '../mocks/localAuthority';
+import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
+import describeEndToEndTest from '../utils/describeEndToEndTest';
+import { DryScheme } from '@/types/locatorApi';
 
 describeEndToEndTest('Material page', () => {
   test('Single scheme + location options', async ({ page }) => {

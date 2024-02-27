@@ -74,14 +74,14 @@ function Places({ locations }: { readonly locations: Location[] }) {
           <diamond-grid-item small-mobile="6">
             <diamond-button width="full-width">
               <Link to={`/${postcode}/places-list?${location.search}`}>
-                {t(`${tContext}.listCta`)}
+                {t('actions.listPlaces')}
               </Link>
             </diamond-button>
           </diamond-grid-item>
           <diamond-grid-item small-mobile="6">
             <diamond-button width="full-width">
               <Link to={`/${postcode}/places-map?${location.search}`}>
-                {t(`${tContext}.mapCta`)}
+                {t('actions.showMap')}
               </Link>
             </diamond-button>
           </diamond-grid-item>

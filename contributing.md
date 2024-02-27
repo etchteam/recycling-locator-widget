@@ -101,8 +101,8 @@ This will launch Playwright in `PWDEBUG=console` mode with an infinite timeout.
 
 ### Structure
 
-Unit tests exist for lib functions in /lib/tests using Vitest.
+Unit tests exist for lib functions in /tests/unit using Vitest.
 
-End-to-end tests exist for route coverage in /end-to-end-tests using Playwright.
+End-to-end tests exist for route coverage in /tests/end-to-end using Playwright.
 
 All end-to-end tests must be wrapped in the `describeEndToEndTest` function which handles setting up the Playwright browser `page` context.

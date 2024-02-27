@@ -14,7 +14,7 @@ export default function HomeRecyclingPage() {
   const { localAuthority } = useHomeRecyclingLoaderData();
 
   return (
-    <>
+    <section className="diamond-spacing-bottom-lg">
       <h3>{t('homeRecycling.collections.title')}</h3>
       <p>{t('homeRecycling.collections.help')}</p>
       {localAuthority.dryStreams.map((scheme) => {
@@ -49,6 +49,6 @@ export default function HomeRecyclingPage() {
           </Link>
         );
       })}
-    </>
+    </section>
   );
 }
