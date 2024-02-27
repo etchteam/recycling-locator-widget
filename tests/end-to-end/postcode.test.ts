@@ -2,7 +2,11 @@ import { expect } from '@playwright/test';
 import { t } from 'i18next';
 import { test } from 'vitest';
 
-import { GEOCODE_ENDPOINT, GuernseyGeocodeResponse } from '../mocks/geocode';
+import {
+  GEOCODE_ENDPOINT,
+  GuernseyGeocodeResponse,
+  PostcodeGeocodeResponse,
+} from '../mocks/geocode';
 import {
   LOCAL_AUTHORITY_ENDPOINT,
   LocalAuthorityResponse,
@@ -46,7 +50,7 @@ describeEndToEndTest('Postcode page', () => {
 
   test('Invalid material search', async ({ page }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
-      route.fulfill({ json: GuernseyGeocodeResponse });
+      route.fulfill({ json: PostcodeGeocodeResponse });
     });
 
     await page.route(MATERIALS_ENDPOINT, (route) => {
@@ -73,7 +77,7 @@ describeEndToEndTest('Postcode page', () => {
 
   test('Valid material search', async ({ page }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
-      route.fulfill({ json: GuernseyGeocodeResponse });
+      route.fulfill({ json: PostcodeGeocodeResponse });
     });
 
     await page.route(MATERIALS_ENDPOINT, (route) => {
