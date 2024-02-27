@@ -10,13 +10,14 @@ import PostcodePage from './postcode.page';
 
 const routes: RouteObject[] = [
   {
+    path: '/:postcode',
     errorElement: <NotFoundPage />,
     // This loader validates the postcode for all child routes
     loader: postcodeLoader,
     id: 'postcode',
     children: [
       {
-        path: '/:postcode',
+        index: true,
         element: <PostcodePage />,
         action: postcodeAction,
       },
