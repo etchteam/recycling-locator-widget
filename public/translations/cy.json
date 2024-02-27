@@ -176,13 +176,13 @@
       "address": "Cyfeiriad",
       "notes": {
         "title": "Nodiadau",
-        "paragraphOne": "Please contact your council if you:",
+        "paragraphOne": "Cysylltwch â’ch cyngor os ydych:",
         "list": [
-          "are new to the area",
-          "do not have a container",
-          "are unsure which one to use"
+          "yn newydd i'r ardal",
+          "nad oes gennych gynhwysydd",
+          "yn ansicr pa un i'w ddefnyddio"
         ],
-        "paragraphTwo": "They will also be able to tell you when each collection is scheduled."
+        "paragraphTwo": "Byddant hefyd yn gallu dweud wrthych pryd mae pob casgliad wedi'i amserlennu."
       }
     }
   }
