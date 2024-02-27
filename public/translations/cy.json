@@ -8,6 +8,7 @@
     "back": "Yn ol",
     "search": "Chwiliwch",
     "searchAgain": "Chwiliwch eto",
+    "tryAgain": "Ceisio eto",
     "listPlaces": "Rhestru lleoedd",
     "showMap": "Dangos map"
   },
@@ -201,6 +202,9 @@
         ],
         "paragraphTwo": "Byddant hefyd yn gallu dweud wrthych pryd mae pob casgliad wedi'i amserlennu."
       }
+    },
+    "error": {
+      "message": "Digwyddodd gwall annisgwyl wrth ddod o hyd i'ch gwybodaeth ailgylchu cartref."
     }
   }
 }

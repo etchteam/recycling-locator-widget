@@ -11,14 +11,20 @@ import PostcodePage from './postcode.page';
 const routes: RouteObject[] = [
   {
     path: '/:postcode',
-    id: 'postcode',
-    element: <PostcodePage />,
-    action: postcodeAction,
-    loader: postcodeLoader,
     errorElement: <NotFoundPage />,
+    // This loader validates the postcode for all child routes
+    loader: postcodeLoader,
+    id: 'postcode',
+    children: [
+      {
+        index: true,
+        element: <PostcodePage />,
+        action: postcodeAction,
+      },
+      ...materialRoutes,
+      ...homeRecyclingRoutes,
+    ],
   },
-  ...materialRoutes,
-  ...homeRecyclingRoutes,
 ];
 
 export default routes;

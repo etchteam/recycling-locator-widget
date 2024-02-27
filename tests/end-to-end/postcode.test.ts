@@ -2,7 +2,11 @@ import { expect } from '@playwright/test';
 import { t } from 'i18next';
 import { test } from 'vitest';
 
-import { GEOCODE_ENDPOINT, GuernseyGeocodeResponse } from '../mocks/geocode';
+import {
+  GEOCODE_ENDPOINT,
+  GuernseyGeocodeResponse,
+  PostcodeGeocodeResponse,
+} from '../mocks/geocode';
 import {
   LOCAL_AUTHORITY_ENDPOINT,
   LocalAuthorityResponse,
@@ -46,7 +50,7 @@ describeEndToEndTest('Postcode page', () => {
 
   test('Invalid material search', async ({ page }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
-      route.fulfill({ json: GuernseyGeocodeResponse });
+      route.fulfill({ json: PostcodeGeocodeResponse });
     });
 
     await page.route(MATERIALS_ENDPOINT, (route) => {
@@ -73,7 +77,7 @@ describeEndToEndTest('Postcode page', () => {
 
   test('Valid material search', async ({ page }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
-      route.fulfill({ json: GuernseyGeocodeResponse });
+      route.fulfill({ json: PostcodeGeocodeResponse });
     });
 
     await page.route(MATERIALS_ENDPOINT, (route) => {
@@ -91,18 +95,22 @@ describeEndToEndTest('Postcode page', () => {
     const material = 'Plastic milk bottles';
     const widget = page.locator('recycling-locator');
     const input = page.locator('input').first();
-    const materialText = page.getByText(t('material.search.notFound')).first();
+    const materialText = page.getByText(material).first();
+    const recyclableText = page.getByText(t('material.hero.yes')).first();
     const materialPageTitle = page.getByText(t('material.title')).first();
 
     await widget.evaluate((node) => node.setAttribute('path', '/EX327RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await expect(input).toBeVisible();
     await expect(materialText).not.toBeVisible();
+    await expect(recyclableText).not.toBeVisible();
     await expect(materialPageTitle).not.toBeVisible();
     await input.fill(material);
     await input.press('Enter');
-    await page.waitForRequest(MATERIALS_ENDPOINT);
+    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
+    await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(materialText).toBeVisible();
+    await expect(recyclableText).toBeVisible();
     await expect(materialPageTitle).toBeVisible();
   });
 });

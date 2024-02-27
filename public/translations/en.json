@@ -8,6 +8,7 @@
     "back": "Back",
     "search": "Search",
     "searchAgain": "Search again",
+    "tryAgain": "Try again",
     "listPlaces": "List places",
     "showMap": "Show map"
   },
@@ -201,6 +202,9 @@
         ],
         "paragraphTwo": "They will also be able to tell you when each collection is scheduled."
       }
+    },
+    "error": {
+      "message": "An unexpected error occurred whilst finding your home recycling information."
     }
   }
 }

@@ -8,20 +8,20 @@ locator-bordered-list {
     font-size: var(--diamond-font-size-sm);
   }
 
-  > ul {
+  ul:first-of-type {
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  > ul,
-  > dl {
+  ul:first-of-type,
+  dl:first-of-type {
     margin: 0;
     padding: 0;
   }
 
-  > ul > li,
-  > dl > div {
+  ul:first-of-type > li,
+  dl:first-of-type > div {
     border-top: var(--diamond-border);
     padding-block: var(--diamond-spacing);
   }
@@ -45,8 +45,8 @@ locator-bordered-list {
   }
 
   &[size='sm'] {
-    > ul > li,
-    > dl > div {
+    ul:first-of-type > li,
+    dl:first-of-type > div {
       padding-block: var(--diamond-spacing-sm);
     }
   }
