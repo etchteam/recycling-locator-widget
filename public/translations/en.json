@@ -185,6 +185,22 @@
         "content_other": "{{count}} places within 25 miles",
         "contentThirtyPlus": "30+ places within 25 miles"
       }
+    },
+    "contact": {
+      "title": "Find more information about the services in your area.",
+      "website": "Website",
+      "phone": "Phone",
+      "address": "Address",
+      "notes": {
+        "title": "Notes",
+        "paragraphOne": "Please contact your council if you:",
+        "list": [
+          "are new to the area",
+          "do not have a container",
+          "are unsure which one to use"
+        ],
+        "paragraphTwo": "They will also be able to tell you when each collection is scheduled."
+      }
     }
   }
 }

@@ -185,6 +185,22 @@
         "content_other": "{{count}} lle o fewn 25 milltir",
         "contentThirtyPlus": "30+ o leoedd o fewn 25 milltir"
       }
+    },
+    "contact": {
+      "title": "Dewch o hyd i ragor o wybodaeth am y gwasanaethau yn eich ardal.",
+      "website": "Gwefan",
+      "phone": "Ffon",
+      "address": "Cyfeiriad",
+      "notes": {
+        "title": "Nodiadau",
+        "paragraphOne": "Cysylltwch â’ch cyngor os ydych:",
+        "list": [
+          "yn newydd i'r ardal",
+          "nad oes gennych gynhwysydd",
+          "yn ansicr pa un i'w ddefnyddio"
+        ],
+        "paragraphTwo": "Byddant hefyd yn gallu dweud wrthych pryd mae pob casgliad wedi'i amserlennu."
+      }
     }
   }
 }

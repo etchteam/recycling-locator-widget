@@ -1,15 +1,37 @@
 locator-bordered-list {
   display: block;
 
-  ul {
+  > h2,
+  > h3,
+  > h4 {
+    color: var(--diamond-theme-color-muted);
+    font-size: var(--diamond-font-size-sm);
+  }
+
+  > ul {
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  li {
+  > ul,
+  > dl {
+    margin: 0;
+    padding: 0;
+  }
+
+  > ul > li,
+  > dl > div {
     border-top: var(--diamond-border);
     padding-block: var(--diamond-spacing);
+  }
+
+  dt {
+    font-weight: var(--diamond-font-weight-bold);
+  }
+
+  dd {
+    margin: 0;
   }
 
   a {
@@ -22,15 +44,9 @@ locator-bordered-list {
     }
   }
 
-  h2,
-  h3,
-  h4 {
-    color: var(--diamond-theme-color-muted);
-    font-size: var(--diamond-font-size-sm);
-  }
-
   &[size='sm'] {
-    li {
+    > ul > li,
+    > dl > div {
       padding-block: var(--diamond-spacing-sm);
     }
   }
