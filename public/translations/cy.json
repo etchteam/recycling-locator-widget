@@ -168,6 +168,22 @@
     "collections": {
       "title": "Gwiriwch beth allwch chi ei roi yn eich ailgylchu cartref.",
       "help": "Dewiswch eich bin i weld manylion y casgliad."
+    },
+    "contact": {
+      "title": "Dewch o hyd i ragor o wybodaeth am y gwasanaethau yn eich ardal.",
+      "website": "Gwefan",
+      "phone": "Ffon",
+      "address": "Cyfeiriad",
+      "notes": {
+        "title": "Nodiadau",
+        "paragraphOne": "Please contact your council if you:",
+        "list": [
+          "are new to the area",
+          "do not have a container",
+          "are unsure which one to use"
+        ],
+        "paragraphTwo": "They will also be able to tell you when each collection is scheduled."
+      }
     }
   }
 }
