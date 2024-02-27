@@ -7,6 +7,7 @@ import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
+import '@/components/content/PlaceSummary/PlaceSummary';
 import { HomeRecyclingCentreLoaderResponse } from './recycling-centre.loader';
 
 export default function HomeRecyclingCentrePage() {
@@ -55,8 +56,16 @@ export default function HomeRecyclingCentrePage() {
                   border
                   radius
                 >
-                  <h4 className="diamond-spacing-bottom-md">{location.name}</h4>
-                  <p className="diamond-text-size-sm">{location.address}</p>
+                  <locator-place-summary>
+                    <h4>{location.name}</h4>
+                    <p>{location.address}</p>
+                    <dl>
+                      <dd>{location.distance}</dd>
+                      <dt>{t('common.miles')}</dt>
+                      <dd>{location.materials.length}</dd>
+                      <dt>{t('common.materialsAccepted')}</dt>
+                    </dl>
+                  </locator-place-summary>
                 </diamond-card>
               </Link>
             ))}

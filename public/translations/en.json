@@ -1,6 +1,8 @@
 {
   "common": {
-    "and": "and"
+    "and": "and",
+    "miles": "miles",
+    "materialsAccepted": "materials accepted"
   },
   "actions": {
     "back": "Back",
