@@ -1,6 +1,5 @@
-import { useSignal } from '@preact/signals';
 import { useTranslation } from 'react-i18next';
-import { Form, useRouteError, ErrorResponse } from 'react-router-dom';
+import { useRouteError, ErrorResponse } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
@@ -10,6 +9,8 @@ import '@/components/canvas/Tip/Tip';
 import '@/components/control/LocationInput/LocationInput';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import StartLayout from '@/pages/start.layout';
+
+import LocationForm from './LocationForm';
 
 function Aside() {
   const { t } = useTranslation();
@@ -55,7 +56,6 @@ function Aside() {
 export default function NotFoundPage() {
   const { t } = useTranslation();
   const error = useRouteError() as ErrorResponse | undefined;
-  const submitting = useSignal(false);
 
   if (error && error.status !== 404) {
     // If this isn't a 404, bubble the exception up to the generic error boundary
@@ -70,19 +70,7 @@ export default function NotFoundPage() {
         <diamond-section padding="lg">
           <h2>{t(`notFound.title.${notInUk ? 'notInTheUK' : 'default'}`)}</h2>
           {notInUk && <p>{t('notFound.ukOnly')}</p>}
-          <Form method="post" onSubmit={() => (submitting.value = true)}>
-            <diamond-form-group class="diamond-spacing-bottom-md">
-              <label htmlFor="location-input">{t('notFound.label')}</label>
-              <locator-location-input
-                placeholder={t('components.locationInput.placeholder')}
-              ></locator-location-input>
-            </diamond-form-group>
-            <diamond-button width="full-width" variant="primary">
-              <button type="submit" disabled={submitting.value}>
-                {t('notFound.cta')}
-              </button>
-            </diamond-button>
-          </Form>
+          <LocationForm label={t('notFound.label')} cta={t('notFound.cta')} />
         </diamond-section>
       </locator-wrap>
     </StartLayout>

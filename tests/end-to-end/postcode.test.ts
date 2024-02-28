@@ -39,11 +39,11 @@ describeEndToEndTest('Postcode page', () => {
       route.fulfill({ json: GuernseyGeocodeResponse });
     });
 
-    const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
     const widget = page.locator('recycling-locator');
+    const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
 
     await expect(notInUk).not.toBeVisible();
-    await widget.evaluate((node) => node.setAttribute('postcode', 'EX327RB'));
+    await widget.evaluate((node) => node.setAttribute('path', '/GU375EY'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await expect(notInUk).toBeVisible();
   });

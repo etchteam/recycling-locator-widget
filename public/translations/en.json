@@ -96,6 +96,9 @@
         "find out how to recycle a specific item",
         "check what you can recycle at home"
       ]
+    },
+    "homeRecycling": {
+      "title": "Find out what you can recycle from home."
     }
   },
   "postcode": {

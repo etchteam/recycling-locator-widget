@@ -10,7 +10,7 @@ import StartLayout from '@/pages/start.layout';
 
 import LocationForm from './LocationForm';
 
-export default function StartPage() {
+export default function HomeRecyclingStartPage() {
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function StartPage() {
     <StartLayout>
       <locator-wrap>
         <diamond-section padding="lg">
-          <h2>{t('start.title')}</h2>
+          <h2>{t('start.homeRecycling.title')}</h2>
           <LocationForm />
         </diamond-section>
       </locator-wrap>
