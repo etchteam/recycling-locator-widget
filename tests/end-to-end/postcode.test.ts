@@ -20,13 +20,12 @@ import {
 import describeEndToEndTest from '../utils/describeEndToEndTest';
 
 describeEndToEndTest('Postcode page', () => {
-  test('Load route with invalid postcode', async ({ page }) => {
+  test('Load route with invalid postcode', async ({ page, widget }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: GuernseyGeocodeResponse });
     });
 
     const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
-    const widget = page.locator('recycling-locator');
 
     await expect(notInUk).not.toBeVisible();
     await widget.evaluate((node) => node.setAttribute('path', '/EX327RB'));
@@ -34,12 +33,11 @@ describeEndToEndTest('Postcode page', () => {
     await expect(notInUk).toBeVisible();
   });
 
-  test('Start route with invalid postcode', async ({ page }) => {
+  test('Start route with invalid postcode', async ({ page, widget }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: GuernseyGeocodeResponse });
     });
 
-    const widget = page.locator('recycling-locator');
     const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
 
     await expect(notInUk).not.toBeVisible();
@@ -48,7 +46,7 @@ describeEndToEndTest('Postcode page', () => {
     await expect(notInUk).toBeVisible();
   });
 
-  test('Invalid material search', async ({ page }) => {
+  test('Invalid material search', async ({ page, widget }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
@@ -58,7 +56,6 @@ describeEndToEndTest('Postcode page', () => {
     });
 
     const material = 'Not a material';
-    const widget = page.locator('recycling-locator');
     const input = page.locator('input').first();
     const notFound = page.getByText(t('material.search.notFound')).first();
     const materialText = page.getByText(t('material.search.notFound')).first();
@@ -75,7 +72,7 @@ describeEndToEndTest('Postcode page', () => {
     await expect(materialText).toBeVisible();
   });
 
-  test('Valid material search', async ({ page }) => {
+  test('Valid material search', async ({ page, widget }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
@@ -93,7 +90,6 @@ describeEndToEndTest('Postcode page', () => {
     });
 
     const material = 'Plastic milk bottles';
-    const widget = page.locator('recycling-locator');
     const input = page.locator('input').first();
     const materialText = page.getByText(material).first();
     const recyclableText = page.getByText(t('material.hero.yes')).first();

@@ -1,4 +1,3 @@
-import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/control/Button/Button';
@@ -12,11 +11,6 @@ import LocationForm from './LocationForm';
 
 export default function HomeRecyclingStartPage() {
   const { t } = useTranslation();
-
-  useEffect(() => {
-    const host = document.querySelector('recycling-locator');
-    host.dispatchEvent(new CustomEvent('ready'));
-  }, []);
 
   return (
     <StartLayout>

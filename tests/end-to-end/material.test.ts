@@ -11,7 +11,7 @@ import describeEndToEndTest from '../utils/describeEndToEndTest';
 import { DryScheme } from '@/types/locatorApi';
 
 describeEndToEndTest('Material page', () => {
-  test('Single scheme + location options', async ({ page }) => {
+  test('Single scheme + location options', async ({ page, widget }) => {
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
@@ -20,7 +20,6 @@ describeEndToEndTest('Material page', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
-    const widget = page.locator('recycling-locator');
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const homeText = page
       .getByText(t('material.recycleAtHome.oneScheme.collection', { count: 1 }))
@@ -43,7 +42,7 @@ describeEndToEndTest('Material page', () => {
     await expect(locationsText).toBeVisible();
   });
 
-  test('Some home recycling options', async ({ page }) => {
+  test('Some home recycling options', async ({ page, widget }) => {
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
       const dryStreams = LocalAuthorityResponse.dryStreams.concat([
         {
@@ -67,7 +66,6 @@ describeEndToEndTest('Material page', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
-    const widget = page.locator('recycling-locator');
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const schemeOneText = page
       .getByText(LocalAuthorityResponse.dryStreams[0].name)
@@ -92,7 +90,7 @@ describeEndToEndTest('Material page', () => {
     await expect(locationsText).toBeVisible();
   });
 
-  test('All home recycling options', async ({ page }) => {
+  test('All home recycling options', async ({ page, widget }) => {
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
       const dryStreams = LocalAuthorityResponse.dryStreams.concat([
         {
@@ -138,7 +136,6 @@ describeEndToEndTest('Material page', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
-    const widget = page.locator('recycling-locator');
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const schemeOneText = page
       .getByText(LocalAuthorityResponse.dryStreams[0].name)
@@ -163,7 +160,7 @@ describeEndToEndTest('Material page', () => {
     await expect(locationsText).toBeVisible();
   });
 
-  test('No home recycling', async ({ page }) => {
+  test('No home recycling', async ({ page, widget }) => {
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
@@ -172,7 +169,6 @@ describeEndToEndTest('Material page', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
-    const widget = page.locator('recycling-locator');
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const homeText = page
       .getByText(t('material.recycleAtHome.noSchemes.content'))
@@ -192,7 +188,7 @@ describeEndToEndTest('Material page', () => {
     await expect(locationsText).toBeVisible();
   });
 
-  test('Not recyclable', async ({ page }) => {
+  test('Not recyclable', async ({ page, widget }) => {
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
@@ -201,7 +197,6 @@ describeEndToEndTest('Material page', () => {
       route.fulfill({ json: { items: [] } });
     });
 
-    const widget = page.locator('recycling-locator');
     const recyclableText = page.getByText(t('material.hero.no')).first();
     const homeText = page
       .getByText(t('material.recycleAtHome.noSchemes.content'))

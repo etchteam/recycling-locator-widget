@@ -33,8 +33,17 @@ export default function describeEndToEndTest(
         route.fulfill({ json: en });
       });
       page.goto(`http://localhost:${PORT}`);
+      const widget = page.locator('recycling-locator');
+      await widget.evaluate(async (node) => {
+        return new Promise((resolve) => {
+          node.addEventListener('ready', resolve);
+          // If ready hasn't emitted after 2 seconds, resolve anyway
+          setTimeout(resolve, 2000);
+        });
+      });
 
       context.page = page;
+      context.widget = widget;
     });
 
     afterEach(async () => {

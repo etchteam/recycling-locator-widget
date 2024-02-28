@@ -107,7 +107,8 @@ describeEndToEndTest('Start page', () => {
     await expect(notFoundPageTitle).toBeVisible();
   });
 
-  test('Home recycling start', async ({ page }) => {
+  test('Home recycling start', async ({ page, widget }) => {
+    console.log(widget);
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
@@ -120,7 +121,6 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
 
-    const widget = page.locator('recycling-locator');
     const input = page.locator('input').first();
     const homeStartPageTitle = page
       .getByText(t('start.homeRecycling.title'))
@@ -130,12 +130,19 @@ describeEndToEndTest('Start page', () => {
     await widget.evaluate((node) =>
       node.setAttribute('path', '/home-recycling'),
     );
+    console.log(1);
     await expect(homeStartPageTitle).toBeVisible();
+    console.log(2);
     await expect(input).toBeVisible();
+    console.log(3);
     await expect(localAuthority).not.toBeVisible();
+    console.log(4);
     await input.fill('Barnstaple');
+    console.log(5);
     await input.press('Enter');
+    console.log(6);
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
+    console.log(7);
     await expect(localAuthority).toBeVisible();
   });
 });
