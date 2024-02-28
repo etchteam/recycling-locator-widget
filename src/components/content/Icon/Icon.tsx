@@ -20,7 +20,8 @@ export interface IconAttributes {
     | 'cross-circle'
     | 'tick-circle'
     | 'tick'
-    | 'place';
+    | 'place'
+    | 'external';
   readonly color?: 'primary' | 'muted' | 'positive' | 'negative';
   readonly label?: string;
 }
