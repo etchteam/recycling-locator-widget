@@ -78,11 +78,23 @@ export default function HomeRecyclingLayout({
         <locator-wrap>
           <img src="/images/recycling-technology.webp" alt="" />
           <p>{t('homeRecycling.aside.paragraph')}</p>
-          <ul>
+          <ul className="diamond-spacing-bottom-md">
             {tArray('homeRecycling.aside.list').map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
+          {la && (
+            <diamond-button width="full-width">
+              <a
+                href={la.coreInformation.recyclingUri}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {la.name}
+                <locator-icon icon="external"></locator-icon>
+              </a>
+            </diamond-button>
+          )}
         </locator-wrap>
       </locator-tip>
     </locator-layout>

@@ -1,53 +1,53 @@
 import { useTranslation } from 'react-i18next';
-import { Link, Outlet, useParams, useSearchParams } from 'react-router-dom';
-import '@etchteam/diamond-ui/control/Button/Button';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
+import '@etchteam/diamond-ui/control/Button/Button';
 
+import '@/components/canvas/Tip/Tip';
+import '@/components/canvas/ContextHeader/ContextHeader';
 import '@/components/composition/Layout/Layout';
 import '@/components/composition/Header/Header';
-import '@/components/canvas/ContextHeader/ContextHeader';
-import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
+import { useHomeRecyclingLoaderData } from './home.loader';
 
-export default function MaterialLayout() {
+export default function CollectionPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
+  const data = useHomeRecyclingLoaderData();
   const [searchParams] = useSearchParams();
-  const materialId = searchParams.get('id');
-  const materialName = searchParams.get('name');
+  const scheme = searchParams.get('scheme');
+  const la = data?.localAuthority;
 
   return (
     <locator-layout>
       <locator-header slot="layout-header">
         <locator-header-title>
           <diamond-button>
-            <Link to={`/${postcode}`}>
+            <Link to={`/${postcode}/home`}>
               <locator-icon icon="arrow-left" label="Back"></locator-icon>
             </Link>
           </diamond-button>
           <div>
-            <h2>{t('material.title')}</h2>
-            <p>{postcode}</p>
+            <h2>{t('homeRecycling.title')}</h2>
+            {la && <p>{la.name}</p>}
           </div>
         </locator-header-title>
       </locator-header>
       <div slot="layout-main">
-        {materialId && (
-          <Link
-            to={`/${postcode}/material/search`}
-            className="diamond-text-decoration-none"
-          >
-            <locator-context-header>
-              <div className="diamond-text-weight-bold">{materialName}</div>
-              <locator-icon icon="search" color="primary" />
-            </locator-context-header>
-          </Link>
+        {scheme && (
+          <locator-context-header>
+            <span className="diamond-text-weight-bold">{scheme}</span>
+          </locator-context-header>
         )}
-        <Outlet />
+        <diamond-section padding="lg">
+          <locator-wrap>
+            <h3>{t('homeRecycling.collection.title')}</h3>
+          </locator-wrap>
+        </diamond-section>
       </div>
       <locator-tip slot="layout-aside" text-align="center">
         {/* TODO(WRAP-232): swap this out for the proper tip once we have content */}
