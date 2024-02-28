@@ -8,6 +8,10 @@ import {
   PostcodeGeocodeResponse,
 } from '../mocks/geocode';
 import {
+  LOCAL_AUTHORITY_ENDPOINT,
+  LocalAuthorityResponse,
+} from '../mocks/localAuthority';
+import {
   POSTCODE_ENDPOINT,
   InvalidPostcodeResponse,
   ValidPostcodeResponse,
@@ -101,5 +105,36 @@ describeEndToEndTest('Start page', () => {
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await page.waitForRequest(POSTCODE_ENDPOINT);
     await expect(notFoundPageTitle).toBeVisible();
+  });
+
+  test('Home recycling start', async ({ page, widget }) => {
+    await page.route(GEOCODE_ENDPOINT, (route) => {
+      route.fulfill({ json: PostcodeGeocodeResponse });
+    });
+
+    await page.route(POSTCODE_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidPostcodeResponse });
+    });
+
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: LocalAuthorityResponse });
+    });
+
+    const input = page.locator('input').first();
+    const homeStartPageTitle = page
+      .getByText(t('start.homeRecycling.title'))
+      .first();
+    const localAuthority = page.getByText(LocalAuthorityResponse.name).first();
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/home-recycling'),
+    );
+    await expect(homeStartPageTitle).toBeVisible();
+    await expect(input).toBeVisible();
+    await expect(localAuthority).not.toBeVisible();
+    await input.fill('Barnstaple');
+    await input.press('Enter');
+    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
+    await expect(localAuthority).toBeVisible();
   });
 });

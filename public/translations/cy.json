@@ -96,6 +96,9 @@
         "darganfod sut i ailgylchu eitem benodol",
         "gwirio beth allwch chi ei ailgylchu gartref"
       ]
+    },
+    "homeRecycling": {
+      "title": "Darganfyddwch beth allwch chi ei ailgylchu gartref."
     }
   },
   "postcode": {

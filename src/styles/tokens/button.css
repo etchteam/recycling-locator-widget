@@ -19,3 +19,7 @@
 
   --diamond-button-text-background-hover: var(--theme-background-accent);
 }
+
+diamond-button[variant='primary'] {
+  --diamond-button-font-weight: var(--diamond-font-weight-bold);
+}

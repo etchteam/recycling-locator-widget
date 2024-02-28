@@ -85,7 +85,7 @@ The translation files can be found under /public/translations.
 
 ### Running tests
 
-Tests will run through `vitest`, for the end-to-end tests a Playwright  launches a chromium instance.
+Tests will run through `vitest`, for the end-to-end tests Playwright launches a chromium instance against the **built** dist folder.
 
 ```bash
 npm test
