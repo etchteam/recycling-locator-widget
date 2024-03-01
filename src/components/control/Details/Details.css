@@ -27,7 +27,10 @@ locator-details {
     }
 
     &[open] {
-      /* Move the padding to the inner content once details opens */
+      /*
+        Padding is on the summary initially to make the clickable area span the whole parent
+        It moves to the inner content once details opens to align the content with the summary
+      */
       padding: var(--diamond-spacing-sm);
 
       > summary {
@@ -39,15 +42,6 @@ locator-details {
       > summary locator-icon {
         transform: rotate(180deg);
       }
-    }
-  }
-
-  details[open] > summary {
-    margin-block-end: var(--diamond-spacing-sm);
-
-    /* stylelint-disable-next-line selector-max-compound-selectors */
-    locator-icon {
-      transform: rotate(180deg);
     }
   }
 }
