@@ -13,6 +13,8 @@ import '@/components/composition/Header/Header';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
+
+import ContainerList from './ContainerList';
 import { useHomeRecyclingLoaderData } from './home.loader';
 
 export default function CollectionPage() {
@@ -59,6 +61,8 @@ export default function CollectionPage() {
                 submitting={submitting.value}
               ></locator-material-search-input>
             </Form>
+
+            <ContainerList la={la} />
           </locator-wrap>
         </diamond-section>
       </div>

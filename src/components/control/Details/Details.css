@@ -1,0 +1,48 @@
+locator-details {
+  --_details-padding: var(--diamond-spacing-sm);
+  display: block;
+
+  details {
+    border: var(--diamond-border);
+    border-radius: var(--diamond-border-radius);
+
+    > summary {
+      align-items: center;
+      appearance: none;
+      background: 0 none;
+      border: 0 none;
+      cursor: pointer;
+      display: flex;
+      font-weight: var(--diamond-font-weight-bold);
+      justify-content: space-between;
+      padding: var(--_details-padding);
+      transition: color var(--diamond-transition);
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &:hover {
+        color: var(--diamond-theme-color-hover);
+      }
+    }
+
+    &[open] {
+      /*
+        Padding is on the summary initially to make the clickable area span the whole parent
+        It moves to the inner content once details opens to align the content with the summary
+      */
+      padding: var(--_details-padding);
+
+      > summary {
+        margin-block-end: var(--_details-padding);
+        padding: 0;
+      }
+
+      /* stylelint-disable-next-line selector-max-compound-selectors */
+      > summary locator-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

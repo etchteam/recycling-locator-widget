@@ -21,7 +21,8 @@ export interface IconAttributes {
     | 'tick-circle'
     | 'tick'
     | 'place'
-    | 'external';
+    | 'external'
+    | 'expand';
   readonly color?: 'primary' | 'muted' | 'positive' | 'negative';
   readonly label?: string;
 }
