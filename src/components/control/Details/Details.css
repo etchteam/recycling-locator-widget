@@ -1,4 +1,5 @@
 locator-details {
+  --_details-padding: var(--diamond-spacing-sm);
   display: block;
 
   details {
@@ -14,7 +15,7 @@ locator-details {
       display: flex;
       font-weight: var(--diamond-font-weight-bold);
       justify-content: space-between;
-      padding: var(--diamond-spacing-sm);
+      padding: var(--_details-padding);
       transition: color var(--diamond-transition);
 
       &::-webkit-details-marker {
@@ -31,10 +32,10 @@ locator-details {
         Padding is on the summary initially to make the clickable area span the whole parent
         It moves to the inner content once details opens to align the content with the summary
       */
-      padding: var(--diamond-spacing-sm);
+      padding: var(--_details-padding);
 
       > summary {
-        margin-block-end: var(--diamond-spacing-sm);
+        margin-block-end: var(--_details-padding);
         padding: 0;
       }
 
