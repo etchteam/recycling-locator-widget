@@ -12,6 +12,8 @@ import '@/components/composition/Header/Header';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
+
+import ContainerList from './ContainerList';
 import { useHomeRecyclingLoaderData } from './home.loader';
 
 export default function CollectionPage() {
@@ -46,6 +48,7 @@ export default function CollectionPage() {
         <diamond-section padding="lg">
           <locator-wrap>
             <h3>{t('homeRecycling.collection.title')}</h3>
+            <ContainerList la={la} />
           </locator-wrap>
         </diamond-section>
       </div>

@@ -1,0 +1,53 @@
+locator-details {
+  display: block;
+
+  details {
+    border: var(--diamond-border);
+    border-radius: var(--diamond-border-radius);
+
+    > summary {
+      align-items: center;
+      appearance: none;
+      background: 0 none;
+      border: 0 none;
+      cursor: pointer;
+      display: flex;
+      font-weight: var(--diamond-font-weight-bold);
+      justify-content: space-between;
+      padding: var(--diamond-spacing-sm);
+      transition: color var(--diamond-transition);
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &:hover {
+        color: var(--diamond-theme-color-hover);
+      }
+    }
+
+    &[open] {
+      /* Move the padding to the inner content once details opens */
+      padding: var(--diamond-spacing-sm);
+
+      > summary {
+        margin-block-end: var(--diamond-spacing-sm);
+        padding: 0;
+      }
+
+      /* stylelint-disable-next-line selector-max-compound-selectors */
+      > summary locator-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  details[open] > summary {
+    margin-block-end: var(--diamond-spacing-sm);
+
+    /* stylelint-disable-next-line selector-max-compound-selectors */
+    locator-icon {
+      transform: rotate(180deg);
+    }
+  }
+}
