@@ -8,10 +8,9 @@ import '@etchteam/diamond-ui/control/Button/Button';
 import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/composition/IconText/IconText';
 import '@/components/composition/BorderedList/BorderedList';
-import '@/components/composition/Container/Container';
 import '@/components/control/IconLink/IconLink';
 import '@/components/content/Icon/Icon';
-import '@/components/content/ContainerSvg/ContainerSvg';
+import '@/components/content/Container/Container';
 
 import containerName from '@/lib/containerName';
 import { DryScheme } from '@/types/locatorApi';
@@ -87,7 +86,11 @@ function OneScheme({ scheme }: { readonly scheme: DryScheme }) {
                 body-colour={container.bodyColour}
                 lid-colour={container.lidColour}
               />
-              {containerName(container)}
+              <locator-container-content>
+                <locator-container-name>
+                  {containerName(container)}
+                </locator-container-name>
+              </locator-container-content>
             </locator-container>
           </li>
         ))}

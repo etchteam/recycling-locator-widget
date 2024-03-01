@@ -1,9 +1,0 @@
-locator-container-svg {
-  .lid {
-    fill: var(--lid-colour);
-  }
-
-  .body {
-    fill: var(--body-colour);
-  }
-}

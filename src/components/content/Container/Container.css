@@ -1,0 +1,64 @@
+locator-container {
+  --_container-size: 2.5em;
+  align-items: center;
+  display: grid;
+  gap: var(--diamond-spacing-sm);
+  grid-auto-rows: min-content;
+  grid-template-areas: 'svg content';
+  grid-template-columns: var(--_container-size) 1fr;
+
+  locator-container-svg {
+    display: block;
+    grid-area: svg;
+    height: var(--_container-size);
+    line-height: 1;
+    width: var(--_container-size);
+
+    svg {
+      aspect-ratio: 1;
+    }
+  }
+
+  locator-container-name,
+  locator-container-notes,
+  locator-container-subscription,
+  locator-container-content {
+    display: block;
+  }
+
+  locator-container-content {
+    grid-area: content;
+  }
+
+  locator-container-name,
+  h2,
+  h3,
+  h4 {
+    font-size: var(--diamond-font-size-default);
+    font-weight: var(--diamond-font-weight-base);
+    margin-block-end: 0;
+  }
+
+  locator-container-notes,
+  locator-container-subscription {
+    font-size: var(--diamond-font-size-sm);
+  }
+
+  locator-container-notes {
+    color: var(--diamond-theme-color-muted);
+  }
+
+  locator-container-subscription {
+    color: var(--color-blue);
+  }
+}
+
+locator-container-svg {
+  .lid {
+    fill: var(--lid-colour);
+  }
+
+  .body {
+    fill: var(--body-colour);
+  }
+}

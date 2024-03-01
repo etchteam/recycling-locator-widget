@@ -65,7 +65,12 @@ register(ContainerSvg, 'locator-container-svg', [
 declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
+      'locator-container': CustomElement;
       'locator-container-svg': CustomElement<ContainerSvgAttributes>;
+      'locator-container-name': CustomElement;
+      'locator-container-notes': CustomElement;
+      'locator-container-subscription': CustomElement;
+      'locator-container-content': CustomElement;
     }
   }
 }

@@ -4,25 +4,18 @@ import { useTranslation } from 'react-i18next';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
-import '@/components/composition/Container/Container';
-import '@/components/content/ContainerSvg/ContainerSvg';
+import '@/components/content/Container/Container';
 import '@/components/control/Details/Details';
 import containerName from '@/lib/containerName';
-import {
-  Container,
-  LocalAuthority,
-  OrganicStreamContainer,
-} from '@/types/locatorApi';
-
-type DryOrOrganicContainer = Container | OrganicStreamContainer;
+import { LocalAuthority, OrganicStreamContainer } from '@/types/locatorApi';
 
 function useContainers(
   la: LocalAuthority,
   search: string,
 ): {
-  containers: DryOrOrganicContainer[];
-  allContainers: DryOrOrganicContainer[];
-  filteredContainers: DryOrOrganicContainer[];
+  containers: OrganicStreamContainer[];
+  allContainers: OrganicStreamContainer[];
+  filteredContainers: OrganicStreamContainer[];
 } {
   // TODO(WRAP-308): filter by scheme once the new API response is available
   const allContainers = [
@@ -113,7 +106,23 @@ export default function ContainerList({
                 body-colour={container.bodyColour}
                 lid-colour={container.lidColour}
               />
-              {containerName(container)}
+              <locator-container-content>
+                <locator-container-name>
+                  <h4>{containerName(container)}</h4>
+                </locator-container-name>
+                {container.cost && (
+                  <locator-container-subscription>
+                    {t('components.container.subscription', {
+                      cost: container.cost,
+                    })}
+                  </locator-container-subscription>
+                )}
+                {container.notes && (
+                  <locator-container-notes>
+                    {container.notes}
+                  </locator-container-notes>
+                )}
+              </locator-container-content>
             </locator-container>
             {Object.keys(materialCategories)?.map((category) => (
               <locator-details
