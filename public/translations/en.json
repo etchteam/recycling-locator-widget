@@ -20,6 +20,7 @@
       "placeholder": "Enter the name of an item..."
     },
     "container": {
+      "subscription": "Subscription service – £{{cost}}",
       "#2d9cdb": "Blue",
       "#1579c6": "Mid blue",
       "#2262b9": "Dark blue",

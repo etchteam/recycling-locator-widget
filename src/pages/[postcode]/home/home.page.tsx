@@ -4,8 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 
 import containerName from '@/lib/containerName';
-import '@/components/composition/Container/Container';
-import '@/components/content/ContainerSvg/ContainerSvg';
+import '@/components/content/Container/Container';
 
 import { useHomeRecyclingLoaderData } from './home.loader';
 
@@ -41,7 +40,11 @@ export default function HomeRecyclingPage() {
                         body-colour={container.bodyColour}
                         lid-colour={container.lidColour}
                       />
-                      {containerName(container)}
+                      <locator-container-content>
+                        <locator-container-name>
+                          {containerName(container)}
+                        </locator-container-name>
+                      </locator-container-content>
                     </locator-container>
                   </li>
                 ))}

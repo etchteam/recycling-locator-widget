@@ -20,6 +20,7 @@
       "placeholder": "Rhowch enw eitem..."
     },
     "container": {
+      "subscription": "Gwasanaeth tanysgrifio – £{{cost}}",
       "#2d9cdb": "Glas",
       "#1579c6": "Glas canol",
       "#2262b9": "Glas tywyll",

@@ -1,8 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import '@etchteam/diamond-ui/canvas/Card/Card';
 
-import '@/components/composition/Container/Container';
-import '@/components/content/ContainerSvg/ContainerSvg';
 import '@/components/composition/BorderedList/BorderedList';
 
 import { useHomeRecyclingLoaderData } from './home.loader';
