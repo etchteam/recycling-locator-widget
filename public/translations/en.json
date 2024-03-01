@@ -176,7 +176,13 @@
       "help": "Select your bin to see collection details."
     },
     "collection": {
-      "title": "Check what goes in each bin"
+      "title": "Recycling Collections",
+      "search": {
+        "label": "Check what goes in each bin",
+        "positive_one": "Yes, it can be recycled in the following bin...",
+        "positive_other": "Yes, it can be recycled in the following bin...",
+        "negative": "No, it can’t be recycled in the following bins..."
+      }
     },
     "hwrc": {
       "title": "Take items to a Recycling Centre in your area.",

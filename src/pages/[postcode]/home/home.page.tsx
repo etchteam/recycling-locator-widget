@@ -1,3 +1,4 @@
+import uniqueId from 'lodash/uniqueId';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Card/Card';
@@ -31,7 +32,7 @@ export default function HomeRecyclingPage() {
               <ul role="list" className="list-style-none">
                 {scheme.containers.map((container) => (
                   <li
-                    key={container.name}
+                    key={uniqueId(container.name)}
                     className="diamond-spacing-bottom-sm"
                   >
                     <locator-container>
