@@ -177,7 +177,12 @@
     },
     "collection": {
       "title": "Casgliadau Ailgylchu",
-      "label": "Gwiriwch beth sy'n mynd ym mhob bin"
+      "search": {
+        "label": "Gwiriwch beth sy'n mynd ym mhob bin",
+        "positive_one": "Oes, gellir ei ailgylchu yn y bin canlynol...",
+        "positive_other": "Oes, gellir ei ailgylchu yn y biniau canlynol...",
+        "negative": "Na, ni ellir ei ailgylchu yn y biniau canlynol..."
+      }
     },
     "hwrc": {
       "title": "Ewch ag eitemau i Ganolfan Ailgylchu yn eich ardal.",

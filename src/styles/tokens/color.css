@@ -18,8 +18,11 @@
   --color-body: var(--color-grey-dark);
   --color-border: var(--color-grey-light);
 
+  --color-positive-lightest: #eafff3;
   --color-positive-light: #8cc63f;
   --color-positive: #8dc63f;
+  --color-positive-dark: var(--color-green-dark);
+  --color-negative-lightest: #fce8e8;
   --color-negative-light: #eb5757;
   --color-negative: #ca250a;
   --color-hazardous: #ffe500;

@@ -37,16 +37,10 @@ export default function HomeRecyclingCentrePage() {
               padding="sm"
               radius
             >
-              <diamond-grid gap="sm">
-                <diamond-grid-item>
-                  <locator-icon icon="info"></locator-icon>
-                </diamond-grid-item>
-                <diamond-grid-item grow shrink>
-                  <p className="diamond-text-size-sm">
-                    {t(`${tContext}.info`)}
-                  </p>
-                </diamond-grid-item>
-              </diamond-grid>
+              <locator-icon-text>
+                <locator-icon icon="info"></locator-icon>
+                <p className="diamond-text-size-sm">{t(`${tContext}.info`)}</p>
+              </locator-icon-text>
             </diamond-card>
 
             {hwrcLocations.map((location) => (

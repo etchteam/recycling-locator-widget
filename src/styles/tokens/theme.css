@@ -65,6 +65,40 @@
     --recycling-locator-theme-link-color-info,
     var(--color-blue)
   );
+
+  --theme-background-positive: var(
+    --recycling-locator-theme-background-positive,
+    var(--color-positive-lightest)
+  );
+  --theme-heading-color-positive: var(
+    --recycling-locator-theme-heading-color-positive,
+    var(--color-positive-dark)
+  );
+  --theme-color-positive: var(
+    --recycling-locator-theme-color-positive,
+    var(--color-positive-dark)
+  );
+  --theme-link-color-positive: var(
+    --recycling-locator-theme-link-color-positive,
+    var(--color-positive-dark)
+  );
+
+  --theme-background-negative: var(
+    --recycling-locator-theme-background-negative,
+    var(--color-negative-lightest)
+  );
+  --theme-heading-color-negative: var(
+    --recycling-locator-theme-heading-color-negative,
+    var(--color-negative)
+  );
+  --theme-color-negative: var(
+    --recycling-locator-theme-color-negative,
+    var(--color-negative)
+  );
+  --theme-link-color-negative: var(
+    --recycling-locator-theme-link-color-negative,
+    var(--color-negative)
+  );
 }
 
 .theme-info {
@@ -72,4 +106,18 @@
   --diamond-theme-heading-color: var(--theme-heading-color-info);
   --diamond-theme-color: var(--theme-color-info);
   --diamond-theme-link-color: var(--theme-link-color-info);
+}
+
+.theme-positive {
+  --diamond-theme-background: var(--theme-background-positive);
+  --diamond-theme-heading-color: var(--theme-heading-color-positive);
+  --diamond-theme-color: var(--theme-color-positive);
+  --diamond-theme-link-color: var(--theme-link-color-positive);
+}
+
+.theme-negative {
+  --diamond-theme-background: var(--theme-background-negative);
+  --diamond-theme-heading-color: var(--theme-heading-color-negative);
+  --diamond-theme-color: var(--theme-color-negative);
+  --diamond-theme-link-color: var(--theme-link-color-negative);
 }

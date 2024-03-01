@@ -1,4 +1,5 @@
 import { useSignal } from '@preact/signals';
+import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams, useSearchParams, Form } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
@@ -23,8 +24,13 @@ export default function CollectionPage() {
   const data = useHomeRecyclingLoaderData();
   const [searchParams] = useSearchParams();
   const scheme = searchParams.get('scheme');
-  const la = data?.localAuthority;
+  const search = searchParams.get('search');
   const submitting = useSignal(false);
+  const la = data?.localAuthority;
+
+  useEffect(() => {
+    submitting.value = false;
+  }, [search]);
 
   return (
     <locator-layout>
@@ -50,19 +56,21 @@ export default function CollectionPage() {
         <diamond-section padding="lg">
           <locator-wrap>
             <h3 id="bin-search-title" className="diamond-spacing-bottom-md">
-              {t('homeRecycling.collection.label')}
+              {t('homeRecycling.collection.search.label')}
             </h3>
 
-            <Form method="post" onSubmit={() => (submitting.value = true)}>
+            <Form method="get" onSubmit={() => (submitting.value = true)}>
+              <input type="hidden" name="scheme" value={scheme} />
               <locator-material-search-input
-                className="diamond-spacing-bottom-lg"
+                className="diamond-spacing-bottom-sm"
                 placeholder={t('components.materialSearchInput.placeholder')}
                 inputLabelledBy="bin-search-title"
+                defaultValue={search}
                 submitting={submitting.value}
               ></locator-material-search-input>
             </Form>
 
-            <ContainerList la={la} />
+            <ContainerList la={la} search={search} />
           </locator-wrap>
         </diamond-section>
       </div>

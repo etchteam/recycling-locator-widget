@@ -18,6 +18,7 @@ interface MaterialSearchInputProps {
   readonly inputLabelledBy?: string;
   readonly placeholder?: string;
   readonly submitting?: boolean | string;
+  readonly defaultValue?: string;
 }
 
 /**
@@ -56,6 +57,15 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     const materials = await this.autosuggest(query);
     this.materialSuggestions.value = materials;
   };
+
+  componentDidUpdate(previousProps): void {
+    if (
+      previousProps.value !== this.props.defaultValue &&
+      !this.inputRef?.current?.value
+    ) {
+      this.inputRef.current.value = this.props.defaultValue ?? '';
+    }
+  }
 
   render() {
     const materials = this.materialSuggestions.value;
@@ -108,6 +118,7 @@ register(MaterialSearchInput, 'locator-material-search-input', [
   'inputLabelledBy',
   'placeholder',
   'submitting',
+  'defaultValue',
 ]);
 
 declare module 'react' {
