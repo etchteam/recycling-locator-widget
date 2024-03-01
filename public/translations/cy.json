@@ -176,7 +176,8 @@
       "help": "Dewiswch eich bin i weld manylion y casgliad."
     },
     "collection": {
-      "title": "Gwiriwch beth sy'n mynd ym mhob bin"
+      "title": "Casgliadau Ailgylchu",
+      "label": "Gwiriwch beth sy'n mynd ym mhob bin"
     },
     "hwrc": {
       "title": "Ewch ag eitemau i Ganolfan Ailgylchu yn eich ardal.",

@@ -176,7 +176,8 @@
       "help": "Select your bin to see collection details."
     },
     "collection": {
-      "title": "Check what goes in each bin"
+      "title": "Recycling Collections",
+      "label": "Check what goes in each bin"
     },
     "hwrc": {
       "title": "Take items to a Recycling Centre in your area.",
