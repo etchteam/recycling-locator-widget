@@ -1,0 +1,14 @@
+locator-fab {
+  bottom: var(--diamond-spacing);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+
+  diamond-button {
+    box-shadow: var(--diamond-shadow);
+    pointer-events: auto;
+  }
+}

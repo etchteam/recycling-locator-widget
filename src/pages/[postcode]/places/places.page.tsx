@@ -2,13 +2,13 @@ import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Wrap/Wrap';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
+import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import '@/components/content/PlaceSummary/PlaceSummary';
+import '@/components/control/Fab/Fab';
 import { usePlacesLoaderData } from './places.loader';
 
 export default function PlacesPage() {
@@ -18,40 +18,47 @@ export default function PlacesPage() {
   const count = locations.length;
 
   return (
-    <diamond-section padding="md">
-      <diamond-wrap>
-        <section className="diamond-spacing-bottom-lg">
-          <p id="places-count">{t('places.count', { count })}</p>
-          {count > 0 && (
-            <locator-places-grid>
-              <nav aria-labelledby="places-count">
-                <ul>
-                  {locations.map((location) => (
-                    <li key={`${location.id}`}>
-                      <Link to={`/${postcode}/places/${location.id}`}>
-                        <diamond-card border radius>
-                          <locator-place-summary>
-                            <h4>{location.name}</h4>
-                            <p>{location.address}</p>
-                            <dl>
-                              <dd>{location.distance}</dd>
-                              <dt>{t('common.miles')}</dt>
-                              <dd>{location.materials.length}</dd>
-                              <dt>{t('common.materialsAccepted')}</dt>
-                            </dl>
-                          </locator-place-summary>
-                        </diamond-card>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </locator-places-grid>
-          )}
-        </section>
+    <>
+      <diamond-section padding="md">
+        <diamond-wrap>
+          <section className="diamond-spacing-bottom-lg">
+            <p id="places-count">{t('places.count', { count })}</p>
+            {count > 0 && (
+              <locator-places-grid>
+                <nav aria-labelledby="places-count">
+                  <ul>
+                    {locations.map((location) => (
+                      <li key={`${location.id}`}>
+                        <Link to={`/${postcode}/places/${location.id}`}>
+                          <diamond-card border radius>
+                            <locator-place-summary>
+                              <h4>{location.name}</h4>
+                              <p>{location.address}</p>
+                              <dl>
+                                <dd>{location.distance}</dd>
+                                <dt>{t('common.miles')}</dt>
+                                <dd>{location.materials.length}</dd>
+                                <dt>{t('common.materialsAccepted')}</dt>
+                              </dl>
+                            </locator-place-summary>
+                          </diamond-card>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </locator-places-grid>
+            )}
+          </section>
 
-        <section>Tip</section>
-      </diamond-wrap>
-    </diamond-section>
+          <section>Tip</section>
+        </diamond-wrap>
+      </diamond-section>
+      <locator-fab>
+        <diamond-button size="sm" variant="primary">
+          <Link to={`/${postcode}/places/map`}>Show map</Link>
+        </diamond-button>
+      </locator-fab>
+    </>
   );
 }

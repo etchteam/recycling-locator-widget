@@ -32,6 +32,15 @@ export default function PlacesLayout({
         </locator-header-title>
       </locator-header>
       <div slot="layout-main">
+        <Link
+          to={`/${postcode}/material/search`}
+          className="diamond-text-decoration-none"
+        >
+          <locator-context-header>
+            Recycle a specific item...
+            <locator-icon icon="search" color="primary" />
+          </locator-context-header>
+        </Link>
         <Outlet />
         {children}
       </div>
