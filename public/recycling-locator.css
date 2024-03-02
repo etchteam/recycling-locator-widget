@@ -7,7 +7,7 @@ recycling-locator {
   height: 540px;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   recycling-locator {
     height: 640px;
   }
