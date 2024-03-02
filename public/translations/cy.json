@@ -219,5 +219,13 @@
     "error": {
       "message": "Digwyddodd gwall annisgwyl wrth ddod o hyd i'ch gwybodaeth ailgylchu cartref."
     }
+  },
+  "places": {
+    "title": "Lleoedd i ailgylchu",
+    "count_one": "{{count}} lle cyfagos o fewn 25 milltir",
+    "count_other": "{{count}} lle agosaf o fewn 25 milltir",
+    "error": {
+      "message": "Digwyddodd gwall annisgwyl wrth chwilio am leoedd i ailgylchu yn yr ardal hon."
+    }
   }
 }

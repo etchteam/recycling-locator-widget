@@ -16,8 +16,11 @@ locator-layout {
     grid-template-areas:
       'header aside'
       'main aside';
-    grid-template-columns: 50% 50%;
     grid-template-rows: auto 1fr;
+
+    &:has([slot='layout-aside']) {
+      grid-template-columns: 50% 50%;
+    }
 
     &::part(main) {
       overflow-y: auto;

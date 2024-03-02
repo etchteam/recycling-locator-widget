@@ -10,13 +10,13 @@ export default function Layout({
 }: Readonly<{
   'layout-header': ComponentChildren;
   'layout-main': ComponentChildren;
-  'layout-aside': ComponentChildren;
+  'layout-aside'?: ComponentChildren;
 }>) {
   return (
     <>
       <header part="header">{header}</header>
       <div part="main">{main}</div>
-      <aside part="aside">{aside}</aside>
+      {aside && <aside part="aside">{aside}</aside>}
     </>
   );
 }
