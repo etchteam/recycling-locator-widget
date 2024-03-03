@@ -225,6 +225,7 @@
   },
   "places": {
     "title": "Places to recycle",
+    "count_zero": "No places within 25 miles",
     "count_one": "{{count}} nearby place within 25 miles",
     "count_other": "{{count}} nearest places within 25 miles",
     "searchPlaceholder": "Recycle a specific item...",

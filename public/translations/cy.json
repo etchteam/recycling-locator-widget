@@ -225,6 +225,7 @@
   },
   "places": {
     "title": "Lleoedd i ailgylchu",
+    "count_zero": "Dim lleoedd o fewn 25 milltir",
     "count_one": "{{count}} lle cyfagos o fewn 25 milltir",
     "count_other": "{{count}} lle agosaf o fewn 25 milltir",
     "searchPlaceholder": "Ailgylchu eitem benodol...",
