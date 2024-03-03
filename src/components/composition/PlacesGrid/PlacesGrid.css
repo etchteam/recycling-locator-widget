@@ -17,6 +17,7 @@ locator-places-grid {
 
     /* large tablet */
     @container (width >= 1024px) {
+      gap: var(--diamond-spacing);
       grid-template-columns: repeat(3, 1fr);
     }
 
