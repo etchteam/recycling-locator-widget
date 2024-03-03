@@ -227,6 +227,7 @@
     "title": "Places to recycle",
     "count_one": "{{count}} nearby place within 25 miles",
     "count_other": "{{count}} nearest places within 25 miles",
+    "searchPlaceholder": "Recycle a specific item...",
     "error": {
       "message": "An unexpected error occurred while searching for places to recycle in this area."
     }

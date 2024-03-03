@@ -1,6 +1,6 @@
 import { ComponentChildren } from 'preact';
 import { useTranslation } from 'react-i18next';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams, useSearchParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/composition/Layout/Layout';
@@ -15,6 +15,8 @@ export default function PlacesLayout({
 }) {
   const { t } = useTranslation();
   const { postcode } = useParams();
+  const [searchParams] = useSearchParams();
+  const materialName = searchParams.get('materialName');
 
   return (
     <locator-layout>
@@ -37,7 +39,11 @@ export default function PlacesLayout({
           className="diamond-text-decoration-none"
         >
           <locator-context-header>
-            Recycle a specific item...
+            {materialName ? (
+              <span className="diamond-text-weight-bold">{materialName}</span>
+            ) : (
+              t('places.searchPlaceholder')
+            )}
             <locator-icon icon="search" color="primary" />
           </locator-context-header>
         </Link>

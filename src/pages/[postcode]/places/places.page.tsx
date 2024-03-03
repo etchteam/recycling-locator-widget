@@ -16,10 +16,14 @@ import { usePlacesLoaderData } from './places.loader';
 export default function PlacesPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
-  const { locations, max } = usePlacesLoaderData();
+  const loaderData = usePlacesLoaderData();
   const fetcher = useFetcher();
-  const count = locations.length;
-  const allLocations = fetcher.data?.locations ?? locations;
+
+  // The loader is used initially then the fetcher is used to load more
+  const count = fetcher.data?.locations.length ?? loaderData.locations.length;
+  const allLocations = fetcher.data?.locations ?? loaderData.locations;
+  const showLoadMore = !fetcher.data?.max && !loaderData.max;
+  const currentPage = fetcher.data?.page ?? loaderData.page;
 
   return (
     <>
@@ -61,15 +65,22 @@ export default function PlacesPage() {
                 </nav>
               </locator-places-grid>
             )}
-            {!max && !fetcher.data?.max && (
+            {showLoadMore && (
               <diamond-grid justify-content="center">
                 <diamond-grid-item
                   small-mobile="12"
                   small-tablet="6"
                   large-tablet="4"
                 >
-                  <fetcher.Form method="GET" action={`/${postcode}/places`}>
-                    <input type="hidden" name="page" value="2" />
+                  <fetcher.Form method="GET">
+                    <input type="hidden" name="page" value={currentPage + 1} />
+                    {loaderData.materialId && (
+                      <input
+                        type="hidden"
+                        name="materialId"
+                        value={loaderData.materialId}
+                      />
+                    )}
                     <diamond-button width="full-width">
                       <button type="submit" disabled={fetcher.state !== 'idle'}>
                         {t('actions.loadMore')}
