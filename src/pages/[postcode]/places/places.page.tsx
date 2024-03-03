@@ -30,7 +30,12 @@ export default function PlacesPage() {
       <diamond-section padding="md">
         <diamond-wrap>
           <section className="diamond-spacing-bottom-lg">
-            <p id="places-count">{t('places.count', { count })}</p>
+            <h3
+              id="places-count"
+              className="diamond-text-size-md diamond-spacing-bottom-md"
+            >
+              {t('places.count', { count })}
+            </h3>
             {count > 0 && (
               <locator-places-grid className="diamond-spacing-bottom-lg">
                 <nav aria-labelledby="places-count">

@@ -6,6 +6,7 @@ locator-context-header {
   grid-template-areas: 'content action';
   grid-template-columns: 1fr auto;
   padding: var(--diamond-spacing-sm) var(--diamond-spacing);
+  transition: color var(--diamond-transition);
 
   &:first-child {
     grid-area: content;
@@ -14,5 +15,11 @@ locator-context-header {
 
   &:last-child {
     grid-area: action;
+  }
+}
+
+@media (hover: hover) {
+  a:hover locator-context-header {
+    color: var(--diamond-theme-color-hover);
   }
 }

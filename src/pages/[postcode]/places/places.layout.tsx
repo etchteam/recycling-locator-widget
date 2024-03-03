@@ -4,7 +4,7 @@ import { Link, Outlet, useParams, useSearchParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/composition/Layout/Layout';
-import '@/components/composition/Header/Header';
+import '@/components/composition/PlacesHeader/PlacesHeader';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 
@@ -20,7 +20,7 @@ export default function PlacesLayout({
 
   return (
     <locator-layout>
-      <locator-header slot="layout-header">
+      <locator-places-header slot="layout-header">
         <locator-header-title>
           <diamond-button>
             <Link to={`/${postcode}`}>
@@ -32,21 +32,14 @@ export default function PlacesLayout({
             <p>{postcode}</p>
           </div>
         </locator-header-title>
-      </locator-header>
-      <div slot="layout-main">
-        <Link
-          to={`/${postcode}/material/search`}
-          className="diamond-text-decoration-none"
-        >
-          <locator-context-header>
-            {materialName ? (
-              <span className="diamond-text-weight-bold">{materialName}</span>
-            ) : (
-              t('places.searchPlaceholder')
-            )}
+        <locator-places-header-search active={Boolean(materialName)}>
+          <Link to={`/${postcode}/material/search`}>
+            {materialName ?? t('places.searchPlaceholder')}
             <locator-icon icon="search" color="primary" />
-          </locator-context-header>
-        </Link>
+          </Link>
+        </locator-places-header-search>
+      </locator-places-header>
+      <div slot="layout-main">
         <Outlet />
         {children}
       </div>
