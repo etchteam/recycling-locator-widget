@@ -10,7 +10,8 @@
     "searchAgain": "Search again",
     "tryAgain": "Try again",
     "listPlaces": "List places",
-    "showMap": "Show map"
+    "showMap": "Show map",
+    "loadMore": "Load more"
   },
   "components": {
     "locationInput": {

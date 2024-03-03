@@ -5,7 +5,7 @@ import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import '@/components/composition/Wrap/Wrap';
-import HomeRecyclingLayout from './places.layout';
+import PlacesLayout from './places.layout';
 
 export default function PlacesErrorPage() {
   const { t } = useTranslation();
@@ -16,9 +16,9 @@ export default function PlacesErrorPage() {
   });
 
   return (
-    <HomeRecyclingLayout>
+    <PlacesLayout>
       <h2>{t('error.title')}</h2>
-      <p>{t('homeRecycling.error.message')}</p>
+      <p>{t('places.error.message')}</p>
       <p className="diamond-spacing-bottom-md">{t('error.message')}</p>
       <diamond-button width="full-width" variant="primary">
         <Link to={`/${postcode}/places`}>{t('actions.tryAgain')}</Link>
@@ -38,6 +38,6 @@ export default function PlacesErrorPage() {
           </p>
         </locator-wrap>
       </locator-tip>
-    </HomeRecyclingLayout>
+    </PlacesLayout>
   );
 }

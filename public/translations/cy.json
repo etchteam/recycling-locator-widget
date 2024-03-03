@@ -10,7 +10,8 @@
     "searchAgain": "Chwiliwch eto",
     "tryAgain": "Ceisio eto",
     "listPlaces": "Rhestru lleoedd",
-    "showMap": "Dangos map"
+    "showMap": "Dangos map",
+    "loadMore": "Llwytho mwy"
   },
   "components": {
     "locationInput": {
