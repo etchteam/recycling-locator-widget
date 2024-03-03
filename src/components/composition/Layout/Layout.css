@@ -5,8 +5,8 @@
   *   - Whilst main is scrollable the layout needs a fixed height
   * 2. Sticky header + Main + Aside
   *   - Main is scrollable on large screen only
-  *   - Main and aside stack on small screen, so to make them both scroll
-        overflow isn't applied to main
+  *   - Main and aside stack on small screen, so to make them both sit in
+        the same scroll area overflow isn't applied to main
   * 3. Standalone
   *   - Height needs to break out of the container
   */

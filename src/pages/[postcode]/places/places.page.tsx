@@ -56,7 +56,10 @@ export default function PlacesPage() {
       </diamond-section>
       <locator-fab>
         <diamond-button size="sm" variant="primary">
-          <Link to={`/${postcode}/places/map`}>Show map</Link>
+          <Link to={`/${postcode}/places/map`}>
+            <locator-icon icon="map"></locator-icon>
+            Show map
+          </Link>
         </diamond-button>
       </locator-fab>
     </>

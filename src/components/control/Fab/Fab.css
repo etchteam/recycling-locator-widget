@@ -8,7 +8,14 @@ locator-fab {
   z-index: 1;
 
   diamond-button {
+    --diamond-button-padding-block: var(--diamond-spacing-xs);
+    --diamond-spacing-thumb: 3em; /* convert diamond thumb to em */
     box-shadow: var(--diamond-shadow);
     pointer-events: auto;
+  }
+
+  &[position='top'] {
+    bottom: unset;
+    top: var(--diamond-spacing);
   }
 }

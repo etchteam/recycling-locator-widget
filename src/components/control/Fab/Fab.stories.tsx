@@ -12,6 +12,11 @@ export default meta;
 export const Fab: StoryObj = {
   render: () => (
     <div style="position: relative;height: 200px;overflow-y:scroll;">
+      <locator-fab position="top">
+        <diamond-button size="sm">
+          <button type="button">Floating top button</button>
+        </diamond-button>
+      </locator-fab>
       {[...Array(50).keys()].map((key) => (
         <div key={key}>
           <a href="#link">
@@ -21,7 +26,7 @@ export const Fab: StoryObj = {
       ))}
       <locator-fab>
         <diamond-button variant="primary" size="sm">
-          <button type="button">Floating button</button>
+          <button type="button">Floating bottom button</button>
         </diamond-button>
       </locator-fab>
     </div>
