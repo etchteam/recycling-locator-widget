@@ -1,8 +1,10 @@
 {
   "common": {
     "and": "a",
-    "miles": "milltiroedd",
-    "materialsAccepted": "deunyddiau wedi'u derbyn"
+    "miles_one": "milltir",
+    "miles_other": "milltiroedd",
+    "materialsAccepted_one": "deunydd a dderbynnir",
+    "materialsAccepted_other": "deunyddiau wedi'u derbyn"
   },
   "actions": {
     "back": "Yn ol",

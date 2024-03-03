@@ -40,9 +40,17 @@ export default function PlacesPage() {
                               <p>{location.address}</p>
                               <dl>
                                 <dd>{location.distance}</dd>
-                                <dt>{t('common.miles')}</dt>
+                                <dt>
+                                  {t('common.miles', {
+                                    count: location.distance,
+                                  })}
+                                </dt>
                                 <dd>{location.materials.length}</dd>
-                                <dt>{t('common.materialsAccepted')}</dt>
+                                <dt>
+                                  {t('common.materialsAccepted', {
+                                    count: location.materials.length,
+                                  })}
+                                </dt>
                               </dl>
                             </locator-place-summary>
                           </diamond-card>
