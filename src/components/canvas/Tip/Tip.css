@@ -11,6 +11,10 @@ locator-tip {
   padding-block: var(--diamond-spacing);
   place-content: center;
 
+  locator-tip-content {
+    display: block;
+  }
+
   img {
     display: block;
     height: auto;
@@ -20,5 +24,34 @@ locator-tip {
 
   &[text-align='center'] {
     text-align: center;
+  }
+
+  &[wrap='wrap'] {
+    padding: var(--diamond-spacing);
+  }
+
+  /* large tablet */
+  @container (width >= 1024px) {
+    &[wrap='wrap'] {
+      border-radius: var(--diamond-border-radius);
+      grid-template-areas: 'content image';
+      grid-template-columns: 66.666% 33.333%;
+      margin: 0 var(--diamond-spacing) var(--diamond-spacing-xl);
+      padding: 0;
+      text-align: left;
+
+      img {
+        grid-area: image;
+        height: 100%;
+        margin: 0;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      locator-tip-content {
+        grid-area: content;
+        padding: var(--diamond-spacing-lg);
+      }
+    }
   }
 }

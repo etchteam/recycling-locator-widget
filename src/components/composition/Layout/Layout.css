@@ -23,7 +23,7 @@ locator-layout {
     min-height: 100cqh;
   }
 
-  &:not(:has([slot='layout-aside'])) & {
+  &:not(:has([slot='layout-aside'])) {
     height: var(--container-height);
 
     .recycling-locator-variant-standalone & {
