@@ -38,7 +38,7 @@ function MaterialPageContent() {
   const recyclable = recyclableAtHome || recyclableNearby;
 
   return (
-    <diamond-enter>
+    <diamond-enter type="fade">
       <locator-hero variant={recyclable ? 'positive' : 'negative'}>
         <locator-wrap>
           <locator-icon icon={recyclable ? 'tick-circle' : 'cross-circle'} />
