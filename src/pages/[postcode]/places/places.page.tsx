@@ -20,8 +20,9 @@ import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/canvas/LoadingCard/LoadingCard';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
-import '@/components/content/PlaceSummary/PlaceSummary';
 import '@/components/control/Fab/Fab';
+import Place from '@/components/template/Place/Place';
+
 import { PlacesLoaderResponse } from './places.loader';
 
 function Loading() {
@@ -83,24 +84,7 @@ function Places() {
                 <li key={`${location.id}`}>
                   <Link to={`/${postcode}/places/${location.id}`}>
                     <diamond-card border radius>
-                      <locator-place-summary>
-                        <h4>{location.name}</h4>
-                        <p>{location.address}</p>
-                        <dl>
-                          <dd>{location.distance}</dd>
-                          <dt>
-                            {t('common.miles', {
-                              count: location.distance,
-                            })}
-                          </dt>
-                          <dd>{location.materials.length}</dd>
-                          <dt>
-                            {t('common.materialsAccepted', {
-                              count: location.materials.length,
-                            })}
-                          </dt>
-                        </dl>
-                      </locator-place-summary>
+                      <Place location={location} />
                     </diamond-card>
                   </Link>
                 </li>

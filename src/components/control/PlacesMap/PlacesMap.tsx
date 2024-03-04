@@ -9,20 +9,27 @@ import { Location } from '@/types/locatorApi';
 import MapMarker from './marker.svg?raw';
 
 export interface PlacesMapProps {
+  /** Default starting latitude */
   readonly latitude: number;
+  /** Default starting longitude */
   readonly longitude: number;
+  /** Locations to turn into place markers */
   readonly locations: Location[];
+  /** Static readonly map with no controls */
   readonly static?: boolean;
+  /** Event handler called when the zoom level changes */
   readonly onZoom?: (zoom: number) => void;
+  /** Event handler called when the user drags/pans the map */
   readonly onDrag?: (instance: H.Map) => void;
+  /** Event handler called when the user clicks a place marker */
   readonly onMarkerClick?: (location: Location) => void;
 }
 
 /**
- * Render a map
+ * Render a map with optional interactivity
  *
  * This is a Preact component wrapping a custom element
- * - component is used for prop flexibility, it allows the location data to be passed in
+ * - Preact component is used for prop flexibility, it allows the location data to be passed in
  * - The custom element is used for styling only
  */
 export default class PlacesMap extends Component<PlacesMapProps> {
