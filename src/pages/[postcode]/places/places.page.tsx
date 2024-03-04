@@ -14,9 +14,8 @@ import '@/components/content/PlaceSummary/PlaceSummary';
 import '@/components/control/Fab/Fab';
 import { usePlacesLoaderData } from './places.loader';
 
-export default function PlacesPage() {
+function Places() {
   const { t } = useTranslation();
-  const { postcode } = useParams();
   const loaderData = usePlacesLoaderData();
   const fetcher = useFetcher();
 
@@ -28,75 +27,85 @@ export default function PlacesPage() {
 
   return (
     <>
+      <h3
+        id="places-count"
+        className="diamond-text-size-md diamond-spacing-bottom-md"
+      >
+        {t('places.count', { count })}
+      </h3>
+      {count > 0 && (
+        <locator-places-grid className="diamond-spacing-bottom-lg">
+          <nav aria-labelledby="places-count">
+            <ul>
+              {allLocations.map((location) => (
+                <li key={`${location.id}`}>
+                  <Link to={`/${postcode}/places/${location.id}`}>
+                    <diamond-card border radius>
+                      <locator-place-summary>
+                        <h4>{location.name}</h4>
+                        <p>{location.address}</p>
+                        <dl>
+                          <dd>{location.distance}</dd>
+                          <dt>
+                            {t('common.miles', {
+                              count: location.distance,
+                            })}
+                          </dt>
+                          <dd>{location.materials.length}</dd>
+                          <dt>
+                            {t('common.materialsAccepted', {
+                              count: location.materials.length,
+                            })}
+                          </dt>
+                        </dl>
+                      </locator-place-summary>
+                    </diamond-card>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </locator-places-grid>
+      )}
+      {showLoadMore && (
+        <diamond-grid justify-content="center">
+          <diamond-grid-item
+            small-mobile="12"
+            small-tablet="6"
+            large-tablet="4"
+          >
+            <fetcher.Form method="GET">
+              <input type="hidden" name="page" value={currentPage + 1} />
+              {loaderData.materialId && (
+                <input
+                  type="hidden"
+                  name="materialId"
+                  value={loaderData.materialId}
+                />
+              )}
+              <diamond-button width="full-width">
+                <button type="submit" disabled={fetcher.state !== 'idle'}>
+                  {t('actions.loadMore')}
+                </button>
+              </diamond-button>
+            </fetcher.Form>
+          </diamond-grid-item>
+        </diamond-grid>
+      )}
+    </>
+  );
+}
+
+export default function PlacesPage() {
+  const { t } = useTranslation();
+  const { postcode } = useParams();
+
+  return (
+    <>
       <diamond-section padding="md">
         <diamond-wrap>
           <section className="diamond-spacing-bottom-lg">
-            <h3
-              id="places-count"
-              className="diamond-text-size-md diamond-spacing-bottom-md"
-            >
-              {t('places.count', { count })}
-            </h3>
-            {count > 0 && (
-              <locator-places-grid className="diamond-spacing-bottom-lg">
-                <nav aria-labelledby="places-count">
-                  <ul>
-                    {allLocations.map((location) => (
-                      <li key={`${location.id}`}>
-                        {/* <Link to={`/${postcode}/places/${location.id}`}>
-                          <diamond-card border radius>
-                            <locator-place-summary>
-                              <h4>{location.name}</h4>
-                              <p>{location.address}</p>
-                              <dl>
-                                <dd>{location.distance}</dd>
-                                <dt>
-                                  {t('common.miles', {
-                                    count: location.distance,
-                                  })}
-                                </dt>
-                                <dd>{location.materials.length}</dd>
-                                <dt>
-                                  {t('common.materialsAccepted', {
-                                    count: location.materials.length,
-                                  })}
-                                </dt>
-                              </dl>
-                            </locator-place-summary>
-                          </diamond-card>
-                        </Link> */}
-                        <locator-loading-card></locator-loading-card>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </locator-places-grid>
-            )}
-            {showLoadMore && (
-              <diamond-grid justify-content="center">
-                <diamond-grid-item
-                  small-mobile="12"
-                  small-tablet="6"
-                  large-tablet="4"
-                >
-                  <fetcher.Form method="GET">
-                    <input type="hidden" name="page" value={currentPage + 1} />
-                    {loaderData.materialId && (
-                      <input
-                        type="hidden"
-                        name="materialId"
-                        value={loaderData.materialId}
-                      />
-                    )}
-                    <diamond-button width="full-width">
-                      <button type="submit" disabled={fetcher.state !== 'idle'}>
-                        {t('actions.loadMore')}
-                      </button>
-                    </diamond-button>
-                  </fetcher.Form>
-                </diamond-grid-item>
-              </diamond-grid>
-            )}
+            <Places />
           </section>
         </diamond-wrap>
       </diamond-section>
