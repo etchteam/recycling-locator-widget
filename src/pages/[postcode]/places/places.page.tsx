@@ -7,6 +7,7 @@ import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/canvas/IconCircle/IconCircle';
+import '@/components/canvas/LoadingCard/LoadingCard';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import '@/components/content/PlaceSummary/PlaceSummary';
@@ -42,7 +43,7 @@ export default function PlacesPage() {
                   <ul>
                     {allLocations.map((location) => (
                       <li key={`${location.id}`}>
-                        <Link to={`/${postcode}/places/${location.id}`}>
+                        {/* <Link to={`/${postcode}/places/${location.id}`}>
                           <diamond-card border radius>
                             <locator-place-summary>
                               <h4>{location.name}</h4>
@@ -63,7 +64,8 @@ export default function PlacesPage() {
                               </dl>
                             </locator-place-summary>
                           </diamond-card>
-                        </Link>
+                        </Link> */}
+                        <locator-loading-card></locator-loading-card>
                       </li>
                     ))}
                   </ul>

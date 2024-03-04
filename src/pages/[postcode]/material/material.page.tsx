@@ -5,10 +5,11 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/canvas/Loading/Loading';
 import '@/components/content/Icon/Icon';
+import '@/components/canvas/LoadingCard/LoadingCard';
+import '@/components/canvas/Hero/Hero';
+import '@/components/composition/Wrap/Wrap';
 import getDryContainersByMaterial from '@/lib/getDryContainersByMaterial';
 
-import '@/components/composition/Wrap/Wrap';
-import '@/components/canvas/Hero/Hero';
 import NearbyPlaces from './NearbyPlaces';
 import RecycleAtHome from './RecycleAtHome';
 import { MaterialLoaderResponse } from './material.loader';
@@ -20,7 +21,13 @@ function Loading() {
     <locator-loading>
       <locator-hero>
         <locator-icon icon="distance" color="muted" />
-        <h3>{t('material.loading')}</h3>
+        <h3 className="diamond-spacing-bottom-lg">{t('material.loading')}</h3>
+        <diamond-enter type="fade-in-up" className="diamond-spacing-bottom-md">
+          <locator-loading-card />
+        </diamond-enter>
+        <diamond-enter type="fade-in-up" delay={1}>
+          <locator-loading-card />
+        </diamond-enter>
       </locator-hero>
     </locator-loading>
   );

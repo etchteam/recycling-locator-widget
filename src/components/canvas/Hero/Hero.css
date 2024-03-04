@@ -11,6 +11,11 @@ locator-hero {
   padding-block: var(--diamond-spacing-lg);
   text-align: center;
 
+  /* small tablet */
+  @container (width >= 600px) {
+    min-width: 20rem;
+  }
+
   h1,
   h2,
   h3,
