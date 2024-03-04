@@ -230,6 +230,7 @@
     "count_one": "{{count}} nearby place within 25 miles",
     "count_other": "{{count}} nearest places within 25 miles",
     "searchPlaceholder": "Recycle a specific item...",
+    "loading": "Searching this area...",
     "search": {
       "title": "Recycle a specific item",
       "label": "What do you need to recycle?",

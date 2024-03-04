@@ -1,9 +1,19 @@
+import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Link, useFetcher, useParams } from 'react-router-dom';
+import {
+  Await,
+  FetcherWithComponents,
+  Link,
+  useAsyncValue,
+  useFetcher,
+  useParams,
+  useRouteLoaderData,
+} from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Wrap/Wrap';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
+import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/canvas/IconCircle/IconCircle';
@@ -12,13 +22,44 @@ import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import '@/components/content/PlaceSummary/PlaceSummary';
 import '@/components/control/Fab/Fab';
-import { usePlacesLoaderData } from './places.loader';
+import { PlacesLoaderResponse } from './places.loader';
+
+function Loading() {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <h3 className="diamond-text-size-md diamond-spacing-bottom-md">
+        {t('places.loading')}
+      </h3>
+      <locator-places-grid>
+        <ul>
+          <li>
+            <diamond-enter type="fade-in-up">
+              <locator-loading-card></locator-loading-card>
+            </diamond-enter>
+          </li>
+          <li>
+            <diamond-enter type="fade-in-up" delay={0.5}>
+              <locator-loading-card></locator-loading-card>
+            </diamond-enter>
+          </li>
+          <li>
+            <diamond-enter type="fade-in-up" delay={1}>
+              <locator-loading-card></locator-loading-card>
+            </diamond-enter>
+          </li>
+        </ul>
+      </locator-places-grid>
+    </>
+  );
+}
 
 function Places() {
   const { postcode } = useParams();
   const { t } = useTranslation();
-  const loaderData = usePlacesLoaderData();
-  const fetcher = useFetcher();
+  const loaderData = useAsyncValue() as PlacesLoaderResponse;
+  const fetcher = useFetcher() as FetcherWithComponents<PlacesLoaderResponse>;
 
   // The loader is used initially then the fetcher is used to load more
   const count = fetcher.data?.locations.length ?? loaderData.locations.length;
@@ -27,7 +68,7 @@ function Places() {
   const currentPage = fetcher.data?.page ?? loaderData.page;
 
   return (
-    <>
+    <diamond-enter type="fade">
       <h3
         id="places-count"
         className="diamond-text-size-md diamond-spacing-bottom-md"
@@ -93,20 +134,27 @@ function Places() {
           </diamond-grid-item>
         </diamond-grid>
       )}
-    </>
+    </diamond-enter>
   );
 }
 
 export default function PlacesPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
+  const { data } = useRouteLoaderData('places') as {
+    data: Promise<PlacesLoaderResponse>;
+  };
 
   return (
     <>
       <diamond-section padding="md">
         <diamond-wrap>
           <section className="diamond-spacing-bottom-lg">
-            <Places />
+            <Suspense fallback={<Loading />}>
+              <Await resolve={data}>
+                <Places />
+              </Await>
+            </Suspense>
           </section>
         </diamond-wrap>
       </diamond-section>
