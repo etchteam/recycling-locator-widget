@@ -1,16 +1,21 @@
 {
   "common": {
     "and": "a",
-    "miles": "milltiroedd",
-    "materialsAccepted": "deunyddiau wedi'u derbyn"
+    "miles_one": "milltir",
+    "miles_other": "milltiroedd",
+    "materialsAccepted_one": "deunydd a dderbynnir",
+    "materialsAccepted_other": "deunyddiau wedi'u derbyn",
+    "popularSearches": "Chwiliadau poblogaidd"
   },
   "actions": {
     "back": "Yn ol",
+    "close": "Cau",
     "search": "Chwiliwch",
     "searchAgain": "Chwiliwch eto",
     "tryAgain": "Ceisio eto",
     "listPlaces": "Rhestru lleoedd",
-    "showMap": "Dangos map"
+    "showMap": "Dangos map",
+    "loadMore": "Llwytho mwy"
   },
   "components": {
     "locationInput": {
@@ -150,8 +155,7 @@
     },
     "search": {
       "notFound": "Ni allem ddod o hyd i gyfatebiaeth ar gyfer",
-      "help": "Ceisiwch ddefnyddio enw arall ar ei gyfer, neu chwiliwch am eitem neu ddeunydd tebyg.",
-      "popular": "Chwiliadau poblogaidd"
+      "help": "Ceisiwch ddefnyddio enw arall ar ei gyfer, neu chwiliwch am eitem neu ddeunydd tebyg."
     },
     "error": {
       "message": "Digwyddodd gwall annisgwyl wrth chwilio am leoedd i ailgylchu'r eitem hon."
@@ -218,6 +222,25 @@
     },
     "error": {
       "message": "Digwyddodd gwall annisgwyl wrth ddod o hyd i'ch gwybodaeth ailgylchu cartref."
+    }
+  },
+  "places": {
+    "title": "Lleoedd i ailgylchu",
+    "count_zero": "Dim lleoedd o fewn 25 milltir",
+    "count_one": "{{count}} lle cyfagos o fewn 25 milltir",
+    "count_other": "{{count}} lle agosaf o fewn 25 milltir",
+    "searchPlaceholder": "Ailgylchu eitem benodol...",
+    "loading": "Wrthi'n chwilio'r ardal hon...",
+    "search": {
+      "title": "Ailgylchu eitem benodol",
+      "label": "Beth sydd angen i chi ei ailgylchu?",
+      "nav": {
+        "search": "Chwiliwch",
+        "popular": "Poblogaidd"
+      }
+    },
+    "error": {
+      "message": "Digwyddodd gwall annisgwyl wrth chwilio am leoedd i ailgylchu yn yr ardal hon."
     }
   }
 }

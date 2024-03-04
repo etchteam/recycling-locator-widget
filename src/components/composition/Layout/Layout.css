@@ -1,27 +1,56 @@
+/**
+  * 3 possible layout variations.
+  * 1. Sticky header + Main
+  *   - Main is scrollable on all screen sizes
+  *   - Whilst main is scrollable the layout needs a fixed height
+  * 2. Sticky header + Main + Aside
+  *   - Main is scrollable on large screen only
+  *   - Main and aside stack on small screen, so to make them both sit in
+        the same scroll area overflow isn't applied to main
+  * 3. Standalone
+  *   - Height needs to break out of the container
+  */
 locator-layout {
   display: grid;
   grid-template-areas:
     'header'
     'main'
     'aside';
-  grid-template-columns: 1fr;
-  grid-template-rows: auto max-content 1fr;
-  height: 100%;
+  grid-template-rows: auto 1fr auto;
+  min-height: var(--container-height);
 
   .recycling-locator-variant-standalone & {
-    height: 100cqh;
+    min-height: 100cqh;
   }
 
-  @container (width > 768px) {
-    grid-template-areas:
-      'header aside'
-      'main aside';
-    grid-template-columns: 50% 50%;
-    grid-template-rows: auto 1fr;
+  &:not(:has([slot='layout-aside'])) {
+    height: var(--container-height);
 
-    &::part(main) {
-      overflow-y: auto;
+    .recycling-locator-variant-standalone & {
+      height: 100cqh;
     }
+  }
+
+  @container (width >= 768px) {
+    grid-template-rows: auto 1fr;
+    height: var(--container-height);
+
+    .recycling-locator-variant-standalone & {
+      height: 100cqh;
+    }
+
+    &:has([slot='layout-aside']) {
+      grid-template-areas:
+        'header aside'
+        'main aside';
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &::part(header),
+  &::part(main),
+  &::part(aside) {
+    min-width: 0;
   }
 
   &::part(header) {
@@ -35,11 +64,24 @@ locator-layout {
 
   &::part(main) {
     grid-area: main;
-    min-height: 100%;
+    position: relative;
+  }
+
+  &:not(:has([slot='layout-aside']))::part(main) {
+    overflow-y: auto;
   }
 
   &::part(aside) {
     grid-area: aside;
-    height: 100%;
+  }
+
+  @container (width >= 768px) {
+    &:has([slot='layout-aside'])::part(main) {
+      overflow-y: auto;
+    }
+
+    &::part(aside) {
+      height: 100%;
+    }
   }
 }

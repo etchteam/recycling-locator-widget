@@ -22,7 +22,8 @@ export interface IconAttributes {
     | 'tick'
     | 'place'
     | 'external'
-    | 'expand';
+    | 'expand'
+    | 'list';
   readonly color?: 'primary' | 'muted' | 'positive' | 'negative';
   readonly label?: string;
 }

@@ -13,7 +13,7 @@
    * /public/recycling-locator.css
    */
   --container-height: 540px;
-  @media (min-width: 768px) {
+  @media (width >= 768px) {
     --container-height: 640px;
   }
 }

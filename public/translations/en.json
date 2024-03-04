@@ -1,16 +1,21 @@
 {
   "common": {
     "and": "and",
-    "miles": "miles",
-    "materialsAccepted": "materials accepted"
+    "miles_one": "mile",
+    "miles_other": "miles",
+    "materialsAccepted_one": "material accepted",
+    "materialsAccepted_other": "materials accepted",
+    "popularSearches": "Popular searches"
   },
   "actions": {
     "back": "Back",
+    "close": "Close",
     "search": "Search",
     "searchAgain": "Search again",
     "tryAgain": "Try again",
     "listPlaces": "List places",
-    "showMap": "Show map"
+    "showMap": "Show map",
+    "loadMore": "Load more"
   },
   "components": {
     "locationInput": {
@@ -150,8 +155,7 @@
     },
     "search": {
       "notFound": "We couldn’t find a match for",
-      "help": "Try using an alternative name for it, or search for a similar item or material.",
-      "popular": "Popular searches"
+      "help": "Try using an alternative name for it, or search for a similar item or material."
     },
     "error": {
       "message": "An unexpected error occurred whilst searching for places to recycle this item."
@@ -218,6 +222,25 @@
     },
     "error": {
       "message": "An unexpected error occurred whilst finding your home recycling information."
+    }
+  },
+  "places": {
+    "title": "Places to recycle",
+    "count_zero": "No places within 25 miles",
+    "count_one": "{{count}} nearby place within 25 miles",
+    "count_other": "{{count}} nearest places within 25 miles",
+    "searchPlaceholder": "Recycle a specific item...",
+    "loading": "Searching this area...",
+    "search": {
+      "title": "Recycle a specific item",
+      "label": "What do you need to recycle?",
+      "nav": {
+        "search": "Search",
+        "popular": "Popular"
+      }
+    },
+    "error": {
+      "message": "An unexpected error occurred while searching for places to recycle in this area."
     }
   }
 }

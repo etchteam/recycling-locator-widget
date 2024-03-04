@@ -68,7 +68,7 @@ export default function ContainerList({
     <>
       <div className="diamond-spacing-bottom-lg">
         {searchResultType && (
-          <diamond-enter>
+          <diamond-enter type="fade">
             <diamond-card
               className={`theme-${searchResultType}`}
               padding="sm"

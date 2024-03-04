@@ -1,0 +1,50 @@
+@keyframes pulse {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+locator-loading-card {
+  --_loading-background: color-mix(
+    in srgb,
+    var(--color-grey-light) 35%,
+    var(--color-white)
+  );
+  background: var(--diamond-theme-background);
+  border: var(--diamond-border-width) var(--diamond-border-style)
+    var(--_loading-background);
+  border-radius: var(--diamond-border-radius);
+  display: block;
+  padding: var(--diamond-spacing);
+
+  &::before,
+  &::after {
+    --_loading-background: color-mix(
+      in srgb,
+      var(--color-grey-light) 35%,
+      var(--color-white)
+    );
+    animation: pulse 1.5s infinite;
+    background: linear-gradient(
+      270deg,
+      var(--_loading-background) 0%,
+      var(--color-grey-lightest) 50%,
+      var(--_loading-background) 100%
+    );
+    background-size: 200% 200%;
+    content: '';
+    display: block;
+    height: calc(var(--diamond-font-size-md) * var(--diamond-font-line-height));
+    margin-bottom: var(--diamond-spacing-sm);
+    width: 100%;
+  }
+
+  &::after {
+    margin: 0;
+    width: 50%;
+  }
+}

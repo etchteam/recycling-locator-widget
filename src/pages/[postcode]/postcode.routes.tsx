@@ -4,6 +4,7 @@ import NotFoundPage from '@/pages/not-found.page';
 
 import homeRecyclingRoutes from './home/home.routes';
 import materialRoutes from './material/material.routes';
+import placesRoutes from './places/places.routes';
 import postcodeAction from './postcode.action';
 import postcodeLoader from './postcode.loader';
 import PostcodePage from './postcode.page';
@@ -23,6 +24,7 @@ const routes: RouteObject[] = [
       },
       ...materialRoutes,
       ...homeRecyclingRoutes,
+      ...placesRoutes,
     ],
   },
 ];
