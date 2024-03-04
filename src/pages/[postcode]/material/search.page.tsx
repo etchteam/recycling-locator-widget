@@ -16,6 +16,7 @@ import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/composition/Wrap/Wrap';
+import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/MaterialSearchInput/MaterialSearchInput';
 
 import { MaterialSearchLoaderResponse } from './search.loader';
@@ -32,7 +33,7 @@ function PopularMaterials() {
   return (
     <diamond-enter type="fade-in-up">
       <locator-bordered-list size="sm" className="diamond-spacing-top-lg">
-        <h3>{t('material.search.popular')}</h3>
+        <h3>{t('common.popularSearches')}</h3>
         <nav>
           <ul>
             {popularMaterials.map(({ id, name }) => (

@@ -4,10 +4,12 @@
     "miles_one": "milltir",
     "miles_other": "milltiroedd",
     "materialsAccepted_one": "deunydd a dderbynnir",
-    "materialsAccepted_other": "deunyddiau wedi'u derbyn"
+    "materialsAccepted_other": "deunyddiau wedi'u derbyn",
+    "popularSearches": "Chwiliadau poblogaidd"
   },
   "actions": {
     "back": "Yn ol",
+    "close": "Cau",
     "search": "Chwiliwch",
     "searchAgain": "Chwiliwch eto",
     "tryAgain": "Ceisio eto",
@@ -153,8 +155,7 @@
     },
     "search": {
       "notFound": "Ni allem ddod o hyd i gyfatebiaeth ar gyfer",
-      "help": "Ceisiwch ddefnyddio enw arall ar ei gyfer, neu chwiliwch am eitem neu ddeunydd tebyg.",
-      "popular": "Chwiliadau poblogaidd"
+      "help": "Ceisiwch ddefnyddio enw arall ar ei gyfer, neu chwiliwch am eitem neu ddeunydd tebyg."
     },
     "error": {
       "message": "Digwyddodd gwall annisgwyl wrth chwilio am leoedd i ailgylchu'r eitem hon."
@@ -229,6 +230,14 @@
     "count_one": "{{count}} lle cyfagos o fewn 25 milltir",
     "count_other": "{{count}} lle agosaf o fewn 25 milltir",
     "searchPlaceholder": "Ailgylchu eitem benodol...",
+    "search": {
+      "title": "Ailgylchu eitem benodol",
+      "label": "Beth sydd angen i chi ei ailgylchu?",
+      "nav": {
+        "search": "Chwiliwch",
+        "popular": "Poblogaidd"
+      }
+    },
     "error": {
       "message": "Digwyddodd gwall annisgwyl wrth chwilio am leoedd i ailgylchu yn yr ardal hon."
     }

@@ -27,17 +27,17 @@ locator-places-header {
     text-decoration: none;
     transition: color var(--diamond-transition);
     width: 100%;
-
-    @media (hover: hover) {
-      &:hover {
-        color: var(--diamond-theme-color-hover);
-      }
-    }
   }
 
   locator-places-header-search[active] > a {
     color: var(--diamond-theme-color);
     font-weight: var(--diamond-font-weight-bold);
+  }
+
+  @media (hover: hover) {
+    locator-places-header-search > a:hover {
+      color: var(--diamond-theme-color-hover);
+    }
   }
 
   /* small tablet */

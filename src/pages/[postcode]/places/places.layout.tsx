@@ -16,7 +16,11 @@ export default function PlacesLayout({
   const { t } = useTranslation();
   const { postcode } = useParams();
   const [searchParams] = useSearchParams();
+  const materialId = searchParams.get('materialId');
   const materialName = searchParams.get('materialName');
+  const query = materialId
+    ? `?materialId=${materialId}&materialName=${materialName}`
+    : '';
 
   return (
     <locator-layout>
@@ -33,7 +37,7 @@ export default function PlacesLayout({
           </div>
         </locator-header-title>
         <locator-places-header-search active={Boolean(materialName)}>
-          <Link to={`/${postcode}/material/search`}>
+          <Link to={`/${postcode}/places/search${query}`}>
             {materialName ?? t('places.searchPlaceholder')}
             <locator-icon icon="search" color="primary" />
           </Link>
