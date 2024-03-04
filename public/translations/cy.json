@@ -16,7 +16,9 @@
     "listPlaces": "Rhestru lleoedd",
     "showMap": "Dangos map",
     "showList": "Dangos rhestr",
-    "loadMore": "Llwytho mwy"
+    "loadMore": "Llwytho mwy",
+    "viewDetails": "Gweld manylion",
+    "directions": "Cyfarwyddiadau"
   },
   "components": {
     "locationInput": {

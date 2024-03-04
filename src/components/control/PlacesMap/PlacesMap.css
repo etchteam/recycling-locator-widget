@@ -9,11 +9,18 @@
 }
 
 locator-places-map {
-  display: block;
+  display: grid;
+  grid-template-rows: 1fr auto;
   inset: 0;
   position: absolute;
 
-  locator-places-map-marker {
+  .locator-places-map__container {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  .locator-places-map__marker {
     /* Load markers in after the initial map render */
     animation-delay: 1s;
     animation-duration: var(--diamond-transition-enter-duration);
@@ -21,6 +28,12 @@ locator-places-map {
     animation-iteration-count: 1;
     animation-name: fade;
     animation-timing-function: var(--diamond-transition-enter-timing);
+
+    /* Ninja button */
+    appearance: none;
+    background: none;
+    border: 0 none;
+    cursor: pointer;
     display: block;
     opacity: 0;
   }

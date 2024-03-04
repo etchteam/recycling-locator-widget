@@ -1,4 +1,4 @@
-import { Component, createRef } from 'preact';
+import { Component, ComponentChildren, createRef } from 'preact';
 import '@etchteam/diamond-ui/control/Input/Input';
 
 import '@/components/content/Icon/Icon';
@@ -17,6 +17,8 @@ export interface PlacesMapProps {
   readonly locations: Location[];
   /** Static readonly map with no controls */
   readonly static?: boolean;
+  /** Children will be rendered at the bottom of the map */
+  readonly children?: ComponentChildren;
   /** Event handler called when the zoom level changes */
   readonly onZoom?: (zoom: number) => void;
   /** Event handler called when the user drags/pans the map */
@@ -104,7 +106,15 @@ export default class PlacesMap extends Component<PlacesMapProps> {
     };
 
     const marker = new this.HereMaps.map.DomIcon(
-      `<locator-places-map-marker>${MapMarker}</locator-places-map-marker>`,
+      `
+      <button
+        type="button"
+        aria-label="${location.name}"
+        class="locator-places-map__marker"
+      >
+        ${MapMarker}
+      <button>
+    `,
       {
         onAttach(element) {
           element.addEventListener('click', handleClick);
@@ -148,7 +158,14 @@ export default class PlacesMap extends Component<PlacesMapProps> {
   }
 
   render() {
-    return <locator-places-map ref={this.elementRef} />;
+    return (
+      <locator-places-map>
+        <div className="locator-places-map__container" ref={this.elementRef} />
+        <div className="locator-places-map__children">
+          {this.props.children}
+        </div>
+      </locator-places-map>
+    );
   }
 }
 
@@ -156,7 +173,6 @@ declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
       'locator-places-map': CustomElement;
-      'locator-places-map-marker': CustomElement;
     }
   }
 }

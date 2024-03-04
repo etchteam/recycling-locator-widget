@@ -16,7 +16,9 @@
     "listPlaces": "List places",
     "showMap": "Show map",
     "showList": "Show list",
-    "loadMore": "Load more"
+    "loadMore": "Load more",
+    "viewDetails": "View details",
+    "directions": "Directions"
   },
   "components": {
     "locationInput": {
