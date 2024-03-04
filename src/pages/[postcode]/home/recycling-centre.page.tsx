@@ -90,7 +90,7 @@ export default function HomeRecyclingCentrePage() {
               </diamond-grid-item>
               <diamond-grid-item small-mobile="6">
                 <diamond-button width="full-width">
-                  <Link to={`/${postcode}/places?view=map`}>
+                  <Link to={`/${postcode}/places/map`}>
                     {t('actions.showMap')}
                   </Link>
                 </diamond-button>
