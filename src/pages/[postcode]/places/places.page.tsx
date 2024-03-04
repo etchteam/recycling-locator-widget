@@ -15,6 +15,7 @@ import '@/components/control/Fab/Fab';
 import { usePlacesLoaderData } from './places.loader';
 
 function Places() {
+  const { postcode } = useParams();
   const { t } = useTranslation();
   const loaderData = usePlacesLoaderData();
   const fetcher = useFetcher();
