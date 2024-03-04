@@ -15,6 +15,7 @@
     "tryAgain": "Try again",
     "listPlaces": "List places",
     "showMap": "Show map",
+    "showList": "Show list",
     "loadMore": "Load more"
   },
   "components": {

@@ -1,6 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 
 import PlacesErrorPage from './error.page';
+import PlacesMapPage from './map.page';
 import PlacesLayout from './places.layout';
 import placesLoader from './places.loader';
 import PlacesPage from './places.page';
@@ -23,6 +24,10 @@ const routes: RouteObject[] = [
           {
             index: true,
             element: <PlacesPage />,
+          },
+          {
+            path: 'map',
+            element: <PlacesMapPage />,
           },
         ],
       },

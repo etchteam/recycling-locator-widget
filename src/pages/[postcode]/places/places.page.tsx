@@ -178,14 +178,16 @@ export default function PlacesPage() {
           </locator-tip-content>
         </locator-tip>
       </section>
-      <locator-fab>
-        <diamond-button size="sm" variant="primary">
-          <Link to={`/${postcode}/places/map`}>
-            <locator-icon icon="map"></locator-icon>
-            {t('actions.showMap')}
-          </Link>
-        </diamond-button>
-      </locator-fab>
+      <diamond-enter type="fade" delay={0.25}>
+        <locator-fab>
+          <diamond-button size="sm" variant="primary">
+            <Link to={`/${postcode}/places/map`}>
+              <locator-icon icon="map"></locator-icon>
+              {t('actions.showMap')}
+            </Link>
+          </diamond-button>
+        </locator-fab>
+      </diamond-enter>
     </>
   );
 }
