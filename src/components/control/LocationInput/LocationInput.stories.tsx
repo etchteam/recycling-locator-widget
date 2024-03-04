@@ -3,6 +3,7 @@ import { StoryObj } from '@storybook/preact';
 import LocationInputComponent from './LocationInput';
 
 const meta = {
+  title: 'Components/Control/LocationInput',
   component: LocationInputComponent,
 };
 

@@ -1,0 +1,32 @@
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+locator-places-map {
+  display: block;
+  inset: 0;
+  position: absolute;
+
+  locator-places-map-marker {
+    /* Load markers in after the initial map render */
+    animation-delay: 1s;
+    animation-duration: var(--diamond-transition-enter-duration);
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-name: fade;
+    animation-timing-function: var(--diamond-transition-enter-timing);
+    display: block;
+    opacity: 0;
+  }
+
+  /* Hide the unstyled zoom controls */
+  .H_zoom {
+    display: none;
+  }
+}

@@ -18,7 +18,7 @@ const preview: Preview = {
       render((
         <>
           <link rel="stylesheet" href="/styles.css" />
-          <div style="container-type:inline-size;">
+          <div style="container-type:inline-size;height:100vh;">
             {Story()}
           </div>
         </>

@@ -5,6 +5,8 @@ import LocatorApi from '@/lib/LocatorApi';
 import { Location, LocationsResponse } from '@/types/locatorApi';
 
 export interface PlacesLoaderResponse {
+  latitude: number;
+  longitude: number;
   locations: Location[];
   /** Max is true if no more results can be loaded */
   max: boolean;
@@ -35,6 +37,8 @@ async function getData({
   const locationsCount = locations.items.length;
 
   return {
+    latitude: locations.latitude,
+    longitude: locations.longitude,
     locations: locations.items,
     max: locationsCount < limit || limit === 120,
     page,
