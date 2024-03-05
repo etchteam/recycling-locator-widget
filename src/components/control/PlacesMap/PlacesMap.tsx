@@ -17,7 +17,7 @@ export interface PlacesMapProps {
   /** Locations to turn into place markers */
   readonly locations: Location[];
   /** The location that's currently selected */
-  readonly activeLocationId: number;
+  readonly activeLocationId?: number;
   /** Static readonly map with no controls */
   readonly static?: boolean;
   /** Children will be rendered at the bottom of the map */
