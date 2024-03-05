@@ -60,13 +60,16 @@ function Places() {
   const { postcode } = useParams();
   const { t } = useTranslation();
   const loaderData = useAsyncValue() as PlacesLoaderResponse;
-  const fetcher = useFetcher() as FetcherWithComponents<PlacesLoaderResponse>;
+  const fetcher = useFetcher() as FetcherWithComponents<{
+    data: PlacesLoaderResponse;
+  }>;
 
   // The loader is used initially then the fetcher is used to load more
-  const count = fetcher.data?.locations.length ?? loaderData.locations.length;
-  const allLocations = fetcher.data?.locations ?? loaderData.locations;
-  const showLoadMore = !fetcher.data?.max && !loaderData.max;
-  const currentPage = fetcher.data?.page ?? loaderData.page;
+  const count =
+    fetcher.data?.data.locations?.length ?? loaderData.locations.length;
+  const allLocations = fetcher.data?.data.locations ?? loaderData.locations;
+  const showLoadMore = !fetcher.data?.data.max && !loaderData.max;
+  const currentPage = fetcher.data?.data.page ?? loaderData.page;
 
   return (
     <diamond-enter type="fade">

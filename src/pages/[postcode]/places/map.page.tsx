@@ -46,8 +46,15 @@ export function PlacesMapPageContent() {
   const showSearchThisArea = useSignal(false);
   const page = useSignal(1);
   const radius = useSignal(25);
-  const fetcher = useFetcher() as FetcherWithComponents<PlacesLoaderResponse>;
-  const locations = fetcher.data?.locations ?? loaderData.locations;
+  const lat = useSignal(loaderData.latitude);
+  const lng = useSignal(loaderData.longitude);
+  const fetcher = useFetcher() as FetcherWithComponents<{
+    data: PlacesLoaderResponse;
+  }>;
+
+  const latitude = fetcher.data?.data.latitude ?? loaderData.latitude;
+  const longitude = fetcher.data?.data.longitude ?? loaderData.longitude;
+  const locations = fetcher.data?.data.locations ?? loaderData.locations;
 
   const handleMarkerClick = (location: Location) => {
     activeLocation.value = location;
@@ -73,20 +80,41 @@ export function PlacesMapPageContent() {
     }
   };
 
+  const handleDrag = ({
+    lat: newLat,
+    lng: newLng,
+  }: {
+    lat: number;
+    lng: number;
+  }) => {
+    if (lat.value !== newLat || lng.value !== newLng) {
+      lat.value = newLat;
+      lng.value = newLng;
+      showSearchThisArea.value = true;
+    }
+  };
+
   return (
     <diamond-enter type="fade">
       <PlacesMap
-        latitude={loaderData.latitude}
-        longitude={loaderData.longitude}
+        latitude={latitude}
+        longitude={longitude}
         locations={locations}
         activeLocationId={activeLocation.value?.id}
         onMarkerClick={handleMarkerClick}
         onZoom={handleZoom}
+        onDrag={handleDrag}
       >
-        {showSearchThisArea.value && (
-          <fetcher.Form method="GET" action={`/${postcode}/places`}>
+        {(showSearchThisArea.value || fetcher.state !== 'idle') && (
+          <fetcher.Form
+            method="GET"
+            action={`/${postcode}/places`}
+            onSubmit={() => (showSearchThisArea.value = false)}
+          >
             <input type="hidden" name="page" value={page.value} />
             <input type="hidden" name="radius" value={radius.value} />
+            <input type="hidden" name="lat" value={lat.value} />
+            <input type="hidden" name="lng" value={lng.value} />
             {loaderData.materialId && (
               <input
                 type="hidden"

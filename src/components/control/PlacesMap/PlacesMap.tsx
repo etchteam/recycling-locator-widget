@@ -24,7 +24,7 @@ export interface PlacesMapProps {
   /** Event handler called when the zoom level changes */
   readonly onZoom?: (zoom: number) => void;
   /** Event handler called when the user drags/pans the map */
-  readonly onDrag?: (instance: H.Map) => void;
+  readonly onDrag?: (geoPoint: H.geo.Point) => void;
   /** Event handler called when the user clicks a place marker */
   readonly onMarkerClick?: (location: Location) => void;
 }
@@ -40,6 +40,7 @@ export default class PlacesMap extends Component<PlacesMapProps> {
   apiKey = config.mapsPlacesKey;
   HereMaps: typeof H;
   MapInstance: H.Map;
+  MarkerGroup: H.map.Group;
   elementRef = createRef<HTMLDivElement>();
   currentZoom: number;
 
@@ -68,6 +69,8 @@ export default class PlacesMap extends Component<PlacesMapProps> {
       center: { lat: this.props.latitude, lng: this.props.longitude },
       pixelRatio: window.devicePixelRatio ?? 1,
     });
+    this.MarkerGroup = new this.HereMaps.map.Group();
+    this.MapInstance.addObject(this.MarkerGroup);
 
     window.addEventListener('resize', this.resizeMap.bind(this));
   }
@@ -88,7 +91,7 @@ export default class PlacesMap extends Component<PlacesMapProps> {
 
     // Setup event listeners for zooming and dragging
     this.MapInstance.addEventListener('drag', () => {
-      this.props?.onDrag?.(this.MapInstance);
+      this.props?.onDrag?.(this.MapInstance.getCenter());
     });
 
     this.MapInstance.addEventListener('mapviewchangeend', () => {
@@ -138,15 +141,17 @@ export default class PlacesMap extends Component<PlacesMapProps> {
   }
 
   addPlaceMarkers() {
-    const group = new this.HereMaps.map.Group();
+    // Remove any existing markers
+    this.MarkerGroup.removeAll();
 
-    // Create the markers then center the map on them
-    group.addObjects(
+    // Create the markers
+    this.MarkerGroup.addObjects(
       this.props.locations.map((location) => this.addMarker(location)),
     );
-    this.MapInstance.addObject(group);
+
+    // Center the map on the markers
     this.MapInstance.getViewModel().setLookAtData({
-      bounds: group.getBoundingBox(),
+      bounds: this.MarkerGroup.getBoundingBox(),
     });
   }
 
@@ -154,11 +159,7 @@ export default class PlacesMap extends Component<PlacesMapProps> {
     const mapElement = this.elementRef.current;
     const locationId = this.props.activeLocationId;
     const activeClass = 'locator-places-map__marker--active';
-    console.log('Selecting active marker', {
-      locationId,
-      oldActive: mapElement.querySelector(`.${activeClass}`),
-      newActive: mapElement.querySelector(`[data-location-id="${locationId}"]`),
-    });
+
     mapElement.querySelector(`.${activeClass}`)?.classList.remove(activeClass);
     mapElement
       .querySelector(`[data-location-id="${locationId}"]`)
@@ -181,8 +182,15 @@ export default class PlacesMap extends Component<PlacesMapProps> {
 
   componentDidUpdate(previousProps: Readonly<PlacesMapProps>) {
     if (previousProps.activeLocationId !== this.props.activeLocationId) {
-      console.log('Updating active marker', this.props.activeLocationId);
       this.selectActiveMarker();
+    }
+
+    if (
+      previousProps.locations.length !== this.props.locations.length ||
+      previousProps.latitude !== this.props.latitude ||
+      previousProps.longitude !== this.props.longitude
+    ) {
+      this.addPlaceMarkers();
     }
   }
 

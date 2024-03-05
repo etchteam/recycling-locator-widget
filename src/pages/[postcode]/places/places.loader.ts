@@ -2,6 +2,7 @@ import compact from 'lodash/compact';
 import { LoaderFunctionArgs, defer } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
+import PostCodeResolver from '@/lib/PostcodeResolver';
 import { Location, LocationsResponse } from '@/types/locatorApi';
 
 export interface PlacesLoaderResponse {
@@ -20,12 +21,19 @@ async function getData({
   request,
   params,
 }: LoaderFunctionArgs): Promise<PlacesLoaderResponse> {
-  const postcode = params.postcode;
   const url = new URL(request.url);
   const page = Number(url.searchParams.get('page') ?? 1);
   const radius = Number(url.searchParams.get('radius') ?? 25);
   const materialId = url.searchParams.get('materialId');
+  const lat = url.searchParams.get('lat');
+  const lng = url.searchParams.get('lng');
   const limit = page * 30;
+
+  const postcode =
+    lat && lng
+      ? await PostCodeResolver.fromLatLng(Number(lat), Number(lng))
+      : params.postcode;
+
   const query = compact([
     `limit=${limit}`,
     `radius=${radius}`,
