@@ -248,5 +248,24 @@
     "error": {
       "message": "An unexpected error occurred while searching for places to recycle in this area."
     }
+  },
+  "place": {
+    "nav": {
+      "recycle": "Recycle",
+      "details": "Details"
+    },
+    "recycle": {
+      "title": "Check what you can recycle at this place",
+      "search": {
+        "positive": "Yes, it can be recycled at this place!",
+        "negative": "No, it can’t be recycled at this place."
+      }
+    },
+    "details": {
+      "title": "About this place"
+    },
+    "error": {
+      "message": "An unexpected error occurred while loading this place."
+    }
   }
 }

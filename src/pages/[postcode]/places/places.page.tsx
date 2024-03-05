@@ -22,6 +22,7 @@ import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import '@/components/control/Fab/Fab';
 import Place from '@/components/template/Place/Place';
+import PostCodeResolver from '@/lib/PostcodeResolver';
 
 import { PlacesLoaderResponse } from './places.loader';
 
@@ -83,15 +84,23 @@ function Places() {
         <locator-places-grid className="diamond-spacing-bottom-lg">
           <nav aria-labelledby="places-count">
             <ul>
-              {allLocations.map((location) => (
-                <li key={`${location.id}`}>
-                  <Link to={`/${postcode}/places/${location.id}`}>
-                    <diamond-card border radius>
-                      <Place location={location} />
-                    </diamond-card>
-                  </Link>
-                </li>
-              ))}
+              {allLocations.map((location) => {
+                const locationPostcode =
+                  PostCodeResolver.extractPostcodeFromString(location.address);
+                const locationName = encodeURIComponent(location.name);
+
+                return (
+                  <li key={`${location.id}`}>
+                    <Link
+                      to={`/${postcode}/places/${locationName}/${locationPostcode}`}
+                    >
+                      <diamond-card border radius>
+                        <Place location={location} />
+                      </diamond-card>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </locator-places-grid>

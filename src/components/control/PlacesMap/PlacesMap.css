@@ -46,6 +46,12 @@ locator-places-map {
     display: block;
     opacity: 0;
     padding: 0;
+
+    .locator-places-map--static & {
+      /* Markers aren't clickable in static mode */
+      cursor: default;
+      pointer-events: none;
+    }
   }
 
   .locator-places-map__marker-pin {
