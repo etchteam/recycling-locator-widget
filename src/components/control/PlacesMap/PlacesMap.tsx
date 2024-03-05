@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser';
 import { Component, ComponentChildren, createRef } from 'preact';
 import '@etchteam/diamond-ui/control/Input/Input';
 
@@ -76,36 +77,43 @@ export default class PlacesMap extends Component<PlacesMapProps> {
   }
 
   addControls() {
-    // Enable zooming and dragging
-    new this.HereMaps.mapevents.Behavior(
-      new this.HereMaps.mapevents.MapEvents(this.MapInstance),
-    );
+    try {
+      // Enable zooming and dragging
+      new this.HereMaps.mapevents.Behavior(
+        new this.HereMaps.mapevents.MapEvents(this.MapInstance),
+      );
 
-    // Add the zoom control
-    new this.HereMaps.ui.UI(this.MapInstance).addControl(
-      'zoom',
-      new this.HereMaps.ui.ZoomControl({
-        alignment: this.HereMaps.ui.LayoutAlignment.RIGHT_BOTTOM,
-      }),
-    );
+      // Add the zoom control
+      new this.HereMaps.ui.UI(this.MapInstance).addControl(
+        'zoom',
+        new this.HereMaps.ui.ZoomControl({
+          alignment: this.HereMaps.ui.LayoutAlignment.RIGHT_BOTTOM,
+        }),
+      );
 
-    // Setup event listeners for zooming and dragging
-    this.MapInstance.addEventListener('drag', () => {
-      this.props?.onDrag?.(this.MapInstance.getCenter());
-    });
+      // Setup event listeners for zooming and dragging
+      this.MapInstance.addEventListener('drag', () => {
+        this.props?.onDrag?.(this.MapInstance.getCenter());
+      });
 
-    this.MapInstance.addEventListener('mapviewchangeend', () => {
-      const currentZoom = this.currentZoom;
-      const newZoom = this.MapInstance.getZoom();
+      this.MapInstance.addEventListener('mapviewchangeend', () => {
+        const currentZoom = this.currentZoom;
+        const newZoom = this.MapInstance.getZoom();
 
-      if (!currentZoom) {
-        // The first call only sets the initial zoom level
-        this.currentZoom = newZoom;
-      } else if (newZoom !== currentZoom) {
-        this.currentZoom = newZoom;
-        this.props?.onZoom?.(newZoom);
-      }
-    });
+        if (!currentZoom) {
+          // The first call only sets the initial zoom level
+          this.currentZoom = newZoom;
+        } else if (newZoom !== currentZoom) {
+          this.currentZoom = newZoom;
+          this.props?.onZoom?.(newZoom);
+        }
+      });
+    } catch (error) {
+      // Controls are an enhancement, log the error instead of reacting to it
+      Sentry.captureException(error, {
+        tags: { component: 'PlacesMap control creation' },
+      });
+    }
   }
 
   addMarker(location: Location) {
