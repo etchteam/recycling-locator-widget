@@ -3,8 +3,10 @@ import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
 import {
   Await,
+  FetcherWithComponents,
   Link,
   useAsyncValue,
+  useFetcher,
   useParams,
   useRouteLoaderData,
 } from 'react-router-dom';
@@ -41,9 +43,34 @@ export function PlacesMapPageContent() {
   const { t } = useTranslation();
   const loaderData = useAsyncValue() as PlacesLoaderResponse;
   const activeLocation = useSignal<Location | null>(null);
+  const showSearchThisArea = useSignal(false);
+  const page = useSignal(1);
+  const radius = useSignal(25);
+  const fetcher = useFetcher() as FetcherWithComponents<PlacesLoaderResponse>;
+  const locations = fetcher.data?.locations ?? loaderData.locations;
 
   const handleMarkerClick = (location: Location) => {
     activeLocation.value = location;
+  };
+
+  const handleZoom = (zoom: number) => {
+    const zoomLevelMilesMap = {
+      9: { zoomRadius: 64, zoomPage: 4 },
+      10: { zoomRadius: 54, zoomPage: 3 },
+      11: { zoomRadius: 44, zoomPage: 2 },
+      12: { zoomRadius: 34, zoomPage: 2 },
+      13: { zoomRadius: 24, zoomPage: 1 },
+      14: { zoomRadius: 14, zoomPage: 1 },
+      15: { zoomRadius: 4, zoomPage: 1 },
+    };
+
+    const { zoomRadius, zoomPage } = zoomLevelMilesMap[Math.floor(zoom)];
+
+    if (radius.value !== zoomRadius || page.value !== zoomPage) {
+      radius.value = zoomRadius;
+      page.value = zoomPage;
+      showSearchThisArea.value = true;
+    }
   };
 
   return (
@@ -51,10 +78,32 @@ export function PlacesMapPageContent() {
       <PlacesMap
         latitude={loaderData.latitude}
         longitude={loaderData.longitude}
-        locations={loaderData.locations}
+        locations={locations}
         activeLocationId={activeLocation.value?.id}
         onMarkerClick={handleMarkerClick}
+        onZoom={handleZoom}
       >
+        {showSearchThisArea.value && (
+          <fetcher.Form method="GET" action={`/${postcode}/places`}>
+            <input type="hidden" name="page" value={page.value} />
+            <input type="hidden" name="radius" value={radius.value} />
+            {loaderData.materialId && (
+              <input
+                type="hidden"
+                name="materialId"
+                value={loaderData.materialId}
+              />
+            )}
+            <locator-fab position="top">
+              <diamond-button>
+                <button type="submit" disabled={fetcher.state !== 'idle'}>
+                  <locator-icon icon="sync" />
+                  {t('places.map.searchThisArea')}
+                </button>
+              </diamond-button>
+            </locator-fab>
+          </fetcher.Form>
+        )}
         {activeLocation.value ? (
           <locator-places-map-card>
             <diamond-grid>

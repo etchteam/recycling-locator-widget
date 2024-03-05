@@ -95,7 +95,10 @@ export default class PlacesMap extends Component<PlacesMapProps> {
       const currentZoom = this.currentZoom;
       const newZoom = this.MapInstance.getZoom();
 
-      if (newZoom !== currentZoom) {
+      if (!currentZoom) {
+        // The first call only sets the initial zoom level
+        this.currentZoom = newZoom;
+      } else if (newZoom !== currentZoom) {
         this.currentZoom = newZoom;
         this.props?.onZoom?.(newZoom);
       }

@@ -242,6 +242,9 @@
         "popular": "Popular"
       }
     },
+    "map": {
+      "searchThisArea": "Search this area"
+    },
     "error": {
       "message": "An unexpected error occurred while searching for places to recycle in this area."
     }

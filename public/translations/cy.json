@@ -242,6 +242,9 @@
         "popular": "Poblogaidd"
       }
     },
+    "map": {
+      "searchThisArea": "Chwiliwch yr ardal hon"
+    },
     "error": {
       "message": "Digwyddodd gwall annisgwyl wrth chwilio am leoedd i ailgylchu yn yr ardal hon."
     }

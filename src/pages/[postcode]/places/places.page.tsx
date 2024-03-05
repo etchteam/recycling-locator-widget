@@ -100,7 +100,7 @@ function Places() {
             small-tablet="6"
             large-tablet="4"
           >
-            <fetcher.Form method="GET">
+            <fetcher.Form method="GET" action={`/${postcode}/places`}>
               <input type="hidden" name="page" value={currentPage + 1} />
               {loaderData.materialId && (
                 <input

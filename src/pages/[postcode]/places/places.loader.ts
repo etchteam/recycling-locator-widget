@@ -23,11 +23,12 @@ async function getData({
   const postcode = params.postcode;
   const url = new URL(request.url);
   const page = Number(url.searchParams.get('page') ?? 1);
+  const radius = Number(url.searchParams.get('radius') ?? 25);
   const materialId = url.searchParams.get('materialId');
   const limit = page * 30;
   const query = compact([
     `limit=${limit}`,
-    'radius=25',
+    `radius=${radius}`,
     materialId ? `materials=${materialId}` : undefined,
   ]).join('&');
 
