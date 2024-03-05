@@ -55,7 +55,7 @@ export function PlacesMapPageContent() {
         onMarkerClick={handleMarkerClick}
       >
         {activeLocation.value ? (
-          <diamond-card>
+          <locator-places-map-card>
             <diamond-grid>
               <diamond-grid-item grow shrink>
                 <Place location={activeLocation.value} withAddress={false} />
@@ -96,7 +96,7 @@ export function PlacesMapPageContent() {
                 </diamond-button>
               </diamond-grid-item>
             </diamond-grid>
-          </diamond-card>
+          </locator-places-map-card>
         ) : (
           <diamond-enter type="fade" delay={0.5}>
             <locator-fab>

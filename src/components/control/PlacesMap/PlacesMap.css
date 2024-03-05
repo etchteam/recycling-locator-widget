@@ -14,10 +14,24 @@ locator-places-map {
   inset: 0;
   position: absolute;
 
+  /* Hide the unstyled zoom controls */
+  .H_zoom {
+    display: none;
+  }
+
   .locator-places-map__container {
     display: block;
     height: 100%;
     width: 100%;
+  }
+
+  locator-places-map-card,
+  .locator-places-map__marker {
+    animation-duration: var(--diamond-transition-enter-duration);
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-name: fade;
+    animation-timing-function: var(--diamond-transition-enter-timing);
   }
 
   .locator-places-map__marker {
@@ -38,8 +52,24 @@ locator-places-map {
     opacity: 0;
   }
 
-  /* Hide the unstyled zoom controls */
-  .H_zoom {
-    display: none;
+  locator-places-map-card {
+    display: block;
+    padding: var(--diamond-spacing);
+  }
+
+  /* small tablet */
+  @container (width >= 600px) {
+    locator-places-map-card {
+      background: var(--diamond-theme-background);
+      bottom: var(--diamond-spacing);
+      box-shadow: var(--diamond-shadow);
+      left: 50%;
+      margin-left: calc(var(--wrap-max-width) / -2);
+      max-width: var(--wrap-max-width);
+      padding-inline: var(--diamond-spacing);
+      position: absolute;
+      width: 100%;
+      z-index: 122; /* 121 markers + 1 */
+    }
   }
 }
