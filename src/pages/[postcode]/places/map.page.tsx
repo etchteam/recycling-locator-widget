@@ -52,6 +52,7 @@ export function PlacesMapPageContent() {
         latitude={loaderData.latitude}
         longitude={loaderData.longitude}
         locations={loaderData.locations}
+        activeLocationId={activeLocation.value?.id}
         onMarkerClick={handleMarkerClick}
       >
         {activeLocation.value ? (

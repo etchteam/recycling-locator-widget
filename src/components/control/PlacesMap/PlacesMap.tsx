@@ -15,6 +15,8 @@ export interface PlacesMapProps {
   readonly longitude: number;
   /** Locations to turn into place markers */
   readonly locations: Location[];
+  /** The location that's currently selected */
+  readonly activeLocationId: number;
   /** Static readonly map with no controls */
   readonly static?: boolean;
   /** Children will be rendered at the bottom of the map */
@@ -101,6 +103,7 @@ export default class PlacesMap extends Component<PlacesMapProps> {
   }
 
   addMarker(location: Location) {
+    const isActive = location.id === this.props.activeLocationId;
     const handleClick = () => {
       this.props.onMarkerClick?.(location);
     };
@@ -110,7 +113,8 @@ export default class PlacesMap extends Component<PlacesMapProps> {
       <button
         type="button"
         aria-label="${location.name}"
-        class="locator-places-map__marker"
+        data-location-id="${location.id}"
+        class="locator-places-map__marker${isActive ? ' locator-places-map__marker--active' : ''}"
       >
         ${MapMarker}
       <button>
@@ -143,6 +147,21 @@ export default class PlacesMap extends Component<PlacesMapProps> {
     });
   }
 
+  selectActiveMarker() {
+    const mapElement = this.elementRef.current;
+    const locationId = this.props.activeLocationId;
+    const activeClass = 'locator-places-map__marker--active';
+    console.log('Selecting active marker', {
+      locationId,
+      oldActive: mapElement.querySelector(`.${activeClass}`),
+      newActive: mapElement.querySelector(`[data-location-id="${locationId}"]`),
+    });
+    mapElement.querySelector(`.${activeClass}`)?.classList.remove(activeClass);
+    mapElement
+      .querySelector(`[data-location-id="${locationId}"]`)
+      ?.classList.add(activeClass);
+  }
+
   async componentDidMount() {
     await this.initMap();
     this.addPlaceMarkers();
@@ -155,6 +174,13 @@ export default class PlacesMap extends Component<PlacesMapProps> {
   componentWillUnmount() {
     this.MapInstance.dispose();
     window.removeEventListener('resize', this.resizeMap);
+  }
+
+  componentDidUpdate(previousProps: Readonly<PlacesMapProps>) {
+    if (previousProps.activeLocationId !== this.props.activeLocationId) {
+      console.log('Updating active marker', this.props.activeLocationId);
+      this.selectActiveMarker();
+    }
   }
 
   render() {

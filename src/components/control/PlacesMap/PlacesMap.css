@@ -37,11 +37,6 @@ locator-places-map {
   .locator-places-map__marker {
     /* Load markers in after the initial map render */
     animation-delay: 1s;
-    animation-duration: var(--diamond-transition-enter-duration);
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-name: fade;
-    animation-timing-function: var(--diamond-transition-enter-timing);
 
     /* Ninja button */
     appearance: none;
@@ -50,6 +45,27 @@ locator-places-map {
     cursor: pointer;
     display: block;
     opacity: 0;
+    padding: 0;
+  }
+
+  .locator-places-map__marker-pin {
+    fill: var(--color-primary);
+    stroke: var(--color-white);
+  }
+
+  .locator-places-map__marker-pin-active {
+    display: none;
+  }
+
+  .locator-places-map__marker--active {
+    .locator-places-map__marker-pin {
+      fill: var(--color-white);
+      stroke: var(--color-primary);
+    }
+
+    .locator-places-map__marker-pin-active {
+      display: block;
+    }
   }
 
   locator-places-map-card {
@@ -69,7 +85,7 @@ locator-places-map {
       padding-inline: var(--diamond-spacing);
       position: absolute;
       width: 100%;
-      z-index: 122; /* 121 markers + 1 */
+      z-index: 123; /* 121 markers + 2 */
     }
   }
 }
