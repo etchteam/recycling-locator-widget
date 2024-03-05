@@ -1,5 +1,5 @@
 import { useSignal } from '@preact/signals';
-import { Suspense } from 'preact/compat';
+import { Suspense, useEffect } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
 import {
   Await,
@@ -9,6 +9,7 @@ import {
   useFetcher,
   useParams,
   useRouteLoaderData,
+  useSearchParams,
 } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/control/Button/Button';
@@ -20,6 +21,7 @@ import '@/components/content/Icon/Icon';
 import '@/components/control/Fab/Fab';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import Place from '@/components/template/Place/Place';
+import PostCodeResolver from '@/lib/PostcodeResolver';
 import directions from '@/lib/directions';
 import { Location } from '@/types/locatorApi';
 
@@ -42,6 +44,8 @@ export function PlacesMapPageContent() {
   const { postcode } = useParams();
   const { t } = useTranslation();
   const loaderData = useAsyncValue() as PlacesLoaderResponse;
+  const [searchParams] = useSearchParams();
+  const defaultActiveLocationId = searchParams.get('activeLocation');
   const activeLocation = useSignal<Location | null>(null);
   const showSearchThisArea = useSignal(false);
   const page = useSignal(1);
@@ -55,6 +59,22 @@ export function PlacesMapPageContent() {
   const latitude = fetcher.data?.data.latitude ?? loaderData.latitude;
   const longitude = fetcher.data?.data.longitude ?? loaderData.longitude;
   const locations = fetcher.data?.data.locations ?? loaderData.locations;
+  const activeLocationPostcode = PostCodeResolver.extractPostcodeFromString(
+    activeLocation.value?.address,
+  );
+  const activeLocationName = encodeURIComponent(activeLocation.value?.name);
+
+  useEffect(() => {
+    if (defaultActiveLocationId) {
+      const location = locations.find(
+        (location) => location.id === Number(defaultActiveLocationId),
+      );
+
+      if (location) {
+        activeLocation.value = location;
+      }
+    }
+  }, [defaultActiveLocationId]);
 
   const handleMarkerClick = (location: Location) => {
     activeLocation.value = location;
@@ -156,7 +176,9 @@ export function PlacesMapPageContent() {
             <diamond-grid>
               <diamond-grid-item small-mobile="6">
                 <diamond-button width="full-width" variant="primary" size="sm">
-                  <Link to={`/${postcode}/places/${activeLocation.value.id}`}>
+                  <Link
+                    to={`/${postcode}/places/${activeLocationName}/${activeLocationPostcode}`}
+                  >
                     {t('actions.viewDetails')}
                   </Link>
                 </diamond-button>

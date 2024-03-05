@@ -73,6 +73,12 @@ locator-layout {
 
   &::part(aside) {
     grid-area: aside;
+    position: relative;
+  }
+
+  [slot='layout-aside'] locator-places-map {
+    /* Maps need to take up a minimum amount of space when placed in the layout aside */
+    min-height: 30rem;
   }
 
   @container (width >= 768px) {

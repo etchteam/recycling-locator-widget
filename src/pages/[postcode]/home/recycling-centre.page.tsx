@@ -8,6 +8,7 @@ import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import Place from '@/components/template/Place/Place';
+import PostCodeResolver from '@/lib/PostcodeResolver';
 
 import { HomeRecyclingCentreLoaderResponse } from './recycling-centre.loader';
 
@@ -44,17 +45,26 @@ export default function HomeRecyclingCentrePage() {
               </locator-icon-text>
             </diamond-card>
 
-            {hwrcLocations.map((location) => (
-              <Link to={`/${postcode}/places/${location.id}`} key={location.id}>
-                <diamond-card
-                  className="diamond-spacing-bottom-sm"
-                  border
-                  radius
+            {hwrcLocations.map((location) => {
+              const locationPostcode =
+                PostCodeResolver.extractPostcodeFromString(location.address);
+              const locationName = encodeURIComponent(location.name);
+
+              return (
+                <Link
+                  to={`/${postcode}/places/${locationName}/${locationPostcode}`}
+                  key={location.id}
                 >
-                  <Place location={location} />
-                </diamond-card>
-              </Link>
-            ))}
+                  <diamond-card
+                    className="diamond-spacing-bottom-sm"
+                    border
+                    radius
+                  >
+                    <Place location={location} />
+                  </diamond-card>
+                </Link>
+              );
+            })}
           </>
         )}
       </section>

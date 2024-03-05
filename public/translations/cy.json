@@ -248,5 +248,21 @@
     "error": {
       "message": "Digwyddodd gwall annisgwyl wrth chwilio am leoedd i ailgylchu yn yr ardal hon."
     }
+  },
+  "place": {
+    "nav": {
+      "recycle": "Ailgylchu",
+      "details": "Manylion"
+    },
+    "recycle": {
+      "title": "Gwiriwch beth allwch chi ei ailgylchu yn y lle hwn",
+      "search": {
+        "positive": "Oes, gellir ei ailgylchu yn y lle hwn!",
+        "negative": "Na, ni ellir ei ailgylchu yn y lle hwn."
+      }
+    },
+    "details": {
+      "title": "Am y lle hwn"
+    }
   }
 }

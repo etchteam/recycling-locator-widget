@@ -2,6 +2,10 @@ import { RouteObject } from 'react-router-dom';
 
 import PlacesErrorPage from './error.page';
 import PlacesMapPage from './map.page';
+import PlaceDetailsPage from './place/details.page';
+import PlaceLayout from './place/place.layout';
+import placeLoader from './place/place.loader';
+import PlacePage from './place/place.page';
 import PlacesLayout from './places.layout';
 import placesLoader from './places.loader';
 import PlacesPage from './places.page';
@@ -47,6 +51,23 @@ const routes: RouteObject[] = [
         path: 'popular',
         element: <PlacesSearchPopularPage />,
         loader: popularSearchLoader,
+      },
+    ],
+  },
+  {
+    // TODO(WRAP-207): Move to /:postcode/places/:id
+    path: '/:postcode/places/:placeName/:placePostcode',
+    element: <PlaceLayout />,
+    loader: placeLoader,
+    id: 'place',
+    children: [
+      {
+        index: true,
+        element: <PlacePage />,
+      },
+      {
+        path: 'details',
+        element: <PlaceDetailsPage />,
       },
     ],
   },

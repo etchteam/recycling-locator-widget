@@ -204,7 +204,9 @@ export default class PlacesMap extends Component<PlacesMapProps> {
 
   render() {
     return (
-      <locator-places-map>
+      <locator-places-map
+        className={this.props.static ? 'locator-places-map--static' : ''}
+      >
         <div className="locator-places-map__container" ref={this.elementRef} />
         <div className="locator-places-map__children">
           {this.props.children}
