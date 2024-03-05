@@ -31,7 +31,8 @@ export default function PlaceLayout({
 }) {
   const { t } = useTranslation();
   const { postcode, placeName, placePostcode } = useParams();
-  const { location } = useRouteLoaderData('place') as PlaceLoaderResponse;
+  const loaderData = useRouteLoaderData('place') as PlaceLoaderResponse;
+  const location = loaderData?.location;
   const safePlaceName = encodeURIComponent(placeName);
 
   return (
@@ -50,27 +51,29 @@ export default function PlaceLayout({
         </locator-header-title>
       </locator-header>
       <div slot="layout-main">
-        <locator-nav-bar>
-          <nav>
-            <ul>
-              <li>
-                <NavLink
-                  to={`/${postcode}/places/${safePlaceName}/${placePostcode}`}
-                  end
-                >
-                  {t('place.nav.recycle')}
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to={`/${postcode}/places/${safePlaceName}/${placePostcode}/details`}
-                >
-                  {t('place.nav.details')}
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
-        </locator-nav-bar>
+        {location && (
+          <locator-nav-bar>
+            <nav>
+              <ul>
+                <li>
+                  <NavLink
+                    to={`/${postcode}/places/${safePlaceName}/${placePostcode}`}
+                    end
+                  >
+                    {t('place.nav.recycle')}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to={`/${postcode}/places/${safePlaceName}/${placePostcode}/details`}
+                  >
+                    {t('place.nav.details')}
+                  </NavLink>
+                </li>
+              </ul>
+            </nav>
+          </locator-nav-bar>
+        )}
         <diamond-section padding="lg">
           <locator-wrap>
             <Outlet />
@@ -78,42 +81,44 @@ export default function PlaceLayout({
           </locator-wrap>
         </diamond-section>
       </div>
-      <div slot="layout-aside">
-        <PlacesMap
-          latitude={location.latitude}
-          longitude={location.longitude}
-          locations={[location]}
-          activeLocationId={location.id}
-          static
-        >
-          <locator-places-map-card>
-            <diamond-grid>
-              <diamond-grid-item small-mobile="6">
-                <diamond-button width="full-width" size="sm">
-                  <Link
-                    to={`/${postcode}/places/map?lat=${location.latitude}&lng=${location.longitude}&activeLocation=${location.id}`}
-                  >
-                    <locator-icon icon="map" />
-                    {t('actions.showMap')}
-                  </Link>
-                </diamond-button>
-              </diamond-grid-item>
-              <diamond-grid-item small-mobile="6">
-                <diamond-button width="full-width" size="sm">
-                  <a
-                    href={directions(postcode, location.address)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t('actions.directions')}
-                    <locator-icon icon="external" />
-                  </a>
-                </diamond-button>
-              </diamond-grid-item>
-            </diamond-grid>
-          </locator-places-map-card>
-        </PlacesMap>
-      </div>
+      {location && (
+        <div slot="layout-aside">
+          <PlacesMap
+            latitude={location.latitude}
+            longitude={location.longitude}
+            locations={[location]}
+            activeLocationId={location.id}
+            static
+          >
+            <locator-places-map-card>
+              <diamond-grid>
+                <diamond-grid-item small-mobile="6">
+                  <diamond-button width="full-width" size="sm">
+                    <Link
+                      to={`/${postcode}/places/map?lat=${location.latitude}&lng=${location.longitude}&activeLocation=${location.id}`}
+                    >
+                      <locator-icon icon="map" />
+                      {t('actions.showMap')}
+                    </Link>
+                  </diamond-button>
+                </diamond-grid-item>
+                <diamond-grid-item small-mobile="6">
+                  <diamond-button width="full-width" size="sm">
+                    <a
+                      href={directions(postcode, location.address)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {t('actions.directions')}
+                      <locator-icon icon="external" />
+                    </a>
+                  </diamond-button>
+                </diamond-grid-item>
+              </diamond-grid>
+            </locator-places-map-card>
+          </PlacesMap>
+        </div>
+      )}
     </locator-layout>
   );
 }

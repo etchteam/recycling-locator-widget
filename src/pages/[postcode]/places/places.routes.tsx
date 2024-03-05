@@ -3,6 +3,7 @@ import { RouteObject } from 'react-router-dom';
 import PlacesErrorPage from './error.page';
 import PlacesMapPage from './map.page';
 import PlaceDetailsPage from './place/details.page';
+import PlaceErrorPage from './place/error.page';
 import PlaceLayout from './place/place.layout';
 import placeLoader from './place/place.loader';
 import PlacePage from './place/place.page';
@@ -58,6 +59,7 @@ const routes: RouteObject[] = [
     // TODO(WRAP-207): Move to /:postcode/places/:id
     path: '/:postcode/places/:placeName/:placePostcode',
     element: <PlaceLayout />,
+    errorElement: <PlaceErrorPage />,
     loader: placeLoader,
     id: 'place',
     children: [
