@@ -20,8 +20,9 @@ import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/canvas/LoadingCard/LoadingCard';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
-import '@/components/content/PlaceSummary/PlaceSummary';
 import '@/components/control/Fab/Fab';
+import Place from '@/components/template/Place/Place';
+
 import { PlacesLoaderResponse } from './places.loader';
 
 function Loading() {
@@ -59,13 +60,16 @@ function Places() {
   const { postcode } = useParams();
   const { t } = useTranslation();
   const loaderData = useAsyncValue() as PlacesLoaderResponse;
-  const fetcher = useFetcher() as FetcherWithComponents<PlacesLoaderResponse>;
+  const fetcher = useFetcher() as FetcherWithComponents<{
+    data: PlacesLoaderResponse;
+  }>;
 
   // The loader is used initially then the fetcher is used to load more
-  const count = fetcher.data?.locations.length ?? loaderData.locations.length;
-  const allLocations = fetcher.data?.locations ?? loaderData.locations;
-  const showLoadMore = !fetcher.data?.max && !loaderData.max;
-  const currentPage = fetcher.data?.page ?? loaderData.page;
+  const count =
+    fetcher.data?.data.locations?.length ?? loaderData.locations.length;
+  const allLocations = fetcher.data?.data.locations ?? loaderData.locations;
+  const showLoadMore = !fetcher.data?.data.max && !loaderData.max;
+  const currentPage = fetcher.data?.data.page ?? loaderData.page;
 
   return (
     <diamond-enter type="fade">
@@ -83,24 +87,7 @@ function Places() {
                 <li key={`${location.id}`}>
                   <Link to={`/${postcode}/places/${location.id}`}>
                     <diamond-card border radius>
-                      <locator-place-summary>
-                        <h4>{location.name}</h4>
-                        <p>{location.address}</p>
-                        <dl>
-                          <dd>{location.distance}</dd>
-                          <dt>
-                            {t('common.miles', {
-                              count: location.distance,
-                            })}
-                          </dt>
-                          <dd>{location.materials.length}</dd>
-                          <dt>
-                            {t('common.materialsAccepted', {
-                              count: location.materials.length,
-                            })}
-                          </dt>
-                        </dl>
-                      </locator-place-summary>
+                      <Place location={location} />
                     </diamond-card>
                   </Link>
                 </li>
@@ -116,7 +103,7 @@ function Places() {
             small-tablet="6"
             large-tablet="4"
           >
-            <fetcher.Form method="GET">
+            <fetcher.Form method="GET" action={`/${postcode}/places`}>
               <input type="hidden" name="page" value={currentPage + 1} />
               {loaderData.materialId && (
                 <input
@@ -178,14 +165,16 @@ export default function PlacesPage() {
           </locator-tip-content>
         </locator-tip>
       </section>
-      <locator-fab>
-        <diamond-button size="sm" variant="primary">
-          <Link to={`/${postcode}/places/map`}>
-            <locator-icon icon="map"></locator-icon>
-            {t('actions.showMap')}
-          </Link>
-        </diamond-button>
-      </locator-fab>
+      <diamond-enter type="fade" delay={0.25}>
+        <locator-fab>
+          <diamond-button size="sm" variant="primary">
+            <Link to={`/${postcode}/places/map`}>
+              <locator-icon icon="map"></locator-icon>
+              {t('actions.showMap')}
+            </Link>
+          </diamond-button>
+        </locator-fab>
+      </diamond-enter>
     </>
   );
 }

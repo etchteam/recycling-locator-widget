@@ -1,0 +1,224 @@
+import * as Sentry from '@sentry/browser';
+import { Component, ComponentChildren, createRef } from 'preact';
+import '@etchteam/diamond-ui/control/Input/Input';
+
+import '@/components/content/Icon/Icon';
+import config from '@/config';
+import { CustomElement } from '@/types/customElement';
+import { Location } from '@/types/locatorApi';
+
+import MapMarker from './marker.svg?raw';
+
+export interface PlacesMapProps {
+  /** Default starting latitude */
+  readonly latitude: number;
+  /** Default starting longitude */
+  readonly longitude: number;
+  /** Locations to turn into place markers */
+  readonly locations: Location[];
+  /** The location that's currently selected */
+  readonly activeLocationId?: number;
+  /** Static readonly map with no controls */
+  readonly static?: boolean;
+  /** Children will be rendered at the bottom of the map */
+  readonly children?: ComponentChildren;
+  /** Event handler called when the zoom level changes */
+  readonly onZoom?: (zoom: number) => void;
+  /** Event handler called when the user drags/pans the map */
+  readonly onDrag?: (geoPoint: H.geo.Point) => void;
+  /** Event handler called when the user clicks a place marker */
+  readonly onMarkerClick?: (location: Location) => void;
+}
+
+/**
+ * Render a map with optional interactivity
+ *
+ * This is a Preact component wrapping a custom element
+ * - Preact component is used for prop flexibility, it allows the location data to be passed in
+ * - The custom element is used for styling only
+ */
+export default class PlacesMap extends Component<PlacesMapProps> {
+  apiKey = config.mapsPlacesKey;
+  HereMaps: typeof H;
+  MapInstance: H.Map;
+  MarkerGroup: H.map.Group;
+  elementRef = createRef<HTMLDivElement>();
+  currentZoom: number;
+
+  resizeMap() {
+    this.MapInstance?.getViewPort().resize();
+  }
+
+  async initMap() {
+    const { default: HereMaps } = await import(
+      // @ts-expect-error TS can't find the maps types
+      '@here/maps-api-for-javascript/bin/mapsjs.bundle'
+    );
+    const platform = new H.service.Platform({
+      apikey: this.apiKey,
+    });
+
+    const defaultLayers = platform.createDefaultLayers() as any;
+    const baseLayer = defaultLayers.vector.normal.map as H.map.layer.Layer;
+    // Limit the zoom level so people never get a silly radius
+    baseLayer.setMin(9);
+    baseLayer.setMax(15);
+
+    this.HereMaps = HereMaps;
+    this.MapInstance = new H.Map(this.elementRef.current, baseLayer, {
+      zoom: 5,
+      center: { lat: this.props.latitude, lng: this.props.longitude },
+      pixelRatio: window.devicePixelRatio ?? 1,
+    });
+    this.MarkerGroup = new this.HereMaps.map.Group();
+    this.MapInstance.addObject(this.MarkerGroup);
+
+    window.addEventListener('resize', this.resizeMap.bind(this));
+  }
+
+  addControls() {
+    try {
+      // Enable zooming and dragging
+      new this.HereMaps.mapevents.Behavior(
+        new this.HereMaps.mapevents.MapEvents(this.MapInstance),
+      );
+
+      // Add the zoom control
+      new this.HereMaps.ui.UI(this.MapInstance).addControl(
+        'zoom',
+        new this.HereMaps.ui.ZoomControl({
+          alignment: this.HereMaps.ui.LayoutAlignment.RIGHT_BOTTOM,
+        }),
+      );
+
+      // Setup event listeners for zooming and dragging
+      this.MapInstance.addEventListener('drag', () => {
+        this.props?.onDrag?.(this.MapInstance.getCenter());
+      });
+
+      this.MapInstance.addEventListener('mapviewchangeend', () => {
+        const currentZoom = this.currentZoom;
+        const newZoom = this.MapInstance.getZoom();
+
+        if (!currentZoom) {
+          // The first call only sets the initial zoom level
+          this.currentZoom = newZoom;
+        } else if (newZoom !== currentZoom) {
+          this.currentZoom = newZoom;
+          this.props?.onZoom?.(newZoom);
+        }
+      });
+    } catch (error) {
+      // Controls are an enhancement, log the error instead of reacting to it
+      Sentry.captureException(error, {
+        tags: { component: 'PlacesMap control creation' },
+      });
+    }
+  }
+
+  addMarker(location: Location) {
+    const isActive = location.id === this.props.activeLocationId;
+    const handleClick = () => {
+      this.props.onMarkerClick?.(location);
+    };
+
+    const marker = new this.HereMaps.map.DomIcon(
+      `
+      <button
+        type="button"
+        aria-label="${location.name}"
+        data-location-id="${location.id}"
+        class="locator-places-map__marker${isActive ? ' locator-places-map__marker--active' : ''}"
+      >
+        ${MapMarker}
+      <button>
+    `,
+      {
+        onAttach(element) {
+          element.addEventListener('click', handleClick);
+        },
+        onDetach(element) {
+          element.removeEventListener('click', handleClick);
+        },
+      },
+    );
+
+    const coords = { lat: location.latitude, lng: location.longitude };
+
+    return new H.map.DomMarker(coords, { data: location, icon: marker });
+  }
+
+  addPlaceMarkers() {
+    // Remove any existing markers
+    this.MarkerGroup.removeAll();
+
+    // Create the markers
+    this.MarkerGroup.addObjects(
+      this.props.locations.map((location) => this.addMarker(location)),
+    );
+
+    // Center the map on the markers
+    this.MapInstance.getViewModel().setLookAtData({
+      bounds: this.MarkerGroup.getBoundingBox(),
+    });
+  }
+
+  selectActiveMarker() {
+    const mapElement = this.elementRef.current;
+    const locationId = this.props.activeLocationId;
+    const activeClass = 'locator-places-map__marker--active';
+
+    mapElement.querySelector(`.${activeClass}`)?.classList.remove(activeClass);
+    mapElement
+      .querySelector(`[data-location-id="${locationId}"]`)
+      ?.classList.add(activeClass);
+  }
+
+  async componentDidMount() {
+    await this.initMap();
+    this.addPlaceMarkers();
+
+    if (!this.props.static) {
+      this.addControls();
+    }
+  }
+
+  componentWillUnmount() {
+    this.MapInstance.dispose();
+    window.removeEventListener('resize', this.resizeMap);
+  }
+
+  componentDidUpdate(previousProps: Readonly<PlacesMapProps>) {
+    if (previousProps.activeLocationId !== this.props.activeLocationId) {
+      this.selectActiveMarker();
+    }
+
+    if (
+      previousProps.locations.length !== this.props.locations.length ||
+      previousProps.latitude !== this.props.latitude ||
+      previousProps.longitude !== this.props.longitude
+    ) {
+      this.addPlaceMarkers();
+    }
+  }
+
+  render() {
+    return (
+      <locator-places-map>
+        <div className="locator-places-map__container" ref={this.elementRef} />
+        <div className="locator-places-map__children">
+          {this.props.children}
+        </div>
+      </locator-places-map>
+    );
+  }
+}
+
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      'locator-places-map': CustomElement;
+      'locator-places-map-card': CustomElement;
+    }
+  }
+}

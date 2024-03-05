@@ -2,9 +2,12 @@ import compact from 'lodash/compact';
 import { LoaderFunctionArgs, defer } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
+import PostCodeResolver from '@/lib/PostcodeResolver';
 import { Location, LocationsResponse } from '@/types/locatorApi';
 
 export interface PlacesLoaderResponse {
+  latitude: number;
+  longitude: number;
   locations: Location[];
   /** Max is true if no more results can be loaded */
   max: boolean;
@@ -18,14 +21,22 @@ async function getData({
   request,
   params,
 }: LoaderFunctionArgs): Promise<PlacesLoaderResponse> {
-  const postcode = params.postcode;
   const url = new URL(request.url);
   const page = Number(url.searchParams.get('page') ?? 1);
+  const radius = Number(url.searchParams.get('radius') ?? 25);
   const materialId = url.searchParams.get('materialId');
+  const lat = url.searchParams.get('lat');
+  const lng = url.searchParams.get('lng');
   const limit = page * 30;
+
+  const postcode =
+    lat && lng
+      ? await PostCodeResolver.fromLatLng(Number(lat), Number(lng))
+      : params.postcode;
+
   const query = compact([
     `limit=${limit}`,
-    'radius=25',
+    `radius=${radius}`,
     materialId ? `materials=${materialId}` : undefined,
   ]).join('&');
 
@@ -35,6 +46,8 @@ async function getData({
   const locationsCount = locations.items.length;
 
   return {
+    latitude: locations.latitude,
+    longitude: locations.longitude,
     locations: locations.items,
     max: locationsCount < limit || limit === 120,
     page,

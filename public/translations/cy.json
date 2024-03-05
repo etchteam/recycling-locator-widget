@@ -15,7 +15,10 @@
     "tryAgain": "Ceisio eto",
     "listPlaces": "Rhestru lleoedd",
     "showMap": "Dangos map",
-    "loadMore": "Llwytho mwy"
+    "showList": "Dangos rhestr",
+    "loadMore": "Llwytho mwy",
+    "viewDetails": "Gweld manylion",
+    "directions": "Cyfarwyddiadau"
   },
   "components": {
     "locationInput": {
@@ -238,6 +241,9 @@
         "search": "Chwiliwch",
         "popular": "Poblogaidd"
       }
+    },
+    "map": {
+      "searchThisArea": "Chwiliwch yr ardal hon"
     },
     "error": {
       "message": "Digwyddodd gwall annisgwyl wrth chwilio am leoedd i ailgylchu yn yr ardal hon."

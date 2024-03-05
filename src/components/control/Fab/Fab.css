@@ -16,6 +16,7 @@ locator-fab {
 
   &[position='top'] {
     bottom: unset;
+    position: absolute;
     top: var(--diamond-spacing);
   }
 }

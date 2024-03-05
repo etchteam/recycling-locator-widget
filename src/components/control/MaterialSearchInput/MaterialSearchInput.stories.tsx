@@ -3,6 +3,7 @@ import { StoryObj } from '@storybook/preact';
 import MaterialSearchInputComponent from './MaterialSearchInput';
 
 const meta = {
+  title: 'Components/Control/MaterialSearchInput',
   component: MaterialSearchInputComponent,
 };
 

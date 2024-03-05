@@ -23,7 +23,8 @@ export interface IconAttributes {
     | 'place'
     | 'external'
     | 'expand'
-    | 'list';
+    | 'list'
+    | 'sync';
   readonly color?: 'primary' | 'muted' | 'positive' | 'negative';
   readonly label?: string;
 }

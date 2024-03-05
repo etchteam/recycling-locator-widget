@@ -15,7 +15,10 @@
     "tryAgain": "Try again",
     "listPlaces": "List places",
     "showMap": "Show map",
-    "loadMore": "Load more"
+    "showList": "Show list",
+    "loadMore": "Load more",
+    "viewDetails": "View details",
+    "directions": "Directions"
   },
   "components": {
     "locationInput": {
@@ -238,6 +241,9 @@
         "search": "Search",
         "popular": "Popular"
       }
+    },
+    "map": {
+      "searchThisArea": "Search this area"
     },
     "error": {
       "message": "An unexpected error occurred while searching for places to recycle in this area."
