@@ -1,0 +1,35 @@
+---
+  name: 🚀 Release
+  on:
+    push:
+      branches:
+      - main
+  env:
+    HUSKY: 0
+  jobs:
+    publish:
+      name: Publish
+      runs-on: ubuntu-latest
+      if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
+      steps:
+        - uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+            persist-credentials: false
+        - uses: actions/setup-node@v4
+          with:
+            node-version-file: .nvmrc
+            cache: npm
+        - run: npm ci
+        - name: Build
+          run: npm run build
+          env:
+            VITE_SENTRY_DSN: 'https://82f34e202c124c83b209dc194d8f971b@o1156292.ingest.us.sentry.io/6402561'
+            VITE_HERE_MAPS_PLACES_KEY: ${{ vars.VITE_HERE_MAPS_PLACES_KEY }}
+            VITE_RECYCLING_LOCATOR_API: https://rl-v2.wrap.etch.tech/
+            VITE_PUBLIC_PATH: https://unpkg.com/@etchteam/recycling-locator/dist/
+        - name: Publish
+          env:
+            GH_TOKEN: ${{ secrets.GH_TOKEN }}
+            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          run: npm run release

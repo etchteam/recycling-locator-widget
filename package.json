@@ -8,6 +8,13 @@
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
   "typings": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etchteam/recycling-locator.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist"
   ],
@@ -47,6 +54,12 @@
     "@playwright/test": "^1.41.2",
     "@preact/preset-vite": "^2.8.1",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^11.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^9.2.6",
+    "@semantic-release/npm": "^11.0.3",
+    "@semantic-release/release-notes-generator": "^12.1.0",
     "@sentry/vite-plugin": "^2.14.2",
     "@storybook/addon-essentials": "^7.6.13",
     "@storybook/blocks": "^7.6.10",
