@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
     },
 
     server: {
-      port: 3000,
+      port: 3020,
     },
 
     resolve: {
@@ -32,7 +32,7 @@ export default defineConfig(({ mode }) => {
     test: {
       testTimeout: env.PWDEBUG ? 0 : 5000,
       fileParallelism: false,
-      environment: 'happy-dom',
+      environmentMatchGlobs: [['tests/unit/**', 'happy-dom']],
     },
 
     build: {

@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import type { Browser, BrowserContext } from 'playwright';
-import { preview } from 'vite';
-import type { PreviewServer } from 'vite';
+import { createServer } from 'vite';
+import type { ViteDevServer } from 'vite';
 import { afterAll, afterEach, beforeAll, beforeEach, describe } from 'vitest';
 
 import en from '../../public/translations/en.json';
@@ -14,13 +14,14 @@ export default function describeEndToEndTest(
   callback: () => void,
 ) {
   describe(description, () => {
-    let server: PreviewServer;
+    let server: ViteDevServer;
     let browser: Browser;
     let browserContext: BrowserContext;
 
     beforeAll(async () => {
       await provideI18n();
-      server = await preview({ preview: { port: PORT } });
+      server = await createServer({ server: { port: PORT } });
+      await server.listen();
       browser = await chromium.launch({ headless: true });
       browserContext = await browser.newContext();
     });
