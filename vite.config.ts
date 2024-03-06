@@ -1,6 +1,7 @@
 import path from 'node:path';
 
 import { preact } from '@preact/preset-vite';
+import typescript from '@rollup/plugin-typescript';
 import { sentryVitePlugin } from '@sentry/vite-plugin';
 import { defineConfig, loadEnv, UserConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
@@ -12,8 +13,12 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   const config: UserConfig = {
+    define: {
+      'process.env': env,
+    },
+
     server: {
-      port: 3000,
+      port: 3020,
     },
 
     resolve: {
@@ -27,13 +32,32 @@ export default defineConfig(({ mode }) => {
     test: {
       testTimeout: env.PWDEBUG ? 0 : 5000,
       fileParallelism: false,
-      environment: 'happy-dom',
-    },
-
-    build: {
-      sourcemap: true,
+      environmentMatchGlobs: [['tests/unit/**', 'happy-dom']],
     },
   };
+
+  if (!env.TEST) {
+    config.build = {
+      sourcemap: true,
+      manifest: true,
+      minify: true,
+      reportCompressedSize: true,
+      lib: {
+        entry: path.resolve(__dirname, 'src/index.tsx'),
+        fileName: 'index',
+        formats: ['es', 'cjs'],
+      },
+      rollupOptions: {
+        plugins: [
+          typescript({
+            sourceMap: false,
+            declaration: true,
+            outDir: 'dist',
+          }),
+        ] as any[],
+      },
+    };
+  }
 
   if (mode === 'production' && env.VITE_SENTRY_DSN) {
     config.plugins.push(

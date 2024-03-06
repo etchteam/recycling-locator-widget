@@ -70,6 +70,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
+          TEST: true
           VITE_HERE_MAPS_PLACES_KEY: ${{ vars.VITE_HERE_MAPS_PLACES_KEY }}
       - name: Install Playwright
         run: npx playwright install --with-deps chromium

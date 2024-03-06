@@ -12,6 +12,7 @@ import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
+import config from '@/config';
 
 export default function MaterialLayout() {
   const { t } = useTranslation();
@@ -52,7 +53,7 @@ export default function MaterialLayout() {
       <locator-tip slot="layout-aside" text-align="center">
         {/* TODO(WRAP-232): swap this out for the proper tip once we have content */}
         <locator-wrap>
-          <img src="/images/recycling-technology.webp" alt="" />
+          <img src={`${config.imagePath}recycling-technology.webp`} alt="" />
           <p className="diamond-text-weight-bold">Hints and tips</p>
           <h2>How to check if your electricals can be recycled</h2>
           <p>

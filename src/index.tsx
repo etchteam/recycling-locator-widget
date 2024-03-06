@@ -1,5 +1,6 @@
 import register from 'preact-custom-element';
 
+import config from './config';
 import Entrypoint from './pages/entrypoint';
 import { CustomElement } from './types/customElement';
 import { Locale } from './types/locale';
@@ -42,7 +43,7 @@ export default function RecyclingLocator({
 }: RecyclingLocatorAttributes) {
   return (
     <>
-      <link rel="stylesheet" href="/styles.css" />
+      <link rel="stylesheet" href={`${config.publicPath}styles.css`} />
       <article className={`recycling-locator-variant-${variant}`}>
         <Entrypoint
           locale={locale}

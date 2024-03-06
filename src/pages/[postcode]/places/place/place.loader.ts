@@ -12,7 +12,7 @@ export default async function placeLoader({ params }: LoaderFunctionArgs) {
   const location = await LocatorApi.get<Location>(
     `location/${params.placeName}/${params.placePostcode}`,
   );
-  throw new Error('Not implemented');
+
   return {
     location,
   };
