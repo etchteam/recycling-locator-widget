@@ -2,6 +2,7 @@ import autoprefixer from 'autoprefixer';
 import modifySelectors from 'modify-selectors';
 import inlineImports from 'postcss-import';
 import importGlob from 'postcss-import-ext-glob';
+import minify from 'postcss-minify';
 
 const config = {
   plugins: [
@@ -19,6 +20,7 @@ const config = {
         },
       ],
     }),
+    minify,
   ],
 };
 
