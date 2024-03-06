@@ -34,8 +34,10 @@ export default defineConfig(({ mode }) => {
       fileParallelism: false,
       environmentMatchGlobs: [['tests/unit/**', 'happy-dom']],
     },
+  };
 
-    build: {
+  if (!env.TEST) {
+    config.build = {
       sourcemap: true,
       manifest: true,
       minify: true,
@@ -54,8 +56,8 @@ export default defineConfig(({ mode }) => {
           }),
         ] as any[],
       },
-    },
-  };
+    };
+  }
 
   if (mode === 'production' && env.VITE_SENTRY_DSN) {
     config.plugins.push(
