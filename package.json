@@ -6,7 +6,7 @@
   "author": "Etch <hey@etch.co>",
   "license": "MIT",
   "main": "./dist/index.cjs.js",
-  "module": "./dist/index.es.js",
+  "module": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "repository": {
     "type": "git",
