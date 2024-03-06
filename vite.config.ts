@@ -1,6 +1,7 @@
 import path from 'node:path';
 
 import { preact } from '@preact/preset-vite';
+import typescript from '@rollup/plugin-typescript';
 import { sentryVitePlugin } from '@sentry/vite-plugin';
 import { defineConfig, loadEnv, UserConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
@@ -12,6 +13,10 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   const config: UserConfig = {
+    define: {
+      'process.env': env,
+    },
+
     server: {
       port: 3000,
     },
@@ -32,6 +37,23 @@ export default defineConfig(({ mode }) => {
 
     build: {
       sourcemap: true,
+      manifest: true,
+      minify: true,
+      reportCompressedSize: true,
+      lib: {
+        entry: path.resolve(__dirname, 'src/index.tsx'),
+        fileName: 'index',
+        formats: ['es', 'cjs'],
+      },
+      rollupOptions: {
+        plugins: [
+          typescript({
+            sourceMap: false,
+            declaration: true,
+            outDir: 'dist',
+          }),
+        ] as any[],
+      },
     },
   };
 

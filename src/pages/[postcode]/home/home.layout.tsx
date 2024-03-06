@@ -14,6 +14,7 @@ import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
 
+import config from '@/config';
 import tArray from '@/lib/tArray';
 
 import { useHomeRecyclingLoaderData } from './home.loader';
@@ -76,7 +77,7 @@ export default function HomeRecyclingLayout({
       </div>
       <locator-tip slot="layout-aside">
         <locator-wrap>
-          <img src="/images/recycling-technology.webp" alt="" />
+          <img src={`${config.imagePath}recycling-technology.webp`} alt="" />
           <p>{t('homeRecycling.aside.paragraph')}</p>
           <ul className="diamond-spacing-bottom-md">
             {tArray('homeRecycling.aside.list').map((item) => (

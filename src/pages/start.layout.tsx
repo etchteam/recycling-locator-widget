@@ -10,6 +10,7 @@ import '@/components/content/Logo/Logo';
 import '@/components/content/Icon/Icon';
 import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
+import config from '@/config';
 import tArray from '@/lib/tArray';
 
 function About() {
@@ -61,7 +62,7 @@ export function DefaultAside() {
             <li key={item}>{item}</li>
           ))}
         </ul>
-        <img src="/images/recycling-technology.webp" alt="" />
+        <img src={`${config.imagePath}recycling-technology.webp`} alt="" />
       </locator-wrap>
     </locator-tip>
   );

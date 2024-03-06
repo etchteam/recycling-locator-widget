@@ -1,10 +1,16 @@
 {
-  "name": "recycling-locator",
+  "name": "@etchteam/recycling-locator",
   "version": "0.0.0",
   "description": "Find places to recycle, refill or reuse items.",
   "type": "module",
   "author": "Etch <hey@etch.co>",
   "license": "MIT",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "run-p start:css start:vite",
     "start:css": "npm run build:css -- --watch",
@@ -41,6 +47,7 @@
     "@etchteam/stylelint-config": "^1.5.0",
     "@playwright/test": "^1.41.2",
     "@preact/preset-vite": "^2.8.1",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@storybook/addon-essentials": "^7.6.13",
     "@storybook/blocks": "^7.6.10",
     "@storybook/preact": "^7.6.11",
@@ -66,9 +73,8 @@
     "stylelint": "^15.11.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
-    "vite": "^5.0.12",
+    "vite": "^5.1.5",
     "vite-plugin-svgr": "^4.2.0",
-    "vitest": "^1.2.2",
-    "wdio-vite-service": "^1.0.6"
+    "vitest": "^1.2.2"
   }
 }
