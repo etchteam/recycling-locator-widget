@@ -24,7 +24,7 @@
     "start:vite": "vite",
     "build": "npm run build:css && vite build",
     "build:css": "postcss src/styles/base.css -o public/styles.css",
-    "preview": "vite preview",
+    "release": "semantic-release",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx,yml,yaml,json}' && stylelint 'src/**/*.{css,scss}'",
     "storybook": "run-p start:css storybook:start",
     "storybook:start": "storybook dev -p 6006",
