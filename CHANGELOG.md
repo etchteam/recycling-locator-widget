@@ -1,3 +1,11 @@
+## [1.1.0](https://github.com/etchteam/recycling-locator/compare/v1.0.0...v1.1.0) (2024-03-08)
+
+
+### Features
+
+* deploy to github pages ([ffdefea](https://github.com/etchteam/recycling-locator/commit/ffdefea9fd47d0e13b940a301e10be7217e5fb5c))
+* happy linter ([3726e7a](https://github.com/etchteam/recycling-locator/commit/3726e7ac97cc5a2fa31ea560496bb7238bee02fd))
+
 ## 1.0.0 (2024-03-08)
 
 
