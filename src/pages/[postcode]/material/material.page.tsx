@@ -8,7 +8,7 @@ import '@/components/content/Icon/Icon';
 import '@/components/canvas/LoadingCard/LoadingCard';
 import '@/components/canvas/Hero/Hero';
 import '@/components/composition/Wrap/Wrap';
-import getDryContainersByMaterial from '@/lib/getDryContainersByMaterial';
+import getPropertiesByMaterial from '@/lib/getPropertiesByMaterial';
 
 import NearbyPlaces from './NearbyPlaces';
 import RecycleAtHome from './RecycleAtHome';
@@ -35,12 +35,13 @@ function Loading() {
 
 function MaterialPageContent() {
   const { t } = useTranslation();
-  const { home, locations, materialId } =
+  const { localAuthority, locations, materialId } =
     useAsyncValue() as MaterialLoaderResponse;
-  const schemes = getDryContainersByMaterial(materialId, home.dryStreams);
-  const recyclableAtHome = schemes.some(
-    (scheme) => scheme.containers.length > 0,
+  const propertiesCollectingThisMaterial = getPropertiesByMaterial(
+    materialId,
+    localAuthority.properties,
   );
+  const recyclableAtHome = propertiesCollectingThisMaterial !== undefined;
   const recyclableNearby = locations.length > 0;
   const recyclable = recyclableAtHome || recyclableNearby;
 
@@ -55,7 +56,13 @@ function MaterialPageContent() {
       <diamond-enter type="fade-in-up" delay={0.25}>
         <locator-wrap>
           <section className="diamond-spacing-bottom-lg">
-            <RecycleAtHome schemes={schemes} />
+            <RecycleAtHome
+              materialId={materialId}
+              allProperties={localAuthority.properties}
+              propertiesCollectingThisMaterial={
+                propertiesCollectingThisMaterial
+              }
+            />
           </section>
           <section className="diamond-spacing-bottom-lg">
             <NearbyPlaces locations={locations} />
