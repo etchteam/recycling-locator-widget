@@ -11,8 +11,8 @@ import { useHomeRecyclingLoaderData } from './home.loader';
 export default function HomeRecyclingPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
-  const { localAuthority } = useHomeRecyclingLoaderData();
-  const propertyTypes = Object.keys(localAuthority.properties);
+  const { properties } = useHomeRecyclingLoaderData();
+  const propertyTypes = Object.keys(properties);
 
   return (
     <section className="diamond-spacing-bottom-lg">
@@ -21,7 +21,7 @@ export default function HomeRecyclingPage() {
 
       {propertyTypes.map((propertyType) => {
         const safePropertyType = encodeURIComponent(propertyType);
-        const property = localAuthority.properties[propertyType];
+        const property = properties[propertyType];
         const containers = property.flatMap((scheme) => scheme.containers);
 
         return (
