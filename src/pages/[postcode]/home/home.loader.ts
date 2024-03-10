@@ -1,4 +1,4 @@
-import { omit } from 'lodash';
+import omit from 'lodash/omit';
 import { LoaderFunctionArgs, useRouteLoaderData } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
