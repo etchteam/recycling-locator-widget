@@ -52,6 +52,10 @@
       "#9946db": "Porffor",
       "#89c1ab": "Wy hwyaden",
       "#ffffff00": "Tryloyw"
+    },
+    "schemeContainerSummary": {
+      "otherContainers_one": "+1 bin arall",
+      "otherContainers_other": "+{{count}} bin arall"
     }
   },
   "error": {
@@ -139,9 +143,7 @@
       "oneProperty": {
         "title": "Ailgylchu gartref",
         "collection_one": "Cesglir yr eitem hon yn y bin hwn:",
-        "collection_other": "Cesglir yr eitem hon yn y biniau hyn:",
-        "otherContainers_one": "+1 bin arall",
-        "otherContainers_other": "+{{count}} bin arall"
+        "collection_other": "Cesglir yr eitem hon yn y biniau hyn:"
       }
     },
     "nearbyPlaces": {

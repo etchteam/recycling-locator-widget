@@ -12,7 +12,7 @@ import '@/components/control/IconLink/IconLink';
 import '@/components/content/Icon/Icon';
 import '@/components/content/Container/Container';
 
-import containerName from '@/lib/containerName';
+import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
 import getPropertyDisplayName from '@/lib/getPropertyDisplayName';
 import {
   LocalAuthority,
@@ -84,45 +84,20 @@ function OneProperty({
   readonly property: LocalAuthorityProperty[];
 }) {
   const { t } = useTranslation();
-  const tContext = 'material.recycleAtHome.oneProperty';
   const containers = property
     .flatMap((scheme) => scheme.containers)
     .filter((container) =>
       container.materials?.some((material) => material.id === materialId),
     );
-  const firstTwoContainers = containers.slice(0, 2);
-  const remainingContainers = containers.slice(2);
 
   return (
     <>
       <p className="diamond-text-size-sm">
-        {t(`${tContext}.collection`, { count: containers.length })}
+        {t('material.recycleAtHome.oneProperty.collection', {
+          count: containers.length,
+        })}
       </p>
-      <ul role="list" className="list-style-none diamond-spacing-bottom-md">
-        {firstTwoContainers.map((container) => (
-          <li key={container.name} className="diamond-spacing-bottom-sm">
-            <locator-container>
-              <locator-container-svg
-                name={container.name}
-                body-colour={container.bodyColour}
-                lid-colour={container.lidColour}
-              />
-              <locator-container-content>
-                <locator-container-name>
-                  {containerName(container)}
-                </locator-container-name>
-              </locator-container-content>
-            </locator-container>
-          </li>
-        ))}
-        {remainingContainers.length > 0 && (
-          <li>
-            {t(`${tContext}.otherContainers`, {
-              count: remainingContainers.length,
-            })}
-          </li>
-        )}
-      </ul>
+      <SchemeContainerSummary containers={containers} />
     </>
   );
 }

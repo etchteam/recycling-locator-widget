@@ -52,6 +52,10 @@
       "#9946db": "Purple",
       "#89c1ab": "Duck egg",
       "#ffffff00": "Transparent"
+    },
+    "schemeContainerSummary": {
+      "otherContainers_one": "+1 other bin",
+      "otherContainers_other": "+{{count}} other bins"
     }
   },
   "error": {
@@ -139,9 +143,7 @@
       "oneProperty": {
         "title": "Recycle at home",
         "collection_one": "This item is collected in this bin:",
-        "collection_other": "This item is collected in these bins:",
-        "otherContainers_one": "+1 other bin",
-        "otherContainers_other": "+{{count}} other bins"
+        "collection_other": "This item is collected in these bins:"
       }
     },
     "nearbyPlaces": {

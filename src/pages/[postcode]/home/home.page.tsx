@@ -1,10 +1,10 @@
-import uniqueId from 'lodash/uniqueId';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 
-import containerName from '@/lib/containerName';
 import '@/components/content/Container/Container';
+import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
+import getPropertyDisplayName from '@/lib/getPropertyDisplayName';
 
 import { useHomeRecyclingLoaderData } from './home.loader';
 
@@ -12,43 +12,28 @@ export default function HomeRecyclingPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
   const { localAuthority } = useHomeRecyclingLoaderData();
+  const propertyTypes = Object.keys(localAuthority.properties);
 
   return (
     <section className="diamond-spacing-bottom-lg">
       <h3>{t('homeRecycling.collections.title')}</h3>
       <p>{t('homeRecycling.collections.help')}</p>
-      {localAuthority.dryStreams.map((scheme) => {
-        // TODO (WRAP-309): separate schemes by property type once the api is in place
-        const safeSchemeName = encodeURIComponent(scheme.name);
+
+      {propertyTypes.map((propertyType) => {
+        const safePropertyType = encodeURIComponent(propertyType);
+        const property = localAuthority.properties[propertyType];
+        const containers = property.flatMap((scheme) => scheme.containers);
 
         return (
           <Link
-            to={`/${postcode}/home/collection?scheme=${safeSchemeName}`}
-            key={safeSchemeName}
+            to={`/${postcode}/home/collection?propertyType=${safePropertyType}`}
+            key={safePropertyType}
           >
-            <diamond-card border radius>
-              <h4 className="diamond-spacing-bottom-md">{scheme.name}</h4>
-              <ul role="list" className="list-style-none">
-                {scheme.containers.map((container) => (
-                  <li
-                    key={uniqueId(container.name)}
-                    className="diamond-spacing-bottom-sm"
-                  >
-                    <locator-container>
-                      <locator-container-svg
-                        name={container.name}
-                        body-colour={container.bodyColour}
-                        lid-colour={container.lidColour}
-                      />
-                      <locator-container-content>
-                        <locator-container-name>
-                          {containerName(container)}
-                        </locator-container-name>
-                      </locator-container-content>
-                    </locator-container>
-                  </li>
-                ))}
-              </ul>
+            <diamond-card className="diamond-spacing-bottom-md" border radius>
+              <h4 className="diamond-spacing-bottom-md">
+                {getPropertyDisplayName(property)}
+              </h4>
+              <SchemeContainerSummary containers={containers} limit={3} />
             </diamond-card>
           </Link>
         );

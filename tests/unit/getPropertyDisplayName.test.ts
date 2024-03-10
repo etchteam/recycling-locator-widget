@@ -36,8 +36,32 @@ test('Returns the first scheme name if there is no dry scheme', () => {
         type: 'Food',
       },
       {
-        name: drySchemeName,
+        name: 'Another scheme',
         type: 'Garden',
+      },
+      {
+        name: 'Communal collections',
+        type: 'Food',
+      },
+    ],
+  } as LocalAuthority['properties'];
+
+  expect(getPropertyDisplayName(properties[PROPERTY_TYPE.ALL])).toEqual(
+    firstSchemeName,
+  );
+});
+
+test('Returns the first scheme name if the dry scheme is named all properties', () => {
+  const firstSchemeName = 'Non-city centre households';
+  const properties = {
+    [PROPERTY_TYPE.ALL]: [
+      {
+        name: firstSchemeName,
+        type: 'Food',
+      },
+      {
+        name: PROPERTY_TYPE.ALL,
+        type: 'Dry',
       },
       {
         name: 'Communal collections',
