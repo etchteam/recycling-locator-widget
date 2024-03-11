@@ -1,3 +1,17 @@
+## [1.2.0](https://github.com/etchteam/recycling-locator/compare/v1.1.2...v1.2.0) (2024-03-11)
+
+
+### Features
+
+* demo site improvements ([3871726](https://github.com/etchteam/recycling-locator/commit/3871726968b9f3aa2912db6dbfb621e2081530d1))
+
+
+### Bug Fixes
+
+* get version action ([99e8ccc](https://github.com/etchteam/recycling-locator/commit/99e8ccce4d9d784bf6065ee8f64df652b4182b74))
+* set version number to new package version ([985690a](https://github.com/etchteam/recycling-locator/commit/985690a758f7139b53d0474a8153f3d3f0412aa2))
+* use new syntax ([e30aa1a](https://github.com/etchteam/recycling-locator/commit/e30aa1a1d171da31b37e7730abae3c12b829b1ff))
+
 ## [1.1.2](https://github.com/etchteam/recycling-locator/compare/v1.1.1...v1.1.2) (2024-03-11)
 
 
