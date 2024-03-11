@@ -33,5 +33,15 @@
     var(--color-primary) 10%,
     var(--color-white)
   );
+  --color-primary-light: color-mix(
+    in srgb,
+    var(--color-primary) 50%,
+    var(--color-white)
+  );
   --color-primary: var(--recycling-locator-color-primary, var(--color-green));
+  --color-primary-dark: color-mix(
+    in srgb,
+    var(--color-primary) 50%,
+    var(--color-black)
+  );
 }

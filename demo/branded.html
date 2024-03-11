@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recycling Locator Widget Welsh Language Demo</title>
+    <title>Recycling Locator Branded Demo</title>
     <meta name="description" content="Find places to recycle, refill or reuse items." />
     <meta name="keywords" content="recycling, refill, reuse, recycle, locator, widget" />
     <meta robots="noindex, nofollow" />
@@ -13,7 +13,12 @@
   <body>
     <main>
       <div class="intro">
-        <h1>Welsh Language Demo</h1>
+        <h1>Recycling Locator Widget Branded Demo</h1>
+        <p>
+          Simple branding can be applied to the widget through setting a single primary colour for the scheme to be based on. More granular customisation options can be found in the <a href="https://github.com/etchteam/recycling-locator" target="_blank" rel="noopener noreferrer">documentation</a>.
+        </p>
+        <label for="primary">Primary colour:</label>
+        <input type="color" id="primary" value="#ff0000" />
       </div>
 
       <div class="layout">
@@ -23,18 +28,27 @@
             <li>
               <a href="/">Standard</a>
             </li>
-            <li>Welsh language</li>
             <li>
-              <a href="/branded">Custom branding</a>
+              <a href="/welsh">Welsh language</a>
+            </li>
+            <li>
+              Custom branding
             </li>
           </ul>
         </nav>
-        <recycling-locator locale="cy"></recycling-locator>
+        <recycling-locator></recycling-locator>
       </div>
     </main>
 
     <script type="module" src="https://cdn.jsdelivr.net/npm/@etchteam/recycling-locator/dist/index.js"></script>
     <script>
+      function setPrimaryColourVariable() {
+        const primaryColour = document.getElementById('primary').value;
+        document.documentElement.style.setProperty('--recycling-locator-color-primary', primaryColour);
+      }
+      setPrimaryColourVariable();
+      document.getElementById('primary').addEventListener('input', setPrimaryColourVariable);
+
       window.markerConfig = {
         project: '65ef397bdb8bc8524e2e763b',
         source: 'snippet'
