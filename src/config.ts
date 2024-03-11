@@ -6,7 +6,7 @@ const hostname =
   typeof window !== 'undefined' ? window?.location?.hostname : 'localhost'; // Can be undefined in tests
 
 const config = {
-  packageVersion: import.meta.env.VITE_PACKAGE_VERSION ?? 0,
+  packageVersion: import.meta.env.VITE_PACKAGE_VERSION ?? '1.0.0',
   publicPath: PUBLIC_PATH,
   imagePath: `${PUBLIC_PATH}images/`,
   mapsPlacesKey: import.meta.env.VITE_HERE_MAPS_PLACES_KEY,

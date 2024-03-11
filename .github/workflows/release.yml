@@ -29,6 +29,9 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+      - name: Get package version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
       - name: Install dependencies
         run: npm ci
       - name: Build
@@ -41,6 +44,7 @@ jobs:
           VITE_HERE_MAPS_PLACES_KEY: ${{ vars.VITE_HERE_MAPS_PLACES_KEY }}
           VITE_RECYCLING_LOCATOR_API: https://rl-v2.wrap.etch.tech/widget/
           VITE_PUBLIC_PATH: https://unpkg.com/@etchteam/recycling-locator/dist/
+          VITE_PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version}}
       - name: Publish
         run: npm run release
         env:
