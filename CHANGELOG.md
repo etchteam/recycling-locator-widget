@@ -1,3 +1,25 @@
+## [1.1.0](https://github.com/etchteam/recycling-locator/compare/v1.0.1...v1.1.0) (2024-03-11)
+
+
+### Features
+
+* all properties always last ([390bc59](https://github.com/etchteam/recycling-locator/commit/390bc5984e7c91c35287a78b1f026ddc17d0484e))
+* container list property ([acd91a1](https://github.com/etchteam/recycling-locator/commit/acd91a1247ff4f06dc745fe63487d5bb77d332da))
+* home collection menu ([6a79c20](https://github.com/etchteam/recycling-locator/commit/6a79c20b8a0b42f5679724d9d305089c25d91c51))
+* la properties that recycle this item ([7123162](https://github.com/etchteam/recycling-locator/commit/7123162ebc0cb225009023c80a849acb7a001bf4))
+* named omit import ([376df2d](https://github.com/etchteam/recycling-locator/commit/376df2dd4c7639c3b7f72c0a277db3db0dfbb7ca))
+* scheme container summary ([b582bfa](https://github.com/etchteam/recycling-locator/commit/b582bfa5ac09296eb9b5e92e51b9c6b3da677fd1))
+
+
+### Bug Fixes
+
+* bordered list styles leaking into sub lists ([e0062fa](https://github.com/etchteam/recycling-locator/commit/e0062fada6687a782dc7dd97cecf839b13c40b17))
+* container cost being output as 0 ([873dd0f](https://github.com/etchteam/recycling-locator/commit/873dd0fcc3318dd05b27e5875320749961d6d8ef))
+* icon position in icon text with multiline text ([da890b2](https://github.com/etchteam/recycling-locator/commit/da890b2704c05c074be76157732de832e7b44758))
+* la contact page data access ([f76f0cd](https://github.com/etchteam/recycling-locator/commit/f76f0cdcd2d8f541384b6affd970aa0d6652d601))
+* loading on small screen ([260bc25](https://github.com/etchteam/recycling-locator/commit/260bc25c7740d06b4498442d92851fa534393a23))
+* material e2e tests ([858a75d](https://github.com/etchteam/recycling-locator/commit/858a75d37ced99c1f5205983281b39957c62c3ae))
+
 ## [1.0.1](https://github.com/etchteam/recycling-locator/compare/v1.0.0...v1.0.1) (2024-03-11)
 
 
