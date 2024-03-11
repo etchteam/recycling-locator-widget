@@ -10,9 +10,9 @@
   --diamond-button-color-disabled: var(--diamond-button-border-color-disabled);
   --diamond-button-padding-block: 0.75rem;
 
-  --diamond-button-primary-background: var(--color-green);
-  --diamond-button-primary-background-hover: var(--color-green-dark);
-  --diamond-button-primary-background-disabled: var(--color-green-light);
+  --diamond-button-primary-background: var(--color-primary);
+  --diamond-button-primary-background-hover: var(--color-primary-dark);
+  --diamond-button-primary-background-disabled: var(--color-primary-light);
   --diamond-button-primary-color: var(--color-white);
   --diamond-button-primary-color-hover: var(--diamond-button-primary-color);
   --diamond-button-primary-color-disabled: var(--diamond-button-primary-color);
