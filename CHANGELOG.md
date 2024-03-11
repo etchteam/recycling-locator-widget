@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/etchteam/recycling-locator/compare/v1.2.0...v1.2.1) (2024-03-11)
+
+
+### Bug Fixes
+
+* demo styles path ([345029c](https://github.com/etchteam/recycling-locator/commit/345029cc13444dbe5e9d8b2b38717c821f63e474))
+
 ## [1.2.0](https://github.com/etchteam/recycling-locator/compare/v1.1.2...v1.2.0) (2024-03-11)
 
 
