@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/etchteam/recycling-locator/compare/v1.0.0...v1.0.1) (2024-03-11)
+
+
+### Bug Fixes
+
+* append widget ([524c141](https://github.com/etchteam/recycling-locator/commit/524c141d450f3c9cb19cf88b947d222de942e869))
+
 ## 1.0.0 (2024-03-08)
 
 
