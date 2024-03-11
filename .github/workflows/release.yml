@@ -33,7 +33,7 @@ jobs:
         id: package-version
         run: |
           npx semantic-release --ci false --dryRun | tee /dev/tty | grep -i "Published release" > .semver-output
-          echo ::set-output name=current-version::$([[ $(cat .semver-output) =~ .*([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+) ]] && echo ${BASH_REMATCH[1]})
+          echo "current-version=$([[ $(cat .semver-output) =~ .*([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+) ]] && echo ${BASH_REMATCH[1]})" >> "$GITHUB_OUTPUT"
       - name: Install dependencies
         run: npm ci
       - name: Build
