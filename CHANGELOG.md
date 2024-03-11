@@ -1,3 +1,11 @@
+## [1.2.3](https://github.com/etchteam/recycling-locator/compare/v1.2.2...v1.2.3) (2024-03-11)
+
+
+### Bug Fixes
+
+* move dependencies install ([1ce9e55](https://github.com/etchteam/recycling-locator/commit/1ce9e552ddd27eba4051476b6a409cd549135d14))
+* pass required tokens ([692dbdc](https://github.com/etchteam/recycling-locator/commit/692dbdcaa6be03e42c58b4e5d7855f9acb0f12ea))
+
 ## [1.2.2](https://github.com/etchteam/recycling-locator/compare/v1.2.1...v1.2.2) (2024-03-11)
 
 
