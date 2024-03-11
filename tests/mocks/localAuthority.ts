@@ -3,7 +3,7 @@ import { LocalAuthority } from '@/types/locatorApi';
 
 export const LOCAL_AUTHORITY_ENDPOINT = `${config.locatorApiPath}local-authority/**`;
 
-export const localAuthority: LocalAuthority = {
+export const LocalAuthorityResponse: LocalAuthority = {
   id: 321,
   name: 'North Devon District Council',
   lastUpdate: '2024-02-07T15:47:56.064Z',

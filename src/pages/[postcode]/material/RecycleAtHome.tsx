@@ -115,7 +115,7 @@ export default function RecycleAtHome({
   const { t } = useTranslation();
   const allPropertyTypes = Object.keys(allProperties);
   const propertyTypesCollectingThisMaterial = Object.keys(
-    propertiesCollectingThisMaterial,
+    propertiesCollectingThisMaterial ?? {},
   );
   let type: 'oneProperty' | 'noProperties' | 'manyProperties' = 'noProperties';
 

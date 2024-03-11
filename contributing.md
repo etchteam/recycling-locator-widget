@@ -87,11 +87,29 @@ The translation files can be found under /public/translations.
 
 Tests will run through `vitest`, for the end-to-end tests Playwright launches a chromium instance against the **built** dist folder.
 
+#### Unit tests
+
+To run unit tests only use the unit test filter.
+
 ```bash
-npm test
+npm test unit
 ```
 
-To enable end-to-end test debugging use the debug command.
+#### End to end tests
+
+Build the app in non-library mode.
+
+```bash
+TEST=true npm run build
+```
+
+Then run the tests, filter by end-to-end to run only the E2E tests
+
+```bash
+npm test end-to-end
+```
+
+To enable E2E test debugging use the debug command.
 
 ```bash
 npm run test:debug
