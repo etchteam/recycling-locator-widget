@@ -1,5 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -40,7 +40,9 @@ function NoPlaces() {
 function Places({ locations }: { readonly locations: Location[] }) {
   const { t } = useTranslation();
   const { postcode } = useParams();
-  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const materialId = searchParams.get('id');
+  const materialName = searchParams.get('name');
   const tContext = 'material.nearbyPlaces.places';
   const count = locations.length;
 
@@ -73,14 +75,18 @@ function Places({ locations }: { readonly locations: Location[] }) {
         <diamond-grid>
           <diamond-grid-item small-mobile="6">
             <diamond-button width="full-width">
-              <Link to={`/${postcode}/places-list?${location.search}`}>
+              <Link
+                to={`/${postcode}/places?materialId=${materialId}&materialName=${materialName}`}
+              >
                 {t('actions.listPlaces')}
               </Link>
             </diamond-button>
           </diamond-grid-item>
           <diamond-grid-item small-mobile="6">
             <diamond-button width="full-width">
-              <Link to={`/${postcode}/places-map?${location.search}`}>
+              <Link
+                to={`/${postcode}/places/map?materialId=${materialId}&materialName=${materialName}`}
+              >
                 {t('actions.showMap')}
               </Link>
             </diamond-button>
