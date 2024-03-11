@@ -106,13 +106,13 @@ export default function ContainerList({
                 <locator-container-name>
                   <h4>{containerName(container)}</h4>
                 </locator-container-name>
-                {container.cost && (
+                {container.cost ? (
                   <locator-container-subscription>
                     {t('components.container.subscription', {
                       cost: container.cost,
                     })}
                   </locator-container-subscription>
-                )}
+                ) : null}
                 {container.notes && (
                   <locator-container-notes>
                     {container.notes}
