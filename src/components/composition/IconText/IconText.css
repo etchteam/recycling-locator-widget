@@ -3,6 +3,10 @@ locator-icon-text {
   gap: var(--diamond-spacing-sm);
   grid-template-columns: auto 1fr;
 
+  :first-child {
+    align-self: flex-start;
+  }
+
   :last-child {
     align-self: center;
     margin-block-end: 0;
