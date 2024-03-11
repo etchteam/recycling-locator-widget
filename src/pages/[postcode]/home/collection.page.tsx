@@ -23,12 +23,11 @@ import { useHomeRecyclingLoaderData } from './home.loader';
 export default function CollectionPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
-  const data = useHomeRecyclingLoaderData();
+  const { localAuthority, properties } = useHomeRecyclingLoaderData();
   const [searchParams] = useSearchParams();
-  const scheme = searchParams.get('scheme');
+  const propertyType = searchParams.get('propertyType');
   const search = searchParams.get('search');
   const submitting = useSignal(false);
-  const la = data?.localAuthority;
 
   useEffect(() => {
     submitting.value = false;
@@ -45,14 +44,14 @@ export default function CollectionPage() {
           </diamond-button>
           <div>
             <h2>{t('homeRecycling.collection.title')}</h2>
-            {la && <p>{la.name}</p>}
+            {localAuthority && <p>{localAuthority.name}</p>}
           </div>
         </locator-header-title>
       </locator-header>
       <div slot="layout-main">
-        {scheme && (
+        {propertyType && (
           <locator-context-header>
-            <span className="diamond-text-weight-bold">{scheme}</span>
+            <span className="diamond-text-weight-bold">{propertyType}</span>
           </locator-context-header>
         )}
         <diamond-section padding="lg">
@@ -62,7 +61,7 @@ export default function CollectionPage() {
             </h3>
 
             <Form method="get" onSubmit={() => (submitting.value = true)}>
-              <input type="hidden" name="scheme" value={scheme} />
+              <input type="hidden" name="propertyType" value={propertyType} />
               <locator-material-search-input
                 className="diamond-spacing-bottom-sm"
                 placeholder={t('components.materialSearchInput.placeholder')}
@@ -72,7 +71,10 @@ export default function CollectionPage() {
               ></locator-material-search-input>
             </Form>
 
-            <ContainerList la={la} search={search} />
+            <ContainerList
+              property={properties[propertyType]}
+              search={search}
+            />
           </locator-wrap>
         </diamond-section>
       </div>
