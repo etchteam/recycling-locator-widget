@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/etchteam/recycling-locator/compare/v1.1.0...v1.1.1) (2024-03-11)
+
+
+### Bug Fixes
+
+* cdn path ([82d6dc8](https://github.com/etchteam/recycling-locator/commit/82d6dc8437182a3e6d9fe97dd543374a76d40486))
+* use unversioned js delivr path ([c772fc0](https://github.com/etchteam/recycling-locator/commit/c772fc0db4684fcaa913d3c746019bdf8954d5d5))
+* x package version header ([79ce6fb](https://github.com/etchteam/recycling-locator/commit/79ce6fbe8943895a7c3faf96252db4c61d7647a9))
+
 ## [1.1.0](https://github.com/etchteam/recycling-locator/compare/v1.0.1...v1.1.0) (2024-03-11)
 
 
