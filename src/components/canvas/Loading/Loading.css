@@ -1,8 +1,11 @@
 locator-loading {
   background: var(--diamond-theme-background-muted);
   display: grid;
-  inset: 0;
   place-content: center;
-  position: absolute;
   text-align: center;
+
+  @container (width >= 768px) {
+    inset: 0;
+    position: absolute;
+  }
 }

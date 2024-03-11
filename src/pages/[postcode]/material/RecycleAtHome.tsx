@@ -12,42 +12,52 @@ import '@/components/control/IconLink/IconLink';
 import '@/components/content/Icon/Icon';
 import '@/components/content/Container/Container';
 
-import containerName from '@/lib/containerName';
-import { DryScheme } from '@/types/locatorApi';
+import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
+import getPropertyDisplayName from '@/lib/getPropertyDisplayName';
+import {
+  LocalAuthority,
+  LocalAuthorityProperty,
+  PROPERTY_TYPE,
+} from '@/types/locatorApi';
 
-function ManySchemes({
-  schemes,
-  schemesCollectingThisMaterial,
+function ManyProperties({
+  allProperties,
+  allPropertyTypes,
+  propertyTypesCollectingThisMaterial,
 }: {
-  readonly schemes: DryScheme[];
-  readonly schemesCollectingThisMaterial: DryScheme[];
+  readonly allProperties: LocalAuthority['properties'];
+  readonly allPropertyTypes: string[];
+  readonly propertyTypesCollectingThisMaterial: string[];
 }) {
   const { postcode } = useParams();
-  const tContext = 'material.recycleAtHome.manySchemes';
-  const allSchemesRecycle =
-    schemesCollectingThisMaterial.length === schemes.length;
-  const sortedSchemes = schemes.toSorted((scheme) => {
-    return scheme.containers.length > 0 ? -1 : 1;
-  });
+  const tContext = 'material.recycleAtHome.manyProperties';
+  const allPropertiesRecycle =
+    propertyTypesCollectingThisMaterial.length === allPropertyTypes.length;
+  const sortedPropertyTypes = allPropertyTypes
+    .toSorted((propertyType) =>
+      propertyTypesCollectingThisMaterial.includes(propertyType) ? -1 : 1,
+    )
+    .filter((propertyType) => propertyType !== PROPERTY_TYPE.ALL);
 
   return (
     <>
       <p className="text-size-sm">
         <Trans
-          i18nKey={`${tContext}.collection${allSchemesRecycle ? 'All' : 'Some'}`}
+          i18nKey={`${tContext}.collection${allPropertiesRecycle ? 'All' : 'Some'}`}
           components={{ bold: <strong /> }}
         />
       </p>
       <ul role="list" className="list-style-none diamond-spacing-bottom-md">
-        {sortedSchemes.map((scheme) => {
-          const safeSchemeName = encodeURIComponent(scheme.name);
-          const recyclable = scheme.containers.length > 0;
+        {sortedPropertyTypes.map((propertyType) => {
+          const safePropertyType = encodeURIComponent(propertyType);
+          const recyclable =
+            propertyTypesCollectingThisMaterial.includes(propertyType);
 
           return (
-            <li key={scheme.name} className="diamond-spacing-bottom-sm">
+            <li key={propertyType} className="diamond-spacing-bottom-sm">
               <locator-icon-link>
                 <Link
-                  to={`/${postcode}/home/collection?scheme=${safeSchemeName}`}
+                  to={`/${postcode}/home/collection?propertyType=${safePropertyType}`}
                 >
                   <locator-icon-circle>
                     <locator-icon
@@ -55,7 +65,7 @@ function ManySchemes({
                       color={recyclable ? 'positive' : 'negative'}
                     ></locator-icon>
                   </locator-icon-circle>
-                  {scheme.name}
+                  {getPropertyDisplayName(allProperties[propertyType])}
                 </Link>
               </locator-icon-link>
             </li>
@@ -66,89 +76,107 @@ function ManySchemes({
   );
 }
 
-function OneScheme({ scheme }: { readonly scheme: DryScheme }) {
+function OneProperty({
+  materialId,
+  property,
+}: {
+  readonly materialId: number;
+  readonly property: LocalAuthorityProperty[];
+}) {
   const { t } = useTranslation();
-  const tContext = 'material.recycleAtHome.oneScheme';
-  const firstTwoContainers = scheme.containers.slice(0, 2);
-  const remainingContainers = scheme.containers.slice(2);
+  const containers = property
+    .flatMap((scheme) => scheme.containers)
+    .filter((container) =>
+      container.materials?.some((material) => material.id === materialId),
+    );
 
   return (
     <>
       <p className="diamond-text-size-sm">
-        {t(`${tContext}.collection`, { count: scheme.containers.length })}
+        {t('material.recycleAtHome.oneProperty.collection', {
+          count: containers.length,
+        })}
       </p>
-      <ul role="list" className="list-style-none diamond-spacing-bottom-md">
-        {firstTwoContainers.map((container) => (
-          <li key={container.name} className="diamond-spacing-bottom-sm">
-            <locator-container>
-              <locator-container-svg
-                name={container.name}
-                body-colour={container.bodyColour}
-                lid-colour={container.lidColour}
-              />
-              <locator-container-content>
-                <locator-container-name>
-                  {containerName(container)}
-                </locator-container-name>
-              </locator-container-content>
-            </locator-container>
-          </li>
-        ))}
-        {remainingContainers.length > 0 && (
-          <li>
-            {t(`${tContext}.otherContainers`, {
-              count: remainingContainers.length,
-            })}
-          </li>
-        )}
-      </ul>
+      <SchemeContainerSummary containers={containers} />
     </>
   );
 }
 
 export default function RecycleAtHome({
-  schemes,
+  materialId,
+  allProperties,
+  propertiesCollectingThisMaterial,
 }: {
-  readonly schemes: DryScheme[];
+  readonly materialId: number;
+  readonly allProperties: LocalAuthority['properties'];
+  readonly propertiesCollectingThisMaterial: LocalAuthority['properties'];
 }) {
   const { postcode } = useParams();
   const { t } = useTranslation();
-  const schemesCollectingThisMaterial = schemes.filter(
-    (scheme) => scheme.containers.length > 0,
+  const allPropertyTypes = Object.keys(allProperties);
+  const propertyTypesCollectingThisMaterial = Object.keys(
+    propertiesCollectingThisMaterial ?? {},
   );
-  let type: 'oneScheme' | 'noSchemes' | 'manySchemes' = 'noSchemes';
+  let type: 'oneProperty' | 'noProperties' | 'manyProperties' = 'noProperties';
 
-  if (schemes.length === 1 && schemesCollectingThisMaterial.length === 1) {
-    type = 'oneScheme';
+  if (
+    allPropertyTypes.length === 1 &&
+    propertyTypesCollectingThisMaterial.length === 1
+  ) {
+    type = 'oneProperty';
   }
 
-  if (schemes.length > 1 && schemesCollectingThisMaterial.length >= 1) {
-    type = 'manySchemes';
+  if (
+    allPropertyTypes.length > 1 &&
+    propertyTypesCollectingThisMaterial.length >= 1
+  ) {
+    if (
+      allPropertyTypes.includes(PROPERTY_TYPE.ALL) &&
+      allPropertyTypes.length === 2
+    ) {
+      // Display as one property if "All properties" is the only other property type
+      type = 'oneProperty';
+    } else {
+      type = 'manyProperties';
+    }
   }
 
   return (
     <diamond-card border radius>
       <locator-icon-text className="diamond-spacing-bottom-xs">
         <locator-icon-circle
-          variant={type === 'noSchemes' ? 'negative' : 'positive'}
+          variant={type === 'noProperties' ? 'negative' : 'positive'}
         >
           <locator-icon icon="home"></locator-icon>
         </locator-icon-circle>
         <h3>{t(`material.recycleAtHome.${type}.title`)}</h3>
       </locator-icon-text>
 
-      {type === 'noSchemes' && (
+      {type === 'noProperties' && (
         <p className="diamond-text-size-sm">
-          {t('material.recycleAtHome.noSchemes.content')}
+          {t('material.recycleAtHome.noProperties.content')}
         </p>
       )}
 
-      {type === 'oneScheme' && <OneScheme scheme={schemes[0]} />}
+      {type === 'oneProperty' && (
+        <OneProperty
+          materialId={materialId}
+          property={
+            propertiesCollectingThisMaterial[PROPERTY_TYPE.ALL] ??
+            propertiesCollectingThisMaterial[
+              propertyTypesCollectingThisMaterial[0]
+            ]
+          }
+        />
+      )}
 
-      {type === 'manySchemes' && (
-        <ManySchemes
-          schemes={schemes}
-          schemesCollectingThisMaterial={schemesCollectingThisMaterial}
+      {type === 'manyProperties' && (
+        <ManyProperties
+          allProperties={allProperties}
+          allPropertyTypes={allPropertyTypes}
+          propertyTypesCollectingThisMaterial={
+            propertyTypesCollectingThisMaterial
+          }
         />
       )}
 

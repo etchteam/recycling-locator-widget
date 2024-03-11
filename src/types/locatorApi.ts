@@ -25,13 +25,6 @@ export interface MaterialWithCategory extends Material {
   category: MaterialCategory;
 }
 
-export interface CoreInformation {
-  enquiryNumber: string;
-  recyclingUri: string;
-  hwrcUri: string;
-  gardenWasteUri: string;
-}
-
 export type ContainerName =
   | 'Box'
   | 'Communal Wheeled Bin'
@@ -52,34 +45,33 @@ export interface Container {
   interiorColour?: string;
   notes?: string;
   materials?: MaterialWithCategory[];
-}
-
-export interface OrganicStreamContainer extends Container {
   cost?: number;
 }
 
-export interface ResidualScheme {
-  name: string;
-  containers: Container[];
+export enum PROPERTY_TYPE {
+  ALL = 'All properties',
+  KERBSIDE = 'Kerbside properties',
+  FLATS_WITH_COMMUNAL_BINS = 'Flats with communal bins',
+  FLATS_WITH_INDIVIDUAL_BINS = 'Flats with individual bins or bags',
+  NARROW_ACCESS = 'Narrow access/difficult to reach/remote properties',
 }
 
-export interface OrganicScheme {
+export interface LocalAuthorityProperty {
   name: string;
-  containers: OrganicStreamContainer[];
-}
-
-export interface DryScheme {
-  name: string;
+  type: 'Dry' | 'Food' | 'Garden' | 'Residual';
   containers: Container[];
+  notes?: string[];
 }
 
 export interface LocalAuthority {
   id: number;
   name: string;
-  coreInformation: CoreInformation;
-  dryStreams: DryScheme[];
-  organicStreams: OrganicScheme[];
-  residualStreams: ResidualScheme[];
+  lastUpdate: string;
+  enquiryNumber: string;
+  recyclingUri: string;
+  hwrcUri: string;
+  gardenWasteUri: string;
+  properties: { [key in PROPERTY_TYPE]?: LocalAuthorityProperty[] };
 }
 
 export interface Location {

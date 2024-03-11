@@ -8,7 +8,7 @@ import {
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
-import { DryScheme } from '@/types/locatorApi';
+import { PROPERTY_TYPE } from '@/types/locatorApi';
 
 describeEndToEndTest('Material page', () => {
   test('Single scheme + location options', async ({ page, widget }) => {
@@ -22,7 +22,9 @@ describeEndToEndTest('Material page', () => {
 
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const homeText = page
-      .getByText(t('material.recycleAtHome.oneScheme.collection', { count: 1 }))
+      .getByText(
+        t('material.recycleAtHome.oneProperty.collection', { count: 1 }),
+      )
       .first();
     const locationsText = page
       .getByText(t('material.nearbyPlaces.places.title'))
@@ -43,23 +45,42 @@ describeEndToEndTest('Material page', () => {
   });
 
   test('Some home recycling options', async ({ page, widget }) => {
+    const mockedLaResponse = {
+      ...LocalAuthorityResponse,
+      properties: {
+        ...LocalAuthorityResponse.properties,
+        [PROPERTY_TYPE.NARROW_ACCESS]: [
+          {
+            name: 'Fake scheme',
+            type: 'Dry',
+            containers: [
+              {
+                name: 'Box',
+                displayName: 'Box (35 to 60L)',
+                bodyColour: '#4f4f4f',
+                lidColour: '#4f4f4f',
+                notes: ['containers can be black or green.'],
+                materials: [
+                  {
+                    id: 1000,
+                    name: 'Fake material',
+                    popular: false,
+                    category: {
+                      id: 7,
+                      name: 'Plastic bottles',
+                      popular: false,
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    };
+
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
-      const dryStreams = LocalAuthorityResponse.dryStreams.concat([
-        {
-          name: 'Fake scheme 1',
-          containers: [],
-        },
-        {
-          name: 'Fake scheme 2',
-          containers: [],
-        },
-      ]);
-      route.fulfill({
-        json: {
-          ...LocalAuthorityResponse,
-          dryStreams,
-        },
-      });
+      route.fulfill({ json: mockedLaResponse });
     });
 
     await page.route(LOCATIONS_ENDPOINT, (route) => {
@@ -68,7 +89,9 @@ describeEndToEndTest('Material page', () => {
 
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const schemeOneText = page
-      .getByText(LocalAuthorityResponse.dryStreams[0].name)
+      .getByText(
+        mockedLaResponse.properties[PROPERTY_TYPE.NARROW_ACCESS][0].name,
+      )
       .first();
     const somePropertiesText = page.getByText('some properties').first();
     const locationsText = page
@@ -91,45 +114,42 @@ describeEndToEndTest('Material page', () => {
   });
 
   test('All home recycling options', async ({ page, widget }) => {
+    const mockedLaResponse = {
+      ...LocalAuthorityResponse,
+      properties: {
+        ...LocalAuthorityResponse.properties,
+        [PROPERTY_TYPE.NARROW_ACCESS]: [
+          {
+            name: 'Fake scheme',
+            type: 'Dry',
+            containers: [
+              {
+                name: 'Box',
+                displayName: 'Box (35 to 60L)',
+                bodyColour: '#4f4f4f',
+                lidColour: '#4f4f4f',
+                notes: ['containers can be black or green.'],
+                materials: [
+                  {
+                    id: 43,
+                    name: 'Plastic milk bottles',
+                    popular: false,
+                    category: {
+                      id: 7,
+                      name: 'Plastic bottles',
+                      popular: false,
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    };
+
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
-      const dryStreams = LocalAuthorityResponse.dryStreams.concat([
-        {
-          name: 'Fake scheme 1',
-          containers: [
-            {
-              name: 'Box',
-              displayName: 'Box (35 to 60L)',
-              materials: [
-                {
-                  id: 43,
-                  name: 'Plastic milk bottles',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          name: 'Fake scheme 2',
-          containers: [
-            {
-              name: 'Box',
-              displayName: 'Box (35 to 60L)',
-              materials: [
-                {
-                  id: 43,
-                  name: 'Plastic milk bottles',
-                },
-              ],
-            },
-          ],
-        },
-      ] as DryScheme[]);
-      route.fulfill({
-        json: {
-          ...LocalAuthorityResponse,
-          dryStreams,
-        },
-      });
+      route.fulfill({ json: mockedLaResponse });
     });
 
     await page.route(LOCATIONS_ENDPOINT, (route) => {
@@ -138,7 +158,9 @@ describeEndToEndTest('Material page', () => {
 
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const schemeOneText = page
-      .getByText(LocalAuthorityResponse.dryStreams[0].name)
+      .getByText(
+        mockedLaResponse.properties[PROPERTY_TYPE.NARROW_ACCESS][0].name,
+      )
       .first();
     const somePropertiesText = page.getByText('all properties').first();
     const locationsText = page
@@ -171,7 +193,7 @@ describeEndToEndTest('Material page', () => {
 
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const homeText = page
-      .getByText(t('material.recycleAtHome.noSchemes.content'))
+      .getByText(t('material.recycleAtHome.noProperties.content'))
       .first();
     const locationsText = page
       .getByText(t('material.nearbyPlaces.places.title'))
@@ -199,7 +221,7 @@ describeEndToEndTest('Material page', () => {
 
     const recyclableText = page.getByText(t('material.hero.no')).first();
     const homeText = page
-      .getByText(t('material.recycleAtHome.noSchemes.content'))
+      .getByText(t('material.recycleAtHome.noProperties.content'))
       .first();
     const locationsText = page
       .getByText(t('material.nearbyPlaces.noPlaces.title'))

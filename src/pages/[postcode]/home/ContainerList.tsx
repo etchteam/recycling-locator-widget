@@ -7,25 +7,21 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@/components/content/Container/Container';
 import '@/components/control/Details/Details';
 import containerName from '@/lib/containerName';
-import { LocalAuthority, OrganicStreamContainer } from '@/types/locatorApi';
+import { LocalAuthorityProperty, Container } from '@/types/locatorApi';
 
 function useContainers(
-  la: LocalAuthority,
+  property: LocalAuthorityProperty[],
   search: string,
 ): {
-  containers: OrganicStreamContainer[];
-  allContainers: OrganicStreamContainer[];
-  filteredContainers: OrganicStreamContainer[];
+  containers: Container[];
+  allContainers: Container[];
+  filteredContainers: Container[];
 } {
-  // TODO(WRAP-308): filter by scheme once the new API response is available
-  const allContainers = [
-    ...la.dryStreams.flatMap((scheme) => scheme.containers),
-    ...la.organicStreams.flatMap((scheme) => scheme.containers),
-  ];
+  const allContainers = property.flatMap((scheme) => scheme.containers);
 
   const filteredContainers = search
     ? allContainers.filter((container) =>
-        container.materials.some(
+        container.materials?.some(
           (material) => material.name.toLowerCase() === search.toLowerCase(),
         ),
       )
@@ -53,14 +49,14 @@ function useSearchResultType(
 }
 
 export default function ContainerList({
-  la,
+  property,
   search,
 }: {
-  readonly la: LocalAuthority;
+  readonly property: LocalAuthorityProperty[];
   readonly search: string;
 }) {
   const { t } = useTranslation();
-  const { containers, filteredContainers } = useContainers(la, search);
+  const { containers, filteredContainers } = useContainers(property, search);
   const filteredContainerCount = filteredContainers.length;
   const searchResultType = useSearchResultType(filteredContainerCount, search);
 
@@ -110,13 +106,13 @@ export default function ContainerList({
                 <locator-container-name>
                   <h4>{containerName(container)}</h4>
                 </locator-container-name>
-                {container.cost && (
+                {container.cost ? (
                   <locator-container-subscription>
                     {t('components.container.subscription', {
                       cost: container.cost,
                     })}
                   </locator-container-subscription>
-                )}
+                ) : null}
                 {container.notes && (
                   <locator-container-notes>
                     {container.notes}

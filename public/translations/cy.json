@@ -52,6 +52,10 @@
       "#9946db": "Porffor",
       "#89c1ab": "Wy hwyaden",
       "#ffffff00": "Tryloyw"
+    },
+    "schemeContainerSummary": {
+      "otherContainers_one": "+1 bin arall",
+      "otherContainers_other": "+{{count}} bin arall"
     }
   },
   "error": {
@@ -127,21 +131,19 @@
     },
     "recycleAtHome": {
       "cta": "Gwiriwch eich casgliad cartref",
-      "noSchemes": {
+      "noProperties": {
         "title": "Ni ellir ailgylchu'r eitem hon gartref",
         "content": "Gwiriwch beth allwch chi ei roi yn eich biniau ailgylchu cartref ac a oes gennych chi gasgliad gwastraff bwyd a gardd."
       },
-      "manySchemes": {
+      "manyProperties": {
         "title": "Ailgylchu gartref",
         "collectionSome": "Cesglir yr eitem hon o rai eiddo yn yr ardal.",
         "collectionAll": "Cesglir yr eitem hon o bob eiddo yn yr ardal."
       },
-      "oneScheme": {
+      "oneProperty": {
         "title": "Ailgylchu gartref",
         "collection_one": "Cesglir yr eitem hon yn y bin hwn:",
-        "collection_other": "Cesglir yr eitem hon yn y biniau hyn:",
-        "otherContainers_one": "+1 bin arall",
-        "otherContainers_other": "+{{count}} bin arall"
+        "collection_other": "Cesglir yr eitem hon yn y biniau hyn:"
       }
     },
     "nearbyPlaces": {

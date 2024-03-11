@@ -87,7 +87,7 @@ export default function HomeRecyclingLayout({
           {la && (
             <diamond-button width="full-width">
               <a
-                href={la.coreInformation.recyclingUri}
+                href={la.recyclingUri}
                 target="_blank"
                 rel="noopener noreferrer"
               >

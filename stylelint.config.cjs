@@ -7,5 +7,11 @@ module.exports = {
         ignore: ['attribute'],
       },
     ],
+    'selector-max-compound-selectors': [
+      5,
+      {
+        severity: 'warning',
+      },
+    ],
   },
 };

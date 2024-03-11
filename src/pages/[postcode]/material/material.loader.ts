@@ -9,7 +9,7 @@ import {
 
 export interface MaterialLoaderResponse {
   materialId: number;
-  home: LocalAuthority;
+  localAuthority: LocalAuthority;
   locations: Location[];
 }
 
@@ -20,7 +20,7 @@ async function getData({
   const url = new URL(request.url);
   const materialId = Number(url.searchParams.get('id'));
   const postcode = params.postcode;
-  const home = await LocatorApi.get<LocalAuthority>(
+  const localAuthority = await LocatorApi.get<LocalAuthority>(
     `local-authority/${postcode}`,
   );
   const locations = await LocatorApi.get<LocationsResponse>(
@@ -28,7 +28,7 @@ async function getData({
   );
 
   return {
-    home,
+    localAuthority,
     materialId,
     locations: locations.items,
   };

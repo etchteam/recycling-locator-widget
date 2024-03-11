@@ -52,6 +52,10 @@
       "#9946db": "Purple",
       "#89c1ab": "Duck egg",
       "#ffffff00": "Transparent"
+    },
+    "schemeContainerSummary": {
+      "otherContainers_one": "+1 other bin",
+      "otherContainers_other": "+{{count}} other bins"
     }
   },
   "error": {
@@ -127,21 +131,19 @@
     },
     "recycleAtHome": {
       "cta": "Check your home collection",
-      "noSchemes": {
+      "noProperties": {
         "title": "This item cannot be recycled at home",
         "content": "Check what you can put in your home recycling bins and if you have a food and garden waste collection."
       },
-      "manySchemes": {
+      "manyProperties": {
         "title": "Recycle at home",
         "collectionSome": "This item is collected from <bold>some properties</bold> in the area.",
         "collectionAll": "This item is collected from <bold>all properties</bold> in the area."
       },
-      "oneScheme": {
+      "oneProperty": {
         "title": "Recycle at home",
         "collection_one": "This item is collected in this bin:",
-        "collection_other": "This item is collected in these bins:",
-        "otherContainers_one": "+1 other bin",
-        "otherContainers_other": "+{{count}} other bins"
+        "collection_other": "This item is collected in these bins:"
       }
     },
     "nearbyPlaces": {
