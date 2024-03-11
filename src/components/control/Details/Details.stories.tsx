@@ -26,3 +26,21 @@ export const Details: StoryObj = {
     </locator-details>
   ),
 };
+
+export const Menu: StoryObj = {
+  render: () => (
+    <locator-details menu>
+      <details>
+        <summary>
+          Details
+          <locator-icon icon="expand" />
+        </summary>
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+      </details>
+    </locator-details>
+  ),
+};
