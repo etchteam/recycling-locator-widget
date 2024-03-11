@@ -31,7 +31,9 @@ jobs:
           cache: npm
       - name: Get package version
         id: package-version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        run: |
+          npx semantic-release --ci false --dryRun | tee /dev/tty | grep -i "Published release" > .semver-output
+          echo ::set-output name=current-version::$([[ $(cat .semver-output) =~ .*([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+) ]] && echo ${BASH_REMATCH[1]})
       - name: Install dependencies
         run: npm ci
       - name: Build
@@ -44,7 +46,7 @@ jobs:
           VITE_HERE_MAPS_PLACES_KEY: ${{ vars.VITE_HERE_MAPS_PLACES_KEY }}
           VITE_RECYCLING_LOCATOR_API: https://rl-v2.wrap.etch.tech/widget/
           VITE_PUBLIC_PATH: https://cdn.jsdelivr.net/npm/@etchteam/recycling-locator/dist/
-          VITE_PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version}}
+          VITE_PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
       - name: Publish
         run: npm run release
         env:
