@@ -19,17 +19,17 @@ export default function HomeRecyclingPage() {
             <dt>{t(`${tContext}.website`)}</dt>
             <dd>
               <a
-                href={localAuthority.coreInformation.recyclingUri}
+                href={localAuthority.recyclingUri}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {localAuthority.coreInformation.recyclingUri}
+                {localAuthority.recyclingUri}
               </a>
             </dd>
           </div>
           <div>
             <dt>{t(`${tContext}.phone`)}</dt>
-            <dd>{localAuthority.coreInformation.enquiryNumber}</dd>
+            <dd>{localAuthority.enquiryNumber}</dd>
           </div>
           <div>
             <dt>{t(`${tContext}.notes.title`)}</dt>
