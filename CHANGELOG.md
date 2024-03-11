@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/etchteam/recycling-locator/compare/v1.1.1...v1.1.2) (2024-03-11)
+
+
+### Bug Fixes
+
+* nearby places link ([40ea4c6](https://github.com/etchteam/recycling-locator/commit/40ea4c68f6bbc931bb33362e621457e4c840220a))
+
 ## [1.1.1](https://github.com/etchteam/recycling-locator/compare/v1.1.0...v1.1.1) (2024-03-11)
 
 
