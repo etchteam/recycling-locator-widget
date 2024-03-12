@@ -1,3 +1,5 @@
+@import './node_modules/@etchteam/recycling-locator/dist/recycling-locator.css';
+
 body {
   font-family: -apple-system, system-ui, blinkmacsystemfont, roboto, helvetica,
     arial, sans-serif;
