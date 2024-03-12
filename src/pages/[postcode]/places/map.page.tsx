@@ -23,6 +23,7 @@ import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import Place from '@/components/template/Place/Place';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import directions from '@/lib/directions';
+import useAnalytics from '@/lib/useAnalytics';
 import { Location } from '@/types/locatorApi';
 
 import { PlacesLoaderResponse } from './places.loader';
@@ -43,6 +44,7 @@ function Loading() {
 export function PlacesMapPageContent() {
   const { postcode } = useParams();
   const { t } = useTranslation();
+  const { recordEvent } = useAnalytics();
   const loaderData = useAsyncValue() as PlacesLoaderResponse;
   const [searchParams] = useSearchParams();
   const defaultActiveLocationId = searchParams.get('activeLocation');
@@ -189,6 +191,12 @@ export function PlacesMapPageContent() {
                     href={directions(postcode, activeLocation.value.address)}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => {
+                      recordEvent({
+                        category: 'PlacesMap::Directions',
+                        action: activeLocation.value.address,
+                      });
+                    }}
                   >
                     {t('actions.directions')}
                     <locator-icon icon="external" />

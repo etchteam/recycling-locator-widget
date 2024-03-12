@@ -28,10 +28,7 @@ export default function RootLayout() {
   }, [startPath, currentHref]);
 
   useEffect(() => {
-    recordView({
-      path: `${location.pathname}${location.search}${location.hash}`,
-      title: 'View',
-    });
+    recordView();
   }, [location]);
 
   if (!loadedStartPath.value) {

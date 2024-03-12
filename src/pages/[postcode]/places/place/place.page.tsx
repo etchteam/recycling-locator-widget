@@ -9,11 +9,14 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@/components/content/Icon/Icon';
 import '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import '@/components/control/Details/Details';
+import useAnalytics from '@/lib/useAnalytics';
+
 import { PlaceLoaderResponse } from './place.loader';
 
 export default function PlacePage() {
   const { t } = useTranslation();
   const { location } = useRouteLoaderData('place') as PlaceLoaderResponse;
+  const { recordEvent } = useAnalytics();
   const search = useSignal<string>('');
   const materialCategories = groupBy(location.materials, 'category');
   const hasSearchedForMaterial =
@@ -27,6 +30,11 @@ export default function PlacePage() {
     const value = new FormData(event.submitter.form).get('search') as string;
 
     if (value) {
+      recordEvent({
+        category: 'PlaceDetails::MaterialSearch',
+        action: value,
+      });
+
       search.value = value;
     }
   };

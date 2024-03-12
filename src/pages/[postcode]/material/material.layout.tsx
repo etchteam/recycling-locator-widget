@@ -1,3 +1,4 @@
+import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, Outlet, useParams, useSearchParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
@@ -13,13 +14,24 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import config from '@/config';
+import useAnalytics from '@/lib/useAnalytics';
 
 export default function MaterialLayout() {
   const { t } = useTranslation();
   const { postcode } = useParams();
+  const { recordEvent } = useAnalytics();
   const [searchParams] = useSearchParams();
   const materialId = searchParams.get('id');
   const materialName = searchParams.get('name');
+
+  useEffect(() => {
+    if (materialName) {
+      recordEvent({
+        category: 'MaterialResult::MaterialSearch',
+        action: materialName,
+      });
+    }
+  }, [materialName]);
 
   return (
     <locator-layout>

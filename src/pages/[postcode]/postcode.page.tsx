@@ -1,4 +1,5 @@
 import { useSignal } from '@preact/signals';
+import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, Form } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
@@ -14,6 +15,7 @@ import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/IconLink/IconLink';
 import '@/components/control/MaterialSearchInput/MaterialSearchInput';
+import useAnalytics from '@/lib/useAnalytics';
 import StartLayout from '@/pages/start.layout';
 
 import { usePostcodeLoaderData } from './postcode.loader';
@@ -35,8 +37,16 @@ function Aside({ postcode }: { readonly postcode: string }) {
 
 export default function PostcodePage() {
   const { t } = useTranslation();
+  const { recordEvent } = useAnalytics();
   const { postcode, city } = usePostcodeLoaderData();
   const submitting = useSignal(false);
+
+  useEffect(() => {
+    recordEvent({
+      category: 'LocationSearch',
+      action: `${city}, ${postcode}`,
+    });
+  }, [city, postcode]);
 
   return (
     <StartLayout aside={<Aside postcode={postcode} />}>

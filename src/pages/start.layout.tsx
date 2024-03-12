@@ -12,6 +12,7 @@ import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
 import config from '@/config';
 import tArray from '@/lib/tArray';
+import useAnalytics from '@/lib/useAnalytics';
 
 function About() {
   const { t } = useTranslation();
@@ -76,7 +77,15 @@ export default function StartLayout({
   readonly aside?: ComponentChildren;
 }) {
   const { t } = useTranslation();
+  const { recordEvent } = useAnalytics();
   const open = useSignal(false);
+
+  open.subscribe((value) => {
+    recordEvent({
+      category: 'About',
+      action: value ? 'Open' : 'Close',
+    });
+  });
 
   return (
     <locator-layout>

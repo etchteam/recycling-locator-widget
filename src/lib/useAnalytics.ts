@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/browser';
+import { useLocation } from 'react-router-dom';
 
 import config from '@/config';
 
@@ -31,6 +32,7 @@ interface AnalyticsResponse {
 }
 
 async function sendAnalyticsRequest(event: AnalyticsEvent) {
+  console.log(event);
   if (!config.enableAnalytics) {
     return;
   }
@@ -59,10 +61,12 @@ async function sendAnalyticsRequest(event: AnalyticsEvent) {
 
 export default function useAnalytics() {
   const { locale, sessionId } = useAppState();
+  const location = useLocation();
 
   function createEvent(event: Partial<AnalyticsEvent>): AnalyticsEvent {
     return {
       ...event,
+      dp: `${location.pathname}${location.search}${location.hash}`,
       cid: sessionId,
       ul: locale === 'cy' ? 'cy-GB' : 'en-GB',
       dh: config.hostname,
@@ -70,29 +74,25 @@ export default function useAnalytics() {
     } as AnalyticsEvent;
   }
 
-  function recordView({ path, title }: { path: string; title: string }) {
+  function recordView(title?: string) {
     const event = createEvent({
-      dt: title,
-      dp: path,
+      dt: title ?? 'View',
       t: 'pageview',
     });
-    console.log(event);
+
     sendAnalyticsRequest(event);
   }
 
   function recordEvent({
     category,
     action,
-    path,
   }: {
     category: string;
     action: string;
-    path: string;
   }) {
     const event = createEvent({
       ec: category,
       ea: action,
-      dp: path,
       t: 'event',
     });
 

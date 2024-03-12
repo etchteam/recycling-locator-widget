@@ -21,6 +21,7 @@ import '@/components/control/NavBar/NavBar';
 import '@/components/canvas/MapSvg/MapSvg';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import directions from '@/lib/directions';
+import useAnalytics from '@/lib/useAnalytics';
 
 import { PlaceLoaderResponse } from './place.loader';
 
@@ -32,6 +33,7 @@ export default function PlaceLayout({
   const { t } = useTranslation();
   const { postcode, placeName, placePostcode } = useParams();
   const loaderData = useRouteLoaderData('place') as PlaceLoaderResponse;
+  const { recordEvent } = useAnalytics();
   const location = loaderData?.location;
   const safePlaceName = encodeURIComponent(placeName);
 
@@ -108,6 +110,12 @@ export default function PlaceLayout({
                       href={directions(postcode, location.address)}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => {
+                        recordEvent({
+                          category: 'PlaceDetails::Directions',
+                          action: location.address,
+                        });
+                      }}
                     >
                       {t('actions.directions')}
                       <locator-icon icon="external" />

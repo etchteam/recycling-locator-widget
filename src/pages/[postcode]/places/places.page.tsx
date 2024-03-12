@@ -1,4 +1,4 @@
-import { Suspense } from 'preact/compat';
+import { Suspense, useEffect } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
 import {
   Await,
@@ -8,6 +8,7 @@ import {
   useFetcher,
   useParams,
   useRouteLoaderData,
+  useSearchParams,
 } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Wrap/Wrap';
@@ -24,6 +25,7 @@ import '@/components/control/Fab/Fab';
 import Place from '@/components/template/Place/Place';
 import config from '@/config';
 import PostCodeResolver from '@/lib/PostcodeResolver';
+import useAnalytics from '@/lib/useAnalytics';
 
 import { PlacesLoaderResponse } from './places.loader';
 
@@ -138,9 +140,19 @@ function Places() {
 export default function PlacesPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
+  const { recordEvent } = useAnalytics();
   const { data } = useRouteLoaderData('places') as {
     data: Promise<PlacesLoaderResponse>;
   };
+  const [searchParams] = useSearchParams();
+  const materialName = searchParams.get('materialName');
+
+  useEffect(() => {
+    recordEvent({
+      category: 'PlacesList::MaterialSearch',
+      action: materialName,
+    });
+  }, [materialName]);
 
   return (
     <>
