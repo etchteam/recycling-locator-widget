@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build
-        run: npm run build --debug
+        run: npm run build -- --debug
         env:
           MARKER_KEY: 65ef397bdb8bc8524e2e763b
       - name: Setup Pages
