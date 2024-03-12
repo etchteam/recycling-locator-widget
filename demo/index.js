@@ -1,4 +1,4 @@
-import '@etchteam/recycling-locator';
+import '@etchteam/recycling-locator/dist/index.js';
 
 const MARKER_KEY = import.meta.env.VITE_MARKER_KEY;
 
