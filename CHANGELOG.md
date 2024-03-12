@@ -1,3 +1,15 @@
+## [1.3.0](https://github.com/etchteam/recycling-locator/compare/v1.2.6...v1.3.0) (2024-03-12)
+
+
+### Features
+
+* wait for the publish action before deploying ([e8296ec](https://github.com/etchteam/recycling-locator/commit/e8296ec4b932e8d090f6a82a741fbb2559dacd3a))
+
+
+### Bug Fixes
+
+* install parent dependencies before running the build ([384490a](https://github.com/etchteam/recycling-locator/commit/384490aecc36d3b324f7966812c93b24ec76f4f8))
+
 ## [1.2.6](https://github.com/etchteam/recycling-locator/compare/v1.2.5...v1.2.6) (2024-03-12)
 
 
