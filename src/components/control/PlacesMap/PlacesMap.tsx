@@ -221,6 +221,7 @@ declare module 'react' {
     interface IntrinsicElements {
       'locator-places-map': CustomElement;
       'locator-places-map-card': CustomElement;
+      'locator-places-map-wrapper': CustomElement;
     }
   }
 }
