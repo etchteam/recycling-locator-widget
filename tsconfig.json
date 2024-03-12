@@ -16,5 +16,6 @@
       "@/*": ["./src/*"]
     }
   },
+  "exclude": ["dist", "demo", "public"],
   "include": ["node_modules/vite/client.d.ts", "**/*"]
 }
