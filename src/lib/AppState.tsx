@@ -1,3 +1,4 @@
+import uniqueId from 'lodash';
 import { createContext } from 'preact';
 import { useContext } from 'preact/hooks';
 
@@ -7,6 +8,7 @@ import getStartPath from './getStartPath';
 
 interface AppStateContext extends RecyclingLocatorAttributes {
   startPath: string;
+  sessionId: string;
 }
 
 export const AppState = createContext<AppStateContext>(null);
@@ -14,8 +16,12 @@ export const AppState = createContext<AppStateContext>(null);
 export function createAppState(
   attributes: RecyclingLocatorAttributes,
 ): AppStateContext {
+  const sessionId = (window?.crypto?.randomUUID() ??
+    uniqueId('session')) as unknown as string;
+
   return {
     ...attributes,
+    sessionId,
     startPath: getStartPath(attributes),
   };
 }
