@@ -8,9 +8,6 @@ export default defineConfig(({ mode }) => {
       'process.env': env,
     },
     base: '/recycling-locator',
-    server: {
-      port: 3040,
-    },
   };
 
   return config;
