@@ -53,6 +53,11 @@ export default defineConfig(({ mode }) => {
             sourceMap: false,
             declaration: true,
             outDir: 'dist',
+            include: [
+              'node_modules/vite/client.d.ts',
+              'src/**/*.ts',
+              'src/**/*.tsx',
+            ],
           }),
         ] as any[],
       },
