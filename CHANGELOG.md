@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/etchteam/recycling-locator/compare/v1.2.4...v1.2.5) (2024-03-12)
+
+
+### Bug Fixes
+
+* use versioned jsdelivr ([665a1f7](https://github.com/etchteam/recycling-locator/commit/665a1f798039f279461d73d2b6e35e7ca47bd0c9))
+
 ## [1.2.4](https://github.com/etchteam/recycling-locator/compare/v1.2.3...v1.2.4) (2024-03-11)
 
 
