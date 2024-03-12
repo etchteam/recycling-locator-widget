@@ -23,6 +23,7 @@ import '@/components/content/Icon/Icon';
 
 import config from '@/config';
 import getPropertyDisplayName from '@/lib/getPropertyDisplayName';
+import useAnalytics from '@/lib/useAnalytics';
 
 import ContainerList from './ContainerList';
 import { useHomeRecyclingLoaderData } from './home.loader';
@@ -32,16 +33,24 @@ export default function CollectionPage() {
   const { postcode } = useParams();
   const { localAuthority, properties } = useHomeRecyclingLoaderData();
   const location = useLocation();
+  const { recordEvent } = useAnalytics();
   const [searchParams] = useSearchParams();
-  const propertyType = searchParams.get('propertyType');
   const search = searchParams.get('search');
   const propertyTypes = Object.keys(properties);
-  const property = properties[propertyType ?? propertyTypes[0]];
+  const propertyType = searchParams.get('propertyType') ?? propertyTypes[0];
+  const property = properties[propertyType];
   const menuOpen = useSignal(false);
   const submitting = useSignal(false);
   const menuRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
+    if (search) {
+      recordEvent({
+        category: 'HomeRecyclingBins::MaterialSearch',
+        action: search,
+      });
+    }
+
     submitting.value = false;
   }, [search]);
 

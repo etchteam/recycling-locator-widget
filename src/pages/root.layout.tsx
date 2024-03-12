@@ -3,6 +3,7 @@ import { useEffect } from 'preact/hooks';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppState } from '@/lib/AppState';
+import useAnalytics from '@/lib/useAnalytics';
 
 /**
  * The root layout wraps every route in the app.
@@ -12,6 +13,7 @@ export default function RootLayout() {
   const { startPath } = useAppState();
   const navigateTo = useNavigate();
   const location = useLocation();
+  const { recordView } = useAnalytics();
   const loadedStartPath = useSignal<string>('');
   const currentHref = `${location.pathname}${location.search}${location.hash}`;
 
@@ -24,6 +26,10 @@ export default function RootLayout() {
       loadedStartPath.value = startPath;
     }
   }, [startPath, currentHref]);
+
+  useEffect(() => {
+    recordView();
+  }, [location]);
 
   if (!loadedStartPath.value) {
     return null;
