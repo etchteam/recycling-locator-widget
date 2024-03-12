@@ -32,7 +32,6 @@ interface AnalyticsResponse {
 }
 
 async function sendAnalyticsRequest(event: AnalyticsEvent) {
-  console.log(event);
   if (!config.enableAnalytics) {
     return;
   }
