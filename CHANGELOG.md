@@ -1,3 +1,17 @@
+## [1.5.0](https://github.com/etchteam/recycling-locator/compare/v1.4.0...v1.5.0) (2024-03-12)
+
+
+### Features
+
+* enable analytics on NPM release ([2ce1909](https://github.com/etchteam/recycling-locator/commit/2ce190952b1b99bf360df2d533a42ad08f54ac5e))
+* record all the events ([9bd11cd](https://github.com/etchteam/recycling-locator/commit/9bd11cd02cb891e1a0b1019195b7c6f9888e404d))
+* send page views to analytics ([7d6c64e](https://github.com/etchteam/recycling-locator/commit/7d6c64ee015502c6eb637707f2c4b458bf25e0f4))
+
+
+### Reverts
+
+* debug ([d5a39de](https://github.com/etchteam/recycling-locator/commit/d5a39de42e3bef126b7ffc8d857715dff004d35e))
+
 ## [1.4.0](https://github.com/etchteam/recycling-locator/compare/v1.3.0...v1.4.0) (2024-03-12)
 
 
