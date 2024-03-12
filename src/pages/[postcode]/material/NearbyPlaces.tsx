@@ -8,8 +8,7 @@ import '@etchteam/diamond-ui/content/Img/Img';
 import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
-
-import config from '@/config';
+import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import { Location } from '@/types/locatorApi';
 
 function NoPlaces() {
@@ -63,14 +62,14 @@ function Places({ locations }: { readonly locations: Location[] }) {
           />
         </p>
       </diamond-card>
-      <diamond-img object-fit="cover" aspectRatio="1.25/1" block responsive>
-        <img
-          src={`${config.imagePath}map-preview.webp`}
-          width="240"
-          height="240"
-          alt=""
+      <locator-places-map-wrapper>
+        <PlacesMap
+          latitude={locations[0].latitude}
+          longitude={locations[0].longitude}
+          locations={locations}
+          static
         />
-      </diamond-img>
+      </locator-places-map-wrapper>
       <diamond-card>
         <diamond-grid>
           <diamond-grid-item small-mobile="6">

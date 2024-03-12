@@ -96,3 +96,10 @@ locator-places-map {
     }
   }
 }
+
+/* Set a sensible size for the map when it's not placed in a full height container */
+locator-places-map-wrapper {
+  aspect-ratio: 1.5/1;
+  display: block;
+  position: relative;
+}
