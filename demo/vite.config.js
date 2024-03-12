@@ -1,9 +1,9 @@
-import { defineConfig, loadEnv, UserConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
-  const config: UserConfig = {
+  const config = {
     define: {
       'process.env': env,
     },
