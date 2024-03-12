@@ -1,3 +1,10 @@
+## [1.4.0](https://github.com/etchteam/recycling-locator/compare/v1.3.0...v1.4.0) (2024-03-12)
+
+
+### Features
+
+* material result static map ([2e5e6ac](https://github.com/etchteam/recycling-locator/commit/2e5e6aca4e469f9461bb4f3af4ffd2fbe2b21cd0))
+
 ## [1.3.0](https://github.com/etchteam/recycling-locator/compare/v1.2.6...v1.3.0) (2024-03-12)
 
 
