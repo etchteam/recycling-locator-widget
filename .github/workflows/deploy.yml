@@ -19,9 +19,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: demo
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,13 +26,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-          cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Install demo dependencies
+        run: npm ci
+        working-directory: demo
       - name: Build
         run: npm run build
         env:
           MARKER_KEY: 65ef397bdb8bc8524e2e763b
+        working-directory: demo
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
