@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/etchteam/recycling-locator/compare/v1.2.5...v1.2.6) (2024-03-12)
+
+
+### Bug Fixes
+
+* dts committed for every ts file ([43948d0](https://github.com/etchteam/recycling-locator/commit/43948d09a0b03b932f7069ca75963a6f1cfd157d))
+
 ## [1.2.5](https://github.com/etchteam/recycling-locator/compare/v1.2.4...v1.2.5) (2024-03-12)
 
 
