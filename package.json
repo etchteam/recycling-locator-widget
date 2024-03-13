@@ -31,7 +31,9 @@
     "storybook:build": "storybook build",
     "test": "vitest --ui",
     "test:ci": "vitest",
-    "test:debug": "DEBUG=pw:api PWDEBUG=console vitest --ui"
+    "test:unit": "vitest --ui unit",
+    "test:end-to-end": "TEST=true npm run build && vitest --ui end-to-end",
+    "test:end-to-end-debug": "DEBUG=pw:api PWDEBUG=console vitest --ui"
   },
   "dependencies": {
     "@etchteam/diamond-ui": "^1.27.11",
