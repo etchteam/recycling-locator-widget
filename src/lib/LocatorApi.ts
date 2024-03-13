@@ -1,4 +1,7 @@
+import i18n from 'i18next';
+
 import config from '@/config';
+import { Locale } from '@/types/locale';
 
 interface LocatorApiRequestOptions {
   method?: 'get' | 'post';
@@ -10,9 +13,11 @@ export default class LocatorApi {
     url: string,
     options: LocatorApiRequestOptions,
   ): Promise<T> {
+    const locale = i18n.language as Locale;
     const response = await fetch(`${config.locatorApiPath}${url}`, {
       headers: {
         'X-Requested-With': config.packageVersion,
+        'Accept-Language': locale === 'cy' ? 'cy' : 'en-GB',
       },
       ...options,
     });

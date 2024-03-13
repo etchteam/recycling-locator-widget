@@ -1,11 +1,11 @@
 import { expect, test } from 'vitest';
 
 import getPropertiesByMaterial from '@/lib/getPropertiesByMaterial';
-import { LocalAuthority, PROPERTY_TYPE } from '@/types/locatorApi';
+import { LocalAuthority, PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
 test('Returns properties that accept the given material', () => {
   const properties = {
-    [PROPERTY_TYPE.ALL]: [
+    [PROPERTY_TYPE_EN.ALL]: [
       {
         name: 'Communal collections',
         containers: [
@@ -32,7 +32,7 @@ test('Returns properties that accept the given material', () => {
         ],
       },
     ],
-    [PROPERTY_TYPE.KERBSIDE]: [
+    [PROPERTY_TYPE_EN.KERBSIDE]: [
       {
         name: 'Non-city centre households',
         containers: [
@@ -45,6 +45,6 @@ test('Returns properties that accept the given material', () => {
   } as LocalAuthority['properties'];
 
   expect(getPropertiesByMaterial(1, properties)).toEqual({
-    [PROPERTY_TYPE.ALL]: properties[PROPERTY_TYPE.ALL],
+    [PROPERTY_TYPE_EN.ALL]: properties[PROPERTY_TYPE_EN.ALL],
   });
 });

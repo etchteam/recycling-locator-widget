@@ -1,12 +1,12 @@
 import { expect, test } from 'vitest';
 
 import getPropertyDisplayName from '@/lib/getPropertyDisplayName';
-import { LocalAuthority, PROPERTY_TYPE } from '@/types/locatorApi';
+import { LocalAuthority, PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
 test('Returns the first dry scheme name if there is one', () => {
   const drySchemeName = 'This one';
   const properties = {
-    [PROPERTY_TYPE.ALL]: [
+    [PROPERTY_TYPE_EN.ALL]: [
       {
         name: 'Non-city centre households',
         type: 'Food',
@@ -22,7 +22,7 @@ test('Returns the first dry scheme name if there is one', () => {
     ],
   } as LocalAuthority['properties'];
 
-  expect(getPropertyDisplayName(properties[PROPERTY_TYPE.ALL])).toEqual(
+  expect(getPropertyDisplayName(properties[PROPERTY_TYPE_EN.ALL])).toEqual(
     drySchemeName,
   );
 });
@@ -30,7 +30,7 @@ test('Returns the first dry scheme name if there is one', () => {
 test('Returns the first scheme name if there is no dry scheme', () => {
   const firstSchemeName = 'Non-city centre households';
   const properties = {
-    [PROPERTY_TYPE.ALL]: [
+    [PROPERTY_TYPE_EN.ALL]: [
       {
         name: firstSchemeName,
         type: 'Food',
@@ -46,7 +46,7 @@ test('Returns the first scheme name if there is no dry scheme', () => {
     ],
   } as LocalAuthority['properties'];
 
-  expect(getPropertyDisplayName(properties[PROPERTY_TYPE.ALL])).toEqual(
+  expect(getPropertyDisplayName(properties[PROPERTY_TYPE_EN.ALL])).toEqual(
     firstSchemeName,
   );
 });
@@ -54,13 +54,13 @@ test('Returns the first scheme name if there is no dry scheme', () => {
 test('Returns the first scheme name if the dry scheme is named all properties', () => {
   const firstSchemeName = 'Non-city centre households';
   const properties = {
-    [PROPERTY_TYPE.ALL]: [
+    [PROPERTY_TYPE_EN.ALL]: [
       {
         name: firstSchemeName,
         type: 'Food',
       },
       {
-        name: PROPERTY_TYPE.ALL,
+        name: PROPERTY_TYPE_EN.ALL,
         type: 'Dry',
       },
       {
@@ -70,7 +70,7 @@ test('Returns the first scheme name if the dry scheme is named all properties', 
     ],
   } as LocalAuthority['properties'];
 
-  expect(getPropertyDisplayName(properties[PROPERTY_TYPE.ALL])).toEqual(
+  expect(getPropertyDisplayName(properties[PROPERTY_TYPE_EN.ALL])).toEqual(
     firstSchemeName,
   );
 });

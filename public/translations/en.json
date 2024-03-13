@@ -264,7 +264,8 @@
       }
     },
     "details": {
-      "title": "About this place"
+      "title": "About this place",
+      "address": "Address"
     },
     "error": {
       "message": "An unexpected error occurred while loading this place."

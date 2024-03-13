@@ -8,7 +8,7 @@ import {
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
-import { PROPERTY_TYPE } from '@/types/locatorApi';
+import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
 describeEndToEndTest('Material page', () => {
   test('Single scheme + location options', async ({ page, widget }) => {
@@ -49,7 +49,7 @@ describeEndToEndTest('Material page', () => {
       ...LocalAuthorityResponse,
       properties: {
         ...LocalAuthorityResponse.properties,
-        [PROPERTY_TYPE.NARROW_ACCESS]: [
+        [PROPERTY_TYPE_EN.NARROW_ACCESS]: [
           {
             name: 'Fake scheme',
             type: 'Dry',
@@ -90,7 +90,7 @@ describeEndToEndTest('Material page', () => {
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const schemeOneText = page
       .getByText(
-        mockedLaResponse.properties[PROPERTY_TYPE.NARROW_ACCESS][0].name,
+        mockedLaResponse.properties[PROPERTY_TYPE_EN.NARROW_ACCESS][0].name,
       )
       .first();
     const somePropertiesText = page.getByText('some properties').first();
@@ -118,7 +118,7 @@ describeEndToEndTest('Material page', () => {
       ...LocalAuthorityResponse,
       properties: {
         ...LocalAuthorityResponse.properties,
-        [PROPERTY_TYPE.NARROW_ACCESS]: [
+        [PROPERTY_TYPE_EN.NARROW_ACCESS]: [
           {
             name: 'Fake scheme',
             type: 'Dry',
@@ -159,7 +159,7 @@ describeEndToEndTest('Material page', () => {
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const schemeOneText = page
       .getByText(
-        mockedLaResponse.properties[PROPERTY_TYPE.NARROW_ACCESS][0].name,
+        mockedLaResponse.properties[PROPERTY_TYPE_EN.NARROW_ACCESS][0].name,
       )
       .first();
     const somePropertiesText = page.getByText('all properties').first();
