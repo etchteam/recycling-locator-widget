@@ -40,14 +40,13 @@ export default function HomeRecyclingLayout({
             <diamond-button width="square" size="sm">
               <button
                 type="button"
-                data-testid="close-button"
-                aria-expanded={open.value}
+                aria-expanded="true"
                 aria-controls="locator-layout-main"
                 onClick={() => (open.value = !open.value)}
               >
                 <locator-icon
                   icon="close"
-                  label={t(`about.button.${open.value ? 'close' : 'view'}`)}
+                  label={t('actions.close')}
                   color="primary"
                 ></locator-icon>
               </button>
@@ -58,12 +57,14 @@ export default function HomeRecyclingLayout({
             <diamond-button>
               <button
                 type="button"
-                data-testid="menu-button"
-                aria-expanded={open.value}
+                aria-expanded="false"
                 aria-controls="locator-layout-main"
                 onClick={() => (open.value = !open.value)}
               >
-                <locator-icon icon="menu" label="Menu"></locator-icon>
+                <locator-icon
+                  icon="menu"
+                  label={t('actions.menu')}
+                ></locator-icon>
               </button>
             </diamond-button>
             <div>

@@ -18,7 +18,8 @@
     "showList": "Dangos rhestr",
     "loadMore": "Llwytho mwy",
     "viewDetails": "Gweld manylion",
-    "directions": "Cyfarwyddiadau"
+    "directions": "Cyfarwyddiadau",
+    "menu": "Dewislen"
   },
   "components": {
     "locationInput": {
@@ -26,6 +27,13 @@
     },
     "materialSearchInput": {
       "placeholder": "Rhowch enw eitem..."
+    },
+    "menu": {
+      "whatdoYouWantToDo": "Beth ydych chi eisiau ei wneud?",
+      "changeLocation": "Newidiwch eich lleoliad",
+      "recycleSpecificItem": "Ailgylchu eitem benodol",
+      "homeRecycling": "Gwiriwch eich ailgylchu cartref",
+      "findNearbyPlaces": "Dod o hyd i leoedd cyfagos i ailgylchu"
     },
     "container": {
       "subscription": "Gwasanaeth tanysgrifio – £{{cost}}",

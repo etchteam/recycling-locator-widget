@@ -18,7 +18,8 @@
     "showList": "Show list",
     "loadMore": "Load more",
     "viewDetails": "View details",
-    "directions": "Directions"
+    "directions": "Directions",
+    "menu": "Menu"
   },
   "components": {
     "locationInput": {
@@ -26,6 +27,13 @@
     },
     "materialSearchInput": {
       "placeholder": "Enter the name of an item..."
+    },
+    "menu": {
+      "whatdoYouWantToDo": "What do you want to do?",
+      "changeLocation": "Change your location",
+      "recycleSpecificItem": "Recycle a specific item",
+      "homeRecycling": "Check your home recycling",
+      "findNearbyPlaces": "Find nearby places to recycle"
     },
     "container": {
       "subscription": "Subscription service – £{{cost}}",
