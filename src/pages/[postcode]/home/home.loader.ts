@@ -2,7 +2,8 @@ import omit from 'lodash/omit';
 import { LoaderFunctionArgs, useRouteLoaderData } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
-import { LocalAuthority, PROPERTY_TYPE } from '@/types/locatorApi';
+import getPropertyTypeEnum from '@/lib/getPropertyTypeEnum';
+import { LocalAuthority } from '@/types/locatorApi';
 
 export interface HomeRecyclingLoaderResponse {
   localAuthority: LocalAuthority;
@@ -13,6 +14,7 @@ export default async function homeRecyclingLoader({
   params,
 }: LoaderFunctionArgs) {
   const postcode = params.postcode;
+  const PROPERTY_TYPE = getPropertyTypeEnum();
   const localAuthority = await LocatorApi.get<LocalAuthority>(
     `local-authority/${postcode}`,
   );

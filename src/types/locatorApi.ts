@@ -48,12 +48,20 @@ export interface Container {
   cost?: number;
 }
 
-export enum PROPERTY_TYPE {
+export enum PROPERTY_TYPE_EN {
   ALL = 'All properties',
   KERBSIDE = 'Kerbside properties',
   FLATS_WITH_COMMUNAL_BINS = 'Flats with communal bins',
   FLATS_WITH_INDIVIDUAL_BINS = 'Flats with individual bins or bags',
   NARROW_ACCESS = 'Narrow access/difficult to reach/remote properties',
+}
+
+export enum PROPERTY_TYPE_CY {
+  ALL = 'Pob eiddo',
+  KERBSIDE = 'Eiddo ymyl y ffordd',
+  FLATS_WITH_COMMUNAL_BINS = 'Mynediad cul/anodd eu cyrraedd/eiddo anghysbell',
+  FLATS_WITH_INDIVIDUAL_BINS = 'Fflatiau gyda biniau neu fagiau unigol',
+  NARROW_ACCESS = 'Fflatiau gyda biniau cymunedol',
 }
 
 export interface LocalAuthorityProperty {
@@ -71,7 +79,7 @@ export interface LocalAuthority {
   recyclingUri: string;
   hwrcUri: string;
   gardenWasteUri: string;
-  properties: { [key in PROPERTY_TYPE]?: LocalAuthorityProperty[] };
+  properties: { [key in PROPERTY_TYPE_EN]?: LocalAuthorityProperty[] };
 }
 
 export interface Location {
