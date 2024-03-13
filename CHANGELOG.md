@@ -1,3 +1,11 @@
+## [1.8.0](https://github.com/etchteam/recycling-locator/compare/v1.7.0...v1.8.0) (2024-03-13)
+
+
+### Features
+
+* menu component ([dfdfdc9](https://github.com/etchteam/recycling-locator/commit/dfdfdc9db06d83b329b57737c6d433de1a853220))
+* unformatted postcode string checks in tests ([3218083](https://github.com/etchteam/recycling-locator/commit/3218083e30911bfa0aa19a10b6e4db63d1aad606))
+
 ## [1.7.0](https://github.com/etchteam/recycling-locator/compare/v1.6.0...v1.7.0) (2024-03-13)
 
 
