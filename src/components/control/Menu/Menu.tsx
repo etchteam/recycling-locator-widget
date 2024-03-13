@@ -1,4 +1,3 @@
-import { Fragment } from 'preact';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -31,6 +30,7 @@ export default function Menu() {
       to: `/${postcode}/places`,
     },
   ];
+
   return (
     <>
       <diamond-enter type="fade">
