@@ -1,3 +1,10 @@
+## [1.6.0](https://github.com/etchteam/recycling-locator/compare/v1.5.0...v1.6.0) (2024-03-13)
+
+
+### Features
+
+* local authority last updated date ([ee89bae](https://github.com/etchteam/recycling-locator/commit/ee89baeecc5c7a07d898711a1ecafab07887650a))
+
 ## [1.5.0](https://github.com/etchteam/recycling-locator/compare/v1.4.0...v1.5.0) (2024-03-12)
 
 
