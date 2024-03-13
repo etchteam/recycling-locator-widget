@@ -40,10 +40,9 @@ Storybook will be available on [http://localhost:6006/](http://localhost:6006/)
 
 ## Folder structure
 
-- /public - static assets
 - index.html - default embedded widget
-- welsh.html - Welsh language embedded widget example
-- standalone.html - Full page app example
+- /public - static assets
+- /demo – documentation website for demonstrations of the widget
 - /src
   - /components - all locator specific custom elements
   - /lib - general lib functions

@@ -14,11 +14,8 @@ import '@/components/content/Container/Container';
 
 import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
 import getPropertyDisplayName from '@/lib/getPropertyDisplayName';
-import {
-  LocalAuthority,
-  LocalAuthorityProperty,
-  PROPERTY_TYPE,
-} from '@/types/locatorApi';
+import getPropertyTypeEnum from '@/lib/getPropertyTypeEnum';
+import { LocalAuthority, LocalAuthorityProperty } from '@/types/locatorApi';
 
 function ManyProperties({
   allProperties,
@@ -29,6 +26,7 @@ function ManyProperties({
   readonly allPropertyTypes: string[];
   readonly propertyTypesCollectingThisMaterial: string[];
 }) {
+  const PROPERTY_TYPE = getPropertyTypeEnum();
   const { postcode } = useParams();
   const tContext = 'material.recycleAtHome.manyProperties';
   const allPropertiesRecycle =
@@ -111,6 +109,7 @@ export default function RecycleAtHome({
   readonly allProperties: LocalAuthority['properties'];
   readonly propertiesCollectingThisMaterial: LocalAuthority['properties'];
 }) {
+  const PROPERTY_TYPE = getPropertyTypeEnum();
   const { postcode } = useParams();
   const { t } = useTranslation();
   const allPropertyTypes = Object.keys(allProperties);

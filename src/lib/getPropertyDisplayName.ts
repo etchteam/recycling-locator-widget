@@ -1,4 +1,6 @@
-import { LocalAuthorityProperty, PROPERTY_TYPE } from '@/types/locatorApi';
+import { LocalAuthorityProperty } from '@/types/locatorApi';
+
+import getPropertyTypeEnum from './getPropertyTypeEnum';
 
 /**
  * If there's a dry scheme return its name
@@ -7,6 +9,7 @@ import { LocalAuthorityProperty, PROPERTY_TYPE } from '@/types/locatorApi';
 export default function getPropertyDisplayName(
   property: LocalAuthorityProperty[],
 ): string {
+  const PROPERTY_TYPE = getPropertyTypeEnum();
   const dryScheme = property.find((scheme) => scheme.type === 'Dry');
 
   if (dryScheme?.name === PROPERTY_TYPE.ALL) {

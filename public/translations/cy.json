@@ -264,7 +264,8 @@
       }
     },
     "details": {
-      "title": "Am y lle hwn"
+      "title": "Am y lle hwn",
+      "address": "Cyfeiriad"
     },
     "error": {
       "message": "Digwyddodd gwall annisgwyl wrth lwytho'r lle hwn."

@@ -16,7 +16,7 @@ export default function PlaceDetailsPage() {
       <locator-bordered-list size="sm">
         <dl>
           <div>
-            <dt>Address</dt>
+            <dt>{t('place.details.address')}</dt>
             <dd>{location.address}</dd>
           </div>
         </dl>
