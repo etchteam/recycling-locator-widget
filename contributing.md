@@ -30,14 +30,6 @@ npm start
 
 You will need the [recycle locator widget api](https://github.com/etchteam/recycle-locator) running on `rl.test` or you will need to connect to staging/production.
 
-## Viewing changes
-
-There's 3 preset configurations that are available to test with locally:
-
-- [/](http://localhost:3020) - default English embedded widget
-- [/welsh](http://localhost:3020/welsh) - Welsh language embedded widget
-- [/standalone](http://localhost:3020/standalone) - Full page app
-
 For component documentation run:
 
 ```bash
