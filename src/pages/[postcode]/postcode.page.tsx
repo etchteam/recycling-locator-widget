@@ -15,6 +15,7 @@ import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/IconLink/IconLink';
 import '@/components/control/MaterialSearchInput/MaterialSearchInput';
+import { formatPostcode } from '@/lib/format';
 import useAnalytics from '@/lib/useAnalytics';
 import StartLayout from '@/pages/start.layout';
 
@@ -52,7 +53,9 @@ export default function PostcodePage() {
     <StartLayout aside={<Aside postcode={postcode} />}>
       <locator-context-header>
         <div>
-          <span className="diamond-text-weight-bold">{postcode}</span>
+          <span className="diamond-text-weight-bold">
+            {formatPostcode(postcode)}
+          </span>
           {city && <>&nbsp;&ndash; {city}</>}
         </div>
         <diamond-button variant="text" size="sm">

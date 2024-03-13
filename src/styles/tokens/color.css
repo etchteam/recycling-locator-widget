@@ -16,7 +16,7 @@
   --color-blue: #0048a9;
 
   --color-body: var(--color-grey-dark);
-  --color-border: var(--color-grey-light);
+  --color-border: #e0e0e0;
 
   --color-positive-lightest: #eafff3;
   --color-positive-light: #8cc63f;

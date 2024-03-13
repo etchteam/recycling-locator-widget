@@ -23,3 +23,7 @@
 diamond-button[variant='primary'] {
   --diamond-button-font-weight: var(--diamond-font-weight-bold);
 }
+
+diamond-button[width='square'][size='sm'] {
+  --diamond-button-padding-block: 0.5rem;
+}

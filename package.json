@@ -34,7 +34,7 @@
     "test:debug": "DEBUG=pw:api PWDEBUG=console vitest --ui"
   },
   "dependencies": {
-    "@etchteam/diamond-ui": "^1.27.8",
+    "@etchteam/diamond-ui": "^1.27.11",
     "@here/maps-api-for-javascript": "^1.50.0",
     "@preact/signals": "^1.2.2",
     "@sentry/browser": "^7.101.1",

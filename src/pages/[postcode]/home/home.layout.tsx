@@ -1,6 +1,7 @@
+import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { useTranslation } from 'react-i18next';
-import { Link, NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
@@ -13,7 +14,7 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
-
+import Menu from '@/components/control/Menu/Menu';
 import config from '@/config';
 import tArray from '@/lib/tArray';
 
@@ -27,53 +28,87 @@ export default function HomeRecyclingLayout({
   const { t } = useTranslation();
   const { postcode } = useParams();
   const data = useHomeRecyclingLoaderData();
+  const open = useSignal(false);
   const la = data?.localAuthority;
 
   return (
     <locator-layout>
       <locator-header slot="layout-header">
-        <locator-header-title>
-          <diamond-button>
-            <Link to={`/${postcode}`}>
-              <locator-icon icon="arrow-left" label="Back"></locator-icon>
-            </Link>
-          </diamond-button>
-          <div>
-            <h2>{t('homeRecycling.title')}</h2>
-            {la && <p>{la.name}</p>}
-          </div>
-        </locator-header-title>
-      </locator-header>
-      <div slot="layout-main">
-        {la && (
-          <locator-nav-bar>
-            <nav>
-              <ul>
-                <li>
-                  <NavLink to={`/${postcode}/home`} end>
-                    {t('homeRecycling.nav.collections')}
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to={`/${postcode}/home/recycling-centre`}>
-                    {t('homeRecycling.nav.hwrc')}
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to={`/${postcode}/home/contact`}>
-                    {t('homeRecycling.nav.contact')}
-                  </NavLink>
-                </li>
-              </ul>
-            </nav>
-          </locator-nav-bar>
+        {open.value ? (
+          <>
+            <locator-logo></locator-logo>
+            <diamond-button width="square" size="sm">
+              <button
+                type="button"
+                data-testid="close-button"
+                aria-expanded={open.value}
+                aria-controls="locator-layout-main"
+                onClick={() => (open.value = !open.value)}
+              >
+                <locator-icon
+                  icon="close"
+                  label={t(`about.button.${open.value ? 'close' : 'view'}`)}
+                  color="primary"
+                ></locator-icon>
+              </button>
+            </diamond-button>
+          </>
+        ) : (
+          <locator-header-title>
+            <diamond-button>
+              <button
+                type="button"
+                data-testid="menu-button"
+                aria-expanded={open.value}
+                aria-controls="locator-layout-main"
+                onClick={() => (open.value = !open.value)}
+              >
+                <locator-icon icon="menu" label="Menu"></locator-icon>
+              </button>
+            </diamond-button>
+            <div>
+              <h2>{t('homeRecycling.title')}</h2>
+              {la && <p>{la.name}</p>}
+            </div>
+          </locator-header-title>
         )}
-        <diamond-section padding="lg">
-          <locator-wrap>
-            <Outlet />
-            {children}
-          </locator-wrap>
-        </diamond-section>
+      </locator-header>
+      <div slot="layout-main" id="locator-layout-main">
+        {open.value ? (
+          <Menu />
+        ) : (
+          <>
+            {la && (
+              <locator-nav-bar>
+                <nav>
+                  <ul>
+                    <li>
+                      <NavLink to={`/${postcode}/home`} end>
+                        {t('homeRecycling.nav.collections')}
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to={`/${postcode}/home/recycling-centre`}>
+                        {t('homeRecycling.nav.hwrc')}
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to={`/${postcode}/home/contact`}>
+                        {t('homeRecycling.nav.contact')}
+                      </NavLink>
+                    </li>
+                  </ul>
+                </nav>
+              </locator-nav-bar>
+            )}
+            <diamond-section padding="lg">
+              <locator-wrap>
+                <Outlet />
+                {children}
+              </locator-wrap>
+            </diamond-section>
+          </>
+        )}
       </div>
       <locator-tip slot="layout-aside">
         <locator-wrap>

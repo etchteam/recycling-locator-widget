@@ -4,6 +4,7 @@ import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/content/Icon/Icon';
+import { formatPostcode } from '@/lib/format';
 import './ContextHeader';
 
 const meta: Meta = {
@@ -16,8 +17,10 @@ export const Postcode: StoryObj = {
   render: () => (
     <locator-context-header>
       <div>
-        <span className="diamond-text-weight-bold">EX327RB</span> &ndash;
-        Barnstaple
+        <span className="diamond-text-weight-bold">
+          {formatPostcode('EX327RB')}
+        </span>{' '}
+        &ndash; Barnstaple
       </div>
       <diamond-button variant="text" size="sm">
         <a href="#link">
