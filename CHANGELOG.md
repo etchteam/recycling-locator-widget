@@ -1,3 +1,15 @@
+## [1.7.0](https://github.com/etchteam/recycling-locator/compare/v1.6.0...v1.7.0) (2024-03-13)
+
+
+### Features
+
+* api welsh language support ([40abf9f](https://github.com/etchteam/recycling-locator/commit/40abf9f4e04c88bd5f7307628a7818727ae43e87))
+
+
+### Reverts
+
+* cy debug ([dae3565](https://github.com/etchteam/recycling-locator/commit/dae3565bcafa965ca0a77f8db201071f1ccaa68e))
+
 ## [1.6.0](https://github.com/etchteam/recycling-locator/compare/v1.5.0...v1.6.0) (2024-03-13)
 
 
