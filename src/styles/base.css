@@ -2,10 +2,7 @@
 @import './tokens.css';
 /* stylelint-disable-next-line scss/at-rule-no-unknown */
 @import-glob '../components/**/*.css';
-
-.display-contents {
-  display: contents;
-}
+@import './utils.css';
 
 article {
   container-type: inline-size;
@@ -15,9 +12,4 @@ article {
   border: var(--container-border);
   height: var(--container-height);
   overflow-y: auto;
-}
-
-.list-style-none {
-  list-style: none;
-  padding: 0;
 }

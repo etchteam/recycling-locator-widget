@@ -1,0 +1,12 @@
+.display-contents {
+  display: contents;
+}
+
+.list-style-none {
+  list-style: none;
+  padding: 0;
+}
+
+.text-color-muted {
+  color: var(--diamond-theme-color-muted);
+}

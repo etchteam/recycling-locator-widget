@@ -11,7 +11,7 @@ export default function HomeRecyclingPage() {
 
   return (
     <>
-      <h3>{t(`${tContext}.title`)}</h3>
+      <h3 className="diamond-spacing-bottom-md">{t(`${tContext}.title`)}</h3>
       <locator-bordered-list size="sm">
         <h4>{localAuthority.name}</h4>
         <dl>
@@ -45,6 +45,15 @@ export default function HomeRecyclingPage() {
           </div>
         </dl>
       </locator-bordered-list>
+      <hr />
+      <div className="diamond-spacing-top-sm diamond-text-size-sm">
+        <span className="text-color-muted">
+          Updated:{' '}
+          {new Intl.DateTimeFormat('en-GB').format(
+            new Date(localAuthority.lastUpdate),
+          )}
+        </span>
+      </div>
     </>
   );
 }
