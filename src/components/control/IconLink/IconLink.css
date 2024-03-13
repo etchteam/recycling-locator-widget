@@ -1,4 +1,6 @@
 locator-icon-link {
+  display: block;
+
   a {
     align-items: center;
     color: var(--color-body);

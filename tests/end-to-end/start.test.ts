@@ -40,7 +40,7 @@ describeEndToEndTest('Start page', () => {
     });
 
     const input = page.locator('input').first();
-    const postcode = page.getByText('EX327RB').first();
+    const postcode = page.getByText('EX32 7RB').first();
     const city = page.getByText('Barnstaple').first();
     const postcodePageTitle = page.getByText(t('postcode.title')).first();
     await expect(input).toBeVisible();
@@ -65,7 +65,7 @@ describeEndToEndTest('Start page', () => {
     });
 
     const input = page.locator('input').first();
-    const postcode = page.getByText('EX327RB').first();
+    const postcode = page.getByText('EX32 7RB').first();
     const city = page.getByText('Barnstaple').first();
     const postcodePageTitle = page.getByText(t('postcode.title')).first();
     await expect(input).toBeVisible();
@@ -91,7 +91,7 @@ describeEndToEndTest('Start page', () => {
     });
 
     const input = page.locator('input').first();
-    const postcode = page.getByText('EX327RB').first();
+    const postcode = page.getByText('EX32 7RB').first();
     const city = page.getByText('Barnstaple').first();
     const notFoundPageTitle = page
       .getByText(t('notFound.title.default'))

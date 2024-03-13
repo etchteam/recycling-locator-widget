@@ -25,7 +25,8 @@ export interface IconAttributes {
     | 'external'
     | 'expand'
     | 'list'
-    | 'sync';
+    | 'sync'
+    | 'menu';
   readonly color?: 'primary' | 'muted' | 'positive' | 'negative';
   readonly label?: string;
 }

@@ -22,19 +22,13 @@ Setup your .env
 cp .env.example .env
 ```
 
-Start the local development server on [http://localhost:3000](http://localhost:3000)
+Start the local development server on [http://localhost:3020](http://localhost:3020)
 
 ```bash
 npm start
 ```
 
-## Viewing changes
-
-There's 3 preset configurations that are available to test with locally:
-
-- [/](http://localhost:3000) - default English embedded widget
-- [/welsh](http://localhost:3000/welsh) - Welsh language embedded widget
-- [/standalone](http://localhost:3000/standalone) - Full page app
+You will need the [recycle locator widget api](https://github.com/etchteam/recycle-locator) running on `rl.test` or you will need to connect to staging/production.
 
 For component documentation run:
 
