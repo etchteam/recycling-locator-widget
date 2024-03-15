@@ -1,4 +1,3 @@
-import random from 'lodash/random';
 import {
   defer,
   LoaderFunctionArgs,
@@ -6,6 +5,7 @@ import {
 } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
+import getTip from '@/lib/getTip';
 import {
   LocalAuthority,
   Location,
@@ -37,18 +37,11 @@ async function getData({
     'recycling-meta?categories=HINT',
   );
 
-  let tip = meta.find((m) => m.materials.includes(materialId));
-
-  if (!tip) {
-    const genericTips = meta.filter((m) => m.materials.length === 0 && !m.path);
-    tip = genericTips[random(0, genericTips.length - 1)];
-  }
-
   return {
     localAuthority,
     materialId,
     locations: locations.items,
-    tip,
+    tip: getTip(meta, { materialId }),
   };
 }
 

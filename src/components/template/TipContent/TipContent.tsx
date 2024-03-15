@@ -1,11 +1,12 @@
 import { RecyclingMeta } from '@/types/locatorApi';
 import '@etchteam/diamond-ui/control/Button/Button';
+import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/content/Icon/Icon';
 
 export default function TipContent({ tip }: { readonly tip: RecyclingMeta }) {
   return (
-    <>
+    <diamond-enter type="fade">
       <p className="diamond-text-weight-bold">{tip.subtitle}</p>
       <h2>{tip.title}</h2>
       <p>{tip.content}</p>
@@ -17,6 +18,6 @@ export default function TipContent({ tip }: { readonly tip: RecyclingMeta }) {
           </a>
         </diamond-button>
       )}
-    </>
+    </diamond-enter>
   );
 }
