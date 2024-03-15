@@ -113,7 +113,11 @@ export default function HomeRecyclingLayout({
       </div>
       <locator-tip slot="layout-aside">
         <locator-wrap>
-          <img src={`${config.imagePath}recycling-technology.webp`} alt="" />
+          <img
+            src={config.imagePath + 'home-tip.svg'}
+            alt=""
+            className="diamond-spacing-bottom-sm"
+          />
           <p>{t('homeRecycling.aside.paragraph')}</p>
           <ul className="diamond-spacing-bottom-md">
             {tArray('homeRecycling.aside.list').map((item) => (

@@ -19,7 +19,7 @@ locator-tip {
     display: block;
     height: auto;
     margin: 0 auto;
-    width: min(100%, 10em);
+    width: min(100%, 15em);
   }
 
   &[type='image'] {
