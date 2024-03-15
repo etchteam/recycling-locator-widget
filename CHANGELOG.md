@@ -1,3 +1,24 @@
+## [1.9.0](https://github.com/etchteam/recycling-locator/compare/v1.8.0...v1.9.0) (2024-03-15)
+
+
+### Features
+
+* add home tip image ([f594ecc](https://github.com/etchteam/recycling-locator/commit/f594ecc877526192a254df94030848ad179ec1da))
+* fade the whole places tip in once its ready ([93597aa](https://github.com/etchteam/recycling-locator/commit/93597aad827153c66f632b2b3f8f637e6daf1aef))
+* home collection page hint and getTip lib ([7097dd7](https://github.com/etchteam/recycling-locator/commit/7097dd744861474500033d29e1263f62e5702c43))
+* material tip ([2d90f7a](https://github.com/etchteam/recycling-locator/commit/2d90f7a778c5ee328227f5ac9fa59a2e288ffb66))
+* material tip image ([9db04d5](https://github.com/etchteam/recycling-locator/commit/9db04d51c0413cbee8d4df31f569394a274aac0e))
+* places tip ([5850e0b](https://github.com/etchteam/recycling-locator/commit/5850e0b9b163f2c05340de840f812a3f2c07ee96))
+* replace instances of the recycling-tech image ([2477d3b](https://github.com/etchteam/recycling-locator/commit/2477d3b6623cb35c3c949b5b1089ecfe74fd2fe3))
+* start page tip ([c966f25](https://github.com/etchteam/recycling-locator/commit/c966f251942f554bc387ff5467586c34bf5884dc))
+
+
+### Bug Fixes
+
+* json recycling meta response ([3838b41](https://github.com/etchteam/recycling-locator/commit/3838b4110794640ec5b2c3cee03c049ccf030936))
+* menu layout and translation issues ([24e3b77](https://github.com/etchteam/recycling-locator/commit/24e3b7739296bfed2c5a939d864133a28b136795))
+* missing recycling meta in ci e2e tests ([0125f7c](https://github.com/etchteam/recycling-locator/commit/0125f7c68a8aa4c4347d2c16447913b5a8e05e64))
+
 ## [1.8.0](https://github.com/etchteam/recycling-locator/compare/v1.7.0...v1.8.0) (2024-03-13)
 
 
