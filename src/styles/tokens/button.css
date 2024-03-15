@@ -1,4 +1,4 @@
-:host {
+diamond-button {
   --diamond-button-background: var(--color-white);
   --diamond-button-background-hover: var(--color-primary-lightest);
   --diamond-button-background-disabled: var(--diamond-button-background);
@@ -17,6 +17,13 @@
     var(--color-black)
   );
   --diamond-button-primary-background-disabled: var(--color-primary);
+  --diamond-button-primary-border-color: var(--color-primary-dark);
+  --diamond-button-primary-border-color-hover: color-mix(
+    in srgb,
+    var(--color-primary-dark) 75%,
+    var(--color-black)
+  );
+  --diamond-button-primary-border-color-disabled: var(--color-primary);
   --diamond-button-primary-color: var(--color-white);
   --diamond-button-primary-color-hover: var(--diamond-button-primary-color);
   --diamond-button-primary-color-disabled: var(--diamond-button-primary-color);
