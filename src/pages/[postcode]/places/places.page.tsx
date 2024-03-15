@@ -169,20 +169,22 @@ export default function PlacesPage() {
         </diamond-wrap>
       </diamond-section>
       <section>
-        <locator-tip text-align="center" wrap="wrap">
-          <img src={config.imagePath + 'material-tip.svg'} alt="" />
-          <locator-tip-content>
-            <Suspense fallback={null}>
-              <Await resolve={data}>
-                {({ tip }) => (
-                  <TipContent tip={tip} ctaWidth="full-width-mobile" />
-                )}
-              </Await>
-            </Suspense>
-            {/** Space for the fab */}
-            <div className="diamond-spacing-bottom-xl"></div>
-          </locator-tip-content>
-        </locator-tip>
+        <Suspense fallback={null}>
+          <Await resolve={data}>
+            {({ tip }) => (
+              <diamond-enter type="fade-in-up">
+                <locator-tip text-align="center" wrap="wrap">
+                  <img src={config.imagePath + 'material-tip.svg'} alt="" />
+                  <locator-tip-content>
+                    <TipContent tip={tip} ctaWidth="full-width-mobile" />
+                    {/** Space for the fab */}
+                    <div className="diamond-spacing-bottom-xl"></div>
+                  </locator-tip-content>
+                </locator-tip>
+              </diamond-enter>
+            )}
+          </Await>
+        </Suspense>
       </section>
       <diamond-enter type="fade" delay={0.25}>
         <locator-fab>
