@@ -7,7 +7,7 @@ locator-tip {
   background: var(--diamond-theme-background);
   color: var(--diamond-theme-color);
   display: grid;
-  height: 100%;
+  min-height: 100%;
   padding-block: var(--diamond-spacing);
   place-content: center;
 

@@ -1,16 +1,23 @@
-import { defer, LoaderFunctionArgs } from 'react-router-dom';
+import random from 'lodash/random';
+import {
+  defer,
+  LoaderFunctionArgs,
+  useRouteLoaderData,
+} from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
 import {
   LocalAuthority,
   Location,
   LocationsResponse,
+  RecyclingMeta,
 } from '@/types/locatorApi';
 
 export interface MaterialLoaderResponse {
   materialId: number;
   localAuthority: LocalAuthority;
   locations: Location[];
+  tip: RecyclingMeta;
 }
 
 async function getData({
@@ -26,11 +33,22 @@ async function getData({
   const locations = await LocatorApi.get<LocationsResponse>(
     `locations/${postcode}?materials=${materialId}`,
   );
+  const meta = await LocatorApi.get<RecyclingMeta[]>(
+    'recycling-meta?categories=HINT',
+  );
+
+  let tip = meta.find((m) => m.materials.includes(materialId));
+
+  if (!tip) {
+    const genericTips = meta.filter((m) => m.materials.length === 0 && !m.path);
+    tip = genericTips[random(0, genericTips.length - 1)];
+  }
 
   return {
     localAuthority,
     materialId,
     locations: locations.items,
+    tip,
   };
 }
 
@@ -39,4 +57,10 @@ export default async function materialLoader({
   params,
 }: LoaderFunctionArgs) {
   return defer({ data: getData({ request, params }) });
+}
+
+export function useMaterialLoaderData() {
+  return useRouteLoaderData('material') as {
+    data: Promise<MaterialLoaderResponse>;
+  };
 }
