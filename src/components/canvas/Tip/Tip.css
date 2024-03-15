@@ -22,6 +22,12 @@ locator-tip {
     width: min(100%, 10em);
   }
 
+  &[type='image'] {
+    img {
+      width: min(100%, 20em);
+    }
+  }
+
   &[text-align='center'] {
     text-align: center;
   }

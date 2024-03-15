@@ -11,7 +11,6 @@ import '@/components/content/Icon/Icon';
 import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
 import config from '@/config';
-import tArray from '@/lib/tArray';
 import useAnalytics from '@/lib/useAnalytics';
 
 function About() {
@@ -52,18 +51,10 @@ function About() {
 }
 
 export function DefaultAside() {
-  const { t } = useTranslation();
-
   return (
-    <locator-tip slot="layout-aside">
+    <locator-tip slot="layout-aside" type="image">
       <locator-wrap>
-        <p>{t('start.aside.paragraph')}</p>
-        <ul>
-          {tArray('start.aside.list').map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-        <img src={`${config.imagePath}recycling-technology.webp`} alt="" />
+        <img src={config.imagePath + 'general-tip.svg'} alt="" />
       </locator-wrap>
     </locator-tip>
   );
