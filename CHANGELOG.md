@@ -1,3 +1,10 @@
+## [1.10.0](https://github.com/etchteam/recycling-locator/compare/v1.9.0...v1.10.0) (2024-03-15)
+
+
+### Features
+
+* new colours ([361529c](https://github.com/etchteam/recycling-locator/commit/361529c52993c7ffce81a79d729b715718d54654))
+
 ## [1.9.0](https://github.com/etchteam/recycling-locator/compare/v1.8.0...v1.9.0) (2024-03-15)
 
 
