@@ -170,7 +170,7 @@ export default function PlacesPage() {
       <section>
         <locator-tip text-align="center" wrap="wrap">
           {/* TODO(WRAP-232): swap this out for the proper tip once we have content */}
-          <img src={`${config.imagePath}recycling-technology.webp`} alt="" />
+          <img src={config.imagePath + 'home-tip.svg'} alt="" />
           <locator-tip-content>
             <p className="diamond-text-weight-bold">Did you know?</p>
             <h2>Putting the right stuff in the right bin is important.</h2>

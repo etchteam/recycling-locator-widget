@@ -139,7 +139,7 @@ export default function CollectionPage() {
       <locator-tip slot="layout-aside" text-align="center">
         {/* TODO(WRAP-232): swap this out for the proper tip once we have content */}
         <locator-wrap>
-          <img src={`${config.imagePath}recycling-technology.webp`} alt="" />
+          <img src={config.imagePath + 'material-tip.svg'} alt="" />
           <p className="diamond-text-weight-bold">Hints and tips</p>
           <h2>How to check if your electricals can be recycled</h2>
           <p>
