@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/etchteam/recycling-locator/compare/v1.10.0...v1.10.1) (2024-03-15)
+
+
+### Bug Fixes
+
+* elements not inheriting theme preset ([7253c87](https://github.com/etchteam/recycling-locator/commit/7253c8720fdebfae257cc718ff4ee19d3bb5a5a0))
+
 ## [1.10.0](https://github.com/etchteam/recycling-locator/compare/v1.9.0...v1.10.0) (2024-03-15)
 
 
