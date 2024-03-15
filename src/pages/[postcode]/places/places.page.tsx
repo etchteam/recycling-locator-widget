@@ -23,6 +23,7 @@ import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import '@/components/control/Fab/Fab';
 import Place from '@/components/template/Place/Place';
+import TipContent from '@/components/template/TipContent/TipContent';
 import config from '@/config';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import useAnalytics from '@/lib/useAnalytics';
@@ -169,19 +170,15 @@ export default function PlacesPage() {
       </diamond-section>
       <section>
         <locator-tip text-align="center" wrap="wrap">
-          {/* TODO(WRAP-232): swap this out for the proper tip once we have content */}
-          <img src={config.imagePath + 'home-tip.svg'} alt="" />
+          <img src={config.imagePath + 'material-tip.svg'} alt="" />
           <locator-tip-content>
-            <p className="diamond-text-weight-bold">Did you know?</p>
-            <h2>Putting the right stuff in the right bin is important.</h2>
-            <p className="diamond-spacing-bottom-md">
-              Most of us are getting it right, however, when too much
-              contaminated material is collected it can prevent the whole lorry
-              load of material from being recycled.
-            </p>
-            <diamond-button>
-              <button>Tips to reduce contamination</button>
-            </diamond-button>
+            <Suspense fallback={null}>
+              <Await resolve={data}>
+                {({ tip }) => (
+                  <TipContent tip={tip} ctaWidth="full-width-mobile" />
+                )}
+              </Await>
+            </Suspense>
             {/** Space for the fab */}
             <div className="diamond-spacing-bottom-xl"></div>
           </locator-tip-content>

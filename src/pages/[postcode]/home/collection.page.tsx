@@ -146,7 +146,7 @@ export default function CollectionPage() {
       </div>
       <locator-tip slot="layout-aside" text-align="center">
         <locator-wrap>
-          <img src={config.imagePath + 'material-tip.svg'} alt="" />
+          <img src={config.imagePath + 'generic-tip.svg'} alt="" />
           <Suspense fallback={null}>
             <Await resolve={data}>
               {({ tip }) => <TipContent tip={tip} />}

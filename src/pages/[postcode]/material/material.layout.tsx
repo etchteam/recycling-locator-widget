@@ -74,7 +74,6 @@ export default function MaterialLayout() {
         <Outlet />
       </div>
       <locator-tip slot="layout-aside" text-align="center">
-        {/* TODO(WRAP-232): swap this out for the proper tip once we have content */}
         <locator-wrap>
           <img
             className="diamond-spacing-bottom-sm"

@@ -3,7 +3,8 @@ import { LoaderFunctionArgs, defer } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
 import PostCodeResolver from '@/lib/PostcodeResolver';
-import { Location, LocationsResponse } from '@/types/locatorApi';
+import getTip from '@/lib/getTip';
+import { Location, LocationsResponse, RecyclingMeta } from '@/types/locatorApi';
 
 export interface PlacesLoaderResponse {
   latitude: number;
@@ -15,6 +16,7 @@ export interface PlacesLoaderResponse {
   page: number;
   /** The material being requested by the loader */
   materialId?: string;
+  tip: RecyclingMeta;
 }
 
 async function getData({
@@ -45,6 +47,10 @@ async function getData({
   );
   const locationsCount = locations.items.length;
 
+  const meta = await LocatorApi.get<RecyclingMeta[]>(
+    'recycling-meta?categories=HINT',
+  );
+
   return {
     latitude: locations.latitude,
     longitude: locations.longitude,
@@ -52,6 +58,7 @@ async function getData({
     max: locationsCount < limit || limit === 120,
     page,
     materialId,
+    tip: getTip(meta, { path: '/:postcode/places' }),
   };
 }
 
