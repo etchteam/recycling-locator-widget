@@ -21,7 +21,7 @@
   );
   --diamond-theme-color-hover: var(
     --recycling-locator-theme-color-hover,
-    var(--color-primary)
+    var(--color-primary-dark)
   );
   --diamond-theme-border-color: var(
     --recycling-locator-theme-border-color-light,
@@ -29,76 +29,83 @@
   );
   --diamond-theme-border-color-hover: var(
     --recycling-locator-theme-border-color-hover-light,
-    var(--color-primary)
+    var(--color-primary-dark)
+  );
+  --diamond-theme-link-color: var(
+    --recycling-locator-theme-link-color,
+    var(--color-blue-dark)
   );
 
-  --theme-background-accent: var(
-    --recycling-locator-theme-background-accent,
-    var(--color-primary-lightest)
-  );
-  --theme-heading-color-accent: var(
-    --recycling-locator-theme-heading-color-accent,
-    var(--color-primary)
-  );
-  --theme-color-accent: var(
-    --recycling-locator-theme-color-accent,
-    var(--diamond-theme-color)
-  );
-  --theme-link-color-accent: var(
-    --recycling-locator-theme-link-color-accent,
-    var(--color-primary)
-  );
+  --theme-background-info: var(--color-blue-lightest);
+  --theme-heading-color-info: var(--color-blue-dark);
+  --theme-color-info: var(--color-blue-dark);
+  --theme-link-color-info: var(--color-blue-dark);
 
-  --theme-background-info: var(
-    --recycling-locator-theme-background-info,
-    var(--color-blue-lightest)
-  );
-  --theme-heading-color-info: var(
-    --recycling-locator-theme-heading-color-info,
-    var(--color-blue)
-  );
-  --theme-color-info: var(
-    --recycling-locator-theme-color-info,
-    var(--color-blue)
-  );
-  --theme-link-color-info: var(
-    --recycling-locator-theme-link-color-info,
-    var(--color-blue)
-  );
+  --theme-background-positive: var(--color-green);
+  --theme-heading-color-positive: var(--color-grey-dark);
+  --theme-color-positive: var(--color-grey-dark);
+  --theme-link-color-positive: var(--color-grey-dark);
 
-  --theme-background-positive: var(
-    --recycling-locator-theme-background-positive,
-    var(--color-positive-lightest)
-  );
-  --theme-heading-color-positive: var(
-    --recycling-locator-theme-heading-color-positive,
-    var(--color-positive-dark)
-  );
-  --theme-color-positive: var(
-    --recycling-locator-theme-color-positive,
-    var(--color-positive-dark)
-  );
-  --theme-link-color-positive: var(
-    --recycling-locator-theme-link-color-positive,
-    var(--color-positive-dark)
-  );
+  --theme-background-negative: var(--color-red);
+  --theme-heading-color-negative: var(--color-grey-dark);
+  --theme-color-negative: var(--color-grey-dark);
+  --theme-link-color-negative: var(--color-grey-dark);
+}
 
-  --theme-background-negative: var(
-    --recycling-locator-theme-background-negative,
-    var(--color-negative-lightest)
-  );
-  --theme-heading-color-negative: var(
-    --recycling-locator-theme-heading-color-negative,
-    var(--color-negative)
-  );
-  --theme-color-negative: var(
-    --recycling-locator-theme-color-negative,
-    var(--color-negative)
-  );
-  --theme-link-color-negative: var(
-    --recycling-locator-theme-link-color-negative,
-    var(--color-negative)
-  );
+.theme-preset-green {
+  --color-primary-lightest: var(--color-green-lightest);
+  --color-primary-light: var(--color-green-light);
+  --color-primary: var(--color-green);
+  --color-primary-dark: var(--color-green-dark);
+}
+
+.theme-preset-red {
+  --color-primary-lightest: var(--color-red-lightest);
+  --color-primary-light: var(--color-red-light);
+  --color-primary: var(--color-red);
+  --color-primary-dark: var(--color-red-dark);
+}
+
+.theme-preset-blue {
+  --color-primary-lightest: var(--color-blue-lightest);
+  --color-primary-light: var(--color-blue-light);
+  --color-primary: var(--color-blue);
+  --color-primary-dark: var(--color-blue-dark);
+}
+
+.theme-preset-orange {
+  --color-primary-lightest: var(--color-orange-lightest);
+  --color-primary-light: var(--color-orange-light);
+  --color-primary: var(--color-orange);
+  --color-primary-dark: var(--color-orange-dark);
+}
+
+.theme-preset-purple {
+  --color-primary-lightest: var(--color-purple-lightest);
+  --color-primary-light: var(--color-purple-light);
+  --color-primary: var(--color-purple);
+  --color-primary-dark: var(--color-purple-dark);
+}
+
+.theme-preset-brown {
+  --color-primary-lightest: var(--color-brown-lightest);
+  --color-primary-light: var(--color-brown-light);
+  --color-primary: var(--color-brown);
+  --color-primary-dark: var(--color-brown-dark);
+}
+
+.theme-preset-navy {
+  --color-primary-lightest: var(--color-navy-lightest);
+  --color-primary-light: var(--color-navy-light);
+  --color-primary: var(--color-navy);
+  --color-primary-dark: var(--color-navy-dark);
+}
+
+.theme-preset-black {
+  --color-primary-lightest: var(--color-grey-lightest);
+  --color-primary-light: var(--color-grey-light);
+  --color-primary: var(--color-grey);
+  --color-primary-dark: var(--color-grey-dark);
 }
 
 .theme-info {

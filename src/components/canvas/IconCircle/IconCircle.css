@@ -1,6 +1,6 @@
 locator-icon-circle {
   --_background: var(--color-grey-lightest);
-  --_color: var(--color-primary);
+  --_color: var(--color-primary-darkest);
   align-items: center;
   background: var(--_background);
   border-radius: 50%;
@@ -10,12 +10,12 @@ locator-icon-circle {
   padding: 3px;
 
   &[variant='positive'] {
-    --_background: var(--color-positive-light);
+    --_background: var(--theme-background-positive);
     --_color: var(--color-white);
   }
 
   &[variant='negative'] {
-    --_background: var(--color-negative-light);
+    --_background: var(--theme-background-negative);
     --_color: var(--color-white);
   }
 }

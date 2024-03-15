@@ -1,23 +1,27 @@
 :host {
   --diamond-button-background: var(--color-white);
-  --diamond-button-background-hover: var(--theme-background-accent);
+  --diamond-button-background-hover: var(--color-primary-lightest);
   --diamond-button-background-disabled: var(--diamond-button-background);
-  --diamond-button-border-color: var(--color-green);
-  --diamond-button-border-color-hover: var(--color-green-dark);
-  --diamond-button-border-color-disabled: var(--color-green-light);
-  --diamond-button-color: var(--diamond-button-border-color);
-  --diamond-button-color-hover: var(--diamond-button-border-color-hover);
-  --diamond-button-color-disabled: var(--diamond-button-border-color-disabled);
+  --diamond-button-border-color: var(--color-primary-dark);
+  --diamond-button-border-color-hover: var(--color-primary-dark);
+  --diamond-button-border-color-disabled: var(--color-primary);
+  --diamond-button-color: var(--color-primary-dark);
+  --diamond-button-color-hover: var(--color-primary-dark);
+  --diamond-button-color-disabled: var(--color-primary);
   --diamond-button-padding-block: 0.75rem;
 
-  --diamond-button-primary-background: var(--color-primary);
-  --diamond-button-primary-background-hover: var(--color-primary-dark);
-  --diamond-button-primary-background-disabled: var(--color-primary-light);
+  --diamond-button-primary-background: var(--color-primary-dark);
+  --diamond-button-primary-background-hover: color-mix(
+    in srgb,
+    var(--color-primary-dark) 85%,
+    var(--color-black)
+  );
+  --diamond-button-primary-background-disabled: var(--color-primary);
   --diamond-button-primary-color: var(--color-white);
   --diamond-button-primary-color-hover: var(--diamond-button-primary-color);
   --diamond-button-primary-color-disabled: var(--diamond-button-primary-color);
 
-  --diamond-button-text-background-hover: var(--theme-background-accent);
+  --diamond-button-text-background-hover: var(--color-primary-lightest);
 }
 
 diamond-button[variant='primary'] {

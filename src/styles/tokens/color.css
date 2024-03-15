@@ -2,46 +2,70 @@
   --color-white: #fff;
   --color-black: #000;
 
-  --color-grey-lightest: #f2f2f2;
-  --color-grey-light: #bdbdbd;
+  --color-grey-lightest: #f5f6f8;
+  --color-grey-light: #cfd1d3;
+  --color-grey: #999c9e;
   --color-grey-muted: #4f4f4f;
-  --color-grey-dark: #333;
+  --color-grey-dark: #222;
 
   --color-green-lightest: #eef5e5;
-  --color-green-light: #6fcf97;
-  --color-green: #219653;
-  --color-green-dark: #1c7d46;
+  --color-green-light: #dfefc8;
+  --color-green: #8dc63f;
+  --color-green-dark: #297f00;
 
-  --color-blue-lightest: #d4f5ff;
-  --color-blue: #0048a9;
+  --color-blue-lightest: #e0f8ff;
+  --color-blue-light: #bee9f6;
+  --color-blue: #059bdc;
+  --color-blue-dark: #0077ab;
+
+  --color-yellow-lightest: #fffacf;
+  --color-yellow-light: #ffe9a5;
+  --color-yellow: #ffe500;
+  --color-yellow-dark: #eab716;
+
+  --color-orange-lightest: #ffecde;
+  --color-orange-light: #ffdbbe;
+  --color-orange: #f26d04;
+  --color-orange-dark: #c45300;
+
+  --color-red-lightest: #fff0f0;
+  --color-red-light: #f9e5e2;
+  --color-red: #f64a3c;
+  --color-red-dark: #ca250a;
+
+  --color-purple-lightest: #f5f0ff;
+  --color-purple-light: #e6d9ff;
+  --color-purple: #8a4fff;
+  --color-purple-dark: #5a24b4;
+
+  --color-brown-lightest: #f5f0f0;
+  --color-brown-light: #e6d9d9;
+  --color-brown: #8a4f4f;
+  --color-brown-dark: #5a2424;
+
+  --color-navy-lightest: #f0f0f5;
+  --color-navy-light: #d9d9e6;
+  --color-navy: #4f4f8a;
+  --color-navy-dark: #24245a;
 
   --color-body: var(--color-grey-dark);
-  --color-border: #e0e0e0;
+  --color-border: var(--color-grey-light);
 
-  --color-positive-lightest: #eafff3;
-  --color-positive-light: #8cc63f;
-  --color-positive: #8dc63f;
-  --color-positive-dark: var(--color-green-dark);
-  --color-negative-lightest: #fce8e8;
-  --color-negative-light: #eb5757;
-  --color-negative: #ca250a;
-  --color-hazardous: #ffe500;
-
-  /* This is the main color that we expect people to change */
-  --color-primary-lightest: color-mix(
-    in srgb,
-    var(--color-primary) 10%,
-    var(--color-white)
+  /**
+    * The primary colour is the main color that's changed via theme presets
+    * consumers can set the theme to none to use custom primary colours
+    */
+  --color-primary-lightest: var(
+    --recycling-locator-color-primary-lightest,
+    var(--color-green-lightest)
   );
-  --color-primary-light: color-mix(
-    in srgb,
-    var(--color-primary) 50%,
-    var(--color-white)
+  --color-primary-light: var(
+    --recycling-locator-color-primary-light,
+    var(--color-green-light)
   );
   --color-primary: var(--recycling-locator-color-primary, var(--color-green));
-  --color-primary-dark: color-mix(
-    in srgb,
-    var(--color-primary) 50%,
-    var(--color-black)
+  --color-primary-dark: var(
+    --recycling-locator-color-primary-dark,
+    var(--color-green-dark)
   );
 }

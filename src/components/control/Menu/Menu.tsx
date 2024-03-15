@@ -5,7 +5,7 @@ import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import '@/components/composition/Wrap/Wrap';
 import '@/components/composition/BorderedList/BorderedList';
-import '@/components/content/Icon/Icon';
+import { IconAttributes } from '@/components/content/Icon/Icon';
 import '@/components/control/IconLink/IconLink';
 import { formatPostcode } from '@/lib/format';
 import { usePostcodeLoaderData } from '@/pages/[postcode]/postcode.loader';
@@ -14,7 +14,11 @@ export default function Menu() {
   const { postcode, city } = usePostcodeLoaderData();
   const { t } = useTranslation();
 
-  const items = [
+  const items: {
+    icon: IconAttributes['icon'];
+    text: string;
+    to: string;
+  }[] = [
     {
       icon: 'pin',
       text: t('components.menu.changeLocation'),
@@ -65,7 +69,7 @@ export default function Menu() {
                       <locator-icon-link key={item.icon}>
                         <Link to={item.to}>
                           <locator-icon-circle>
-                            <locator-icon icon={item.icon} />
+                            <locator-icon icon={item.icon} color="primary" />
                           </locator-icon-circle>
                           {item.text}
                         </Link>

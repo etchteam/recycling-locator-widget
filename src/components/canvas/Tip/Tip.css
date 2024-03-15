@@ -1,8 +1,8 @@
 locator-tip {
-  --diamond-theme-background: var(--theme-background-accent);
-  --diamond-theme-color: var(--theme-color-accent);
-  --diamond-theme-heading-color: var(--theme-heading-color-accent);
-  --diamond-theme-link-color: var(--theme-link-color-accent);
+  --diamond-theme-background: var(--color-primary-lightest);
+  --diamond-theme-color: var(--color-body);
+  --diamond-theme-heading-color: var(--color-primary-dark);
+  --diamond-theme-link-color: var(--color-body);
 
   background: var(--diamond-theme-background);
   color: var(--diamond-theme-color);
@@ -13,6 +13,11 @@ locator-tip {
 
   locator-tip-content {
     display: block;
+  }
+
+  h2 {
+    font-size: var(--diamond-font-size-xl);
+    font-weight: var(--diamond-font-weight-bold);
   }
 
   img {

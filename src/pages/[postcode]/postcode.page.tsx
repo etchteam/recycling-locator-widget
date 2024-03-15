@@ -89,7 +89,10 @@ export default function PostcodePage() {
                   <locator-icon-link>
                     <Link to={`/${postcode}/home`}>
                       <locator-icon-circle>
-                        <locator-icon icon="home"></locator-icon>
+                        <locator-icon
+                          icon="home"
+                          color="primary"
+                        ></locator-icon>
                       </locator-icon-circle>
                       {t('postcode.options.home')}
                     </Link>
@@ -99,7 +102,10 @@ export default function PostcodePage() {
                   <locator-icon-link>
                     <Link to={`/${postcode}/places`}>
                       <locator-icon-circle>
-                        <locator-icon icon="distance"></locator-icon>
+                        <locator-icon
+                          icon="distance"
+                          color="primary"
+                        ></locator-icon>
                       </locator-icon-circle>
                       {t('postcode.options.nearest')}
                     </Link>

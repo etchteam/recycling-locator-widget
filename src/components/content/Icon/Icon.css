@@ -14,7 +14,7 @@ locator-icon {
   }
 
   &[color='primary'] {
-    color: var(--color-primary);
+    color: var(--color-primary-dark);
   }
 
   &[color='muted'] {
@@ -22,10 +22,10 @@ locator-icon {
   }
 
   &[color='positive'] {
-    color: var(--color-positive);
+    color: var(--theme-background-positive);
   }
 
   &[color='negative'] {
-    color: var(--color-negative-light);
+    color: var(--theme-background-negative);
   }
 }
