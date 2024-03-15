@@ -6,6 +6,7 @@ locator-places-header {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 
   locator-header-title {
     flex: 1 1 auto;

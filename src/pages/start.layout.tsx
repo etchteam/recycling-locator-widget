@@ -81,22 +81,24 @@ export default function StartLayout({
   return (
     <locator-layout>
       <locator-header slot="layout-header">
-        <locator-logo></locator-logo>
-        <diamond-button variant="text">
-          <button
-            type="button"
-            data-testid="about-button"
-            aria-expanded={open.value}
-            aria-controls="locator-layout-main"
-            onClick={() => (open.value = !open.value)}
-          >
-            <locator-icon
-              icon={open.value ? 'close' : 'info'}
-              label={t(`about.button.${open.value ? 'close' : 'view'}`)}
-              color="primary"
-            ></locator-icon>
-          </button>
-        </diamond-button>
+        <locator-header-content>
+          <locator-logo></locator-logo>
+          <diamond-button variant="text" width="square">
+            <button
+              type="button"
+              data-testid="about-button"
+              aria-expanded={open.value}
+              aria-controls="locator-layout-main"
+              onClick={() => (open.value = !open.value)}
+            >
+              <locator-icon
+                icon={open.value ? 'close' : 'info'}
+                label={t(`about.button.${open.value ? 'close' : 'view'}`)}
+                color="primary"
+              ></locator-icon>
+            </button>
+          </diamond-button>
+        </locator-header-content>
       </locator-header>
       <div slot="layout-main" id="locator-layout-main">
         {open.value ? <About /> : children}
