@@ -27,6 +27,20 @@ export interface RecyclingLocatorAttributes {
    * - /material?name={materialName} to pre-select a material
    */
   readonly path?: string;
+  /**
+   * Sets a preset theme which modifies the primary color
+   */
+  readonly theme?:
+    | 'none'
+    | 'green'
+    | 'red'
+    | 'blue'
+    | 'green'
+    | 'orange'
+    | 'purple'
+    | 'brown'
+    | 'navy'
+    | 'black';
 }
 
 /**
@@ -40,11 +54,14 @@ export default function RecyclingLocator({
   variant = 'widget',
   basename = '/',
   path,
+  theme = 'green',
 }: RecyclingLocatorAttributes) {
   return (
     <>
       <link rel="stylesheet" href={`${config.publicPath}styles.css`} />
-      <article className={`recycling-locator-variant-${variant}`}>
+      <article
+        className={`recycling-locator-variant-${variant} theme-preset-${theme}`}
+      >
         <Entrypoint
           locale={locale}
           variant={variant}
@@ -59,7 +76,7 @@ export default function RecyclingLocator({
 register(
   RecyclingLocator,
   'recycling-locator',
-  ['locale', 'postcode', 'variant', 'basename', 'path'],
+  ['locale', 'postcode', 'variant', 'basename', 'path', 'theme'],
   {
     shadow: true,
   },

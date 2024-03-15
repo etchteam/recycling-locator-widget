@@ -55,7 +55,7 @@ locator-places-map {
   }
 
   .locator-places-map__marker-pin {
-    fill: var(--color-primary);
+    fill: var(--color-primary-dark);
     stroke: var(--color-white);
   }
 
@@ -66,7 +66,7 @@ locator-places-map {
   .locator-places-map__marker--active {
     .locator-places-map__marker-pin {
       fill: var(--color-white);
-      stroke: var(--color-primary);
+      stroke: var(--color-primary-dark);
     }
 
     .locator-places-map__marker-pin-active {
