@@ -1,6 +1,13 @@
+import { Suspense } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link, Outlet, useParams, useSearchParams } from 'react-router-dom';
+import {
+  Await,
+  Link,
+  Outlet,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
@@ -13,13 +20,17 @@ import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
+import TipContent from '@/components/template/TipContent/TipContent';
 import config from '@/config';
 import useAnalytics from '@/lib/useAnalytics';
+
+import { useMaterialLoaderData } from './material.loader';
 
 export default function MaterialLayout() {
   const { t } = useTranslation();
   const { postcode } = useParams();
   const { recordEvent } = useAnalytics();
+  const { data } = useMaterialLoaderData();
   const [searchParams] = useSearchParams();
   const materialId = searchParams.get('id');
   const materialName = searchParams.get('name');
@@ -63,18 +74,17 @@ export default function MaterialLayout() {
         <Outlet />
       </div>
       <locator-tip slot="layout-aside" text-align="center">
-        {/* TODO(WRAP-232): swap this out for the proper tip once we have content */}
         <locator-wrap>
-          <img src={`${config.imagePath}recycling-technology.webp`} alt="" />
-          <p className="diamond-text-weight-bold">Hints and tips</p>
-          <h2>How to check if your electricals can be recycled</h2>
-          <p>
-            Any items that have a plug, use batteries, need charging or have a
-            picture of a crossed out wheelie bin on, are known as Waste
-            Electrical and Electronic Equipment (WEEE). These items should not
-            be sent to landfill and should be recycled at Recycling Centres,
-            electrical item bring banks or via electrical retailers
-          </p>
+          <img
+            className="diamond-spacing-bottom-sm"
+            src={config.imagePath + 'material-tip.svg'}
+            alt=""
+          />
+          <Suspense fallback={null}>
+            <Await resolve={data}>
+              {({ tip }) => <TipContent tip={tip} />}
+            </Await>
+          </Suspense>
         </locator-wrap>
       </locator-tip>
     </locator-layout>

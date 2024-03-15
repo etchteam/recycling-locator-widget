@@ -1,16 +1,23 @@
-import { defer, LoaderFunctionArgs } from 'react-router-dom';
+import {
+  defer,
+  LoaderFunctionArgs,
+  useRouteLoaderData,
+} from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
+import getTip from '@/lib/getTip';
 import {
   LocalAuthority,
   Location,
   LocationsResponse,
+  RecyclingMeta,
 } from '@/types/locatorApi';
 
 export interface MaterialLoaderResponse {
   materialId: number;
   localAuthority: LocalAuthority;
   locations: Location[];
+  tip: RecyclingMeta;
 }
 
 async function getData({
@@ -26,11 +33,15 @@ async function getData({
   const locations = await LocatorApi.get<LocationsResponse>(
     `locations/${postcode}?materials=${materialId}`,
   );
+  const meta = await LocatorApi.get<RecyclingMeta[]>(
+    'recycling-meta?categories=HINT',
+  );
 
   return {
     localAuthority,
     materialId,
     locations: locations.items,
+    tip: getTip(meta, { materialId }),
   };
 }
 
@@ -39,4 +50,10 @@ export default async function materialLoader({
   params,
 }: LoaderFunctionArgs) {
   return defer({ data: getData({ request, params }) });
+}
+
+export function useMaterialLoaderData() {
+  return useRouteLoaderData('material') as {
+    data: Promise<MaterialLoaderResponse>;
+  };
 }

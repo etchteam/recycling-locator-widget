@@ -1,4 +1,5 @@
 import { useSignal } from '@preact/signals';
+import { Suspense } from 'preact/compat';
 import { useEffect, useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import {
@@ -7,6 +8,8 @@ import {
   useSearchParams,
   Form,
   useLocation,
+  useLoaderData,
+  Await,
 } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
@@ -21,17 +24,22 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 
+import TipContent from '@/components/template/TipContent/TipContent';
 import config from '@/config';
 import getPropertyDisplayName from '@/lib/getPropertyDisplayName';
 import useAnalytics from '@/lib/useAnalytics';
 
 import ContainerList from './ContainerList';
+import { HomeCollectionLoaderResponse } from './collection.loader';
 import { useHomeRecyclingLoaderData } from './home.loader';
 
 export default function CollectionPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
   const { localAuthority, properties } = useHomeRecyclingLoaderData();
+  const { data } = useLoaderData() as {
+    data: Promise<HomeCollectionLoaderResponse>;
+  };
   const location = useLocation();
   const { recordEvent } = useAnalytics();
   const [searchParams] = useSearchParams();
@@ -137,18 +145,13 @@ export default function CollectionPage() {
         </diamond-section>
       </div>
       <locator-tip slot="layout-aside" text-align="center">
-        {/* TODO(WRAP-232): swap this out for the proper tip once we have content */}
         <locator-wrap>
-          <img src={`${config.imagePath}recycling-technology.webp`} alt="" />
-          <p className="diamond-text-weight-bold">Hints and tips</p>
-          <h2>How to check if your electricals can be recycled</h2>
-          <p>
-            Any items that have a plug, use batteries, need charging or have a
-            picture of a crossed out wheelie bin on, are known as Waste
-            Electrical and Electronic Equipment (WEEE). These items should not
-            be sent to landfill and should be recycled at Recycling Centres,
-            electrical item bring banks or via electrical retailers
-          </p>
+          <img src={config.imagePath + 'generic-tip.svg'} alt="" />
+          <Suspense fallback={null}>
+            <Await resolve={data}>
+              {({ tip }) => <TipContent tip={tip} />}
+            </Await>
+          </Suspense>
         </locator-wrap>
       </locator-tip>
     </locator-layout>

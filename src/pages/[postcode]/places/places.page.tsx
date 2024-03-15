@@ -23,6 +23,7 @@ import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import '@/components/control/Fab/Fab';
 import Place from '@/components/template/Place/Place';
+import TipContent from '@/components/template/TipContent/TipContent';
 import config from '@/config';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import useAnalytics from '@/lib/useAnalytics';
@@ -168,24 +169,22 @@ export default function PlacesPage() {
         </diamond-wrap>
       </diamond-section>
       <section>
-        <locator-tip text-align="center" wrap="wrap">
-          {/* TODO(WRAP-232): swap this out for the proper tip once we have content */}
-          <img src={`${config.imagePath}recycling-technology.webp`} alt="" />
-          <locator-tip-content>
-            <p className="diamond-text-weight-bold">Did you know?</p>
-            <h2>Putting the right stuff in the right bin is important.</h2>
-            <p className="diamond-spacing-bottom-md">
-              Most of us are getting it right, however, when too much
-              contaminated material is collected it can prevent the whole lorry
-              load of material from being recycled.
-            </p>
-            <diamond-button>
-              <button>Tips to reduce contamination</button>
-            </diamond-button>
-            {/** Space for the fab */}
-            <div className="diamond-spacing-bottom-xl"></div>
-          </locator-tip-content>
-        </locator-tip>
+        <Suspense fallback={null}>
+          <Await resolve={data}>
+            {({ tip }) => (
+              <diamond-enter type="fade-in-up">
+                <locator-tip text-align="center" wrap="wrap">
+                  <img src={config.imagePath + 'material-tip.svg'} alt="" />
+                  <locator-tip-content>
+                    <TipContent tip={tip} ctaWidth="full-width-mobile" />
+                    {/** Space for the fab */}
+                    <div className="diamond-spacing-bottom-xl"></div>
+                  </locator-tip-content>
+                </locator-tip>
+              </diamond-enter>
+            )}
+          </Await>
+        </Suspense>
       </section>
       <diamond-enter type="fade" delay={0.25}>
         <locator-fab>

@@ -17,7 +17,7 @@ export const Tip: StoryObj = {
         <li>find out how to recycle a specific item</li>
         <li>check what you can recycle at home</li>
       </ul>
-      <img src="/images/recycling-technology.webp" alt="" />
+      <img src="/images/general-tip.svg" alt="" />
     </locator-tip>
   ),
 };
@@ -25,7 +25,7 @@ export const Tip: StoryObj = {
 export const CenteredContent: StoryObj = {
   render: () => (
     <locator-tip text-align="center">
-      <img src="/images/recycling-technology.webp" alt="" />
+      <img src="/images/home-tip.svg" alt="" />
       <h2>How to check if your electricals can be recycled</h2>
       <p>
         Any items that have a plug, use batteries, need charging or have a
@@ -41,7 +41,7 @@ export const CenteredContent: StoryObj = {
 export const WrapOnLargeScreen: StoryObj = {
   render: () => (
     <locator-tip text-align="center" wrap="wrap">
-      <img src="/images/recycling-technology.webp" alt="" />
+      <img src="/images/material-tip.svg" alt="" />
       <locator-tip-content>
         <h2>How to check if your electricals can be recycled</h2>
         <p>

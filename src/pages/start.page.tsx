@@ -5,6 +5,7 @@ import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import '@/components/composition/Wrap/Wrap';
 import '@/components/control/LocationInput/LocationInput';
+import tArray from '@/lib/tArray';
 import StartLayout from '@/pages/start.layout';
 
 import LocationForm from './LocationForm';
@@ -17,7 +18,16 @@ export default function StartPage() {
       <locator-wrap>
         <diamond-section padding="lg">
           <h2>{t('start.title')}</h2>
-          <LocationForm />
+          <div className="diamond-spacing-bottom-md">
+            <LocationForm />
+          </div>
+          <hr className="diamond-spacing-bottom-md" />
+          <p>{t('start.aside.paragraph')}</p>
+          <ul>
+            {tArray('start.aside.list').map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
         </diamond-section>
       </locator-wrap>
     </StartLayout>

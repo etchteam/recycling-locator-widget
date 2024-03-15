@@ -29,7 +29,7 @@
       "placeholder": "Enter the name of an item..."
     },
     "menu": {
-      "whatdoYouWantToDo": "What do you want to do?",
+      "whatDoYouWantToDo": "What do you want to do?",
       "changeLocation": "Change your location",
       "recycleSpecificItem": "Recycle a specific item",
       "homeRecycling": "Check your home recycling",

@@ -1,6 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import '@etchteam/diamond-ui/composition/Enter/Enter';
+import '@etchteam/diamond-ui/canvas/Section/Section';
 
+import '@/components/composition/Wrap/Wrap';
+import '@/components/composition/BorderedList/BorderedList';
+import '@/components/content/Icon/Icon';
+import '@/components/control/IconLink/IconLink';
 import { formatPostcode } from '@/lib/format';
 import { usePostcodeLoaderData } from '@/pages/[postcode]/postcode.loader';
 
@@ -44,31 +50,33 @@ export default function Menu() {
         </locator-context-header>
       </diamond-enter>
       <diamond-section padding="md">
-        <diamond-wrap>
+        <locator-wrap>
           <diamond-enter type="fade" class="diamond-spacing-bottom-md">
             <p className="diamond-text-size-h4">
               {t('components.menu.whatDoYouWantToDo')}
             </p>
           </diamond-enter>
           <locator-bordered-list>
-            <ul>
-              {items.map((item, i) => (
-                <li key={item.icon}>
-                  <diamond-enter type="fade" delay={i * 0.1}>
-                    <locator-icon-link key={item.icon}>
-                      <Link to={item.to}>
-                        <locator-icon-circle>
-                          <locator-icon icon={item.icon} />
-                        </locator-icon-circle>
-                        {item.text}
-                      </Link>
-                    </locator-icon-link>
-                  </diamond-enter>
-                </li>
-              ))}
-            </ul>
+            <nav>
+              <ul>
+                {items.map((item, i) => (
+                  <li key={item.icon}>
+                    <diamond-enter type="fade" delay={i * 0.1}>
+                      <locator-icon-link key={item.icon}>
+                        <Link to={item.to}>
+                          <locator-icon-circle>
+                            <locator-icon icon={item.icon} />
+                          </locator-icon-circle>
+                          {item.text}
+                        </Link>
+                      </locator-icon-link>
+                    </diamond-enter>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </locator-bordered-list>
-        </diamond-wrap>
+        </locator-wrap>
       </diamond-section>
     </>
   );

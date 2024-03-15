@@ -1,5 +1,6 @@
 import { RouteObject } from 'react-router-dom';
 
+import homeCollectionLoader from './collection.loader';
 import CollectionPage from './collection.page';
 import HomeRecyclingContactPage from './contact.page';
 import HomeRecyclingErrorPage from './error.page';
@@ -36,6 +37,7 @@ const routes: RouteObject[] = [
       },
       {
         path: 'collection',
+        loader: homeCollectionLoader,
         element: <CollectionPage />,
       },
     ],

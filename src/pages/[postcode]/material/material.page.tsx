@@ -1,6 +1,6 @@
 import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { useLoaderData, useAsyncValue, Await } from 'react-router-dom';
+import { useAsyncValue, Await } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/canvas/Loading/Loading';
@@ -12,7 +12,10 @@ import getPropertiesByMaterial from '@/lib/getPropertiesByMaterial';
 
 import NearbyPlaces from './NearbyPlaces';
 import RecycleAtHome from './RecycleAtHome';
-import { MaterialLoaderResponse } from './material.loader';
+import {
+  MaterialLoaderResponse,
+  useMaterialLoaderData,
+} from './material.loader';
 
 function Loading() {
   const { t } = useTranslation();
@@ -74,7 +77,7 @@ function MaterialPageContent() {
 }
 
 export default function MaterialPage() {
-  const { data } = useLoaderData() as { data: Promise<MaterialLoaderResponse> };
+  const { data } = useMaterialLoaderData();
 
   return (
     <Suspense fallback={<Loading />}>

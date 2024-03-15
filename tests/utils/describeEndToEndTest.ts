@@ -5,6 +5,10 @@ import type { PreviewServer } from 'vite';
 import { afterAll, afterEach, beforeAll, beforeEach, describe } from 'vitest';
 
 import en from '../../public/translations/en.json';
+import {
+  RECYCLING_META_ENDPOINT,
+  RecyclingMetaResponse,
+} from '../mocks/recyclingMeta';
 
 import provideI18n from './providei18n';
 const PORT = 3001;
@@ -31,6 +35,10 @@ export default function describeEndToEndTest(
       await page.route('**/translations/en.json', (route) => {
         // Mock the response for the translations to speed it up slightly
         route.fulfill({ json: en });
+      });
+      await page.route(RECYCLING_META_ENDPOINT, (route) => {
+        // Make the recycling meta response always the same
+        route.fulfill({ json: RecyclingMetaResponse });
       });
       page.goto(`http://localhost:${PORT}`);
       const widget = page.locator('recycling-locator');
