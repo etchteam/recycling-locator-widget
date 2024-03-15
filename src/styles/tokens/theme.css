@@ -108,6 +108,16 @@
   --color-primary-dark: var(--color-grey-dark);
 }
 
+[class*=' theme-preset-'] {
+  --diamond-theme-color-hover: var(--color-primary-dark);
+  --diamond-theme-border-color-hover: var(--color-primary-dark);
+
+  diamond-input:hover,
+  diamond-input:focus-within {
+    --_border-color: var(--color-primary-dark);
+  }
+}
+
 .theme-info {
   --diamond-theme-background: var(--theme-background-info);
   --diamond-theme-heading-color: var(--theme-heading-color-info);
