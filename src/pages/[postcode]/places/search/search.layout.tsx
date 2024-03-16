@@ -34,18 +34,25 @@ export default function PlacesSearchLayout({
   return (
     <locator-layout>
       <locator-header slot="layout-header">
-        <locator-header-title>
-          <h2>{t('places.search.title')}</h2>
-        </locator-header-title>
-        <diamond-button width="square" size="sm">
-          <Link to={`/${postcode}/places${query}`}>
-            <locator-icon
-              icon="close"
-              color="primary"
-              label={t('actions.close')}
-            />
+        <locator-header-logo>
+          <Link to="/">
+            <locator-logo type="logo-only"></locator-logo>
           </Link>
-        </diamond-button>
+        </locator-header-logo>
+        <locator-header-content>
+          <locator-header-title>
+            <h2>{t('places.search.title')}</h2>
+          </locator-header-title>
+          <diamond-button width="square" size="sm">
+            <Link to={`/${postcode}/places${query}`}>
+              <locator-icon
+                icon="close"
+                color="primary"
+                label={t('actions.close')}
+              />
+            </Link>
+          </diamond-button>
+        </locator-header-content>
       </locator-header>
       <div slot="layout-main">
         <locator-nav-bar>

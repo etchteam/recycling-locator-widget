@@ -1,25 +1,23 @@
 import register from 'preact-custom-element';
 
-import config from '@/config';
 import { CustomElement } from '@/types/customElement';
 
-export default function Logo() {
-  return (
-    <img
-      src={`${config.imagePath}recycling-locator-logo.webp`}
-      alt="Recycling Locator"
-      width="230"
-      height="42"
-    />
-  );
+import LogoSvg from './logo.svg?react';
+
+export interface LogoAttributes {
+  readonly type?: 'logo-only';
 }
 
-register(Logo, 'locator-logo');
+export default function Logo() {
+  return <LogoSvg />;
+}
+
+register(Logo, 'locator-logo', ['type']);
 
 declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
-      'locator-logo': CustomElement;
+      'locator-logo': CustomElement<LogoAttributes>;
     }
   }
 }

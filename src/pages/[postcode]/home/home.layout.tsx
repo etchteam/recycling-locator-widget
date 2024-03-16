@@ -1,7 +1,7 @@
 import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { useTranslation } from 'react-i18next';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { Link, NavLink, Outlet, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
@@ -35,7 +35,7 @@ export default function HomeRecyclingLayout({
     <locator-layout>
       <locator-header slot="layout-header">
         {open.value ? (
-          <>
+          <locator-header-content>
             <locator-logo></locator-logo>
             <diamond-button width="square" size="sm">
               <button
@@ -51,27 +51,36 @@ export default function HomeRecyclingLayout({
                 ></locator-icon>
               </button>
             </diamond-button>
-          </>
+          </locator-header-content>
         ) : (
-          <locator-header-title>
-            <diamond-button>
-              <button
-                type="button"
-                aria-expanded="false"
-                aria-controls="locator-layout-main"
-                onClick={() => (open.value = !open.value)}
-              >
-                <locator-icon
-                  icon="menu"
-                  label={t('actions.menu')}
-                ></locator-icon>
-              </button>
-            </diamond-button>
-            <div>
-              <h2>{t('homeRecycling.title')}</h2>
-              {la && <p>{la.name}</p>}
-            </div>
-          </locator-header-title>
+          <>
+            <locator-header-logo>
+              <Link to="/">
+                <locator-logo type="logo-only"></locator-logo>
+              </Link>
+            </locator-header-logo>
+            <locator-header-content>
+              <locator-header-title>
+                <diamond-button>
+                  <button
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="locator-layout-main"
+                    onClick={() => (open.value = !open.value)}
+                  >
+                    <locator-icon
+                      icon="menu"
+                      label={t('actions.menu')}
+                    ></locator-icon>
+                  </button>
+                </diamond-button>
+                <div>
+                  <h2>{t('homeRecycling.title')}</h2>
+                  {la && <p>{la.name}</p>}
+                </div>
+              </locator-header-title>
+            </locator-header-content>
+          </>
         )}
       </locator-header>
       <div slot="layout-main" id="locator-layout-main">

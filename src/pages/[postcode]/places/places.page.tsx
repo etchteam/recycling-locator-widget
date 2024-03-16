@@ -121,7 +121,7 @@ function Places() {
         </>
       ) : (
         <locator-wrap>
-          <diamond-card border radius>
+          <diamond-card className="diamond-spacing-top-md" border radius>
             <locator-icon-text className="diamond-spacing-bottom-xs">
               <locator-icon-circle variant="negative">
                 <locator-icon icon="place"></locator-icon>

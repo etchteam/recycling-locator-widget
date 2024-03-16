@@ -1,9 +1,25 @@
 locator-logo {
   display: block;
+  line-height: 1;
+  max-width: 100%;
 
-  img {
+  svg {
     display: block;
     height: auto;
-    width: min(230px, 100%);
+    width: 100%;
+  }
+
+  &[type='logo-only'] {
+    /* Crop the space the logo text takes up to create a 40px square */
+    overflow: hidden;
+    width: 40px;
+
+    svg {
+      width: 220px;
+    }
+
+    .logo-text {
+      display: none;
+    }
   }
 }

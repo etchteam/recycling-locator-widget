@@ -45,76 +45,85 @@ export default function PlacesLayout({
 
   return (
     <locator-layout>
-      {open.value ? (
-        <locator-header slot="layout-header">
-          <locator-logo></locator-logo>
-          <diamond-button width="square" size="sm">
-            <button
-              type="button"
-              aria-expanded="true"
-              aria-controls="locator-layout-main"
-              onClick={() => (open.value = !open.value)}
-            >
-              <locator-icon
-                icon="close"
-                label={t('actions.close')}
-                color="primary"
-              ></locator-icon>
-            </button>
-          </diamond-button>
-        </locator-header>
-      ) : (
-        <locator-places-header slot="layout-header">
-          <locator-header-title>
-            <diamond-button>
+      <locator-header slot="layout-header">
+        {open.value ? (
+          <locator-header-content>
+            <locator-logo></locator-logo>
+            <diamond-button width="square" size="sm">
               <button
                 type="button"
-                aria-expanded="false"
+                aria-expanded="true"
                 aria-controls="locator-layout-main"
                 onClick={() => (open.value = !open.value)}
               >
                 <locator-icon
-                  icon="menu"
-                  label={t('actions.menu')}
+                  icon="close"
+                  label={t('actions.close')}
+                  color="primary"
                 ></locator-icon>
               </button>
             </diamond-button>
-            <div>
-              <h2>{t('places.title')}</h2>
-              <p>{formatPostcode(postcode)}</p>
-            </div>
-          </locator-header-title>
-          <locator-places-header-search>
-            {materialName && (
-              <Suspense fallback={null}>
-                <Await resolve={data}>
-                  {({ locations }) => (
-                    <diamond-enter type="fade">
-                      <locator-tag-button
-                        variant={
-                          locations?.length > 0 ? 'positive' : 'negative'
-                        }
-                      >
-                        <button type="button" onClick={handleResetSearch}>
-                          {materialName}
-                          <locator-icon
-                            icon="close"
-                            label={t('actions.resetSearch')}
-                          />
-                        </button>
-                      </locator-tag-button>
-                    </diamond-enter>
-                  )}
-                </Await>
-              </Suspense>
-            )}
-            <Link to={`/${postcode}/places/search${query}`}>
-              {!materialName && t('places.searchPlaceholder')}
-              <locator-icon icon="search" color="primary" />
-            </Link>
-          </locator-places-header-search>
-        </locator-places-header>
-      )}
+          </locator-header-content>
+        ) : (
+          <>
+            <locator-header-logo>
+              <Link to="/">
+                <locator-logo type="logo-only"></locator-logo>
+              </Link>
+            </locator-header-logo>
+            <locator-places-header>
+              <locator-header-title>
+                <diamond-button>
+                  <button
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="locator-layout-main"
+                    onClick={() => (open.value = !open.value)}
+                  >
+                    <locator-icon
+                      icon="menu"
+                      label={t('actions.menu')}
+                    ></locator-icon>
+                  </button>
+                </diamond-button>
+                <div>
+                  <h2>{t('places.title')}</h2>
+                  <p>{formatPostcode(postcode)}</p>
+                </div>
+              </locator-header-title>
+              <locator-places-header-search>
+                {materialName && (
+                  <Suspense fallback={null}>
+                    <Await resolve={data}>
+                      {({ locations }) => (
+                        <diamond-enter type="fade">
+                          <locator-tag-button
+                            variant={
+                              locations?.length > 0 ? 'positive' : 'negative'
+                            }
+                          >
+                            <button type="button" onClick={handleResetSearch}>
+                              {materialName}
+                              <locator-icon
+                                icon="close"
+                                label={t('actions.resetSearch')}
+                              />
+                            </button>
+                          </locator-tag-button>
+                        </diamond-enter>
+                      )}
+                    </Await>
+                  </Suspense>
+                )}
+                <Link to={`/${postcode}/places/search${query}`}>
+                  {!materialName && t('places.searchPlaceholder')}
+                  <locator-icon icon="search" color="primary" />
+                </Link>
+              </locator-places-header-search>
+            </locator-places-header>
+          </>
+        )}
+      </locator-header>
       <div slot="layout-main" id="locator-layout-main">
         {open.value ? (
           <Menu />
