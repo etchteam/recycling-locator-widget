@@ -17,6 +17,7 @@ import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/TagButton/TagButton';
 import Menu from '@/components/control/Menu/Menu';
+import { formatPostcode } from '@/lib/format';
 
 import { usePlacesLoaderData } from './places.loader';
 
@@ -80,7 +81,7 @@ export default function PlacesLayout({
             </diamond-button>
             <div>
               <h2>{t('places.title')}</h2>
-              <p>{postcode}</p>
+              <p>{formatPostcode(postcode)}</p>
             </div>
           </locator-header-title>
           <locator-places-header-search>
