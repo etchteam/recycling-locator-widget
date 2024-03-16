@@ -1,3 +1,11 @@
+## [1.11.0](https://github.com/etchteam/recycling-locator/compare/v1.10.1...v1.11.0) (2024-03-16)
+
+
+### Features
+
+* add header logo and cleanup logo layout ([47b3a88](https://github.com/etchteam/recycling-locator/commit/47b3a88b45489b0934dc671be2180090f001d89c))
+* remove old logo image ([fb2448e](https://github.com/etchteam/recycling-locator/commit/fb2448e4ec413ca05053a425be7e0c107eb3557f))
+
 ## [1.10.1](https://github.com/etchteam/recycling-locator/compare/v1.10.0...v1.10.1) (2024-03-15)
 
 
