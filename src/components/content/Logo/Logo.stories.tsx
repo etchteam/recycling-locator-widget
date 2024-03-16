@@ -11,3 +11,7 @@ export default meta;
 export const Logo: StoryObj = {
   render: () => <locator-logo></locator-logo>,
 };
+
+export const LogoOnly: StoryObj = {
+  render: () => <locator-logo type="logo-only"></locator-logo>,
+};

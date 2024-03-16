@@ -70,19 +70,28 @@ export default function CollectionPage() {
 
   return (
     <locator-layout>
-      <locator-header slot="layout-header">
-        <locator-header-title>
-          <diamond-button>
-            <Link to={`/${postcode}/home`}>
-              <locator-icon icon="arrow-left" label="Back"></locator-icon>
+      <div slot="layout-header">
+        <locator-header>
+          <locator-header-logo>
+            <Link to="/">
+              <locator-logo type="logo-only"></locator-logo>
             </Link>
-          </diamond-button>
-          <div>
-            <h2>{t('homeRecycling.collection.title')}</h2>
-            {localAuthority && <p>{localAuthority.name}</p>}
-          </div>
-        </locator-header-title>
-      </locator-header>
+          </locator-header-logo>
+          <locator-header-content>
+            <locator-header-title>
+              <diamond-button>
+                <Link to={`/${postcode}/home`}>
+                  <locator-icon icon="arrow-left" label="Back"></locator-icon>
+                </Link>
+              </diamond-button>
+              <div>
+                <h2>{t('homeRecycling.collection.title')}</h2>
+                {localAuthority && <p>{localAuthority.name}</p>}
+              </div>
+            </locator-header-title>
+          </locator-header-content>
+        </locator-header>
+      </div>
       <div slot="layout-main">
         <locator-context-header>
           {propertyTypes.length > 1 ? (
@@ -146,7 +155,7 @@ export default function CollectionPage() {
       </div>
       <locator-tip slot="layout-aside" text-align="center">
         <locator-wrap>
-          <img src={config.imagePath + 'generic-tip.svg'} alt="" />
+          <img src={config.imagePath + 'general-tip.svg'} alt="" />
           <Suspense fallback={null}>
             <Await resolve={data}>
               {({ tip }) => <TipContent tip={tip} />}

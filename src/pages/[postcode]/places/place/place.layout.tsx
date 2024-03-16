@@ -40,17 +40,24 @@ export default function PlaceLayout({
   return (
     <locator-layout>
       <locator-header slot="layout-header">
-        <locator-header-title>
-          <diamond-button>
-            <Link to={`/${postcode}/places`}>
-              <locator-icon icon="arrow-left" label="Back"></locator-icon>
-            </Link>
-          </diamond-button>
-          <div>
-            <h2>{placeName}</h2>
-            <p>{placePostcode}</p>
-          </div>
-        </locator-header-title>
+        <locator-header-logo>
+          <Link to="/">
+            <locator-logo type="logo-only"></locator-logo>
+          </Link>
+        </locator-header-logo>
+        <locator-header-content>
+          <locator-header-title>
+            <diamond-button>
+              <Link to={`/${postcode}/places`}>
+                <locator-icon icon="arrow-left" label="Back"></locator-icon>
+              </Link>
+            </diamond-button>
+            <div>
+              <h2>{placeName}</h2>
+              <p>{placePostcode}</p>
+            </div>
+          </locator-header-title>
+        </locator-header-content>
       </locator-header>
       <div slot="layout-main">
         {location && (

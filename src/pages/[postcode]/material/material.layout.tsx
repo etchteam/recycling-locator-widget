@@ -47,17 +47,24 @@ export default function MaterialLayout() {
   return (
     <locator-layout>
       <locator-header slot="layout-header">
-        <locator-header-title>
-          <diamond-button>
-            <Link to={`/${postcode}`}>
-              <locator-icon icon="arrow-left" label="Back"></locator-icon>
-            </Link>
-          </diamond-button>
-          <div>
-            <h2>{t('material.title')}</h2>
-            <p>{postcode}</p>
-          </div>
-        </locator-header-title>
+        <locator-header-logo>
+          <Link to="/">
+            <locator-logo type="logo-only"></locator-logo>
+          </Link>
+        </locator-header-logo>
+        <locator-header-content>
+          <locator-header-title>
+            <diamond-button>
+              <Link to={`/${postcode}`}>
+                <locator-icon icon="arrow-left" label="Back"></locator-icon>
+              </Link>
+            </diamond-button>
+            <div>
+              <h2>{t('material.title')}</h2>
+              <p>{postcode}</p>
+            </div>
+          </locator-header-title>
+        </locator-header-content>
       </locator-header>
       <div slot="layout-main">
         {materialId && (
