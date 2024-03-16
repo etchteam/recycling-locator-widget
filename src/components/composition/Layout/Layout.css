@@ -72,6 +72,7 @@ locator-layout {
   }
 
   &::part(aside) {
+    border-top: var(--diamond-border);
     grid-area: aside;
     position: relative;
   }
@@ -87,6 +88,8 @@ locator-layout {
     }
 
     &::part(aside) {
+      border-left: var(--diamond-border);
+      border-top: 0 none;
       height: 100%;
     }
   }

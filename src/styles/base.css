@@ -10,6 +10,7 @@ article {
 
 .recycling-locator-variant-widget {
   border: var(--container-border);
+  box-sizing: content-box;
   height: var(--container-height);
   overflow-y: auto;
 }
