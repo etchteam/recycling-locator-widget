@@ -19,7 +19,8 @@
     "loadMore": "Load more",
     "viewDetails": "View details",
     "directions": "Directions",
-    "menu": "Menu"
+    "menu": "Menu",
+    "resetSearch": "Reset search"
   },
   "components": {
     "locationInput": {

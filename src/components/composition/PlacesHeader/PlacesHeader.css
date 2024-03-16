@@ -13,25 +13,24 @@ locator-places-header {
   }
 
   locator-places-header-search {
-    display: block;
+    border-top: var(--diamond-border);
+    display: inline-flex;
+    padding: var(--diamond-spacing-sm) var(--diamond-spacing);
     width: 100%;
   }
 
   locator-places-header-search > a {
     align-items: center;
-    border-top: var(--diamond-border);
     color: var(--diamond-theme-color-muted);
     display: flex;
+    flex: 1 1 auto;
     justify-content: space-between;
-    padding: var(--diamond-spacing-sm) var(--diamond-spacing);
     text-decoration: none;
     transition: color var(--diamond-transition);
-    width: 100%;
-  }
 
-  locator-places-header-search[active] > a {
-    color: var(--diamond-theme-color);
-    font-weight: var(--diamond-font-weight-bold);
+    locator-icon {
+      margin-inline-start: auto;
+    }
   }
 
   @media (hover: hover) {
@@ -43,14 +42,11 @@ locator-places-header {
   /* small tablet */
   @container (width >= 600px) {
     locator-places-header-search {
-      padding-inline-end: var(--diamond-spacing);
+      border: var(--diamond-border);
+      border-radius: var(--diamond-border-radius);
+      margin-inline-end: var(--diamond-spacing);
       width: auto;
-
-      > a {
-        border: var(--diamond-border);
-        border-radius: var(--diamond-border-radius);
-        width: 18rem;
-      }
+      width: 18rem;
     }
   }
 }

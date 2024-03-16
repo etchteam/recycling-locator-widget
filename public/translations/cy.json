@@ -19,7 +19,8 @@
     "loadMore": "Llwytho mwy",
     "viewDetails": "Gweld manylion",
     "directions": "Cyfarwyddiadau",
-    "menu": "Dewislen"
+    "menu": "Dewislen",
+    "resetSearch": "Ailosod chwiliad"
   },
   "components": {
     "locationInput": {

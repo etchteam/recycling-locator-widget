@@ -8,6 +8,7 @@ import '@/components/composition/Layout/Layout';
 import '@/components/composition/PlacesHeader/PlacesHeader';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
+import '@/components/control/TagButton/TagButton';
 import Menu from '@/components/control/Menu/Menu';
 
 export default function PlacesLayout({
@@ -17,13 +18,19 @@ export default function PlacesLayout({
 }) {
   const { t } = useTranslation();
   const { postcode } = useParams();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const open = useSignal(false);
   const materialId = searchParams.get('materialId');
   const materialName = searchParams.get('materialName');
   const query = materialId
     ? `?materialId=${materialId}&materialName=${materialName}`
     : '';
+
+  const handleResetSearch = () => {
+    searchParams.delete('materialId');
+    searchParams.delete('materialName');
+    setSearchParams(searchParams);
+  };
 
   return (
     <locator-layout>
@@ -66,9 +73,21 @@ export default function PlacesLayout({
               <p>{postcode}</p>
             </div>
           </locator-header-title>
-          <locator-places-header-search active={Boolean(materialName)}>
+          <locator-places-header-search>
+            {materialName && (
+              <locator-tag-button variant="positive">
+                <button type="button" onClick={handleResetSearch}>
+                  {materialName}
+                  <locator-icon
+                    icon="close"
+                    color="primary"
+                    label={t('actions.resetSearch')}
+                  />
+                </button>
+              </locator-tag-button>
+            )}
             <Link to={`/${postcode}/places/search${query}`}>
-              {materialName ?? t('places.searchPlaceholder')}
+              {!materialName && t('places.searchPlaceholder')}
               <locator-icon icon="search" color="primary" />
             </Link>
           </locator-places-header-search>
