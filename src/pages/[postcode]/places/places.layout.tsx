@@ -1,7 +1,14 @@
 import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
+import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Link, Outlet, useParams, useSearchParams } from 'react-router-dom';
+import {
+  Await,
+  Link,
+  Outlet,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/composition/Layout/Layout';
@@ -11,6 +18,8 @@ import '@/components/content/Icon/Icon';
 import '@/components/control/TagButton/TagButton';
 import Menu from '@/components/control/Menu/Menu';
 
+import { usePlacesLoaderData } from './places.loader';
+
 export default function PlacesLayout({
   children,
 }: {
@@ -18,8 +27,9 @@ export default function PlacesLayout({
 }) {
   const { t } = useTranslation();
   const { postcode } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { data } = usePlacesLoaderData();
   const open = useSignal(false);
+  const [searchParams, setSearchParams] = useSearchParams();
   const materialId = searchParams.get('materialId');
   const materialName = searchParams.get('materialName');
   const query = materialId
@@ -75,16 +85,27 @@ export default function PlacesLayout({
           </locator-header-title>
           <locator-places-header-search>
             {materialName && (
-              <locator-tag-button variant="positive">
-                <button type="button" onClick={handleResetSearch}>
-                  {materialName}
-                  <locator-icon
-                    icon="close"
-                    color="primary"
-                    label={t('actions.resetSearch')}
-                  />
-                </button>
-              </locator-tag-button>
+              <Suspense fallback={null}>
+                <Await resolve={data}>
+                  {({ locations }) => (
+                    <diamond-enter type="fade">
+                      <locator-tag-button
+                        variant={
+                          locations?.length > 0 ? 'positive' : 'negative'
+                        }
+                      >
+                        <button type="button" onClick={handleResetSearch}>
+                          {materialName}
+                          <locator-icon
+                            icon="close"
+                            label={t('actions.resetSearch')}
+                          />
+                        </button>
+                      </locator-tag-button>
+                    </diamond-enter>
+                  )}
+                </Await>
+              </Suspense>
             )}
             <Link to={`/${postcode}/places/search${query}`}>
               {!materialName && t('places.searchPlaceholder')}

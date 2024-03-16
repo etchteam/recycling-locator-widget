@@ -1,5 +1,9 @@
 import compact from 'lodash/compact';
-import { LoaderFunctionArgs, defer } from 'react-router-dom';
+import {
+  LoaderFunctionArgs,
+  defer,
+  useRouteLoaderData,
+} from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
 import PostCodeResolver from '@/lib/PostcodeResolver';
@@ -64,4 +68,10 @@ async function getData({
 
 export default async function placesLoader(args: LoaderFunctionArgs) {
   return defer({ data: getData(args) });
+}
+
+export function usePlacesLoaderData() {
+  return useRouteLoaderData('places') as {
+    data: Promise<PlacesLoaderResponse>;
+  };
 }

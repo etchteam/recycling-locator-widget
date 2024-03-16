@@ -8,7 +8,6 @@ import {
   useAsyncValue,
   useFetcher,
   useParams,
-  useRouteLoaderData,
   useSearchParams,
 } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Card/Card';
@@ -26,7 +25,7 @@ import directions from '@/lib/directions';
 import useAnalytics from '@/lib/useAnalytics';
 import { Location } from '@/types/locatorApi';
 
-import { PlacesLoaderResponse } from './places.loader';
+import { PlacesLoaderResponse, usePlacesLoaderData } from './places.loader';
 
 function Loading() {
   const { t } = useTranslation();
@@ -223,9 +222,7 @@ export function PlacesMapPageContent() {
 }
 
 export default function PlacesMapPage() {
-  const { data } = useRouteLoaderData('places') as {
-    data: Promise<PlacesLoaderResponse>;
-  };
+  const { data } = usePlacesLoaderData();
 
   return (
     <Suspense fallback={<Loading />}>

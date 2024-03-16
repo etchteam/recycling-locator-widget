@@ -7,7 +7,6 @@ import {
   useAsyncValue,
   useFetcher,
   useParams,
-  useRouteLoaderData,
   useSearchParams,
 } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Card/Card';
@@ -28,7 +27,7 @@ import config from '@/config';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import useAnalytics from '@/lib/useAnalytics';
 
-import { PlacesLoaderResponse } from './places.loader';
+import { PlacesLoaderResponse, usePlacesLoaderData } from './places.loader';
 
 function Loading() {
   const { t } = useTranslation();
@@ -142,9 +141,7 @@ export default function PlacesPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
   const { recordEvent } = useAnalytics();
-  const { data } = useRouteLoaderData('places') as {
-    data: Promise<PlacesLoaderResponse>;
-  };
+  const { data } = usePlacesLoaderData();
   const [searchParams] = useSearchParams();
   const materialName = searchParams.get('materialName');
 
