@@ -1,4 +1,3 @@
-import { useSignal } from '@preact/signals';
 import { Suspense } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
@@ -17,7 +16,8 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/composition/Wrap/Wrap';
 import '@/components/composition/BorderedList/BorderedList';
-import '@/components/control/MaterialSearchInput/MaterialSearchInput';
+import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
+import useFormValidation from '@/lib/useFormValidation';
 
 import { MaterialSearchLoaderResponse } from './search.loader';
 
@@ -54,15 +54,15 @@ function PopularMaterials() {
 
 export default function MaterialSearchPage() {
   const { t } = useTranslation();
+  const form = useFormValidation('search');
   const [searchParams] = useSearchParams();
   const { data } = useLoaderData() as {
     data: Promise<MaterialSearchLoaderResponse>;
   };
   const materialName = searchParams.get('name');
-  const submitting = useSignal(false);
 
   useEffect(() => {
-    submitting.value = false;
+    form.submitting.value = false;
   }, [materialName]);
 
   return (
@@ -76,15 +76,17 @@ export default function MaterialSearchPage() {
             </span>
           </h3>
         )}
-        <Form method="post" onSubmit={() => (submitting.value = true)}>
+        <Form method="post" onSubmit={form.handleSubmit}>
           <diamond-form-group>
             <label htmlFor="locator-material-input">
               {t('actions.searchAgain')}
             </label>
-            <locator-material-search-input
-              placeholder={t('components.materialSearchInput.placeholder')}
-              submitting={submitting.value}
-            ></locator-material-search-input>
+            <MaterialSearchInput
+              handleBlur={form.handleBlur}
+              handleInput={form.handleInput}
+              submitting={form.submitting.value}
+              valid={form.valid.value}
+            ></MaterialSearchInput>
             <p className="diamond-text-size-sm">{t('material.search.help')}</p>
           </diamond-form-group>
         </Form>

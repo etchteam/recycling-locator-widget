@@ -23,10 +23,12 @@
   },
   "components": {
     "locationInput": {
-      "placeholder": "Enter a town or postcode..."
+      "placeholder": "Enter a town or postcode...",
+      "error": "Please enter a location"
     },
     "materialSearchInput": {
-      "placeholder": "Enter the name of an item..."
+      "placeholder": "Enter the name of an item...",
+      "error": "Please enter the name of an item"
     },
     "menu": {
       "whatDoYouWantToDo": "What do you want to do?",

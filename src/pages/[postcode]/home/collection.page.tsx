@@ -23,11 +23,12 @@ import '@/components/composition/Header/Header';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
-
+import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import TipContent from '@/components/template/TipContent/TipContent';
 import config from '@/config';
 import getPropertyDisplayName from '@/lib/getPropertyDisplayName';
 import useAnalytics from '@/lib/useAnalytics';
+import useFormValidation from '@/lib/useFormValidation';
 
 import ContainerList from './ContainerList';
 import { HomeCollectionLoaderResponse } from './collection.loader';
@@ -48,7 +49,7 @@ export default function CollectionPage() {
   const propertyType = searchParams.get('propertyType') ?? propertyTypes[0];
   const property = properties[propertyType];
   const menuOpen = useSignal(false);
-  const submitting = useSignal(false);
+  const form = useFormValidation('search');
   const menuRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
@@ -59,7 +60,7 @@ export default function CollectionPage() {
       });
     }
 
-    submitting.value = false;
+    form.submitting.value = false;
   }, [search]);
 
   useEffect(() => {
@@ -138,16 +139,19 @@ export default function CollectionPage() {
               {t('homeRecycling.collection.search.label')}
             </h3>
 
-            <Form method="get" onSubmit={() => (submitting.value = true)}>
+            <Form method="get" onSubmit={form.handleSubmit}>
               <input type="hidden" name="propertyType" value={propertyType} />
-              <locator-material-search-input
-                className="diamond-spacing-bottom-sm"
-                placeholder={t('components.materialSearchInput.placeholder')}
+              <MaterialSearchInput
                 inputLabelledBy="bin-search-title"
                 defaultValue={search}
-                submitting={submitting.value}
-              ></locator-material-search-input>
+                handleBlur={form.handleBlur}
+                handleInput={form.handleInput}
+                submitting={form.submitting.value}
+                valid={form.valid.value}
+              ></MaterialSearchInput>
             </Form>
+
+            <div className="diamond-spacing-bottom-sm" />
 
             <ContainerList property={property} search={search} />
           </locator-wrap>

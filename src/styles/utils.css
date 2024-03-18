@@ -10,3 +10,7 @@
 .text-color-muted {
   color: var(--diamond-theme-color-muted);
 }
+
+.text-color-negative {
+  color: var(--color-red-dark);
+}

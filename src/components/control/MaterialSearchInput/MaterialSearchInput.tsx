@@ -2,7 +2,6 @@ import { Signal, signal } from '@preact/signals';
 import * as Sentry from '@sentry/browser';
 import uniq from 'lodash/uniq';
 import { Component, createRef } from 'preact';
-import register from 'preact-custom-element';
 import '@etchteam/diamond-ui/control/Input/Input';
 import '@etchteam/diamond-ui/control/Button/Button';
 
@@ -19,6 +18,9 @@ interface MaterialSearchInputProps {
   readonly placeholder?: string;
   readonly submitting?: boolean | string;
   readonly defaultValue?: string;
+  readonly valid?: boolean;
+  readonly handleBlur?: (value: string) => void;
+  readonly handleInput?: (value: string) => void;
 }
 
 /**
@@ -56,6 +58,11 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
 
     const materials = await this.autosuggest(query);
     this.materialSuggestions.value = materials;
+    this.props.handleInput?.(query);
+  };
+
+  handleBlur = (event: preact.JSX.TargetedEvent<HTMLInputElement>) => {
+    this.props.handleBlur?.(event.currentTarget.value);
   };
 
   componentDidUpdate(previousProps): void {
@@ -72,29 +79,52 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     const inputId = this.props.inputId ?? 'locator-material-input';
     const listId = `locator-${inputId}-locations`;
     const submitting = this.props.submitting ?? false;
+    const valid = this.props.valid ?? true;
+    const placeholder =
+      this.props.placeholder ??
+      i18n.t('components.materialSearchInput.placeholder');
 
     return (
       <>
-        <diamond-input>
-          <input
-            type="text"
-            name="search"
-            aria-labelledby={this.props.inputLabelledBy}
-            placeholder={this.props.placeholder}
-            id={inputId}
-            list={listId}
-            onInput={this.handleInput}
-            ref={this.inputRef}
-          />
-        </diamond-input>
-        <diamond-button width="square" variant="primary">
-          <button type="submit" disabled={submitting && submitting !== 'false'}>
-            <locator-icon
-              icon="search"
-              label={i18n.t('actions.search')}
-            ></locator-icon>
-          </button>
-        </diamond-button>
+        <locator-material-search-input>
+          <diamond-input state={valid ? undefined : 'invalid'}>
+            <input
+              type="text"
+              name="search"
+              aria-labelledby={this.props.inputLabelledBy}
+              placeholder={placeholder}
+              id={inputId}
+              list={listId}
+              onInput={this.handleInput}
+              onBlur={this.handleBlur}
+              ref={this.inputRef}
+              aria-invalid={!valid}
+              aria-errormessage={
+                !valid ? 'material-search-input-error' : undefined
+              }
+            />
+          </diamond-input>
+          <diamond-button width="square" variant="primary">
+            <button
+              type="submit"
+              disabled={submitting && submitting !== 'false'}
+            >
+              <locator-icon
+                icon="search"
+                label={i18n.t('actions.search')}
+              ></locator-icon>
+            </button>
+          </diamond-button>
+        </locator-material-search-input>
+        {!valid && (
+          <p
+            id="material-search-input-error"
+            className="text-color-negative diamond-text-size-sm diamond-spacing-top-sm"
+            aria-live="polite"
+          >
+            {i18n.t('components.materialSearchInput.error')}
+          </p>
+        )}
         <datalist id={listId}>
           {uniq(materials).map((material) => {
             if (material.name === this.inputRef?.current?.value) {
@@ -113,18 +143,10 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
   }
 }
 
-register(MaterialSearchInput, 'locator-material-search-input', [
-  'inputId',
-  'inputLabelledBy',
-  'placeholder',
-  'submitting',
-  'defaultValue',
-]);
-
 declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
-      'locator-material-search-input': CustomElement<MaterialSearchInputProps>;
+      'locator-material-search-input': CustomElement;
     }
   }
 }
