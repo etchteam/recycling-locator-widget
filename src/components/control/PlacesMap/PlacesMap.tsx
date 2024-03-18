@@ -136,9 +136,11 @@ export default class PlacesMap extends Component<PlacesMapProps> {
       {
         onAttach(element) {
           element.addEventListener('click', handleClick);
+          element.addEventListener('touchstart', handleClick);
         },
         onDetach(element) {
           element.removeEventListener('click', handleClick);
+          element.removeEventListener('touchstart', handleClick);
         },
       },
     );
