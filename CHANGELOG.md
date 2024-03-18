@@ -1,3 +1,10 @@
+## [1.12.0](https://github.com/etchteam/recycling-locator/compare/v1.11.0...v1.12.0) (2024-03-18)
+
+
+### Features
+
+* global layout tweaks ([747151d](https://github.com/etchteam/recycling-locator/commit/747151d67b231874c171cdbe7a76e2e95eedcba0))
+
 ## [1.11.0](https://github.com/etchteam/recycling-locator/compare/v1.10.1...v1.11.0) (2024-03-16)
 
 
