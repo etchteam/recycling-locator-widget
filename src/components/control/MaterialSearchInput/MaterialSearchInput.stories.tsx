@@ -15,10 +15,10 @@ export const MaterialSearchInput: StoryObj = {
       <label htmlFor="custom-material-input">
         What do you need to recycle?
       </label>
-      <locator-material-search-input
+      <MaterialSearchInputComponent
         inputId="custom-material-input"
         placeholder="Enter the name of an item..."
-      ></locator-material-search-input>
+      ></MaterialSearchInputComponent>
     </>
   ),
 };

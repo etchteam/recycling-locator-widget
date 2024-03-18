@@ -7,9 +7,10 @@ import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/content/Icon/Icon';
-import '@/components/control/MaterialSearchInput/MaterialSearchInput';
+import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import '@/components/control/Details/Details';
 import useAnalytics from '@/lib/useAnalytics';
+import useFormValidation from '@/lib/useFormValidation';
 
 import { PlaceLoaderResponse } from './place.loader';
 
@@ -17,6 +18,7 @@ export default function PlacePage() {
   const { t } = useTranslation();
   const { location } = useRouteLoaderData('place') as PlaceLoaderResponse;
   const { recordEvent } = useAnalytics();
+  const form = useFormValidation('search');
   const search = useSignal<string>('');
   const materialCategories = groupBy(location.materials, 'category');
   const hasSearchedForMaterial =
@@ -46,14 +48,15 @@ export default function PlacePage() {
       </h3>
 
       <Form method="get" onSubmit={handleSearch}>
-        <locator-material-search-input
-          className="diamond-spacing-bottom-sm"
-          placeholder={t('components.materialSearchInput.placeholder')}
+        <MaterialSearchInput
           inputLabelledBy="material-search-title"
-        ></locator-material-search-input>
+          handleBlur={form.handleBlur}
+          handleInput={form.handleInput}
+          valid={form.valid.value}
+        ></MaterialSearchInput>
       </Form>
 
-      <div className="diamond-spacing-bottom-md">
+      <div className="diamond-spacing-top-sm diamond-spacing-bottom-md">
         {search.value && (
           <diamond-enter type="fade">
             <diamond-card

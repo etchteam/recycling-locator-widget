@@ -10,9 +10,7 @@ export default function PlaceDetailsPage() {
 
   return (
     <>
-      <h3 id="material-search-title" className="diamond-spacing-bottom-md">
-        {t('place.details.title')}
-      </h3>
+      <h3 className="diamond-spacing-bottom-md">{t('place.details.title')}</h3>
       <locator-bordered-list size="sm">
         <dl>
           <div>

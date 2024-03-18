@@ -24,10 +24,12 @@
   },
   "components": {
     "locationInput": {
-      "placeholder": "Rhowch dref neu god post..."
+      "placeholder": "Rhowch dref neu god post...",
+      "error": "Rhowch leoliad"
     },
     "materialSearchInput": {
-      "placeholder": "Rhowch enw eitem..."
+      "placeholder": "Rhowch enw eitem...",
+      "error": "Rhowch enw eitem"
     },
     "menu": {
       "whatdoYouWantToDo": "Beth ydych chi eisiau ei wneud?",

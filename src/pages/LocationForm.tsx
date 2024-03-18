@@ -1,6 +1,10 @@
-import { useSignal } from '@preact/signals';
 import { useTranslation } from 'react-i18next';
 import { Form } from 'react-router-dom';
+import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
+import '@etchteam/diamond-ui/control/Button/Button';
+
+import LocationInput from '@/components/control/LocationInput/LocationInput';
+import useFormValidation from '@/lib/useFormValidation';
 
 export default function LocationForm({
   label,
@@ -10,18 +14,20 @@ export default function LocationForm({
   readonly cta?: string;
 }) {
   const { t } = useTranslation();
-  const submitting = useSignal(false);
+  const form = useFormValidation('location');
 
   return (
-    <Form method="post" onSubmit={() => (submitting.value = true)}>
-      <diamond-form-group class="diamond-spacing-bottom-md">
+    <Form method="post" onSubmit={form.handleSubmit}>
+      <diamond-form-group className="diamond-spacing-bottom-md">
         <label htmlFor="location-input">{label ?? t('start.label')}</label>
-        <locator-location-input
-          placeholder={t('components.locationInput.placeholder')}
-        ></locator-location-input>
+        <LocationInput
+          handleBlur={form.handleBlur}
+          handleInput={form.handleInput}
+          valid={form.valid.value}
+        ></LocationInput>
       </diamond-form-group>
       <diamond-button width="full-width" variant="primary">
-        <button type="submit" disabled={submitting.value}>
+        <button type="submit" disabled={form.submitting.value}>
           {cta ?? t('start.cta')}
         </button>
       </diamond-button>

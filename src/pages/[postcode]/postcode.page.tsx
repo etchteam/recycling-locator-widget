@@ -1,4 +1,3 @@
-import { useSignal } from '@preact/signals';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, Form } from 'react-router-dom';
@@ -14,9 +13,10 @@ import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/control/IconLink/IconLink';
-import '@/components/control/MaterialSearchInput/MaterialSearchInput';
+import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import { formatPostcode } from '@/lib/format';
 import useAnalytics from '@/lib/useAnalytics';
+import useFormValidation from '@/lib/useFormValidation';
 import StartLayout from '@/pages/start.layout';
 
 import { usePostcodeLoaderData } from './postcode.loader';
@@ -40,7 +40,7 @@ export default function PostcodePage() {
   const { t } = useTranslation();
   const { recordEvent } = useAnalytics();
   const { postcode, city } = usePostcodeLoaderData();
-  const submitting = useSignal(false);
+  const form = useFormValidation('search');
 
   useEffect(() => {
     recordEvent({
@@ -73,16 +73,17 @@ export default function PostcodePage() {
             {t('postcode.title')}
           </h2>
 
-          <Form method="post" onSubmit={() => (submitting.value = true)}>
-            <locator-material-search-input
-              className="diamond-spacing-bottom-lg"
-              placeholder={t('components.materialSearchInput.placeholder')}
+          <Form method="post" onSubmit={form.handleSubmit}>
+            <MaterialSearchInput
               inputLabelledBy="material-search-title"
-              submitting={submitting.value}
-            ></locator-material-search-input>
+              handleBlur={form.handleBlur}
+              handleInput={form.handleInput}
+              submitting={form.submitting.value}
+              valid={form.valid.value}
+            ></MaterialSearchInput>
           </Form>
 
-          <locator-bordered-list>
+          <locator-bordered-list className="diamond-spacing-top-lg">
             <nav>
               <ul>
                 <li>
