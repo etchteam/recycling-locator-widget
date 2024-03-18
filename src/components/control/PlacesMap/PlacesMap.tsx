@@ -220,7 +220,7 @@ declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
       'locator-places-map': CustomElement;
-      'locator-places-map-card': CustomElement;
+      'locator-places-map-card': CustomElement<{ padding?: 'none' }>;
       'locator-places-map-wrapper': CustomElement;
     }
   }

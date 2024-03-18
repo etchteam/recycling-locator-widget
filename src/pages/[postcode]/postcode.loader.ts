@@ -1,10 +1,17 @@
-import { LoaderFunctionArgs, useRouteLoaderData } from 'react-router-dom';
+import {
+  LoaderFunctionArgs,
+  defer,
+  useRouteLoaderData,
+} from 'react-router-dom';
 
+import LocatorApi from '@/lib/LocatorApi';
 import PostCodeResolver from '@/lib/PostcodeResolver';
+import { LocationsResponse } from '@/types/locatorApi';
 
 interface PostcodeLoaderResponse {
   postcode: string;
   city: string;
+  locationsPromise: { data: Record<string, unknown> };
 }
 
 export default async function postcodeLoader({
@@ -13,10 +20,14 @@ export default async function postcodeLoader({
   try {
     const postcode = params.postcode;
     const geocode = await PostCodeResolver.getValidGeocodeData(postcode);
+    const locations = LocatorApi.get<LocationsResponse>(
+      `locations/${postcode}?limit=30&radius=25`,
+    );
 
     return {
       postcode,
       city: geocode.items[0].address.city,
+      locationsPromise: defer({ locations }),
     };
   } catch (error) {
     if (error instanceof Error) {
