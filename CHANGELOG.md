@@ -1,3 +1,11 @@
+## [1.14.0](https://github.com/etchteam/recycling-locator/compare/v1.13.0...v1.14.0) (2024-03-18)
+
+
+### Features
+
+* display an actual map on the location start view ([c87e65a](https://github.com/etchteam/recycling-locator/commit/c87e65ac0333c0e512fcf3c4f244015447e5af8d))
+* separate the map fallback components ([c8024e6](https://github.com/etchteam/recycling-locator/commit/c8024e6def520358b759e60e88392a55d89e0f6c))
+
 ## [1.13.0](https://github.com/etchteam/recycling-locator/compare/v1.12.0...v1.13.0) (2024-03-18)
 
 
