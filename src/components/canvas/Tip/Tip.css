@@ -2,7 +2,7 @@ locator-tip {
   --diamond-theme-background: var(--color-primary-lightest);
   --diamond-theme-color: var(--color-body);
   --diamond-theme-heading-color: var(--color-primary-dark);
-  --diamond-theme-link-color: var(--color-body);
+  --diamond-theme-link-color: var(--color-blue-dark);
 
   background: var(--diamond-theme-background);
   color: var(--diamond-theme-color);

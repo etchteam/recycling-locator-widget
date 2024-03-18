@@ -70,8 +70,9 @@
     }
   },
   "error": {
-    "title": "Aeth rhywbeth o'i le.",
-    "message": "Mae ein tîm wedi cael gwybod a byddwn yn datrys y mater cyn gynted â phosibl.",
+    "title": "Mae rhywbeth wedi mynd o'i le!",
+    "message": "Mae ein tîm wedi cael gwybod am y mater hwn.",
+    "label": "Gadewch i ni gael tro arall...",
     "cta": "Dechrau eto"
   },
   "notFound": {
