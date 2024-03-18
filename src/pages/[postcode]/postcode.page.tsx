@@ -24,31 +24,39 @@ import StartLayout from '@/pages/start.layout';
 
 import { usePostcodeLoaderData } from './postcode.loader';
 
+function MapLoadingFallback() {
+  return (
+    <locator-loading>
+      <locator-icon icon="distance" color="muted"></locator-icon>
+    </locator-loading>
+  );
+}
+
+function MapErrorFallback({ postcode }: { readonly postcode: string }) {
+  const { t } = useTranslation();
+
+  return (
+    <locator-map-svg slot="layout-aside">
+      <diamond-button width="full-width">
+        <Link to={`/${postcode}/places/map`}>
+          {t('postcode.exploreTheMap')}
+          <locator-icon icon="map" color="primary"></locator-icon>
+        </Link>
+      </diamond-button>
+    </locator-map-svg>
+  );
+}
+
 function Aside({ postcode }: { readonly postcode: string }) {
   const { t } = useTranslation();
   const { locationsPromise } = usePostcodeLoaderData();
 
   return (
     <div slot="layout-aside">
-      <Suspense
-        fallback={() => (
-          <locator-loading>
-            <locator-icon icon="distance" color="muted"></locator-icon>
-          </locator-loading>
-        )}
-      >
+      <Suspense fallback={<MapLoadingFallback />}>
         <Await
           resolve={locationsPromise.data.locations}
-          errorElement={() => (
-            <locator-map-svg slot="layout-aside">
-              <diamond-button width="full-width">
-                <Link to={`/${postcode}/places/map`}>
-                  {t('postcode.exploreTheMap')}
-                  <locator-icon icon="map" color="primary"></locator-icon>
-                </Link>
-              </diamond-button>
-            </locator-map-svg>
-          )}
+          errorElement={<MapErrorFallback postcode={postcode} />}
         >
           {(locations) => (
             <PlacesMap
