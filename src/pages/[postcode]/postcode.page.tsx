@@ -1,19 +1,22 @@
+import { Suspense } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link, Form } from 'react-router-dom';
+import { Link, Form, Await } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@etchteam/diamond-ui/control/Button/Button';
 
-import '@/components/composition/Wrap/Wrap';
 import '@/components/canvas/ContextHeader/ContextHeader';
 import '@/components/canvas/MapSvg/MapSvg';
 import '@/components/canvas/IconCircle/IconCircle';
-import '@/components/content/Icon/Icon';
+import '@/components/canvas/Loading/Loading';
+import '@/components/composition/Wrap/Wrap';
 import '@/components/composition/BorderedList/BorderedList';
+import '@/components/content/Icon/Icon';
 import '@/components/control/IconLink/IconLink';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
+import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import { formatPostcode } from '@/lib/format';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
@@ -21,7 +24,15 @@ import StartLayout from '@/pages/start.layout';
 
 import { usePostcodeLoaderData } from './postcode.loader';
 
-function Aside({ postcode }: { readonly postcode: string }) {
+function MapLoadingFallback() {
+  return (
+    <locator-loading>
+      <locator-icon icon="distance" color="muted"></locator-icon>
+    </locator-loading>
+  );
+}
+
+function MapErrorFallback({ postcode }: { readonly postcode: string }) {
   const { t } = useTranslation();
 
   return (
@@ -33,6 +44,40 @@ function Aside({ postcode }: { readonly postcode: string }) {
         </Link>
       </diamond-button>
     </locator-map-svg>
+  );
+}
+
+function Aside({ postcode }: { readonly postcode: string }) {
+  const { t } = useTranslation();
+  const { locationsPromise } = usePostcodeLoaderData();
+
+  return (
+    <div slot="layout-aside">
+      <Suspense fallback={<MapLoadingFallback />}>
+        <Await
+          resolve={locationsPromise.data.locations}
+          errorElement={<MapErrorFallback postcode={postcode} />}
+        >
+          {(locations) => (
+            <PlacesMap
+              latitude={locations.items[0]?.latitude}
+              longitude={locations.items[0]?.longitude}
+              locations={locations.items}
+              static
+            >
+              <locator-places-map-card padding="none">
+                <diamond-button width="full-width">
+                  <Link to={`/${postcode}/places/map`}>
+                    {t('postcode.exploreTheMap')}
+                    <locator-icon icon="map" color="primary"></locator-icon>
+                  </Link>
+                </diamond-button>
+              </locator-places-map-card>
+            </PlacesMap>
+          )}
+        </Await>
+      </Suspense>
+    </div>
   );
 }
 

@@ -55,6 +55,10 @@ describeEndToEndTest('Postcode page', () => {
       route.fulfill({ json: EmptyMaterialsResponse });
     });
 
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
     const material = 'Not a material';
     const input = page.locator('input').first();
     const notFound = page.getByText(t('material.search.notFound')).first();
