@@ -1,3 +1,10 @@
+## [1.15.0](https://github.com/etchteam/recycling-locator/compare/v1.14.0...v1.15.0) (2024-03-18)
+
+
+### Features
+
+* error page refinement ([ba61784](https://github.com/etchteam/recycling-locator/commit/ba61784625e18ee93b18aeb5fa31b3bec77bd5cf))
+
 ## [1.14.0](https://github.com/etchteam/recycling-locator/compare/v1.13.0...v1.14.0) (2024-03-18)
 
 
