@@ -19,7 +19,8 @@
     "loadMore": "Load more",
     "viewDetails": "View details",
     "directions": "Directions",
-    "menu": "Menu"
+    "menu": "Menu",
+    "resetSearch": "Reset search"
   },
   "components": {
     "locationInput": {
@@ -239,11 +240,12 @@
   },
   "places": {
     "title": "Places to recycle",
-    "count_zero": "No places within 25 miles",
+    "count_zero": "No places within 25 miles match this search",
     "count_one": "{{count}} nearby place within 25 miles",
     "count_other": "{{count}} nearest places within 25 miles",
     "searchPlaceholder": "Recycle a specific item...",
     "loading": "Searching this area...",
+    "viewAll": "View all nearby places",
     "search": {
       "title": "Recycle a specific item",
       "label": "What do you need to recycle?",

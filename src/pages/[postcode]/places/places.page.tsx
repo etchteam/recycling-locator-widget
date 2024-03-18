@@ -7,7 +7,6 @@ import {
   useAsyncValue,
   useFetcher,
   useParams,
-  useRouteLoaderData,
   useSearchParams,
 } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Card/Card';
@@ -26,9 +25,10 @@ import Place from '@/components/template/Place/Place';
 import TipContent from '@/components/template/TipContent/TipContent';
 import config from '@/config';
 import PostCodeResolver from '@/lib/PostcodeResolver';
+import { formatPostcode } from '@/lib/format';
 import useAnalytics from '@/lib/useAnalytics';
 
-import { PlacesLoaderResponse } from './places.loader';
+import { PlacesLoaderResponse, usePlacesLoaderData } from './places.loader';
 
 function Loading() {
   const { t } = useTranslation();
@@ -68,6 +68,7 @@ function Places() {
   const fetcher = useFetcher() as FetcherWithComponents<{
     data: PlacesLoaderResponse;
   }>;
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // The loader is used initially then the fetcher is used to load more
   const count =
@@ -76,38 +77,77 @@ function Places() {
   const showLoadMore = !fetcher.data?.data.max && !loaderData.max;
   const currentPage = fetcher.data?.data.page ?? loaderData.page;
 
+  const handleResetSearch = () => {
+    searchParams.delete('materialId');
+    searchParams.delete('materialName');
+    setSearchParams(searchParams);
+  };
+
   return (
     <diamond-enter type="fade">
-      <h3
-        id="places-count"
-        className="diamond-text-size-md diamond-spacing-bottom-md"
-      >
-        {t('places.count', { count })}
-      </h3>
-      {count > 0 && (
-        <locator-places-grid className="diamond-spacing-bottom-lg">
-          <nav aria-labelledby="places-count">
-            <ul>
-              {allLocations.map((location) => {
-                const locationPostcode =
-                  PostCodeResolver.extractPostcodeFromString(location.address);
-                const locationName = encodeURIComponent(location.name);
+      {count > 0 ? (
+        <>
+          <h3
+            id="places-count"
+            className="diamond-text-size-md diamond-spacing-bottom-md"
+          >
+            {t('places.count', { count })}
+          </h3>
+          <locator-places-grid className="diamond-spacing-bottom-lg">
+            <nav aria-labelledby="places-count">
+              <ul>
+                {allLocations.map((location) => {
+                  const locationPostcode =
+                    PostCodeResolver.extractPostcodeFromString(
+                      location.address,
+                    );
+                  const locationName = encodeURIComponent(location.name);
 
-                return (
-                  <li key={`${location.id}`}>
-                    <Link
-                      to={`/${postcode}/places/${locationName}/${locationPostcode}`}
-                    >
-                      <diamond-card border radius>
-                        <Place location={location} />
-                      </diamond-card>
-                    </Link>
-                  </li>
-                );
+                  return (
+                    <li key={`${location.id}`}>
+                      <Link
+                        to={`/${postcode}/places/${locationName}/${locationPostcode}`}
+                      >
+                        <diamond-card border radius>
+                          <Place location={location} />
+                        </diamond-card>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+          </locator-places-grid>
+        </>
+      ) : (
+        <locator-wrap>
+          <diamond-card className="diamond-spacing-top-md" border radius>
+            <locator-icon-text className="diamond-spacing-bottom-xs">
+              <locator-icon-circle variant="negative">
+                <locator-icon icon="place"></locator-icon>
+              </locator-icon-circle>
+              <h3>{t('material.nearbyPlaces.noPlaces.title')}</h3>
+            </locator-icon-text>
+            <p>
+              {t('material.nearbyPlaces.noPlaces.content', {
+                postcode: formatPostcode(postcode),
               })}
-            </ul>
-          </nav>
-        </locator-places-grid>
+            </p>
+            <diamond-button
+              width="full-width"
+              className="diamond-spacing-bottom-sm"
+            >
+              <Link to={`/${postcode}/places/search`}>
+                {t('actions.searchAgain')}
+              </Link>
+            </diamond-button>
+            <diamond-button width="full-width">
+              <button type="button" onClick={handleResetSearch}>
+                {t('places.viewAll')}
+              </button>
+            </diamond-button>
+          </diamond-card>
+        </locator-wrap>
       )}
       {showLoadMore && (
         <diamond-grid justify-content="center">
@@ -142,9 +182,7 @@ export default function PlacesPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
   const { recordEvent } = useAnalytics();
-  const { data } = useRouteLoaderData('places') as {
-    data: Promise<PlacesLoaderResponse>;
-  };
+  const { data } = usePlacesLoaderData();
   const [searchParams] = useSearchParams();
   const materialName = searchParams.get('materialName');
 

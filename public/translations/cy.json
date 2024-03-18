@@ -19,7 +19,8 @@
     "loadMore": "Llwytho mwy",
     "viewDetails": "Gweld manylion",
     "directions": "Cyfarwyddiadau",
-    "menu": "Dewislen"
+    "menu": "Dewislen",
+    "resetSearch": "Ailosod chwiliad"
   },
   "components": {
     "locationInput": {
@@ -239,11 +240,12 @@
   },
   "places": {
     "title": "Lleoedd i ailgylchu",
-    "count_zero": "Dim lleoedd o fewn 25 milltir",
+    "count_zero": "Nid oes unrhyw leoedd o fewn 25 milltir yn cyfateb i'r chwiliad hwn",
     "count_one": "{{count}} lle cyfagos o fewn 25 milltir",
     "count_other": "{{count}} lle agosaf o fewn 25 milltir",
     "searchPlaceholder": "Ailgylchu eitem benodol...",
     "loading": "Wrthi'n chwilio'r ardal hon...",
+    "viewAll": "Gweld pob man cyfagos",
     "search": {
       "title": "Ailgylchu eitem benodol",
       "label": "Beth sydd angen i chi ei ailgylchu?",
