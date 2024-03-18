@@ -21,10 +21,10 @@ const routes: RouteObject[] = [
     path: '/:postcode/places',
     loader: placesLoader,
     id: 'places',
-    errorElement: <PlacesErrorPage />,
-    element: <PlacesLayout />,
     children: [
       {
+        element: <PlacesLayout />,
+        errorElement: <PlacesErrorPage />,
         children: [
           {
             index: true,
@@ -36,22 +36,22 @@ const routes: RouteObject[] = [
           },
         ],
       },
-    ],
-  },
-  {
-    path: '/:postcode/places/search',
-    element: <PlacesSearchLayout />,
-    errorElement: <PlacesErrorPage />,
-    children: [
       {
-        index: true,
-        element: <PlacesSearchPage />,
-        action: placesSearchAction,
-      },
-      {
-        path: 'popular',
-        element: <PlacesSearchPopularPage />,
-        loader: popularSearchLoader,
+        path: 'search',
+        element: <PlacesSearchLayout />,
+        errorElement: <PlacesErrorPage />,
+        children: [
+          {
+            index: true,
+            element: <PlacesSearchPage />,
+            action: placesSearchAction,
+          },
+          {
+            path: 'popular',
+            element: <PlacesSearchPopularPage />,
+            loader: popularSearchLoader,
+          },
+        ],
       },
     ],
   },

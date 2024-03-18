@@ -1,10 +1,9 @@
 import * as Sentry from '@sentry/browser';
 import { useTranslation } from 'react-i18next';
-import { Link, useParams, useRouteError } from 'react-router-dom';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/canvas/Section/Section';
+import { useParams, useRouteError } from 'react-router-dom';
 
-import '@/components/composition/Wrap/Wrap';
+import ErrorPage from '@/components/template/ErrorPage/ErrorPage';
+
 import HomeRecyclingLayout from './home.layout';
 
 export default function HomeRecyclingErrorPage() {
@@ -17,12 +16,11 @@ export default function HomeRecyclingErrorPage() {
 
   return (
     <HomeRecyclingLayout>
-      <h2>{t('error.title')}</h2>
-      <p>{t('homeRecycling.error.message')}</p>
-      <p className="diamond-spacing-bottom-md">{t('error.message')}</p>
-      <diamond-button width="full-width" variant="primary">
-        <Link to={`/${postcode}/home`}>{t('actions.tryAgain')}</Link>
-      </diamond-button>
+      <ErrorPage
+        link={`/${postcode}/home`}
+        message={t('homeRecycling.error.message')}
+        cta={t('actions.tryAgain')}
+      />
     </HomeRecyclingLayout>
   );
 }

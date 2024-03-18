@@ -70,8 +70,9 @@
     }
   },
   "error": {
-    "title": "Something went wrong.",
-    "message": "Our team have been alerted and we’ll be patching the issue up as soon as possible.",
+    "title": "Something’s gone wrong!",
+    "message": "Our team has been notified about this issue.",
+    "label": "Let’s have another go...",
     "cta": "Start again"
   },
   "notFound": {
