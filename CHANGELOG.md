@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/etchteam/recycling-locator/compare/v1.15.0...v1.15.1) (2024-03-18)
+
+
+### Bug Fixes
+
+* map markers not clickable on mobile ([01625a8](https://github.com/etchteam/recycling-locator/commit/01625a8546dbfabdbd3896253c4f28b819b2feee))
+
 ## [1.15.0](https://github.com/etchteam/recycling-locator/compare/v1.14.0...v1.15.0) (2024-03-18)
 
 
