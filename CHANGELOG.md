@@ -1,3 +1,13 @@
+## [1.13.0](https://github.com/etchteam/recycling-locator/compare/v1.12.0...v1.13.0) (2024-03-18)
+
+
+### Features
+
+* form validation ([997139f](https://github.com/etchteam/recycling-locator/commit/997139f53b1d2b8ae3bb90f6739173af2f837d82))
+* places search empty ([cf23463](https://github.com/etchteam/recycling-locator/commit/cf234631d79d8f52d3f65a2be4f179ef6fdac753))
+* places search tag button ([182c267](https://github.com/etchteam/recycling-locator/commit/182c267734cc7d82bc0be1cecc5049731129fa80))
+* search result aware tag button ([43f8e7f](https://github.com/etchteam/recycling-locator/commit/43f8e7fd92c7797ffeb71964ee4777a9b837ddaf))
+
 ## [1.12.0](https://github.com/etchteam/recycling-locator/compare/v1.11.0...v1.12.0) (2024-03-18)
 
 
