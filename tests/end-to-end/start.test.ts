@@ -1,3 +1,4 @@
+import percySnapshot from '@percy/playwright';
 import { expect } from '@playwright/test';
 import { t } from 'i18next';
 import { test } from 'vitest';
@@ -24,6 +25,7 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: GuernseyGeocodeResponse });
     });
 
+    await percySnapshot(page, 'Start', { scope: 'recycling-locator' });
     const input = page.locator('input').first();
     const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
     await expect(input).toBeVisible();
@@ -120,6 +122,9 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
 
+    await percySnapshot(page, 'Home recycling start', {
+      scope: 'recycling-locator',
+    });
     const input = page.locator('input').first();
     const homeStartPageTitle = page
       .getByText(t('start.homeRecycling.title'))
