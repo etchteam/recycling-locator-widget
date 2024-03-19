@@ -83,3 +83,4 @@ jobs:
         run: npm run test:ci
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+          VITE_TEST: true
