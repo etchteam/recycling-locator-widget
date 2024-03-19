@@ -1,4 +1,3 @@
-import percySnapshot from '@percy/playwright';
 import { expect } from '@playwright/test';
 import { t } from 'i18next';
 import { test } from 'vitest';
@@ -21,6 +20,7 @@ import {
   ValidMaterialsResponse,
 } from '../mocks/materials';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
+import snapshot from '../utils/snapshot';
 
 describeEndToEndTest('Postcode page', () => {
   test('Load route with invalid postcode', async ({ page, widget }) => {
@@ -33,9 +33,7 @@ describeEndToEndTest('Postcode page', () => {
     await expect(notInUk).not.toBeVisible();
     await widget.evaluate((node) => node.setAttribute('path', '/EX32%207RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
-    await percySnapshot(page, 'Postcode not in UK', {
-      scope: 'recycling-locator',
-    });
+    await snapshot(page, 'Postcode not in UK');
     await expect(notInUk).toBeVisible();
   });
 
@@ -76,9 +74,7 @@ describeEndToEndTest('Postcode page', () => {
 
     await widget.evaluate((node) => node.setAttribute('path', '/EX32%207RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
-    await percySnapshot(page, 'Postcode found', {
-      scope: 'recycling-locator',
-    });
+    await snapshot(page, 'Postcode found');
     await expect(input).toBeVisible();
     await expect(notFound).not.toBeVisible();
     await expect(materialText).not.toBeVisible();

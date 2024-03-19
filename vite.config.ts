@@ -36,7 +36,7 @@ export default defineConfig(({ mode }) => {
     },
   };
 
-  if (!env.TEST) {
+  if (!env.VITE_TEST) {
     config.build = {
       sourcemap: true,
       manifest: true,

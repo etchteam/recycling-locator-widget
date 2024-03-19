@@ -1,4 +1,3 @@
-import percySnapshot from '@percy/playwright';
 import { expect } from '@playwright/test';
 import { t } from 'i18next';
 import { test } from 'vitest';
@@ -12,6 +11,7 @@ import {
   ValidMaterialsResponse,
 } from '../mocks/materials';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
+import snapshot from '../utils/snapshot';
 import config from '@/config';
 
 describeEndToEndTest('Places', () => {
@@ -28,9 +28,7 @@ describeEndToEndTest('Places', () => {
     );
 
     await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await percySnapshot(page, 'Places list', {
-      scope: 'recycling-locator',
-    });
+    await snapshot(page, 'Places list');
     await expect(placesCount).toBeVisible();
     await expect(placeName).toBeVisible();
   });
@@ -155,9 +153,7 @@ describeEndToEndTest('Places', () => {
     await expect(placesCount).toBeVisible();
     await expect(placeName).toBeVisible();
     await searchLink.click();
-    await percySnapshot(page, 'Places search', {
-      scope: 'recycling-locator',
-    });
+    await snapshot(page, 'Places search');
     await expect(materialInput).toBeVisible();
     await materialInput.fill(fakeMaterial);
     await materialInput.press('Enter');
@@ -205,9 +201,7 @@ describeEndToEndTest('Places', () => {
     await expect(mapButton).toBeVisible();
     mapButton.click();
     await page.waitForTimeout(500); // half a second chance for the map to load
-    await percySnapshot(page, 'Places map', {
-      scope: 'recycling-locator',
-    });
+    await snapshot(page, 'Places map');
     await expect(map).toBeVisible();
     await expect(pin).toBeVisible();
     await expect(placeName).not.toBeVisible();

@@ -1,4 +1,3 @@
-import percySnapshot from '@percy/playwright';
 import { expect } from '@playwright/test';
 import { t } from 'i18next';
 import { test } from 'vitest';
@@ -9,6 +8,7 @@ import {
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
+import snapshot from '../utils/snapshot';
 import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
 describeEndToEndTest('Material page', () => {
@@ -40,9 +40,7 @@ describeEndToEndTest('Material page', () => {
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await percySnapshot(page, 'Material result single', {
-      scope: 'recycling-locator',
-    });
+    await snapshot(page, 'Material result single');
     await expect(recyclableText).toBeVisible();
     await expect(homeText).toBeVisible();
     await expect(locationsText).toBeVisible();
@@ -111,9 +109,7 @@ describeEndToEndTest('Material page', () => {
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await percySnapshot(page, 'Material result multiple', {
-      scope: 'recycling-locator',
-    });
+    await snapshot(page, 'Material result multiple');
     await expect(recyclableText).toBeVisible();
     await expect(somePropertiesText).toBeVisible();
     await expect(schemeOneText).toBeVisible();
@@ -246,9 +242,7 @@ describeEndToEndTest('Material page', () => {
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await percySnapshot(page, 'Material result negative', {
-      scope: 'recycling-locator',
-    });
+    await snapshot(page, 'Material result negative');
     await expect(recyclableText).toBeVisible();
     await expect(homeText).toBeVisible();
     await expect(locationsText).toBeVisible();

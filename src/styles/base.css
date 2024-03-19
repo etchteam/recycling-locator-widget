@@ -14,3 +14,8 @@ article {
   height: var(--container-height);
   overflow-y: auto;
 }
+
+.recycling-locator-test-mode {
+  /* Height restriction is removed for snapshots */
+  height: auto;
+}

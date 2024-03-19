@@ -90,22 +90,16 @@ npm test unit
 
 #### End to end tests
 
-Build the app in non-library mode.
+To run only the E2E tests.
 
 ```bash
-TEST=true npm run build
-```
-
-Then run the tests, filter by end-to-end to run only the E2E tests
-
-```bash
-npm test end-to-end
+npm run test:end-to-end
 ```
 
 To enable E2E test debugging use the debug command.
 
 ```bash
-npm run test:debug
+npm run test:end-to-end-debug
 ```
 
 This will launch Playwright in `PWDEBUG=console` mode with an infinite timeout.

@@ -73,7 +73,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          TEST: true
+          VITE_TEST: true
           VITE_HERE_MAPS_PLACES_KEY: ${{ vars.VITE_HERE_MAPS_PLACES_KEY }}
           VITE_PUBLIC_PATH: https://cdn.jsdelivr.net/npm/@etchteam/recycling-locator@${{ steps.package-version.outputs.current-version}}/dist/
           VITE_PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version}}

@@ -29,6 +29,10 @@ locator-layout {
     .recycling-locator-variant-standalone & {
       height: 100cqh;
     }
+
+    .recycling-locator-test-mode & {
+      height: auto;
+    }
   }
 
   @container (width >= 768px) {
@@ -37,6 +41,10 @@ locator-layout {
 
     .recycling-locator-variant-standalone & {
       height: 100cqh;
+    }
+
+    .recycling-locator-test-mode & {
+      height: auto;
     }
 
     &:has([slot='layout-aside']) {

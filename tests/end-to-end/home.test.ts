@@ -1,4 +1,3 @@
-import percySnapshot from '@percy/playwright';
 import { expect } from '@playwright/test';
 import { t } from 'i18next';
 import { test } from 'vitest';
@@ -9,6 +8,7 @@ import {
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
+import snapshot from '../utils/snapshot';
 import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
 describeEndToEndTest('Home recycling', () => {
@@ -64,9 +64,7 @@ describeEndToEndTest('Home recycling', () => {
       node.setAttribute('path', '/EX32%207RB/home'),
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
-    await percySnapshot(page, 'Home recycling collection', {
-      scope: 'recycling-locator',
-    });
+    await snapshot(page, 'Home recycling collection');
     await expect(narrowAccessSchemeText).toBeVisible();
     await expect(kerbsideSchemeText).toBeVisible();
   });
@@ -106,9 +104,7 @@ describeEndToEndTest('Home recycling', () => {
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     recyclingCentreTab.click();
     await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await percySnapshot(page, 'Home recycling hwrcs', {
-      scope: 'recycling-locator',
-    });
+    await snapshot(page, 'Home recycling hwrcs');
     await expect(recyclingCentresCount).toBeVisible();
     await expect(locationsCount).toBeVisible();
   });
@@ -130,9 +126,7 @@ describeEndToEndTest('Home recycling', () => {
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     contactTab.click();
-    await percySnapshot(page, 'Home recycling contact', {
-      scope: 'recycling-locator',
-    });
+    await snapshot(page, 'Home recycling contact');
     await expect(phoneNumber).toBeVisible();
   });
 
@@ -171,9 +165,7 @@ describeEndToEndTest('Home recycling', () => {
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     kerbsideSchemeLink.click();
-    await percySnapshot(page, 'Home recycling collection details', {
-      scope: 'recycling-locator',
-    });
+    await snapshot(page, 'Home recycling collection details');
     await expect(collectionPageTitle).toBeVisible();
     await expect(input).toBeVisible();
     await input.fill('Not a material m8');
