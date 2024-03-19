@@ -10,9 +10,11 @@ import useFormValidation from '@/lib/useFormValidation';
 export default function LocationForm({
   label,
   cta,
+  action = '/',
 }: {
   readonly label?: string;
   readonly cta?: string;
+  readonly action?: string;
 }) {
   const { t } = useTranslation();
   const location = useLocation();
@@ -23,7 +25,7 @@ export default function LocationForm({
   }, [location]);
 
   return (
-    <Form action="/" method="post" onSubmit={form.handleSubmit}>
+    <Form action={action} method="post" onSubmit={form.handleSubmit}>
       <diamond-form-group className="diamond-spacing-bottom-md">
         <label htmlFor="location-input">{label ?? t('start.label')}</label>
         <LocationInput

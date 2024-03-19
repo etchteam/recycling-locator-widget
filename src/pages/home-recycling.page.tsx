@@ -17,7 +17,7 @@ export default function HomeRecyclingStartPage() {
       <locator-wrap>
         <diamond-section padding="lg">
           <h2>{t('start.homeRecycling.title')}</h2>
-          <LocationForm />
+          <LocationForm action="/home-recycling" />
         </diamond-section>
       </locator-wrap>
     </StartLayout>
