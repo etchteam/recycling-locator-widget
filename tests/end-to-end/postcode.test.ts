@@ -77,7 +77,6 @@ describeEndToEndTest('Postcode page', () => {
     await expect(materialText).not.toBeVisible();
     await input.fill(material);
     await input.press('Enter');
-    await page.waitForRequest(MATERIALS_ENDPOINT);
     await expect(notFound).toBeVisible();
     await expect(materialText).toBeVisible();
   });
