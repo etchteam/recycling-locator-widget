@@ -128,10 +128,10 @@ describeEndToEndTest('Places', () => {
     const fakeMaterial = 'Not a material m8';
     const realMaterial = ValidMaterialsResponse[0].name;
     const fakeMaterialTag = page
-      .getByRole('button', { name: fakeMaterial })
+      .locator('button', { has: page.getByText(fakeMaterial).first() })
       .first();
     const realMaterialTag = page
-      .getByRole('button', { name: realMaterial })
+      .locator('button', { has: page.getByText(realMaterial).first() })
       .first();
 
     await widget.evaluate((node) =>
