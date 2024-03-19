@@ -43,6 +43,7 @@ describeEndToEndTest('Material page', () => {
     await expect(recyclableText).toBeVisible();
     await expect(homeText).toBeVisible();
     await expect(locationsText).toBeVisible();
+    await page.waitForTimeout(500);
     await snapshot(page, 'Material result single');
   });
 
@@ -113,6 +114,7 @@ describeEndToEndTest('Material page', () => {
     await expect(somePropertiesText).toBeVisible();
     await expect(schemeOneText).toBeVisible();
     await expect(locationsText).toBeVisible();
+    await page.waitForTimeout(500);
     await snapshot(page, 'Material result multiple');
   });
 
@@ -245,6 +247,7 @@ describeEndToEndTest('Material page', () => {
     await expect(recyclableText).toBeVisible();
     await expect(homeText).toBeVisible();
     await expect(locationsText).toBeVisible();
+    await page.waitForTimeout(500);
     await snapshot(page, 'Material result negative');
   });
 });

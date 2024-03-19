@@ -50,7 +50,7 @@ jobs:
           VITE_RECYCLING_LOCATOR_API: https://rl-v2.wrap.etch.tech/widget/
           VITE_PUBLIC_PATH: https://cdn.jsdelivr.net/npm/@etchteam/recycling-locator@${{ steps.package-version.outputs.current-version }}/dist/
           VITE_PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
-          VITE_ENABLE_ANALYTICS: true
+          VITE_ENABLE_ANALYTICS: 'true'
       - name: Publish
         run: npm run release
         env:

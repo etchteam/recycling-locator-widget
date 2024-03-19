@@ -30,6 +30,7 @@ describeEndToEndTest('Places', () => {
     await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(placesCount).toBeVisible();
     await expect(placeName).toBeVisible();
+    await page.waitForTimeout(500);
     await snapshot(page, 'Places list');
   });
 
