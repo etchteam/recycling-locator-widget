@@ -1,3 +1,12 @@
+## [1.15.2](https://github.com/etchteam/recycling-locator/compare/v1.15.1...v1.15.2) (2024-03-19)
+
+
+### Bug Fixes
+
+* home recycling action ([6b14808](https://github.com/etchteam/recycling-locator/commit/6b1480868fffe9fe59f9c79fef2262cec40fffa5))
+* location search bringing back incorrect locations ([6606783](https://github.com/etchteam/recycling-locator/commit/6606783e039168dc22567c3d25a9447e5bbc0030))
+* postcode tests ([c3ce024](https://github.com/etchteam/recycling-locator/commit/c3ce024507bd2873dbf25b24b88f3b12cd7cf513))
+
 ## [1.15.1](https://github.com/etchteam/recycling-locator/compare/v1.15.0...v1.15.1) (2024-03-18)
 
 
