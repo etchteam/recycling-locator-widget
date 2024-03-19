@@ -11,6 +11,7 @@ import {
   ValidMaterialsResponse,
 } from '../mocks/materials';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
+import snapshot from '../utils/snapshot';
 import config from '@/config';
 
 describeEndToEndTest('Places', () => {
@@ -29,6 +30,8 @@ describeEndToEndTest('Places', () => {
     await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(placesCount).toBeVisible();
     await expect(placeName).toBeVisible();
+    await page.waitForTimeout(500);
+    await snapshot(page, 'Places list');
   });
 
   test('Load more', async ({ page, widget }) => {
@@ -152,6 +155,7 @@ describeEndToEndTest('Places', () => {
     await expect(placeName).toBeVisible();
     await searchLink.click();
     await expect(materialInput).toBeVisible();
+    await snapshot(page, 'Places search');
     await materialInput.fill(fakeMaterial);
     await materialInput.press('Enter');
     await page.waitForRequest(LOCATIONS_ENDPOINT);
@@ -203,5 +207,6 @@ describeEndToEndTest('Places', () => {
     await expect(placeName).not.toBeVisible();
     await pin.click();
     await expect(placeName).toBeVisible();
+    await snapshot(page, 'Places map');
   });
 });

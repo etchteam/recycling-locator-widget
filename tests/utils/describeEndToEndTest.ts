@@ -40,7 +40,7 @@ export default function describeEndToEndTest(
         // Make the recycling meta response always the same
         route.fulfill({ json: RecyclingMetaResponse });
       });
-      page.goto(`http://localhost:${PORT}`);
+      await page.goto(`http://localhost:${PORT}`, { waitUntil: 'networkidle' });
       const widget = page.locator('recycling-locator');
       await widget.evaluate(async (node) => {
         return new Promise((resolve) => {

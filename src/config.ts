@@ -14,6 +14,7 @@ const config = {
   enableAnalytics: import.meta.env.VITE_ENABLE_ANALYTICS === 'true',
   locatorApiPath: `${LOCATOR_API}${encodeURIComponent(hostname)}/`,
   locatorAnalyticsPath: `${LOCATOR_API}analytics/record`,
+  testMode: import.meta.env.VITE_TEST === 'true',
 };
 
 export default config;

@@ -8,6 +8,7 @@ import {
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
+import snapshot from '../utils/snapshot';
 import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
 describeEndToEndTest('Material page', () => {
@@ -42,6 +43,8 @@ describeEndToEndTest('Material page', () => {
     await expect(recyclableText).toBeVisible();
     await expect(homeText).toBeVisible();
     await expect(locationsText).toBeVisible();
+    await page.waitForTimeout(500);
+    await snapshot(page, 'Material result single');
   });
 
   test('Some home recycling options', async ({ page, widget }) => {
@@ -111,6 +114,8 @@ describeEndToEndTest('Material page', () => {
     await expect(somePropertiesText).toBeVisible();
     await expect(schemeOneText).toBeVisible();
     await expect(locationsText).toBeVisible();
+    await page.waitForTimeout(500);
+    await snapshot(page, 'Material result multiple');
   });
 
   test('All home recycling options', async ({ page, widget }) => {
@@ -242,5 +247,7 @@ describeEndToEndTest('Material page', () => {
     await expect(recyclableText).toBeVisible();
     await expect(homeText).toBeVisible();
     await expect(locationsText).toBeVisible();
+    await page.waitForTimeout(500);
+    await snapshot(page, 'Material result negative');
   });
 });

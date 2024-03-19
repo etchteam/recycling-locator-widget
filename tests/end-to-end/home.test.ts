@@ -8,6 +8,7 @@ import {
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
+import snapshot from '../utils/snapshot';
 import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
 describeEndToEndTest('Home recycling', () => {
@@ -65,6 +66,7 @@ describeEndToEndTest('Home recycling', () => {
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await expect(narrowAccessSchemeText).toBeVisible();
     await expect(kerbsideSchemeText).toBeVisible();
+    await snapshot(page, 'Home recycling collection');
   });
 
   test('Recycling centre locations list', async ({ page, widget }) => {
@@ -104,6 +106,7 @@ describeEndToEndTest('Home recycling', () => {
     await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(recyclingCentresCount).toBeVisible();
     await expect(locationsCount).toBeVisible();
+    await snapshot(page, 'Home recycling hwrcs');
   });
 
   test('Contact details', async ({ page, widget }) => {
@@ -124,6 +127,7 @@ describeEndToEndTest('Home recycling', () => {
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     contactTab.click();
     await expect(phoneNumber).toBeVisible();
+    await snapshot(page, 'Home recycling contact');
   });
 
   test('Collection details', async ({ page, widget }) => {
@@ -172,5 +176,6 @@ describeEndToEndTest('Home recycling', () => {
     await page.waitForTimeout(500); // diamond enter transition duration
     await expect(negativeSearchText).not.toBeVisible();
     await expect(positiveSearchText).toBeVisible();
+    await snapshot(page, 'Home recycling collection details');
   });
 });

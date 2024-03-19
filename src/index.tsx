@@ -1,3 +1,4 @@
+import compact from 'lodash/compact';
 import register from 'preact-custom-element';
 
 import config from './config';
@@ -56,12 +57,16 @@ export default function RecyclingLocator({
   path,
   theme = 'green',
 }: RecyclingLocatorAttributes) {
+  const classes = compact([
+    `recycling-locator-variant-${variant}`,
+    `theme-preset-${theme}`,
+    config.testMode ? 'recycling-locator-test-mode' : undefined,
+  ]).join(' ');
+
   return (
     <>
       <link rel="stylesheet" href={`${config.publicPath}styles.css`} />
-      <article
-        className={`recycling-locator-variant-${variant} theme-preset-${theme}`}
-      >
+      <article className={classes}>
         <Entrypoint
           locale={locale}
           variant={variant}

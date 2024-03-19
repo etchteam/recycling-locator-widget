@@ -17,6 +17,7 @@ import {
   ValidPostcodeResponse,
 } from '../mocks/postcode';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
+import snapshot from '../utils/snapshot';
 
 describeEndToEndTest('Start page', () => {
   test('Address outside mainland England', async ({ page }) => {
@@ -28,6 +29,7 @@ describeEndToEndTest('Start page', () => {
     const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
     await expect(input).toBeVisible();
     await expect(notInUk).not.toBeVisible();
+    await snapshot(page, 'Start');
     await input.fill('Guernsey');
     await input.press('Enter');
     await page.waitForRequest(GEOCODE_ENDPOINT);
@@ -132,6 +134,7 @@ describeEndToEndTest('Start page', () => {
     await expect(homeStartPageTitle).toBeVisible();
     await expect(input).toBeVisible();
     await expect(localAuthority).not.toBeVisible();
+    await snapshot(page, 'Home recycling start');
     await input.fill('Barnstaple');
     await input.press('Enter');
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
