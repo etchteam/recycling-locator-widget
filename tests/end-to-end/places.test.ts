@@ -128,9 +128,13 @@ describeEndToEndTest('Places', () => {
     const fakeMaterial = 'Not a material m8';
     const realMaterial = ValidMaterialsResponse[0].name;
     const fakeMaterialTag = page
+      .locator('locator-places-header-search')
+      .first()
       .locator('button', { has: page.getByText(fakeMaterial).first() })
       .first();
     const realMaterialTag = page
+      .locator('locator-places-header-search')
+      .first()
       .locator('button', { has: page.getByText(realMaterial).first() })
       .first();
 
