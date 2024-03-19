@@ -17,7 +17,7 @@ import '@/components/content/Icon/Icon';
 import '@/components/control/IconLink/IconLink';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
-import { formatPostcode } from '@/lib/format';
+import formatPostcode from '@/lib/formatPostcode';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
 import StartLayout from '@/pages/start.layout';

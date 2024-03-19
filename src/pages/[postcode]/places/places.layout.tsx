@@ -17,7 +17,7 @@ import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/TagButton/TagButton';
 import Menu from '@/components/control/Menu/Menu';
-import { formatPostcode } from '@/lib/format';
+import formatPostcode from '@/lib/formatPostcode';
 
 import { usePlacesLoaderData } from './places.loader';
 

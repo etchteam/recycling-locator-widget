@@ -25,7 +25,7 @@ import Place from '@/components/template/Place/Place';
 import TipContent from '@/components/template/TipContent/TipContent';
 import config from '@/config';
 import PostCodeResolver from '@/lib/PostcodeResolver';
-import { formatPostcode } from '@/lib/format';
+import formatPostcode from '@/lib/formatPostcode';
 import useAnalytics from '@/lib/useAnalytics';
 
 import { PlacesLoaderResponse, usePlacesLoaderData } from './places.loader';

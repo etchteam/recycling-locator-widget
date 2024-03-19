@@ -1,5 +1,6 @@
+import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Form } from 'react-router-dom';
+import { Form, useLocation } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/control/Button/Button';
 
@@ -14,10 +15,15 @@ export default function LocationForm({
   readonly cta?: string;
 }) {
   const { t } = useTranslation();
+  const location = useLocation();
   const form = useFormValidation('location');
 
+  useEffect(() => {
+    form.submitting.value = false;
+  }, [location]);
+
   return (
-    <Form method="post" onSubmit={form.handleSubmit}>
+    <Form action="/" method="post" onSubmit={form.handleSubmit}>
       <diamond-form-group className="diamond-spacing-bottom-md">
         <label htmlFor="location-input">{label ?? t('start.label')}</label>
         <LocationInput

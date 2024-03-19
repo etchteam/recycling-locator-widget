@@ -1,4 +1,4 @@
-export function formatPostcode(postcode: string) {
+export default function formatPostcode(postcode: string) {
   const INCODE_REGEX = /\d[a-z]{2}$/i;
   const trimmed = postcode.replace(/\s/g, '').toUpperCase();
 
