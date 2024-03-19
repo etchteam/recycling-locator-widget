@@ -85,7 +85,7 @@ function Places() {
 
   return (
     <diamond-enter type="fade">
-      {count > 0 ? (
+      {count > 0 && loaderData.materialId !== 'undefined' ? (
         <>
           <h3
             id="places-count"
