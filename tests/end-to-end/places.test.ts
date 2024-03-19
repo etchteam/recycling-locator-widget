@@ -81,6 +81,10 @@ describeEndToEndTest('Places', () => {
   });
 
   test('Search', async ({ page, widget }) => {
+    await page.route(GEOCODE_ENDPOINT, (route) => {
+      route.fulfill({ json: PostcodeGeocodeResponse });
+    });
+
     await page.route(MATERIALS_ENDPOINT, (route) => {
       route.fulfill({
         json: ValidMaterialsResponse,
