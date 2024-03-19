@@ -62,7 +62,7 @@ describeEndToEndTest('Postcode page', () => {
     const material = 'Not a material';
     const input = page.locator('input').first();
     const notFound = page.getByText(t('material.search.notFound')).first();
-    const materialText = page.getByText(t('material.search.notFound')).first();
+    const materialText = page.getByText(material).first();
 
     await widget.evaluate((node) => node.setAttribute('path', '/EX327RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
