@@ -25,11 +25,11 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: GuernseyGeocodeResponse });
     });
 
-    await snapshot(page, 'Start');
     const input = page.locator('input').first();
     const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
     await expect(input).toBeVisible();
     await expect(notInUk).not.toBeVisible();
+    await snapshot(page, 'Start');
     await input.fill('Guernsey');
     await input.press('Enter');
     await page.waitForRequest(GEOCODE_ENDPOINT);
@@ -122,7 +122,6 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
 
-    await snapshot(page, 'Home recycling start');
     const input = page.locator('input').first();
     const homeStartPageTitle = page
       .getByText(t('start.homeRecycling.title'))
@@ -135,6 +134,7 @@ describeEndToEndTest('Start page', () => {
     await expect(homeStartPageTitle).toBeVisible();
     await expect(input).toBeVisible();
     await expect(localAuthority).not.toBeVisible();
+    await snapshot(page, 'Home recycling start');
     await input.fill('Barnstaple');
     await input.press('Enter');
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);

@@ -33,8 +33,8 @@ describeEndToEndTest('Postcode page', () => {
     await expect(notInUk).not.toBeVisible();
     await widget.evaluate((node) => node.setAttribute('path', '/EX32%207RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
-    await snapshot(page, 'Postcode not in UK');
     await expect(notInUk).toBeVisible();
+    await snapshot(page, 'Postcode not in UK');
   });
 
   test('Start route with invalid postcode', async ({ page, widget }) => {
@@ -74,10 +74,10 @@ describeEndToEndTest('Postcode page', () => {
 
     await widget.evaluate((node) => node.setAttribute('path', '/EX32%207RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
-    await snapshot(page, 'Postcode found');
     await expect(input).toBeVisible();
     await expect(notFound).not.toBeVisible();
     await expect(materialText).not.toBeVisible();
+    await snapshot(page, 'Postcode found');
     await input.fill(material);
     await input.press('Enter');
     await expect(notFound).toBeVisible();

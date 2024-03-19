@@ -40,10 +40,10 @@ describeEndToEndTest('Material page', () => {
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await snapshot(page, 'Material result single');
     await expect(recyclableText).toBeVisible();
     await expect(homeText).toBeVisible();
     await expect(locationsText).toBeVisible();
+    await snapshot(page, 'Material result single');
   });
 
   test('Some home recycling options', async ({ page, widget }) => {
@@ -109,11 +109,11 @@ describeEndToEndTest('Material page', () => {
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await snapshot(page, 'Material result multiple');
     await expect(recyclableText).toBeVisible();
     await expect(somePropertiesText).toBeVisible();
     await expect(schemeOneText).toBeVisible();
     await expect(locationsText).toBeVisible();
+    await snapshot(page, 'Material result multiple');
   });
 
   test('All home recycling options', async ({ page, widget }) => {
@@ -242,9 +242,9 @@ describeEndToEndTest('Material page', () => {
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await snapshot(page, 'Material result negative');
     await expect(recyclableText).toBeVisible();
     await expect(homeText).toBeVisible();
     await expect(locationsText).toBeVisible();
+    await snapshot(page, 'Material result negative');
   });
 });

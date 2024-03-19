@@ -28,9 +28,9 @@ describeEndToEndTest('Places', () => {
     );
 
     await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await snapshot(page, 'Places list');
     await expect(placesCount).toBeVisible();
     await expect(placeName).toBeVisible();
+    await snapshot(page, 'Places list');
   });
 
   test('Load more', async ({ page, widget }) => {
@@ -153,8 +153,8 @@ describeEndToEndTest('Places', () => {
     await expect(placesCount).toBeVisible();
     await expect(placeName).toBeVisible();
     await searchLink.click();
-    await snapshot(page, 'Places search');
     await expect(materialInput).toBeVisible();
+    await snapshot(page, 'Places search');
     await materialInput.fill(fakeMaterial);
     await materialInput.press('Enter');
     await page.waitForRequest(LOCATIONS_ENDPOINT);
@@ -201,11 +201,11 @@ describeEndToEndTest('Places', () => {
     await expect(mapButton).toBeVisible();
     mapButton.click();
     await page.waitForTimeout(500); // half a second chance for the map to load
-    await snapshot(page, 'Places map');
     await expect(map).toBeVisible();
     await expect(pin).toBeVisible();
     await expect(placeName).not.toBeVisible();
     await pin.click();
     await expect(placeName).toBeVisible();
+    await snapshot(page, 'Places map');
   });
 });
