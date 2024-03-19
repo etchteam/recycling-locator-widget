@@ -13,7 +13,7 @@ describeEndToEndTest('About page', () => {
     await expect(aboutTitle).not.toBeVisible();
     await button.click();
     await expect(aboutTitle).toBeVisible();
-    await percySnapshot(page, 'About page', { scope: 'recycling-locator' });
+    await percySnapshot(page, 'About page');
     await button.click();
     await expect(aboutTitle).not.toBeVisible();
   });
