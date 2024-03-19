@@ -1,3 +1,4 @@
+import percySnapshot from '@percy/playwright';
 import { expect } from '@playwright/test';
 import { t } from 'i18next';
 import { test } from 'vitest';
@@ -12,6 +13,7 @@ describeEndToEndTest('About page', () => {
     await expect(aboutTitle).not.toBeVisible();
     await button.click();
     await expect(aboutTitle).toBeVisible();
+    await percySnapshot(page, 'About page', { scope: 'recycling-locator' });
     await button.click();
     await expect(aboutTitle).not.toBeVisible();
   });
