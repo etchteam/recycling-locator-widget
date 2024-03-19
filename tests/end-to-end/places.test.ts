@@ -4,6 +4,7 @@ import { test } from 'vitest';
 
 import { GEOCODE_ENDPOINT, PostcodeGeocodeResponse } from '../mocks/geocode';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
+import { MATERIALS_ENDPOINT, ValidMaterialsResponse } from '../mocks/materials';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
 import config from '@/config';
 
@@ -80,6 +81,12 @@ describeEndToEndTest('Places', () => {
   });
 
   test('Search', async ({ page, widget }) => {
+    await page.route(MATERIALS_ENDPOINT, (route) => {
+      route.fulfill({
+        json: ValidMaterialsResponse,
+      });
+    });
+
     await page.route(
       `${config.locatorApiPath}locations/EX327RB?limit=30&radius=25`,
       (route) => {
@@ -100,7 +107,7 @@ describeEndToEndTest('Places', () => {
     );
 
     await page.route(
-      `${config.locatorApiPath}locations/EX327RB?limit=30&radius=25materials=44`,
+      `${config.locatorApiPath}locations/EX327RB?limit=30&radius=25materials=${ValidMaterialsResponse[0].id}`,
       (route) => {
         route.fulfill({ json: LocationsResponse });
       },
@@ -115,7 +122,7 @@ describeEndToEndTest('Places', () => {
       .getByPlaceholder(t('components.materialSearchInput.placeholder'))
       .first();
     const fakeMaterial = 'Not a material m8';
-    const realMaterial = 'Plastic drinks bottles';
+    const realMaterial = ValidMaterialsResponse[0].name;
     const fakeMaterialTag = page
       .getByRole('button', { name: fakeMaterial })
       .first();

@@ -12,8 +12,14 @@ export default async function placesSearchAction({
   const materials = await LocatorApi.post<Material[]>('materials', formData);
   const { name, id } = materials?.[0] ?? {};
   const postcode = params.postcode;
-  const safeName = encodeURIComponent(name ?? search);
+  console.log('name', name, search);
+  if (name !== search) {
+    return redirect(
+      `/${postcode}/places?materialId=undefined&materialName=${encodeURIComponent(search)}`,
+    );
+  }
+
   return redirect(
-    `/${postcode}/places?materialId=${id}&materialName=${safeName}`,
+    `/${postcode}/places?materialId=${id}&materialName=${encodeURIComponent(name)}`,
   );
 }
