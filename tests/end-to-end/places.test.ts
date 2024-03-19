@@ -4,7 +4,12 @@ import { test } from 'vitest';
 
 import { GEOCODE_ENDPOINT, PostcodeGeocodeResponse } from '../mocks/geocode';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
-import { MATERIALS_ENDPOINT, ValidMaterialsResponse } from '../mocks/materials';
+import {
+  MATERIALS_ENDPOINT,
+  POPULAR_MATERIALS_ENDPOINT,
+  PopularMaterialsResponse,
+  ValidMaterialsResponse,
+} from '../mocks/materials';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
 import config from '@/config';
 
@@ -18,7 +23,7 @@ describeEndToEndTest('Places', () => {
     const placeName = page.getByText(LocationsResponse.items[0].name).first();
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX327RB/places'),
+      node.setAttribute('path', '/EX32%207RB/places'),
     );
 
     await page.waitForRequest(LOCATIONS_ENDPOINT);
@@ -30,7 +35,7 @@ describeEndToEndTest('Places', () => {
     const mockLocation = LocationsResponse.items[0];
 
     await page.route(
-      `${config.locatorApiPath}locations/EX327RB?limit=30&radius=25`,
+      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25`,
       (route) => {
         route.fulfill({
           json: {
@@ -45,7 +50,7 @@ describeEndToEndTest('Places', () => {
     );
 
     await page.route(
-      `${config.locatorApiPath}locations/EX327RB?limit=60&radius=25`,
+      `${config.locatorApiPath}locations/EX32%207RB?limit=60&radius=25`,
       (route) => {
         route.fulfill({
           json: {
@@ -70,7 +75,7 @@ describeEndToEndTest('Places', () => {
     });
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX327RB/places'),
+      node.setAttribute('path', '/EX32%207RB/places'),
     );
     await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(placesCount30).toBeVisible();
@@ -85,6 +90,10 @@ describeEndToEndTest('Places', () => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
 
+    await page.route(POPULAR_MATERIALS_ENDPOINT, (route) => {
+      route.fulfill({ json: PopularMaterialsResponse });
+    });
+
     await page.route(MATERIALS_ENDPOINT, (route) => {
       route.fulfill({
         json: ValidMaterialsResponse,
@@ -92,14 +101,14 @@ describeEndToEndTest('Places', () => {
     });
 
     await page.route(
-      `${config.locatorApiPath}locations/EX327RB?limit=30&radius=25`,
+      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25`,
       (route) => {
         route.fulfill({ json: LocationsResponse });
       },
     );
 
     await page.route(
-      `${config.locatorApiPath}locations/EX327RB?limit=30&radius=25materials=undefined`,
+      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25&materials=undefined`,
       (route) => {
         route.fulfill({
           json: {
@@ -111,7 +120,7 @@ describeEndToEndTest('Places', () => {
     );
 
     await page.route(
-      `${config.locatorApiPath}locations/EX327RB?limit=30&radius=25materials=${ValidMaterialsResponse[0].id}`,
+      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25&materials=${ValidMaterialsResponse[0].id}`,
       (route) => {
         route.fulfill({ json: LocationsResponse });
       },
@@ -128,18 +137,14 @@ describeEndToEndTest('Places', () => {
     const fakeMaterial = 'Not a material m8';
     const realMaterial = ValidMaterialsResponse[0].name;
     const fakeMaterialTag = page
-      .locator('locator-places-header-search')
-      .first()
       .locator('button', { has: page.getByText(fakeMaterial).first() })
       .first();
     const realMaterialTag = page
-      .locator('locator-places-header-search')
-      .first()
       .locator('button', { has: page.getByText(realMaterial).first() })
       .first();
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX327RB/places'),
+      node.setAttribute('path', '/EX32%207RB/places'),
     );
 
     await page.waitForRequest(LOCATIONS_ENDPOINT);
@@ -203,7 +208,7 @@ describeEndToEndTest('Places', () => {
       .first();
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX327RB/places'),
+      node.setAttribute('path', '/EX32%207RB/places'),
     );
 
     await page.waitForRequest(LOCATIONS_ENDPOINT);
