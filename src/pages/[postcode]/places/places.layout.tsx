@@ -99,7 +99,10 @@ export default function PlacesLayout({
                         <diamond-enter type="fade">
                           <locator-tag-button
                             variant={
-                              locations?.length > 0 ? 'positive' : 'negative'
+                              locations?.length > 0 &&
+                              materialId !== 'undefined'
+                                ? 'positive'
+                                : 'negative'
                             }
                           >
                             <button type="button" onClick={handleResetSearch}>

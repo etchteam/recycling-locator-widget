@@ -15,6 +15,8 @@ import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import {
   EmptyMaterialsResponse,
   MATERIALS_ENDPOINT,
+  POPULAR_MATERIALS_ENDPOINT,
+  PopularMaterialsResponse,
   ValidMaterialsResponse,
 } from '../mocks/materials';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
@@ -28,7 +30,7 @@ describeEndToEndTest('Postcode page', () => {
     const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
 
     await expect(notInUk).not.toBeVisible();
-    await widget.evaluate((node) => node.setAttribute('path', '/EX327RB'));
+    await widget.evaluate((node) => node.setAttribute('path', '/EX32%207RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await expect(notInUk).toBeVisible();
   });
@@ -55,6 +57,10 @@ describeEndToEndTest('Postcode page', () => {
       route.fulfill({ json: EmptyMaterialsResponse });
     });
 
+    await page.route(POPULAR_MATERIALS_ENDPOINT, (route) => {
+      route.fulfill({ json: PopularMaterialsResponse });
+    });
+
     await page.route(LOCATIONS_ENDPOINT, (route) => {
       route.fulfill({ json: LocationsResponse });
     });
@@ -62,16 +68,15 @@ describeEndToEndTest('Postcode page', () => {
     const material = 'Not a material';
     const input = page.locator('input').first();
     const notFound = page.getByText(t('material.search.notFound')).first();
-    const materialText = page.getByText(t('material.search.notFound')).first();
+    const materialText = page.getByText(material).first();
 
-    await widget.evaluate((node) => node.setAttribute('path', '/EX327RB'));
+    await widget.evaluate((node) => node.setAttribute('path', '/EX32%207RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await expect(input).toBeVisible();
     await expect(notFound).not.toBeVisible();
     await expect(materialText).not.toBeVisible();
     await input.fill(material);
     await input.press('Enter');
-    await page.waitForRequest(MATERIALS_ENDPOINT);
     await expect(notFound).toBeVisible();
     await expect(materialText).toBeVisible();
   });
@@ -99,7 +104,7 @@ describeEndToEndTest('Postcode page', () => {
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const materialPageTitle = page.getByText(t('material.title')).first();
 
-    await widget.evaluate((node) => node.setAttribute('path', '/EX327RB'));
+    await widget.evaluate((node) => node.setAttribute('path', '/EX32%207RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await expect(input).toBeVisible();
     await expect(materialText).not.toBeVisible();

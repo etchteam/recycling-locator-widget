@@ -74,7 +74,9 @@ function Places() {
   const count =
     fetcher.data?.data.locations?.length ?? loaderData.locations.length;
   const allLocations = fetcher.data?.data.locations ?? loaderData.locations;
-  const showLoadMore = !fetcher.data?.data.max && !loaderData.max;
+  const showLocations = count > 0 && loaderData.materialId !== 'undefined';
+  const showLoadMore =
+    showLocations && !fetcher.data?.data.max && !loaderData.max;
   const currentPage = fetcher.data?.data.page ?? loaderData.page;
 
   const handleResetSearch = () => {
@@ -85,7 +87,7 @@ function Places() {
 
   return (
     <diamond-enter type="fade">
-      {count > 0 ? (
+      {showLocations ? (
         <>
           <h3
             id="places-count"

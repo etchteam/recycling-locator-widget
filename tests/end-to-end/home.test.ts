@@ -59,7 +59,9 @@ describeEndToEndTest('Home recycling', () => {
       .getByText(mockedLaResponse.properties[PROPERTY_TYPE_EN.KERBSIDE][0].name)
       .first();
 
-    await widget.evaluate((node) => node.setAttribute('path', '/EX327RB/home'));
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32%207RB/home'),
+    );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await expect(narrowAccessSchemeText).toBeVisible();
     await expect(kerbsideSchemeText).toBeVisible();
@@ -94,7 +96,9 @@ describeEndToEndTest('Home recycling', () => {
       )
       .first();
 
-    await widget.evaluate((node) => node.setAttribute('path', '/EX327RB/home'));
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32%207RB/home'),
+    );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     recyclingCentreTab.click();
     await page.waitForRequest(LOCATIONS_ENDPOINT);
@@ -114,7 +118,9 @@ describeEndToEndTest('Home recycling', () => {
       .getByText(LocalAuthorityResponse.enquiryNumber)
       .first();
 
-    await widget.evaluate((node) => node.setAttribute('path', '/EX327RB/home'));
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32%207RB/home'),
+    );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     contactTab.click();
     await expect(phoneNumber).toBeVisible();
@@ -150,7 +156,9 @@ describeEndToEndTest('Home recycling', () => {
       }),
     );
 
-    await widget.evaluate((node) => node.setAttribute('path', '/EX327RB/home'));
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32%207RB/home'),
+    );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     kerbsideSchemeLink.click();
     await expect(collectionPageTitle).toBeVisible();
