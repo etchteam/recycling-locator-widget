@@ -1,3 +1,17 @@
+## [1.15.3](https://github.com/etchteam/recycling-locator/compare/v1.15.2...v1.15.3) (2024-03-19)
+
+
+### Bug Fixes
+
+* load more btn showing on empty search ([1cc83a4](https://github.com/etchteam/recycling-locator/commit/1cc83a4cdd3ca2bca439749d5e51783fcab50d78))
+* material search ([861316b](https://github.com/etchteam/recycling-locator/commit/861316b1146e56df2d7340cb4f5a7ec6eb9368b2))
+* places search for unknown material ([3149e74](https://github.com/etchteam/recycling-locator/commit/3149e747f89b8a42d8d9fdbc9018773a35e9c759))
+
+
+### Reverts
+
+* debug ([8634828](https://github.com/etchteam/recycling-locator/commit/8634828dad52a2bb95c3ab5528109ec03d8cb661))
+
 ## [1.15.2](https://github.com/etchteam/recycling-locator/compare/v1.15.1...v1.15.2) (2024-03-19)
 
 
