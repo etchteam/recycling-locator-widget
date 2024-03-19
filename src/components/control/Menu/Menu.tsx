@@ -7,7 +7,7 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/composition/BorderedList/BorderedList';
 import { IconAttributes } from '@/components/content/Icon/Icon';
 import '@/components/control/IconLink/IconLink';
-import { formatPostcode } from '@/lib/format';
+import formatPostcode from '@/lib/formatPostcode';
 import { usePostcodeLoaderData } from '@/pages/[postcode]/postcode.loader';
 
 export default function Menu() {

@@ -4,6 +4,7 @@ import config from '@/config';
 import { PostcodeResponse } from '@/types/locatorApi';
 
 import LocatorApi from './LocatorApi';
+import formatPostcode from './formatPostcode';
 
 interface HereMapsGeocodeResponse {
   items: {
@@ -35,9 +36,17 @@ export default class PostCodeResolver {
     const apikey = config.mapsPlacesKey;
     const platform = new H.service.Platform({ apikey });
     const service = platform.getSearchService() as service.GeocodingService;
+    let query: { q?: string; qq?: string } = { q: location };
+
+    if (PostCodeResolver.extractPostcodeFromString(location) === location) {
+      // If the location is a postcode, use a postalCode Qualified Query (qq)
+      // Uses formatting because searches for postcodes with a space are more reliable
+      query = { qq: `postalCode=${formatPostcode(location)}` };
+    }
+
     const geocode: HereMapsGeocodeResponse = await new Promise(
       (resolve, reject) => {
-        service.geocode({ q: location }, resolve, reject);
+        service.geocode(query, resolve, reject);
       },
     );
 
@@ -56,19 +65,7 @@ export default class PostCodeResolver {
 
   static extractPostcodeFromString(locationOrPostcode: string): string | null {
     const matches = PostCodeResolver.POSTCODE_REGEX.exec(locationOrPostcode);
-
-    if (!matches) {
-      return null;
-    }
-
-    return PostCodeResolver.formatPostcode(matches[0]);
-  }
-
-  /**
-   * Return a url safe postcode
-   */
-  static formatPostcode(postcode: string): string {
-    return postcode.replace(/ /g, '').toUpperCase();
+    return matches ? matches[0] : null;
   }
 
   /**
@@ -90,7 +87,7 @@ export default class PostCodeResolver {
       );
     }
 
-    return PostCodeResolver.formatPostcode(response.postcode);
+    return response.postcode;
   }
 
   /**
@@ -106,7 +103,7 @@ export default class PostCodeResolver {
       PostCodeResolver.extractPostcodeFromString(location);
 
     if (extractedPostcode) {
-      return extractedPostcode;
+      return formatPostcode(extractedPostcode);
     }
 
     const { lat, lng } = geocode.items[0].position;

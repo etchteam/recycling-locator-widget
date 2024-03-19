@@ -8,11 +8,11 @@ describe('extractPostcodeFromString', () => {
       'EX327RB',
     );
     expect(PostCodeResolver.extractPostcodeFromString('EX32 7RB')).toBe(
-      'EX327RB',
+      'EX32 7RB',
     );
     expect(
       PostCodeResolver.extractPostcodeFromString('Barnstaple, Devon, EX32 7RB'),
-    ).toBe('EX327RB');
+    ).toBe('EX32 7RB');
     expect(
       PostCodeResolver.extractPostcodeFromString('BarnstapleDevonEX327RB'),
     ).toBe('EX327RB');
@@ -25,11 +25,5 @@ describe('extractPostcodeFromString', () => {
         'ILOK ABIT LIKE A POSTCODE MAYBE',
       ),
     ).toBe(null);
-  });
-});
-
-describe('formatPostcode', () => {
-  test('removes spaces from postcode', () => {
-    expect(PostCodeResolver.formatPostcode('EX3 2 7R B')).toBe('EX327RB');
   });
 });
