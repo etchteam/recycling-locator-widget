@@ -1,3 +1,11 @@
+## [1.15.4](https://github.com/etchteam/recycling-locator/compare/v1.15.3...v1.15.4) (2024-03-20)
+
+
+### Bug Fixes
+
+* safari fab rendering issue ([cf2b161](https://github.com/etchteam/recycling-locator/commit/cf2b16161c4f7d6cdbaa811fc8bffdb7c70d6b11))
+* safari map fab ([1d981f5](https://github.com/etchteam/recycling-locator/commit/1d981f5d7f906a3e7fc1275f0b814916f2e8838a))
+
 ## [1.15.3](https://github.com/etchteam/recycling-locator/compare/v1.15.2...v1.15.3) (2024-03-19)
 
 
