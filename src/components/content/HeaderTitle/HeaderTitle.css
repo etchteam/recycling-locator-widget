@@ -23,14 +23,14 @@ locator-header-title {
   h2,
   p {
     margin-block-end: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   h2 {
     font-size: var(--diamond-font-size-lg);
     font-weight: var(--diamond-font-weight-bold);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   p {
