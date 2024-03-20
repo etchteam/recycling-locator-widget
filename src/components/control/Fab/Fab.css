@@ -19,4 +19,10 @@ locator-fab {
     position: absolute;
     top: var(--diamond-spacing);
   }
+
+  @container (width >= 768px) {
+    diamond-button {
+      --diamond-button-padding-block: var(--diamond-spacing-sm);
+    }
+  }
 }
