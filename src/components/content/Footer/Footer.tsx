@@ -15,7 +15,7 @@ export default function Footer() {
 
   return (
     <locator-footer>
-      <h2 class="locator-footer-title">
+      <h2 className="locator-footer-title">
         {t(`${tContext}.poweredBy`)}{' '}
         <LogoSvg title={t(`${tContext}.recycleNow`)} />
       </h2>

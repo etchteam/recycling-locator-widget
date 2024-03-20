@@ -92,7 +92,8 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
             <input
               type="text"
               name="search"
-              autofocus={this.props.autofocus}
+              // eslint-disable-next-line jsx-a11y/no-autofocus
+              autoFocus={this.props.autofocus}
               aria-labelledby={this.props.inputLabelledBy}
               placeholder={placeholder}
               id={inputId}

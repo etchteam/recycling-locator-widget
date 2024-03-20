@@ -89,7 +89,8 @@ export default class LocationInput extends Component<LocationInputProps> {
           <input
             type="text"
             name="location"
-            autofocus={this.props.autofocus}
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus={this.props.autofocus}
             placeholder={placeholder}
             id={inputId}
             list={listId}
