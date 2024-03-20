@@ -10,6 +10,7 @@
 @import './tokens/color.css';
 @import './tokens/container.css';
 @import './tokens/font.css';
+@import './tokens/header.css';
 @import './tokens/label.css';
 @import './tokens/theme.css';
 @import './tokens/wrap.css';
