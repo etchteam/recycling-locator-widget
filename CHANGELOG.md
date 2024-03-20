@@ -1,3 +1,28 @@
+## [1.16.0](https://github.com/etchteam/recycling-locator/compare/v1.15.4...v1.16.0) (2024-03-20)
+
+
+### Features
+
+* add a border to transparent bins ([c2e91ec](https://github.com/etchteam/recycling-locator/commit/c2e91ec9b1aed793b0b57be7f9a9079ee7063c31))
+* autofocus relevant inputs when moving between views ([070049d](https://github.com/etchteam/recycling-locator/commit/070049d5d663051794d15e4c8458729170daa0bc))
+* fade in about content ([fc0b7d5](https://github.com/etchteam/recycling-locator/commit/fc0b7d5ef17775e96ea7f6f9aafb629ca08ed966))
+* fixed header height, scrolling and truncate ([7910707](https://github.com/etchteam/recycling-locator/commit/7910707f700271e6f4c1a02b3c10367e95c72072))
+* fluid places page gutter ([0f65e15](https://github.com/etchteam/recycling-locator/commit/0f65e15bbcfc7483d83dc320280d90e7679fe4cc))
+* footer ([dfc3558](https://github.com/etchteam/recycling-locator/commit/dfc3558c8a3fda0d2826b704995c4defad7362ac))
+* increase fab desktop size ([2c9fecb](https://github.com/etchteam/recycling-locator/commit/2c9fecbbde5122aeee48378b2452f0eef48c301f))
+* increase search button hit target ([ee6b2da](https://github.com/etchteam/recycling-locator/commit/ee6b2da1d7fbd6ff51b36b02593cb58eddc10b5e))
+* increase target area of context menu clear btn ([5843f22](https://github.com/etchteam/recycling-locator/commit/5843f229ea3644a1aaf3aeb0c5716eac4afab882))
+* increase wrap width ([a3bf77f](https://github.com/etchteam/recycling-locator/commit/a3bf77fbfd1029ce05970cab8bce5e09468ddac7))
+* static map scrim ([d50b42c](https://github.com/etchteam/recycling-locator/commit/d50b42c3ae65d05ab817f36caaade9e59a3ed563))
+* sticky context header (desktop only) ([bc18309](https://github.com/etchteam/recycling-locator/commit/bc18309fe07a338066d29c0eacbd8e7ff99d8543))
+* update diamond to get list and input with icon fixes ([08367ce](https://github.com/etchteam/recycling-locator/commit/08367ce1fc2511ef5c52df8b20d6f1e7d9b08e89))
+
+
+### Bug Fixes
+
+* sonarcloud issues ([48638ce](https://github.com/etchteam/recycling-locator/commit/48638ce42fd2b5c470a8da1fa3c7469ff7f5e688))
+* spacing around places map children ([c5d1603](https://github.com/etchteam/recycling-locator/commit/c5d16033d20a0bad0a73853a037b41060e63843d))
+
 ## [1.15.4](https://github.com/etchteam/recycling-locator/compare/v1.15.3...v1.15.4) (2024-03-20)
 
 
