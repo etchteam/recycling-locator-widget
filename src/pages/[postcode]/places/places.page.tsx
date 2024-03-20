@@ -227,7 +227,7 @@ export default function PlacesPage() {
         </Suspense>
       </section>
       <diamond-enter type="fade" delay={0.25}>
-        <locator-fab>
+        <locator-fab sticky>
           <diamond-button size="sm" variant="primary">
             <Link to={`/${postcode}/places/map`}>
               <locator-icon icon="map"></locator-icon>
