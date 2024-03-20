@@ -11,8 +11,7 @@ locator-header {
     padding: var(--diamond-spacing-sm) var(--diamond-spacing);
   }
 
-  /* small tablet */
-  @container (width >= 600px) {
+  @container (width > 768px) {
     locator-header-logo {
       display: flex;
     }

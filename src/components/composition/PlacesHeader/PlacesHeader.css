@@ -40,8 +40,7 @@ locator-places-header {
     }
   }
 
-  /* small tablet */
-  @container (width >= 600px) {
+  @container (width > 768px) {
     locator-places-header-search {
       border: var(--diamond-border);
       border-radius: var(--diamond-border-radius);

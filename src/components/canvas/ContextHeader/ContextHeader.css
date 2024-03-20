@@ -1,5 +1,6 @@
 locator-context-header {
   align-items: center;
+  background: var(--diamond-theme-background);
   border-bottom: var(--diamond-border);
   color: var(--diamond-theme-color);
   display: grid;
@@ -7,6 +8,12 @@ locator-context-header {
   grid-template-columns: 1fr auto;
   padding: var(--diamond-spacing-sm) var(--diamond-spacing);
   transition: color var(--diamond-transition);
+
+  @container (width > 768px) {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
 
   &:first-child {
     grid-area: content;

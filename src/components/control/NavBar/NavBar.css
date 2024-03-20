@@ -1,6 +1,13 @@
 locator-nav-bar {
+  background: var(--diamond-theme-background);
   border-bottom: var(--diamond-border);
   display: block;
+
+  @container (width > 768px) {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
 
   ul {
     display: flex;
