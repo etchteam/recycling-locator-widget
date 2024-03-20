@@ -10,6 +10,7 @@ import '@/components/content/Logo/Logo';
 import '@/components/content/Icon/Icon';
 import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
+import Footer from '@/components/content/Footer/Footer';
 import config from '@/config';
 import useAnalytics from '@/lib/useAnalytics';
 
@@ -45,6 +46,8 @@ function About() {
             {t('about.feedback.cta')}
           </a>
         </diamond-button>
+        <hr className="diamond-spacing-bottom-md diamond-spacing-top-lg" />
+        <Footer />
       </diamond-section>
     </locator-wrap>
   );

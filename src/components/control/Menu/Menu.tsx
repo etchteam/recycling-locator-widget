@@ -5,6 +5,7 @@ import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import '@/components/composition/Wrap/Wrap';
 import '@/components/composition/BorderedList/BorderedList';
+import Footer from '@/components/content/Footer/Footer';
 import { IconAttributes } from '@/components/content/Icon/Icon';
 import '@/components/control/IconLink/IconLink';
 import formatPostcode from '@/lib/formatPostcode';
@@ -80,6 +81,10 @@ export default function Menu() {
               </ul>
             </nav>
           </locator-bordered-list>
+          <diamond-enter type="fade" delay={items.length * 0.1}>
+            <hr className="diamond-spacing-bottom-md" />
+            <Footer />
+          </diamond-enter>
         </locator-wrap>
       </diamond-section>
     </>

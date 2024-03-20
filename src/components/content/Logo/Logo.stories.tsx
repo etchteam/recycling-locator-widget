@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/preact';
 import LogoComponent from './Logo';
 
 const meta: Meta = {
+  title: 'Components/Content/Logo',
   component: LogoComponent,
 };
 
