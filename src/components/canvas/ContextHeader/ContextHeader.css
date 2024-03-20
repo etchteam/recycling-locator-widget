@@ -30,10 +30,10 @@ locator-context-header {
 
     a,
     button {
-      margin: 0;
+      margin: calc(var(--diamond-spacing-xs) * -1);
       min-height: 0;
       min-width: 0;
-      padding: 0;
+      padding: var(--diamond-spacing-xs);
     }
   }
 }
