@@ -6,6 +6,7 @@
 
 article {
   container-type: inline-size;
+  position: relative;
 }
 
 .recycling-locator-variant-widget {
