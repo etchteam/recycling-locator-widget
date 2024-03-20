@@ -84,19 +84,18 @@ locator-places-map {
     padding: var(--diamond-spacing);
   }
 
-  /* small tablet */
-  @container (width >= 600px) {
+  @container (width >= 768px) {
     locator-places-map-card {
       background: var(--diamond-theme-background);
       border-radius: var(--diamond-border-radius);
       bottom: var(--diamond-spacing);
       box-shadow: var(--diamond-shadow);
       left: 50%;
-      margin-left: calc(var(--wrap-max-width) / -2);
-      max-width: var(--wrap-max-width);
+      max-width: calc(100% - var(--diamond-spacing-lg));
       padding-inline: var(--diamond-spacing);
       position: absolute;
-      width: 100%;
+      transform: translateX(-50%);
+      width: var(--wrap-max-width);
       z-index: 123; /* 121 markers + 2 */
     }
 
