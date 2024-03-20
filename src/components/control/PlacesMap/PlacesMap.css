@@ -79,6 +79,17 @@ locator-places-map {
     }
   }
 
+  /* stylelint-disable-next-line selector-no-qualifying-type */
+  &.locator-places-map--static .locator-places-map__container::after {
+    background: linear-gradient(0deg, var(--color-grey) 0%, transparent 100%);
+    content: '';
+    display: block;
+    inset: 0;
+    opacity: 0.3;
+    position: absolute;
+    z-index: 122; /* 121 markers + 1 */
+  }
+
   locator-places-map-card {
     display: block;
     padding: var(--diamond-spacing);

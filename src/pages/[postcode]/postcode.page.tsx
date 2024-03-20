@@ -11,6 +11,7 @@ import '@/components/canvas/ContextHeader/ContextHeader';
 import '@/components/canvas/MapSvg/MapSvg';
 import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/canvas/Loading/Loading';
+import '@/components/canvas/Hero/Hero';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/content/Icon/Icon';
@@ -27,7 +28,9 @@ import { usePostcodeLoaderData } from './postcode.loader';
 function MapLoadingFallback() {
   return (
     <locator-loading>
-      <locator-icon icon="distance" color="muted"></locator-icon>
+      <locator-hero>
+        <locator-icon icon="distance" color="muted"></locator-icon>
+      </locator-hero>
     </locator-loading>
   );
 }
