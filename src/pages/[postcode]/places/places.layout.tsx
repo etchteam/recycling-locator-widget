@@ -34,8 +34,8 @@ export default function PlacesLayout({
   const materialId = searchParams.get('materialId');
   const materialName = searchParams.get('materialName');
   const query = materialId
-    ? `?materialId=${materialId}&materialName=${materialName}`
-    : '';
+    ? `?materialId=${materialId}&materialName=${materialName}&autofocus=true`
+    : '?autofocus=true';
 
   const handleResetSearch = () => {
     searchParams.delete('materialId');
@@ -129,7 +129,7 @@ export default function PlacesLayout({
       </locator-header>
       <div slot="layout-main" id="locator-layout-main">
         {open.value ? (
-          <Menu />
+          <Menu handleClose={() => (open.value = false)} />
         ) : (
           <>
             <Outlet />

@@ -19,6 +19,7 @@ interface MaterialSearchInputProps {
   readonly submitting?: boolean | string;
   readonly defaultValue?: string;
   readonly valid?: boolean;
+  readonly autofocus?: boolean;
   readonly handleBlur?: (value: string) => void;
   readonly handleInput?: (value: string) => void;
 }
@@ -91,6 +92,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
             <input
               type="text"
               name="search"
+              autofocus={this.props.autofocus}
               aria-labelledby={this.props.inputLabelledBy}
               placeholder={placeholder}
               id={inputId}

@@ -1,7 +1,7 @@
 import { Suspense } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link, Form, Await } from 'react-router-dom';
+import { Link, Form, Await, useSearchParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -85,6 +85,8 @@ export default function PostcodePage() {
   const { t } = useTranslation();
   const { recordEvent } = useAnalytics();
   const { postcode, city } = usePostcodeLoaderData();
+  const [searchParams] = useSearchParams();
+  const autofocus = searchParams.get('autofocus') === 'true';
   const form = useFormValidation('search');
 
   useEffect(() => {
@@ -121,6 +123,7 @@ export default function PostcodePage() {
           <Form method="post" onSubmit={form.handleSubmit}>
             <MaterialSearchInput
               inputLabelledBy="material-search-title"
+              autofocus={autofocus}
               handleBlur={form.handleBlur}
               handleInput={form.handleInput}
               submitting={form.submitting.value}

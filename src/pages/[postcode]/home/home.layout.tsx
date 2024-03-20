@@ -85,7 +85,7 @@ export default function HomeRecyclingLayout({
       </locator-header>
       <div slot="layout-main" id="locator-layout-main">
         {open.value ? (
-          <Menu />
+          <Menu handleClose={() => (open.value = false)} />
         ) : (
           <>
             {la && (

@@ -1,6 +1,6 @@
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Form, useLocation } from 'react-router-dom';
+import { Form, useLocation, useSearchParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/control/Button/Button';
 
@@ -19,6 +19,8 @@ export default function LocationForm({
   const { t } = useTranslation();
   const location = useLocation();
   const form = useFormValidation('location');
+  const [searchParams] = useSearchParams();
+  const autofocus = searchParams.get('autofocus') === 'true';
 
   useEffect(() => {
     form.submitting.value = false;
@@ -29,6 +31,7 @@ export default function LocationForm({
       <diamond-form-group className="diamond-spacing-bottom-md">
         <label htmlFor="location-input">{label ?? t('start.label')}</label>
         <LocationInput
+          autofocus={autofocus}
           handleBlur={form.handleBlur}
           handleInput={form.handleInput}
           valid={form.valid.value}

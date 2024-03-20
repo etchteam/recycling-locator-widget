@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Form } from 'react-router-dom';
+import { Form, useSearchParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
@@ -7,6 +7,8 @@ import useFormValidation from '@/lib/useFormValidation';
 
 export default function PlacesSearchPage() {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
+  const autofocus = searchParams.get('autofocus') === 'true';
   const form = useFormValidation('search');
 
   return (
@@ -16,6 +18,7 @@ export default function PlacesSearchPage() {
         <diamond-form-group>
           <MaterialSearchInput
             inputLabelledBy="places-search-label"
+            autofocus={autofocus}
             handleBlur={form.handleBlur}
             handleInput={form.handleInput}
             submitting={form.submitting.value}

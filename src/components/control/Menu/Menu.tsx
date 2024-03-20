@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
@@ -11,9 +11,14 @@ import '@/components/control/IconLink/IconLink';
 import formatPostcode from '@/lib/formatPostcode';
 import { usePostcodeLoaderData } from '@/pages/[postcode]/postcode.loader';
 
-export default function Menu() {
+export default function Menu({
+  handleClose,
+}: {
+  readonly handleClose: () => void;
+}) {
   const { postcode, city } = usePostcodeLoaderData();
   const { t } = useTranslation();
+  const location = useLocation();
 
   const items: {
     icon: IconAttributes['icon'];
@@ -23,24 +28,32 @@ export default function Menu() {
     {
       icon: 'pin',
       text: t('components.menu.changeLocation'),
-      to: '/',
+      to: '/?autofocus=true',
     },
     {
       icon: 'search',
       text: t('components.menu.recycleSpecificItem'),
-      to: `/${postcode}`,
+      to: `/${encodeURIComponent(postcode)}?autofocus=true`,
     },
     {
       icon: 'home',
       text: t('components.menu.homeRecycling'),
-      to: `/${postcode}/home`,
+      to: `/${encodeURIComponent(postcode)}/home`,
     },
     {
       icon: 'distance',
       text: t('components.menu.findNearbyPlaces'),
-      to: `/${postcode}/places`,
+      to: `/${encodeURIComponent(postcode)}/places`,
     },
   ];
+
+  const handleClick = (event: Event, to: string) => {
+    if (location.pathname === to.split('?')[0]) {
+      // If the link is already active, close the menu
+      event.preventDefault();
+      handleClose();
+    }
+  };
 
   return (
     <>
@@ -68,7 +81,10 @@ export default function Menu() {
                   <li key={item.icon}>
                     <diamond-enter type="fade" delay={i * 0.1}>
                       <locator-icon-link key={item.icon}>
-                        <Link to={item.to}>
+                        <Link
+                          to={item.to}
+                          onClick={(event) => handleClick(event, item.to)}
+                        >
                           <locator-icon-circle>
                             <locator-icon icon={item.icon} color="primary" />
                           </locator-icon-circle>
