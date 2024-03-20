@@ -16,6 +16,10 @@ article {
 }
 
 .recycling-locator-test-mode {
+  /* Stop animations */
+  --diamond-transition-duration-boing: 0s;
+  --diamond-transition-duration: 0s;
+  --diamond-transition-enter-duration: 0s;
   /* Height restriction is removed for snapshots */
   height: auto;
 }

@@ -173,7 +173,6 @@ describeEndToEndTest('Home recycling', () => {
     await expect(positiveSearchText).not.toBeVisible();
     await input.fill('Plastic drinks bottles');
     await input.press('Enter');
-    await page.waitForTimeout(500); // diamond enter transition duration
     await expect(negativeSearchText).not.toBeVisible();
     await expect(positiveSearchText).toBeVisible();
     await snapshot(page, 'Home recycling collection details');
