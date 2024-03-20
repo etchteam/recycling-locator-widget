@@ -18,6 +18,7 @@ interface LocationInputProps {
   readonly inputId?: string;
   readonly placeholder?: string;
   readonly valid?: boolean;
+  readonly autofocus?: boolean;
   readonly handleBlur?: (value: string) => void;
   readonly handleInput?: (value: string) => void;
 }
@@ -88,6 +89,8 @@ export default class LocationInput extends Component<LocationInputProps> {
           <input
             type="text"
             name="location"
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus={this.props.autofocus}
             placeholder={placeholder}
             id={inputId}
             list={listId}

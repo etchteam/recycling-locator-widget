@@ -67,6 +67,19 @@
     "schemeContainerSummary": {
       "otherContainers_one": "+1 bin arall",
       "otherContainers_other": "+{{count}} bin arall"
+    },
+    "footer": {
+      "poweredBy": "Pwerwyd gan",
+      "recycleNow": "Recycle Now",
+      "inPartnership": "mewn partneriaeth â",
+      "nav": {
+        "privacyLabel": "Polisi Preifatrwydd",
+        "privacyLink": "https://www.walesrecycles.org.uk/cy/polisi-preifatwrydd",
+        "cookiesLabel": "Polisi Cwcis",
+        "cookiesLink": "https://www.walesrecycles.org.uk/cy/polisi-cwcis",
+        "accessibilityLabel": "Datganiad Hygyrchedd",
+        "accessibilityLink": "https://www.walesrecycles.org.uk/cy/datganiad-hygyrchedd"
+      }
     }
   },
   "error": {

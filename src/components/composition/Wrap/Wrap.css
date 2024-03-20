@@ -4,4 +4,16 @@ locator-wrap {
   max-width: var(--wrap-max-width);
   padding-inline: var(--diamond-spacing);
   width: 100%;
+
+  &[max-width='none'] {
+    max-width: none;
+  }
+
+  &[gutter='fluid'] {
+    padding-inline: clamp(
+      var(--diamond-spacing),
+      5cqw,
+      var(--diamond-spacing-xl)
+    );
+  }
 }

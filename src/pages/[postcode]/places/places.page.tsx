@@ -198,7 +198,7 @@ export default function PlacesPage() {
   return (
     <>
       <diamond-section padding="md">
-        <diamond-wrap>
+        <locator-wrap max-width="none" gutter="fluid">
           <section className="diamond-spacing-bottom-lg">
             <Suspense fallback={<Loading />}>
               <Await resolve={data}>
@@ -206,7 +206,7 @@ export default function PlacesPage() {
               </Await>
             </Suspense>
           </section>
-        </diamond-wrap>
+        </locator-wrap>
       </diamond-section>
       <section>
         <Suspense fallback={null}>

@@ -61,4 +61,10 @@ locator-container-svg {
   .body {
     fill: var(--body-colour);
   }
+
+  &[lid-colour='#ffffff00'],
+  &[body-colour='#ffffff00'] {
+    stroke: var(--color-grey-dark);
+    stroke-width: 1px;
+  }
 }

@@ -22,4 +22,10 @@ locator-fab {
   &[sticky] {
     position: fixed;
   }
+
+  @container (width >= 768px) {
+    diamond-button {
+      --diamond-button-padding-block: var(--diamond-spacing-sm);
+    }
+  }
 }

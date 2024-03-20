@@ -9,6 +9,10 @@ locator-header-title {
     grid-area: title;
   }
 
+  > div {
+    overflow: hidden;
+  }
+
   diamond-button {
     grid-area: button;
     --diamond-button-border-radius: 50%;
@@ -19,6 +23,9 @@ locator-header-title {
   h2,
   p {
     margin-block-end: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   h2 {

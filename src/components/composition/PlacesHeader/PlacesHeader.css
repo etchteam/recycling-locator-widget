@@ -26,6 +26,9 @@ locator-places-header {
     display: flex;
     flex: 1 1 auto;
     justify-content: space-between;
+    margin: calc(var(--diamond-spacing-sm) * -1)
+      calc(var(--diamond-spacing) * -1);
+    padding: var(--diamond-spacing-sm) var(--diamond-spacing);
     text-decoration: none;
     transition: color var(--diamond-transition);
 
@@ -40,8 +43,7 @@ locator-places-header {
     }
   }
 
-  /* small tablet */
-  @container (width >= 600px) {
+  @container (width > 768px) {
     locator-places-header-search {
       border: var(--diamond-border);
       border-radius: var(--diamond-border-radius);

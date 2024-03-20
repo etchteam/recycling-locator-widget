@@ -1,12 +1,20 @@
 locator-context-header {
   align-items: center;
+  background: var(--diamond-theme-background);
   border-bottom: var(--diamond-border);
   color: var(--diamond-theme-color);
   display: grid;
   grid-template-areas: 'content action';
   grid-template-columns: 1fr auto;
   padding: var(--diamond-spacing-sm) var(--diamond-spacing);
+  position: sticky;
+  top: calc(var(--header-height) + 1px);
   transition: color var(--diamond-transition);
+  z-index: 1;
+
+  @container (width > 768px) {
+    top: 0;
+  }
 
   &:first-child {
     grid-area: content;
@@ -23,10 +31,10 @@ locator-context-header {
 
     a,
     button {
-      margin: 0;
+      margin: calc(var(--diamond-spacing-xs) * -1);
       min-height: 0;
       min-width: 0;
-      padding: 0;
+      padding: var(--diamond-spacing-xs);
     }
   }
 }
