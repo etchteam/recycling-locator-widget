@@ -1,8 +1,8 @@
 import config from '@/config';
 import { Material } from '@/types/locatorApi';
 
-export const MATERIALS_ENDPOINT = `${config.locatorApiPath}materials`;
-export const POPULAR_MATERIALS_ENDPOINT = `${config.locatorApiPath}materials?popular=true`;
+export const MATERIALS_ENDPOINT = `${config.locatorApiPath}materials?lang=en-GB`;
+export const POPULAR_MATERIALS_ENDPOINT = `${config.locatorApiPath}materials?popular=true&lang=en-GB`;
 
 export const ValidMaterialsResponse: Material[] = [
   {

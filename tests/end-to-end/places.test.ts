@@ -37,7 +37,7 @@ describeEndToEndTest('Places', () => {
     const mockLocation = LocationsResponse.items[0];
 
     await page.route(
-      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25`,
+      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25&lang=en-GB`,
       (route) => {
         route.fulfill({
           json: {
@@ -52,7 +52,7 @@ describeEndToEndTest('Places', () => {
     );
 
     await page.route(
-      `${config.locatorApiPath}locations/EX32%207RB?limit=60&radius=25`,
+      `${config.locatorApiPath}locations/EX32%207RB?limit=60&radius=25&lang=en-GB`,
       (route) => {
         route.fulfill({
           json: {
@@ -103,14 +103,14 @@ describeEndToEndTest('Places', () => {
     });
 
     await page.route(
-      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25`,
+      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25&lang=en-GB`,
       (route) => {
         route.fulfill({ json: LocationsResponse });
       },
     );
 
     await page.route(
-      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25&materials=undefined`,
+      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25&materials=undefined&lang=en-GB`,
       (route) => {
         route.fulfill({
           json: {
@@ -122,7 +122,7 @@ describeEndToEndTest('Places', () => {
     );
 
     await page.route(
-      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25&materials=${ValidMaterialsResponse[0].id}`,
+      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25&materials=${ValidMaterialsResponse[0].id}&lang=en-GB`,
       (route) => {
         route.fulfill({ json: LocationsResponse });
       },
