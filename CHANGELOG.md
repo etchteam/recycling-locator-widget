@@ -1,3 +1,11 @@
+## [1.18.0](https://github.com/etchteam/recycling-locator/compare/v1.17.0...v1.18.0) (2024-03-21)
+
+
+### Features
+
+* remove duplicate selector ([73f8fee](https://github.com/etchteam/recycling-locator/commit/73f8feed0f36bcc1a14f2b3eda964b04113b818f))
+* reposition container notes ([bffae15](https://github.com/etchteam/recycling-locator/commit/bffae15ca71610e1e1ec45893b19506751157d68))
+
 ## [1.17.0](https://github.com/etchteam/recycling-locator/compare/v1.16.1...v1.17.0) (2024-03-21)
 
 
