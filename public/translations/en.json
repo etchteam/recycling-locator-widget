@@ -40,6 +40,9 @@
     },
     "container": {
       "subscription": "Subscription service – £{{cost}}",
+      "notes": "Notes about this bin",
+      "residualWaste": "Residual waste",
+      "residualWasteDescription": "This is the waste that is left once the recyclable materials have been separated. Even if you are excellent at recycling, you will still have some residual waste left over.",
       "#2d9cdb": "Blue",
       "#1579c6": "Mid blue",
       "#2262b9": "Dark blue",

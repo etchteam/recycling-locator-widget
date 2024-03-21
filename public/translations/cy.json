@@ -40,6 +40,9 @@
     },
     "container": {
       "subscription": "Gwasanaeth tanysgrifio – £{{cost}}",
+      "notes": "Nodiadau am y bin hwn",
+      "residualWaste": "Gwastraff gweddilliol",
+      "residualWasteDescription": "Dyma'r gwastraff sy'n cael ei adael ar ôl i'r deunyddiau ailgylchadwy gael eu gwahanu. Hyd yn oed os ydych yn wych am ailgylchu, bydd gennych rywfaint o wastraff gweddilliol o hyd.",
       "#2d9cdb": "Glas",
       "#1579c6": "Glas canol",
       "#2262b9": "Glas tywyll",

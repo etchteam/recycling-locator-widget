@@ -8,6 +8,8 @@ declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
       'locator-details': CustomElement<DetailsAttributes>;
+      'locator-details-summary-content': CustomElement;
+      'locator-details-summary-preview': CustomElement;
     }
   }
 }

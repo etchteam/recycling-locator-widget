@@ -1,5 +1,6 @@
 import groupBy from 'lodash/groupBy';
 import uniqueId from 'lodash/uniqueId';
+import nl2br from 'nl2br';
 import { useTranslation } from 'react-i18next';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
@@ -9,15 +10,24 @@ import '@/components/control/Details/Details';
 import containerName from '@/lib/containerName';
 import { LocalAuthorityProperty, Container } from '@/types/locatorApi';
 
+type ContainerWithSchemeType = Container & {
+  schemeType: 'Dry' | 'Food' | 'Garden' | 'Residual';
+};
+
 function useContainers(
   property: LocalAuthorityProperty[],
   search: string,
 ): {
-  containers: Container[];
-  allContainers: Container[];
-  filteredContainers: Container[];
+  containers: ContainerWithSchemeType[];
+  allContainers: ContainerWithSchemeType[];
+  filteredContainers: ContainerWithSchemeType[];
 } {
-  const allContainers = property.flatMap((scheme) => scheme.containers);
+  const allContainers = property.flatMap((scheme) => {
+    return scheme.containers.map((container) => ({
+      ...container,
+      schemeType: scheme.type,
+    }));
+  });
 
   const filteredContainers = search
     ? allContainers.filter((container) =>
@@ -113,11 +123,6 @@ export default function ContainerList({
                     })}
                   </locator-container-subscription>
                 ) : null}
-                {container.notes && (
-                  <locator-container-notes>
-                    {container.notes}
-                  </locator-container-notes>
-                )}
               </locator-container-content>
             </locator-container>
             {Object.keys(materialCategories)?.map((category) => (
@@ -138,6 +143,42 @@ export default function ContainerList({
                 </details>
               </locator-details>
             ))}
+            {container.schemeType === 'Residual' && (
+              <locator-details className="diamond-spacing-bottom-sm">
+                <details>
+                  <summary>
+                    {t('components.container.residualWaste')}
+                    <locator-icon icon="expand" />
+                  </summary>
+                  <p className="diamond-text-size-sm">
+                    {t('components.container.residualWasteDescription')}
+                  </p>
+                </details>
+              </locator-details>
+            )}
+            {container.notes?.length > 0 && (
+              <locator-details className="diamond-spacing-bottom-sm">
+                <details>
+                  <summary>
+                    <locator-details-summary-content>
+                      <span className="diamond-text-size-sm">
+                        {t('components.container.notes')}
+                      </span>
+                      <locator-details-summary-preview>
+                        {container.notes}
+                      </locator-details-summary-preview>
+                    </locator-details-summary-content>
+                    <locator-icon icon="expand" />
+                  </summary>
+                  <p
+                    className="diamond-text-size-sm"
+                    dangerouslySetInnerHTML={{
+                      __html: nl2br(container.notes.join('\n\n')),
+                    }}
+                  />
+                </details>
+              </locator-details>
+            )}
           </section>
         );
       })}
