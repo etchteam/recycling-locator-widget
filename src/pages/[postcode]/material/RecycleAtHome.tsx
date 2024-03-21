@@ -63,7 +63,7 @@ function ManyProperties({
                       color={recyclable ? 'positive' : 'negative'}
                     ></locator-icon>
                   </locator-icon-circle>
-                  {getPropertyDisplayName(allProperties[propertyType])}
+                  {getPropertyDisplayName(allProperties, propertyType)}
                 </Link>
               </locator-icon-link>
             </li>

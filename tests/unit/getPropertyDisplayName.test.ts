@@ -1,5 +1,6 @@
 import { expect, test } from 'vitest';
 
+import { LocalAuthorityResponse } from '../mocks/localAuthority';
 import getPropertyDisplayName from '@/lib/getPropertyDisplayName';
 import { LocalAuthority, PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
@@ -22,7 +23,7 @@ test('Returns the first dry scheme name if there is one', () => {
     ],
   } as LocalAuthority['properties'];
 
-  expect(getPropertyDisplayName(properties[PROPERTY_TYPE_EN.ALL])).toEqual(
+  expect(getPropertyDisplayName(properties, PROPERTY_TYPE_EN.ALL)).toEqual(
     drySchemeName,
   );
 });
@@ -46,7 +47,7 @@ test('Returns the first scheme name if there is no dry scheme', () => {
     ],
   } as LocalAuthority['properties'];
 
-  expect(getPropertyDisplayName(properties[PROPERTY_TYPE_EN.ALL])).toEqual(
+  expect(getPropertyDisplayName(properties, PROPERTY_TYPE_EN.ALL)).toEqual(
     firstSchemeName,
   );
 });
@@ -70,7 +71,51 @@ test('Returns the first scheme name if the dry scheme is named all properties', 
     ],
   } as LocalAuthority['properties'];
 
-  expect(getPropertyDisplayName(properties[PROPERTY_TYPE_EN.ALL])).toEqual(
+  expect(getPropertyDisplayName(properties, PROPERTY_TYPE_EN.ALL)).toEqual(
     firstSchemeName,
   );
+});
+
+test('Returns the scheme name not associated with all properties', () => {
+  const mockedLaResponse = {
+    ...LocalAuthorityResponse,
+    properties: {
+      ...LocalAuthorityResponse.properties,
+      [PROPERTY_TYPE_EN.NARROW_ACCESS]: [
+        ...LocalAuthorityResponse.properties[PROPERTY_TYPE_EN.ALL],
+        {
+          name: 'Fake scheme',
+          type: 'Dry',
+          containers: [
+            {
+              name: 'Box',
+              displayName: 'Box (35 to 60L)',
+              bodyColour: '#4f4f4f',
+              lidColour: '#4f4f4f',
+              notes: ['containers can be black or green.'],
+              materials: [
+                {
+                  id: 1000,
+                  name: 'Fake material',
+                  popular: false,
+                  category: {
+                    id: 7,
+                    name: 'Plastic bottles',
+                    popular: false,
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  } as LocalAuthority;
+
+  expect(
+    getPropertyDisplayName(
+      mockedLaResponse.properties,
+      PROPERTY_TYPE_EN.NARROW_ACCESS,
+    ),
+  ).toEqual('Fake scheme');
 });

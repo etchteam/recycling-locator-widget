@@ -102,7 +102,7 @@ export default function CollectionPage() {
                 <summary onClick={() => (menuOpen.value = !menuOpen.value)}>
                   {menuOpen.value
                     ? 'Collections in this area'
-                    : getPropertyDisplayName(property)}
+                    : getPropertyDisplayName(properties, propertyType)}
                   <locator-icon icon="expand" />
                 </summary>
                 <nav>
@@ -114,7 +114,7 @@ export default function CollectionPage() {
                         >
                           <diamond-grid align-items="center" gap="xs">
                             <diamond-grid-item grow shrink>
-                              {getPropertyDisplayName(properties[type])}
+                              {getPropertyDisplayName(properties, type)}
                             </diamond-grid-item>
                             <diamond-grid-item>
                               <locator-icon icon="arrow-right" />
@@ -129,7 +129,7 @@ export default function CollectionPage() {
             </locator-details>
           ) : (
             <span className="diamond-text-weight-bold">
-              {getPropertyDisplayName(property)}
+              {getPropertyDisplayName(properties, propertyType)}
             </span>
           )}
         </locator-context-header>

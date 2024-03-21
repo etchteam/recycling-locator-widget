@@ -31,7 +31,7 @@ export default function HomeRecyclingPage() {
           >
             <diamond-card className="diamond-spacing-bottom-md" border radius>
               <h4 className="diamond-spacing-bottom-md">
-                {getPropertyDisplayName(property)}
+                {getPropertyDisplayName(properties, propertyType)}
               </h4>
               <SchemeContainerSummary containers={containers} limit={3} />
             </diamond-card>
