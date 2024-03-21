@@ -40,13 +40,6 @@ locator-container {
 
   locator-container-subscription {
     font-size: var(--diamond-font-size-sm);
-  }
-
-  locator-container-notes {
-    color: var(--diamond-theme-color-muted);
-  }
-
-  locator-container-subscription {
     font-weight: var(--diamond-font-weight-bold);
   }
 }
