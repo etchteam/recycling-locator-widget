@@ -1,3 +1,16 @@
+## [1.17.0](https://github.com/etchteam/recycling-locator/compare/v1.16.1...v1.17.0) (2024-03-21)
+
+
+### Features
+
+* fallback to property name ([1686481](https://github.com/etchteam/recycling-locator/commit/1686481ef39627bcc6184cfe1577221c44144dfd))
+
+
+### Bug Fixes
+
+* all properties filtering ([be27111](https://github.com/etchteam/recycling-locator/commit/be2711165f6230d9f007a31edbdcfbccc888e068))
+* duplicate scheme names ([89e4909](https://github.com/etchteam/recycling-locator/commit/89e4909205c916882fdd3088bb47b9bfd0ea6979))
+
 ## [1.16.1](https://github.com/etchteam/recycling-locator/compare/v1.16.0...v1.16.1) (2024-03-21)
 
 
