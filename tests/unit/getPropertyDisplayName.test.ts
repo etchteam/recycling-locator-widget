@@ -22,7 +22,7 @@ test('Returns the first dry scheme name if there is one', () => {
     ],
   } as LocalAuthority['properties'];
 
-  expect(getPropertyDisplayName(properties[PROPERTY_TYPE_EN.ALL])).toEqual(
+  expect(getPropertyDisplayName(properties, PROPERTY_TYPE_EN.ALL)).toEqual(
     drySchemeName,
   );
 });
@@ -46,7 +46,7 @@ test('Returns the first scheme name if there is no dry scheme', () => {
     ],
   } as LocalAuthority['properties'];
 
-  expect(getPropertyDisplayName(properties[PROPERTY_TYPE_EN.ALL])).toEqual(
+  expect(getPropertyDisplayName(properties, PROPERTY_TYPE_EN.ALL)).toEqual(
     firstSchemeName,
   );
 });
@@ -70,7 +70,48 @@ test('Returns the first scheme name if the dry scheme is named all properties', 
     ],
   } as LocalAuthority['properties'];
 
-  expect(getPropertyDisplayName(properties[PROPERTY_TYPE_EN.ALL])).toEqual(
+  expect(getPropertyDisplayName(properties, PROPERTY_TYPE_EN.ALL)).toEqual(
     firstSchemeName,
+  );
+});
+
+test('Returns the scheme name not associated with all properties', () => {
+  const properties = {
+    [PROPERTY_TYPE_EN.ALL]: [
+      {
+        name: 'Some scheme',
+        type: 'Food',
+      },
+      {
+        name: 'All properties dry',
+        type: 'Dry',
+      },
+      {
+        name: 'Communal collections',
+        type: 'Food',
+      },
+    ],
+    [PROPERTY_TYPE_EN.KERBSIDE]: [
+      {
+        name: 'Another scheme',
+        type: 'Food',
+      },
+      {
+        name: 'Some scheme',
+        type: 'Food',
+      },
+      {
+        name: 'All properties dry',
+        type: 'Dry',
+      },
+      {
+        name: 'Communal collections',
+        type: 'Food',
+      },
+    ],
+  } as LocalAuthority['properties'];
+
+  expect(getPropertyDisplayName(properties, PROPERTY_TYPE_EN.KERBSIDE)).toEqual(
+    'Another scheme',
   );
 });
