@@ -34,8 +34,8 @@ export default function getPropertyDisplayName(
 
   if (dryScheme?.name === PROPERTY_TYPE.ALL) {
     // Avoid displaying "All properties" as the display name if we can help it
-    return filteredSchemes[0]?.name;
+    return filteredSchemes[0]?.name ?? property[0]?.name;
   }
 
-  return dryScheme?.name ?? property[0].name;
+  return dryScheme?.name ?? filteredSchemes[0]?.name ?? property[0]?.name;
 }
