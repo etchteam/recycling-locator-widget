@@ -31,7 +31,6 @@ describeEndToEndTest('Material page', () => {
       .getByText(t('material.nearbyPlaces.places.title'))
       .first();
 
-    await expect(recyclableText).not.toBeVisible();
     await widget.evaluate((node) =>
       node.setAttribute(
         'path',

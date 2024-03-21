@@ -14,7 +14,7 @@ export default class LocatorApi {
   ): Promise<T> {
     const locale = i18n.language === 'cy' ? 'cy' : 'en-GB';
     const fullUrl = new URL(`${config.locatorApiPath}${url}`);
-    fullUrl.searchParams.set('locale', locale);
+    fullUrl.searchParams.set('lang', locale);
 
     const response = await fetch(fullUrl.toString(), {
       headers: {
