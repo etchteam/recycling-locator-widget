@@ -1,3 +1,12 @@
+## [1.16.1](https://github.com/etchteam/recycling-locator/compare/v1.16.0...v1.16.1) (2024-03-21)
+
+
+### Bug Fixes
+
+* add lang search param to all api calls ([78938c9](https://github.com/etchteam/recycling-locator/commit/78938c96785bd6923d3e54fa33d858c70013c1c5))
+* materials mock endpoint ([56dd20f](https://github.com/etchteam/recycling-locator/commit/56dd20fa7d2922caff360867ae35fb6fed940bb2))
+* tests ([6fb633b](https://github.com/etchteam/recycling-locator/commit/6fb633b1246fbb667a0f87f9250d73e39932a002))
+
 ## [1.16.0](https://github.com/etchteam/recycling-locator/compare/v1.15.4...v1.16.0) (2024-03-20)
 
 
