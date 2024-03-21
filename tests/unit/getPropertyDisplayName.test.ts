@@ -1,5 +1,6 @@
 import { expect, test } from 'vitest';
 
+import { LocalAuthorityResponse } from '../mocks/localAuthority';
 import getPropertyDisplayName from '@/lib/getPropertyDisplayName';
 import { LocalAuthority, PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
@@ -76,42 +77,45 @@ test('Returns the first scheme name if the dry scheme is named all properties', 
 });
 
 test('Returns the scheme name not associated with all properties', () => {
-  const properties = {
-    [PROPERTY_TYPE_EN.ALL]: [
-      {
-        name: 'Some scheme',
-        type: 'Food',
-      },
-      {
-        name: 'All properties dry',
-        type: 'Dry',
-      },
-      {
-        name: 'Communal collections',
-        type: 'Food',
-      },
-    ],
-    [PROPERTY_TYPE_EN.KERBSIDE]: [
-      {
-        name: 'Another scheme',
-        type: 'Food',
-      },
-      {
-        name: 'Some scheme',
-        type: 'Food',
-      },
-      {
-        name: 'All properties dry',
-        type: 'Dry',
-      },
-      {
-        name: 'Communal collections',
-        type: 'Food',
-      },
-    ],
-  } as LocalAuthority['properties'];
+  const mockedLaResponse = {
+    ...LocalAuthorityResponse,
+    properties: {
+      ...LocalAuthorityResponse.properties,
+      [PROPERTY_TYPE_EN.NARROW_ACCESS]: [
+        ...LocalAuthorityResponse.properties[PROPERTY_TYPE_EN.ALL],
+        {
+          name: 'Fake scheme',
+          type: 'Dry',
+          containers: [
+            {
+              name: 'Box',
+              displayName: 'Box (35 to 60L)',
+              bodyColour: '#4f4f4f',
+              lidColour: '#4f4f4f',
+              notes: ['containers can be black or green.'],
+              materials: [
+                {
+                  id: 1000,
+                  name: 'Fake material',
+                  popular: false,
+                  category: {
+                    id: 7,
+                    name: 'Plastic bottles',
+                    popular: false,
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  } as LocalAuthority;
 
-  expect(getPropertyDisplayName(properties, PROPERTY_TYPE_EN.KERBSIDE)).toEqual(
-    'Another scheme',
-  );
+  expect(
+    getPropertyDisplayName(
+      mockedLaResponse.properties,
+      PROPERTY_TYPE_EN.NARROW_ACCESS,
+    ),
+  ).toEqual('Fake scheme');
 });

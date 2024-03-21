@@ -28,7 +28,7 @@ export default function getPropertyDisplayName(
   const allProperties = properties[PROPERTY_TYPE.ALL] as LAProperty[];
   const filteredSchemes =
     allProperties && propertyType !== PROPERTY_TYPE.ALL
-      ? filterAllProperties(allProperties, property)
+      ? filterAllProperties(property, allProperties)
       : property;
   const dryScheme = filteredSchemes.find((scheme) => scheme.type === 'Dry');
 
