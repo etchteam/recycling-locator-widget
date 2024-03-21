@@ -43,7 +43,7 @@ export interface Container {
   bodyColour: string;
   lidColour?: string;
   interiorColour?: string;
-  notes?: string;
+  notes?: string[] | null;
   materials?: MaterialWithCategory[];
   cost?: number;
 }

@@ -7,7 +7,6 @@ locator-details {
     border-radius: var(--diamond-border-radius);
 
     > summary {
-      align-items: center;
       appearance: none;
       background: 0 none;
       border: 0 none;
@@ -27,6 +26,21 @@ locator-details {
       }
     }
 
+    locator-details-summary-content {
+      display: block;
+      overflow: hidden;
+    }
+
+    locator-details-summary-preview {
+      color: var(--diamond-theme-color-muted);
+      display: block;
+      font-size: var(--diamond-font-size-sm);
+      font-weight: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     &[open] {
       /*
         Padding is on the summary initially to make the clickable area span the whole parent
@@ -41,6 +55,10 @@ locator-details {
 
       > summary locator-icon {
         transform: rotate(180deg);
+      }
+
+      locator-details-summary-preview {
+        display: none;
       }
     }
   }
