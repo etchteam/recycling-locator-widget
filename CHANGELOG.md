@@ -1,3 +1,17 @@
+## [1.19.0](https://github.com/etchteam/recycling-locator/compare/v1.18.0...v1.19.0) (2024-03-22)
+
+
+### Features
+
+* material search input refinement ([c9ee399](https://github.com/etchteam/recycling-locator/commit/c9ee399958e1fbe409ae809c928c20b8093896b2))
+* remove handle option selected ([bc6a546](https://github.com/etchteam/recycling-locator/commit/bc6a54666a8e95e040083cab1a0d3e43db745d50))
+
+
+### Bug Fixes
+
+* handle enter presses ([39b79e1](https://github.com/etchteam/recycling-locator/commit/39b79e1055603cba6e38eeabd20090e73699519c))
+* search test ([cd04e8e](https://github.com/etchteam/recycling-locator/commit/cd04e8e32e1c6f2507551d2dd55be3b5bdbab7b8))
+
 ## [1.18.0](https://github.com/etchteam/recycling-locator/compare/v1.17.0...v1.18.0) (2024-03-21)
 
 
