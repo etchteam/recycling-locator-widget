@@ -196,17 +196,15 @@ export default function PlacesPage() {
   }, [materialName]);
 
   return (
-    <>
+    <locator-wrap max-width="none" gutter="fluid">
       <diamond-section padding="md">
-        <locator-wrap max-width="none" gutter="fluid">
-          <section className="diamond-spacing-bottom-lg">
-            <Suspense fallback={<Loading />}>
-              <Await resolve={data}>
-                <Places />
-              </Await>
-            </Suspense>
-          </section>
-        </locator-wrap>
+        <section className="diamond-spacing-bottom-lg">
+          <Suspense fallback={<Loading />}>
+            <Await resolve={data}>
+              <Places />
+            </Await>
+          </Suspense>
+        </section>
       </diamond-section>
       <section>
         <Suspense fallback={null}>
@@ -236,6 +234,6 @@ export default function PlacesPage() {
           </diamond-button>
         </locator-fab>
       </diamond-enter>
-    </>
+    </locator-wrap>
   );
 }
