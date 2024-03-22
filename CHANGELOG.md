@@ -1,3 +1,10 @@
+## [1.20.1](https://github.com/etchteam/recycling-locator/compare/v1.20.0...v1.20.1) (2024-03-22)
+
+
+### Bug Fixes
+
+* no lat lng with no locations ([853a25a](https://github.com/etchteam/recycling-locator/commit/853a25aab4881852d0f056e663654a1594f8f642))
+
 ## [1.20.0](https://github.com/etchteam/recycling-locator/compare/v1.19.0...v1.20.0) (2024-03-22)
 
 
