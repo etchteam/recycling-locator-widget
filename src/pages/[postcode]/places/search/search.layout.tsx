@@ -35,7 +35,7 @@ export default function PlacesSearchLayout({
     <locator-layout>
       <locator-header slot="layout-header">
         <locator-header-logo>
-          <Link to="/">
+          <Link to={`/${postcode}`}>
             <locator-logo type="logo-only"></locator-logo>
           </Link>
         </locator-header-logo>
