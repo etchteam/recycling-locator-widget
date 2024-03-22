@@ -151,18 +151,22 @@ export default class PlacesMap extends Component<PlacesMapProps> {
   }
 
   addPlaceMarkers() {
+    const locations = this.props.locations;
+
     // Remove any existing markers
     this.MarkerGroup.removeAll();
 
-    // Create the markers
-    this.MarkerGroup.addObjects(
-      this.props.locations.map((location) => this.addMarker(location)),
-    );
+    if (locations.length > 0) {
+      // Create the markers
+      this.MarkerGroup.addObjects(
+        locations.map((location) => this.addMarker(location)),
+      );
 
-    // Center the map on the markers
-    this.MapInstance.getViewModel().setLookAtData({
-      bounds: this.MarkerGroup.getBoundingBox(),
-    });
+      // Center the map on the markers
+      this.MapInstance.getViewModel().setLookAtData({
+        bounds: this.MarkerGroup.getBoundingBox(),
+      });
+    }
   }
 
   selectActiveMarker() {
