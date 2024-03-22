@@ -1,4 +1,5 @@
 locator-bordered-list {
+  --_item-padding: var(--diamond-spacing);
   display: block;
 
   > h2,
@@ -26,7 +27,7 @@ locator-bordered-list {
   > ul > li,
   > dl > div {
     border-top: var(--diamond-border);
-    padding-block: var(--diamond-spacing);
+    padding-block: var(--_item-padding);
   }
 
   > dl > div > dt {
@@ -35,6 +36,15 @@ locator-bordered-list {
 
   > dl > div > dd {
     margin: 0;
+  }
+
+  > nav > ul > li a,
+  > ul > li a,
+  > dl > div > dd a {
+    display: flex;
+    margin-block: calc(var(--_item-padding) * -1);
+    padding-block: var(--_item-padding);
+    width: 100%;
   }
 
   a {
@@ -48,10 +58,6 @@ locator-bordered-list {
   }
 
   &[size='sm'] {
-    > nav > ul > li,
-    > ul > li,
-    > dl > div {
-      padding-block: var(--diamond-spacing-sm);
-    }
+    --_item-padding: var(--diamond-spacing-sm);
   }
 }

@@ -35,7 +35,7 @@ locator-place-summary {
   }
 
   dt {
-    font-weight: var(--diamond-font-weight-bold);
+    font-weight: var(--diamond-font-weight-normal);
     position: relative;
 
     &:not(:last-child) {

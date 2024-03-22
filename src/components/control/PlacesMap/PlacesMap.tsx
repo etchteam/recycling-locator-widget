@@ -44,6 +44,7 @@ export default class PlacesMap extends Component<PlacesMapProps> {
   MarkerGroup: H.map.Group;
   elementRef = createRef<HTMLDivElement>();
   currentZoom: number;
+  enableZoomEvent: boolean;
 
   resizeMap() {
     this.MapInstance?.getViewPort().resize();
@@ -105,7 +106,9 @@ export default class PlacesMap extends Component<PlacesMapProps> {
           this.currentZoom = newZoom;
         } else if (newZoom !== currentZoom) {
           this.currentZoom = newZoom;
-          this.props?.onZoom?.(newZoom);
+          if (this.enableZoomEvent) {
+            this.props?.onZoom?.(newZoom);
+          }
         }
       });
     } catch (error) {
@@ -157,6 +160,9 @@ export default class PlacesMap extends Component<PlacesMapProps> {
     this.MarkerGroup.removeAll();
 
     if (locations.length > 0) {
+      // Temporarily disable the zoom event to stop it firing when the lookAtData changes
+      this.enableZoomEvent = false;
+
       // Create the markers
       this.MarkerGroup.addObjects(
         locations.map((location) => this.addMarker(location)),
@@ -166,6 +172,10 @@ export default class PlacesMap extends Component<PlacesMapProps> {
       this.MapInstance.getViewModel().setLookAtData({
         bounds: this.MarkerGroup.getBoundingBox(),
       });
+
+      setTimeout(() => {
+        this.enableZoomEvent = true;
+      }, 500);
     }
   }
 

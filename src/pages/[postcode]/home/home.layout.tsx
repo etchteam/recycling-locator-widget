@@ -36,7 +36,9 @@ export default function HomeRecyclingLayout({
       <locator-header slot="layout-header">
         {open.value ? (
           <locator-header-content>
-            <locator-logo></locator-logo>
+            <Link to={`/${postcode}`}>
+              <locator-logo></locator-logo>
+            </Link>
             <diamond-button width="square" size="sm">
               <button
                 type="button"
@@ -55,7 +57,7 @@ export default function HomeRecyclingLayout({
         ) : (
           <>
             <locator-header-logo>
-              <Link to="/">
+              <Link to={`/${postcode}`}>
                 <locator-logo type="logo-only"></locator-logo>
               </Link>
             </locator-header-logo>
