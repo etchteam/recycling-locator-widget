@@ -23,7 +23,6 @@ interface MaterialSearchInputProps {
   readonly autofocus?: boolean;
   readonly handleBlur?: (value: string) => void;
   readonly handleInput?: (value: string) => void;
-  readonly handleOptionSelected?: (value: string) => void;
 }
 
 /**

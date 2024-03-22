@@ -129,7 +129,6 @@ export default function PostcodePage() {
               autofocus={autofocus}
               handleBlur={form.handleBlur}
               handleInput={form.handleInput}
-              handleOptionSelected={() => (form.submitting.value = true)}
               submitting={form.submitting.value}
               valid={form.valid.value}
             ></MaterialSearchInput>
