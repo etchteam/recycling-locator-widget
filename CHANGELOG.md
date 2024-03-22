@@ -1,3 +1,11 @@
+## [1.21.0](https://github.com/etchteam/recycling-locator/compare/v1.20.1...v1.21.0) (2024-03-22)
+
+
+### Features
+
+* material start view ([57bc861](https://github.com/etchteam/recycling-locator/commit/57bc861a5e5de3f8889bffd67767321390ca8eb5))
+* material start view ([47b1a44](https://github.com/etchteam/recycling-locator/commit/47b1a443308e2e63cf9a597085fdc629c80b4212))
+
 ## [1.20.1](https://github.com/etchteam/recycling-locator/compare/v1.20.0...v1.20.1) (2024-03-22)
 
 
