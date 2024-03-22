@@ -32,6 +32,7 @@ interface MaterialSearchInputProps {
 export default class MaterialSearchInput extends Component<MaterialSearchInputProps> {
   materialSuggestions: Signal<Material[]>;
   inputValue: Signal<string>;
+  inputRef = createRef<HTMLInputElement>();
   buttonRef = createRef<HTMLButtonElement>();
 
   constructor(props: MaterialSearchInputProps) {
@@ -75,12 +76,17 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
   };
 
   handleOptionSelected = async (query: string) => {
-    await this.handleInput(query);
-    // Trigger form submission if an option is selected
+    // Manually set the value of the input field to the selected option
+    // using a ref because combobox doesn't render the value update fast enough
+    this.inputRef.current.value = query;
+    // Optimistically submit the form
     this.buttonRef.current?.click();
+    // Send the usual input event in case submission fails
+    this.handleInput(query);
   };
 
   handleKeyPress = (event: KeyboardEvent) => {
+    console.log(event, event.currentTarget);
     if (event.key === 'Enter') {
       this.buttonRef.current?.click();
     }
@@ -114,6 +120,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
                     name="search"
                     type="text"
                     autoComplete="off"
+                    ref={this.inputRef}
                     placeholder={placeholder}
                     onChange={this.handleInput}
                     onBlur={this.handleBlur}
