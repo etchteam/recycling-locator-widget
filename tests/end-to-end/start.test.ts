@@ -11,6 +11,8 @@ import {
   LOCAL_AUTHORITY_ENDPOINT,
   LocalAuthorityResponse,
 } from '../mocks/localAuthority';
+import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
+import { MATERIALS_ENDPOINT, ValidMaterialsResponse } from '../mocks/materials';
 import {
   POSTCODE_ENDPOINT,
   InvalidPostcodeResponse,
@@ -139,5 +141,50 @@ describeEndToEndTest('Start page', () => {
     await input.press('Enter');
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await expect(localAuthority).toBeVisible();
+  });
+
+  test('Material start', async ({ page, widget }) => {
+    await page.route(GEOCODE_ENDPOINT, (route) => {
+      route.fulfill({ json: PostcodeGeocodeResponse });
+    });
+
+    await page.route(POSTCODE_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidPostcodeResponse });
+    });
+
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: LocalAuthorityResponse });
+    });
+
+    await page.route(MATERIALS_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidMaterialsResponse });
+    });
+
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: LocalAuthorityResponse });
+    });
+
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
+    const input = page.locator('input').first();
+    const materialName = ValidMaterialsResponse[0].name;
+    const materialStartPageTitle = page
+      .getByText(t('start.material.title', { material: materialName }))
+      .first();
+    const recyclableText = page.getByText(t('material.hero.yes')).first();
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/material?name=Plastic drinks bottles'),
+    );
+    await expect(materialStartPageTitle).toBeVisible();
+    await expect(input).toBeVisible();
+    await expect(recyclableText).not.toBeVisible();
+    await snapshot(page, 'Material start');
+    await input.fill('Barnstaple');
+    await input.press('Enter');
+    await page.waitForRequest(LOCATIONS_ENDPOINT);
+    await expect(recyclableText).toBeVisible();
   });
 });

@@ -1,3 +1,4 @@
+import { ComponentChildren } from 'preact';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Form, useLocation, useSearchParams } from 'react-router-dom';
@@ -11,10 +12,12 @@ export default function LocationForm({
   label,
   cta,
   action = '/',
+  children,
 }: {
   readonly label?: string;
   readonly cta?: string;
   readonly action?: string;
+  readonly children?: ComponentChildren;
 }) {
   const { t } = useTranslation();
   const location = useLocation();
@@ -37,6 +40,7 @@ export default function LocationForm({
           valid={form.valid.value}
         ></LocationInput>
       </diamond-form-group>
+      {children}
       <diamond-button width="full-width" variant="primary">
         <button type="submit" disabled={form.submitting.value}>
           {cta ?? t('start.cta')}
