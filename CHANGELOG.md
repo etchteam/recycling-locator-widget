@@ -1,3 +1,16 @@
+## [1.20.0](https://github.com/etchteam/recycling-locator/compare/v1.19.0...v1.20.0) (2024-03-22)
+
+
+### Features
+
+* **MaterialSearchInput:** active option colour and desktop height ([7688892](https://github.com/etchteam/recycling-locator/commit/7688892953e13c3113480665ca215c0944a08931))
+* **MaterialSearchInput:** quicker auto submissions ([9da49bb](https://github.com/etchteam/recycling-locator/commit/9da49bbe026fc4ce53c418816cd3af7ba36e0782))
+
+
+### Reverts
+
+* debug ([a2fe1a2](https://github.com/etchteam/recycling-locator/commit/a2fe1a288866d8955c4c20d4778d5a6e9c5cef51))
+
 ## [1.19.0](https://github.com/etchteam/recycling-locator/compare/v1.18.0...v1.19.0) (2024-03-22)
 
 
