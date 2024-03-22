@@ -1,3 +1,19 @@
+## [1.22.0](https://github.com/etchteam/recycling-locator/compare/v1.21.0...v1.22.0) (2024-03-22)
+
+
+### Features
+
+* add 1500 distance tolerance on map drag ([74642dd](https://github.com/etchteam/recycling-locator/commit/74642dd0dd9dadd492fc7cf12e6d967be07e087b))
+* change where the logo links to ([c84b50a](https://github.com/etchteam/recycling-locator/commit/c84b50a89e36a24ce695f19158007208d610675f))
+* custom sorting for porperties ([fa3d0b7](https://github.com/etchteam/recycling-locator/commit/fa3d0b7c80c213f1923d57bd4350739d76fc78c9))
+* increase hit box of bordered list items ([a84c5e3](https://github.com/etchteam/recycling-locator/commit/a84c5e3643c587a32ab1ef9375c767d9acb4b1c6))
+* remove bold units in places summary ([6fa14b6](https://github.com/etchteam/recycling-locator/commit/6fa14b69960e10be112da6c8e79f78b27a9aa304))
+
+
+### Bug Fixes
+
+* places tip gutter ([341b702](https://github.com/etchteam/recycling-locator/commit/341b7028acc5367f585e3c70b90f553f9f36d157))
+
 ## [1.21.0](https://github.com/etchteam/recycling-locator/compare/v1.20.1...v1.21.0) (2024-03-22)
 
 
