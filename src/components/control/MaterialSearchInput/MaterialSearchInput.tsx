@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-autofocus */
+import { Combobox } from '@headlessui/react';
 import { Signal, signal } from '@preact/signals';
 import * as Sentry from '@sentry/browser';
 import uniq from 'lodash/uniq';
@@ -5,12 +7,11 @@ import { Component, createRef } from 'preact';
 import '@etchteam/diamond-ui/control/Input/Input';
 import '@etchteam/diamond-ui/control/Button/Button';
 
+import '@/components/content/Icon/Icon';
 import LocatorApi from '@/lib/LocatorApi';
 import i18n from '@/lib/i18n';
 import { CustomElement } from '@/types/customElement';
 import { Material } from '@/types/locatorApi';
-
-import '@/components/content/Icon/Icon';
 
 interface MaterialSearchInputProps {
   readonly inputId?: string;
@@ -30,11 +31,13 @@ interface MaterialSearchInputProps {
  */
 export default class MaterialSearchInput extends Component<MaterialSearchInputProps> {
   materialSuggestions: Signal<Material[]>;
-  inputRef = createRef<HTMLInputElement>();
+  inputValue: Signal<string>;
+  buttonRef = createRef<HTMLButtonElement>();
 
   constructor(props: MaterialSearchInputProps) {
     super(props);
     this.materialSuggestions = signal([]);
+    this.inputValue = signal(this.props.defaultValue ?? '');
   }
 
   autosuggest = async (query: string): Promise<Material[]> => {
@@ -50,8 +53,13 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     }
   };
 
-  handleInput = async (event: preact.JSX.TargetedEvent<HTMLInputElement>) => {
-    const query = event.currentTarget.value;
+  handleInput = async (
+    event: preact.JSX.TargetedEvent<HTMLInputElement> | string,
+  ) => {
+    const query =
+      typeof event === 'string' ? event : event.currentTarget?.value;
+
+    this.inputValue.value = query;
 
     if (query.length <= 3) {
       return;
@@ -62,53 +70,99 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     this.props.handleInput?.(query);
   };
 
-  handleBlur = (event: preact.JSX.TargetedEvent<HTMLInputElement>) => {
-    this.props.handleBlur?.(event.currentTarget.value);
+  handleBlur = () => {
+    this.props.handleBlur?.(this.inputValue.value);
   };
 
-  componentDidUpdate(previousProps): void {
-    if (
-      previousProps.value !== this.props.defaultValue &&
-      !this.inputRef?.current?.value
-    ) {
-      this.inputRef.current.value = this.props.defaultValue ?? '';
+  handleOptionSelected = async (query: string) => {
+    await this.handleInput(query);
+    // Trigger form submission if an option is selected
+    this.buttonRef.current?.click();
+  };
+
+  handleKeyPress = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      this.buttonRef.current?.click();
     }
-  }
+  };
 
   render() {
-    const materials = this.materialSuggestions.value;
     const inputId = this.props.inputId ?? 'locator-material-input';
-    const listId = `locator-${inputId}-locations`;
     const submitting = this.props.submitting ?? false;
     const valid = this.props.valid ?? true;
     const placeholder =
       this.props.placeholder ??
       i18n.t('components.materialSearchInput.placeholder');
+    const materials = uniq(this.materialSuggestions.value);
+    let showMaterials = this.inputValue.value && materials.length > 0;
+
+    if (materials.length === 1 && materials[0].name === this.inputValue.value) {
+      showMaterials = false;
+    }
 
     return (
       <>
         <locator-material-search-input>
-          <diamond-input state={valid ? undefined : 'invalid'}>
-            <input
-              type="text"
-              name="search"
-              // eslint-disable-next-line jsx-a11y/no-autofocus
-              autoFocus={this.props.autofocus}
-              aria-labelledby={this.props.inputLabelledBy}
-              placeholder={placeholder}
-              id={inputId}
-              list={listId}
-              onInput={this.handleInput}
-              onBlur={this.handleBlur}
-              ref={this.inputRef}
-              aria-invalid={!valid}
-              aria-errormessage={
-                !valid ? 'material-search-input-error' : undefined
-              }
-            />
-          </diamond-input>
+          <Combobox
+            value={this.inputValue.value}
+            onChange={this.handleOptionSelected}
+          >
+            {(open) => (
+              <>
+                <diamond-input state={valid ? undefined : 'invalid'}>
+                  <Combobox.Input
+                    name="search"
+                    type="text"
+                    autoComplete="off"
+                    placeholder={placeholder}
+                    onChange={this.handleInput}
+                    onBlur={this.handleBlur}
+                    onKeyUp={this.handleKeyPress}
+                    id={inputId}
+                    autoFocus={this.props.autofocus}
+                    aria-labelledby={this.props.inputLabelledBy}
+                    aria-invalid={!valid}
+                    aria-errormessage={
+                      !valid ? `${this.props.inputId}-error` : undefined
+                    }
+                  />
+                  {this.inputValue.value && (
+                    <button
+                      type="reset"
+                      onClick={() => (this.inputValue.value = '')}
+                    >
+                      <locator-icon
+                        icon="close"
+                        label={i18n.t('actions.resetSearch')}
+                      />
+                    </button>
+                  )}
+                </diamond-input>
+                {open && showMaterials && (
+                  <Combobox.Options static>
+                    {materials.map((material) => {
+                      const displayName = material.name.replace(
+                        RegExp(this.inputValue.value, 'ig'),
+                        (match) =>
+                          `<span class="diamond-text-weight-bold">${match}</span>`,
+                      );
+
+                      return (
+                        <Combobox.Option
+                          key={material.id}
+                          value={material.name}
+                          dangerouslySetInnerHTML={{ __html: displayName }}
+                        />
+                      );
+                    })}
+                  </Combobox.Options>
+                )}
+              </>
+            )}
+          </Combobox>
           <diamond-button width="square" variant="primary">
             <button
+              ref={this.buttonRef}
               type="submit"
               disabled={submitting && submitting !== 'false'}
             >
@@ -121,26 +175,13 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
         </locator-material-search-input>
         {!valid && (
           <p
-            id="material-search-input-error"
+            id={`${this.props.inputId}-error`}
             className="text-color-negative diamond-text-size-sm diamond-spacing-top-sm"
             aria-live="polite"
           >
             {i18n.t('components.materialSearchInput.error')}
           </p>
         )}
-        <datalist id={listId}>
-          {uniq(materials).map((material) => {
-            if (material.name === this.inputRef?.current?.value) {
-              return null;
-            }
-
-            return (
-              <option value={material.name} key={material.id}>
-                {material.name}
-              </option>
-            );
-          })}
-        </datalist>
       </>
     );
   }

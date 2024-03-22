@@ -6,6 +6,10 @@ locator-nav-bar {
   top: calc(var(--header-height) + 1px);
   z-index: 1;
 
+  locator-layout:not(:has([slot='layout-aside'])) & {
+    top: 0;
+  }
+
   @container (width > 768px) {
     top: 0;
   }
