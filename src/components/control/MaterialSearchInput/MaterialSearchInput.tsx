@@ -80,6 +80,12 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     this.buttonRef.current?.click();
   };
 
+  handleKeyPress = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      this.buttonRef.current?.click();
+    }
+  };
+
   render() {
     const inputId = this.props.inputId ?? 'locator-material-input';
     const submitting = this.props.submitting ?? false;
@@ -111,6 +117,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
                     placeholder={placeholder}
                     onChange={this.handleInput}
                     onBlur={this.handleBlur}
+                    onKeyUp={this.handleKeyPress}
                     id={inputId}
                     autoFocus={this.props.autofocus}
                     aria-labelledby={this.props.inputLabelledBy}
