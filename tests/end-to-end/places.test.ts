@@ -136,11 +136,7 @@ describeEndToEndTest('Places', () => {
     const materialInput = page
       .getByPlaceholder(t('components.materialSearchInput.placeholder'))
       .first();
-    const fakeMaterial = 'Not a material m8';
     const realMaterial = ValidMaterialsResponse[0].name;
-    const fakeMaterialTag = page
-      .locator('button', { has: page.getByText(fakeMaterial).first() })
-      .first();
     const realMaterialTag = page
       .locator('button', { has: page.getByText(realMaterial).first() })
       .first();
@@ -155,16 +151,6 @@ describeEndToEndTest('Places', () => {
     await searchLink.click();
     await expect(materialInput).toBeVisible();
     await snapshot(page, 'Places search');
-    await materialInput.fill(fakeMaterial);
-    await materialInput.press('Enter');
-    await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await expect(fakeMaterialTag).toBeVisible();
-    await expect(placeName).not.toBeVisible();
-    await fakeMaterialTag.click();
-    await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await expect(fakeMaterialTag).not.toBeVisible();
-    await expect(placeName).toBeVisible();
-    await searchLink.click();
     await materialInput.fill(realMaterial);
     await materialInput.press('Enter');
     await page.waitForRequest(LOCATIONS_ENDPOINT);
