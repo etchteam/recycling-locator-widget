@@ -140,6 +140,9 @@
     },
     "homeRecycling": {
       "title": "Darganfyddwch beth allwch chi ei ailgylchu gartref."
+    },
+    "material": {
+      "title": "Dod o hyd i leoedd i ailgylchu {{material}}"
     }
   },
   "postcode": {
