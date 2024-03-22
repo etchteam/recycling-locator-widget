@@ -86,7 +86,6 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
   };
 
   handleKeyPress = (event: KeyboardEvent) => {
-    console.log(event, event.currentTarget);
     if (event.key === 'Enter') {
       this.buttonRef.current?.click();
     }
