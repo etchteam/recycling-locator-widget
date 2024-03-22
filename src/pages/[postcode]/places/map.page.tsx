@@ -7,6 +7,7 @@ import {
   Link,
   useAsyncValue,
   useFetcher,
+  useLocation,
   useParams,
   useSearchParams,
 } from 'react-router-dom';
@@ -43,6 +44,7 @@ function Loading() {
 export function PlacesMapPageContent() {
   const { postcode } = useParams();
   const { t } = useTranslation();
+  const location = useLocation();
   const { recordEvent } = useAnalytics();
   const loaderData = useAsyncValue() as PlacesLoaderResponse;
   const [searchParams] = useSearchParams();
@@ -51,11 +53,11 @@ export function PlacesMapPageContent() {
   const showSearchThisArea = useSignal(false);
   const page = useSignal(1);
   const radius = useSignal(25);
-  const lat = useSignal(loaderData.latitude);
-  const lng = useSignal(loaderData.longitude);
   const fetcher = useFetcher() as FetcherWithComponents<{
     data: PlacesLoaderResponse;
   }>;
+  const lat = useSignal(fetcher.data?.data.latitude ?? loaderData.latitude);
+  const lng = useSignal(fetcher.data?.data.longitude ?? loaderData.longitude);
 
   const latitude = fetcher.data?.data.latitude ?? loaderData.latitude;
   const longitude = fetcher.data?.data.longitude ?? loaderData.longitude;
@@ -76,6 +78,10 @@ export function PlacesMapPageContent() {
       }
     }
   }, [defaultActiveLocationId]);
+
+  useEffect(() => {
+    showSearchThisArea.value = false;
+  }, [location]);
 
   const handleMarkerClick = (location: Location) => {
     activeLocation.value = location;
@@ -101,16 +107,12 @@ export function PlacesMapPageContent() {
     }
   };
 
-  const handleDrag = ({
-    lat: newLat,
-    lng: newLng,
-  }: {
-    lat: number;
-    lng: number;
-  }) => {
-    if (lat.value !== newLat || lng.value !== newLng) {
-      lat.value = newLat;
-      lng.value = newLng;
+  const handleDrag = (geoPoint: H.geo.Point) => {
+    const distance = geoPoint.distance({ lat: lat.value, lng: lng.value });
+
+    if (distance > 1500) {
+      lat.value = geoPoint.lat;
+      lng.value = geoPoint.lng;
       showSearchThisArea.value = true;
     }
   };
