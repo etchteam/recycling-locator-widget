@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import { Signal, signal } from '@preact/signals';
 import * as Sentry from '@sentry/browser';
 import uniq from 'lodash/uniq';
@@ -89,8 +90,8 @@ export default class LocationInput extends Component<LocationInputProps> {
           <input
             type="text"
             name="location"
-            // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={this.props.autofocus}
+            autoComplete="street-address"
             placeholder={placeholder}
             id={inputId}
             list={listId}

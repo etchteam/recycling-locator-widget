@@ -11,7 +11,7 @@ export default meta;
 
 export const MaterialSearchInput: StoryObj = {
   render: () => (
-    <>
+    <form>
       <label htmlFor="custom-material-input">
         What do you need to recycle?
       </label>
@@ -19,6 +19,6 @@ export const MaterialSearchInput: StoryObj = {
         inputId="custom-material-input"
         placeholder="Enter the name of an item..."
       ></MaterialSearchInputComponent>
-    </>
+    </form>
   ),
 };
