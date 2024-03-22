@@ -1,4 +1,3 @@
-import omit from 'lodash/omit';
 import { LoaderFunctionArgs, useRouteLoaderData } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
@@ -18,17 +17,27 @@ export default async function homeRecyclingLoader({
   const localAuthority = await LocatorApi.get<LocalAuthority>(
     `local-authority/${postcode}`,
   );
-  const propertyTypes = Object.keys(localAuthority.properties);
+
+  const sortOrder = [
+    PROPERTY_TYPE.KERBSIDE,
+    PROPERTY_TYPE.FLATS_WITH_INDIVIDUAL_BINS,
+    PROPERTY_TYPE.FLATS_WITH_COMMUNAL_BINS,
+    PROPERTY_TYPE.NARROW_ACCESS,
+    PROPERTY_TYPE.ALL,
+  ] as string[];
+
+  const sortedProperties = Object.keys(localAuthority.properties)
+    .toSorted((a, b) => {
+      return sortOrder.indexOf(a) - sortOrder.indexOf(b);
+    })
+    .reduce((sorted, propertyType) => {
+      sorted[propertyType] = localAuthority.properties[propertyType];
+      return sorted;
+    }, {});
 
   return {
     localAuthority,
-    // Place "All properties" at the end of the list
-    properties: propertyTypes.includes(PROPERTY_TYPE.ALL)
-      ? {
-          ...omit(localAuthority.properties, PROPERTY_TYPE.ALL),
-          [PROPERTY_TYPE.ALL]: localAuthority.properties[PROPERTY_TYPE.ALL],
-        }
-      : localAuthority.properties,
+    properties: sortedProperties,
   };
 }
 
