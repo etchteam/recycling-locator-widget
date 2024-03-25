@@ -17,10 +17,11 @@ export default function HomeRecyclingCentrePage() {
   const { postcode } = useParams();
   const { locations } = useLoaderData() as HomeRecyclingCentreLoaderResponse;
   const tContext = 'homeRecycling.hwrc';
-  const hwrcLocations = locations.filter((location) => location.is_hwrc);
+  const hwrcLocations = locations.filter((location) =>
+    location.locations.some((l) => l.locationType === 'HWRC'),
+  );
   const hwrcLocationsCount = hwrcLocations.length;
-  const otherLocations = locations.filter((location) => !location.is_hwrc);
-  const otherLocationsCount = otherLocations.length;
+  const otherLocationsCount = locations.length;
 
   return (
     <>

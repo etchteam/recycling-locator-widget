@@ -20,10 +20,11 @@ export default function PlacePage() {
   const { recordEvent } = useAnalytics();
   const form = useFormValidation('search');
   const search = useSignal<string>('');
-  const materialCategories = groupBy(location.materials, 'category');
+  const materials = location.locations.flatMap((l) => l.materials);
+  const materialCategories = groupBy(materials, 'category');
   const hasSearchedForMaterial =
     search.value &&
-    location.materials.some((material) =>
+    materials.some((material) =>
       material.name.toLowerCase().includes(search.value.toLowerCase()),
     );
 

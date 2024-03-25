@@ -11,22 +11,23 @@ export default function Place({
   readonly withAddress?: boolean;
 }) {
   const { t } = useTranslation();
+  const materialsCount = location.locations.flatMap((l) => l.materials).length;
 
   return (
     <locator-place-summary>
       <h4>{location.name}</h4>
       {withAddress && <p>{location.address}</p>}
       <dl>
-        <dd>{location.distance}</dd>
+        <dd>{location.distance.toFixed(2)}</dd>
         <dt>
           {t('common.miles', {
             count: location.distance,
           })}
         </dt>
-        <dd>{location.materials.length}</dd>
+        <dd>{materialsCount}</dd>
         <dt>
           {t('common.materialsAccepted', {
-            count: location.materials.length,
+            count: materialsCount,
           })}
         </dt>
       </dl>

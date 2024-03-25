@@ -83,21 +83,30 @@ export interface LocalAuthority {
 }
 
 export interface Location {
-  id: number;
+  id: string;
+  address: string;
   distance: number;
   name: string;
-  address: string;
   latitude: number;
   longitude: number;
-  materials: ValpakMaterial[];
-  data_source: string;
-  is_hwrc: boolean;
+  locations: {
+    locationType: 'RECYCLE' | 'HWRC';
+    source: 'valpak' | 'wrap';
+    materials: ValpakMaterial[];
+  }[];
 }
 
 export interface LocationsResponse {
   items: Location[];
-  latitude: number;
-  longitude: number;
+  meta: {
+    latitude: number;
+    longitude: number;
+    radius: number;
+  };
+  pagination: {
+    page: number;
+    total: number;
+  };
 }
 
 export interface RecyclingMeta {

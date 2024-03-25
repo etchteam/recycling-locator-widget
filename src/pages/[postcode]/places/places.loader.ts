@@ -56,8 +56,8 @@ async function getData({
   );
 
   return {
-    latitude: locations.latitude,
-    longitude: locations.longitude,
+    latitude: locations.meta.latitude,
+    longitude: locations.meta.longitude,
     locations: locations.items,
     max: locationsCount < limit || limit === 120,
     page,
