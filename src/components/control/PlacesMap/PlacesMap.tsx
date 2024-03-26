@@ -132,6 +132,7 @@ export default class PlacesMap extends Component<PlacesMapProps> {
         aria-label="${location.name}"
         data-location-id="${location.id}"
         class="locator-places-map__marker${isActive ? ' locator-places-map__marker--active' : ''}"
+        ${this.props.static ? 'disabled="disabled"' : ''}
       >
         ${MapMarker}
       <button>
@@ -238,6 +239,7 @@ declare module 'react' {
       'locator-places-map': CustomElement;
       'locator-places-map-card': CustomElement<{ padding?: 'none' }>;
       'locator-places-map-wrapper': CustomElement;
+      'locator-places-map-scrim': CustomElement;
     }
   }
 }

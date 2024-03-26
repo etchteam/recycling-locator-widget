@@ -99,6 +99,12 @@ export default function PlaceLayout({
             activeLocationId={location.id}
             static
           >
+            <Link
+              to={`/${postcode}/places/map?lat=${location.latitude}&lng=${location.longitude}&activeLocation=${location.id}`}
+              aria-label={t('actions.showMap')}
+            >
+              <locator-places-map-scrim />
+            </Link>
             <locator-places-map-card>
               <diamond-grid>
                 <diamond-grid-item small-mobile="6">
