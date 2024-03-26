@@ -1,3 +1,11 @@
+## [1.22.2](https://github.com/etchteam/recycling-locator/compare/v1.22.1...v1.22.2) (2024-03-26)
+
+
+### Bug Fixes
+
+* catch places map errors ([55d8f2f](https://github.com/etchteam/recycling-locator/commit/55d8f2f7d4a80e9fa4b32b52fac4d28a3bb24d3d))
+* update sentry add sourcemaps ([815fc76](https://github.com/etchteam/recycling-locator/commit/815fc767a0396401a6244c7c351a73ce50506585))
+
 ## [1.22.1](https://github.com/etchteam/recycling-locator/compare/v1.22.0...v1.22.1) (2024-03-26)
 
 
