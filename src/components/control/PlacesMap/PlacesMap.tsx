@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/browser';
-import { Component, ComponentChildren, createRef } from 'preact';
+import { Component, ComponentChildren, ErrorInfo, createRef } from 'preact';
 import '@etchteam/diamond-ui/control/Input/Input';
 
 import '@/components/content/Icon/Icon';
@@ -217,6 +217,13 @@ export default class PlacesMap extends Component<PlacesMapProps> {
     ) {
       this.addPlaceMarkers();
     }
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    Sentry.captureException(error, {
+      tags: { component: 'PlacesMap' },
+      extra: { errorInfo },
+    });
   }
 
   render() {
