@@ -68,7 +68,14 @@ function Places({ locations }: { readonly locations: Location[] }) {
           longitude={locations[0].longitude}
           locations={locations}
           static
-        />
+        >
+          <Link
+            to={`/${postcode}/places?materialId=${materialId}&materialName=${materialName}`}
+            aria-label={t('actions.showMap')}
+          >
+            <locator-places-map-scrim />
+          </Link>
+        </PlacesMap>
       </locator-places-map-wrapper>
       <diamond-card>
         <diamond-grid>

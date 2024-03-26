@@ -11,19 +11,25 @@
   *   - Height needs to break out of the container
   */
 locator-layout {
+  --_layout-header-height: var(--header-height);
   display: grid;
   grid-template-areas:
     'header'
     'main'
     'aside';
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: var(--_layout-header-height) min-content auto;
   min-height: var(--container-height);
+
+  &:has(locator-places-header) {
+    --_layout-header-height: auto;
+  }
 
   .recycling-locator-variant-standalone & {
     min-height: 100cqh;
   }
 
   &:not(:has([slot='layout-aside'])) {
+    grid-template-rows: var(--_layout-header-height) 1fr auto;
     height: var(--container-height);
 
     .recycling-locator-variant-standalone & {
@@ -38,6 +44,10 @@ locator-layout {
   @container (width >= 768px) {
     grid-template-rows: auto 1fr;
     height: var(--container-height);
+
+    &:has(locator-places-header) {
+      --_layout-header-height: var(--header-height);
+    }
 
     .recycling-locator-variant-standalone & {
       height: 100cqh;

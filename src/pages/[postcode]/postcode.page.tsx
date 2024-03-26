@@ -39,7 +39,7 @@ function MapErrorFallback({ postcode }: { readonly postcode: string }) {
   const { t } = useTranslation();
 
   return (
-    <locator-map-svg slot="layout-aside">
+    <locator-map-svg>
       <diamond-button width="full-width">
         <Link to={`/${postcode}/places/map`}>
           {t('postcode.exploreTheMap')}
@@ -55,32 +55,36 @@ function Aside({ postcode }: { readonly postcode: string }) {
   const { locationsPromise } = usePostcodeLoaderData();
 
   return (
-    <div slot="layout-aside">
-      <Suspense fallback={<MapLoadingFallback />}>
-        <Await
-          resolve={locationsPromise.data.locations}
-          errorElement={<MapErrorFallback postcode={postcode} />}
-        >
-          {(locations) => (
-            <PlacesMap
-              latitude={locations.latitude}
-              longitude={locations.longitude}
-              locations={locations.items}
-              static
+    <Suspense fallback={<MapLoadingFallback />}>
+      <Await
+        resolve={locationsPromise.data.locations}
+        errorElement={<MapErrorFallback postcode={postcode} />}
+      >
+        {(locations) => (
+          <PlacesMap
+            latitude={locations.latitude}
+            longitude={locations.longitude}
+            locations={locations.items}
+            static
+          >
+            <Link
+              to={`/${postcode}/places/map`}
+              aria-label={t('actions.showMap')}
             >
-              <locator-places-map-card padding="none">
-                <diamond-button width="full-width">
-                  <Link to={`/${postcode}/places/map`}>
-                    {t('postcode.exploreTheMap')}
-                    <locator-icon icon="map" color="primary"></locator-icon>
-                  </Link>
-                </diamond-button>
-              </locator-places-map-card>
-            </PlacesMap>
-          )}
-        </Await>
-      </Suspense>
-    </div>
+              <locator-places-map-scrim />
+            </Link>
+            <locator-places-map-card padding="none">
+              <diamond-button width="full-width">
+                <Link to={`/${postcode}/places/map`}>
+                  {t('postcode.exploreTheMap')}
+                  <locator-icon icon="map" color="primary"></locator-icon>
+                </Link>
+              </diamond-button>
+            </locator-places-map-card>
+          </PlacesMap>
+        )}
+      </Await>
+    </Suspense>
   );
 }
 

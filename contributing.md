@@ -41,6 +41,7 @@ Storybook will be available on [http://localhost:6006/](http://localhost:6006/)
 ## Folder structure
 
 - index.html - default embedded widget
+- standalone.html - standalone variant testing available at [http://localhost:3020/standalone](http://localhost:3020/standalone)
 - /public - static assets
 - /demo – documentation website for demonstrations of the widget
 - /src
