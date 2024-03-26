@@ -1,3 +1,10 @@
+## [1.22.3](https://github.com/etchteam/recycling-locator/compare/v1.22.2...v1.22.3) (2024-03-26)
+
+
+### Bug Fixes
+
+* recycling locator element type ([e36a777](https://github.com/etchteam/recycling-locator/commit/e36a7776397e983a2446740d4e7c2003bd2a3399))
+
 ## [1.22.2](https://github.com/etchteam/recycling-locator/compare/v1.22.1...v1.22.2) (2024-03-26)
 
 
