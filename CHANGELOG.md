@@ -1,3 +1,10 @@
+## [1.22.1](https://github.com/etchteam/recycling-locator/compare/v1.22.0...v1.22.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* standalone variant rendering issues ([6cb5a65](https://github.com/etchteam/recycling-locator/commit/6cb5a65c8be504120c019ff704ad0fcecfa177bc))
+
 ## [1.22.0](https://github.com/etchteam/recycling-locator/compare/v1.21.0...v1.22.0) (2024-03-22)
 
 
