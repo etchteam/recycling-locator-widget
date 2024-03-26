@@ -87,19 +87,17 @@ register(
   },
 );
 
-type RecyclingLocatorElement = EventSource &
-  CustomElement<RecyclingLocatorAttributes>;
-
 declare global {
   interface HTMLElementTagNameMap {
-    'recycling-locator': RecyclingLocatorElement;
+    'recycling-locator': EventSource &
+      CustomElement<RecyclingLocatorAttributes>;
   }
 }
 
 declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
-      'recycling-locator': RecyclingLocatorElement;
+      'recycling-locator': CustomElement<RecyclingLocatorAttributes>;
     }
   }
 }
