@@ -296,8 +296,10 @@
     "details": {
       "title": "About this place",
       "address": "Address",
+      "phone": "Phone",
       "website": "Website",
       "openingHours": "Opening hours",
+      "collectionDetails": "Collection details",
       "notes": "Notes"
     },
     "error": {

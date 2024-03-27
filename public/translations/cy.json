@@ -298,8 +298,10 @@
     "details": {
       "title": "Am y lle hwn",
       "address": "Cyfeiriad",
+      "phone": "Ffon",
       "website": "Gwefan",
       "openingHours": "Oriau agor",
+      "collectionDetails": "Manylion y casgliad",
       "notes": "Nodiadau"
     },
     "error": {

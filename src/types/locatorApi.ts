@@ -99,6 +99,8 @@ export interface Location {
   notes?: string;
   openingHours?: string;
   website?: string;
+  collectionDetails?: string;
+  telephone?: string;
   locations: {
     locationType: 'RECYCLE' | 'HWRC';
     source: 'valpak' | 'wrap';

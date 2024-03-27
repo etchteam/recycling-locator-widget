@@ -18,6 +18,12 @@ export default function PlaceDetailsPage() {
             <dt>{t('place.details.address')}</dt>
             <dd>{location.address}</dd>
           </div>
+          {location.telephone && (
+            <div>
+              <dt>{t('place.details.phone')}</dt>
+              <dd>{location.telephone}</dd>
+            </div>
+          )}
           {location.website && (
             <div>
               <dt>{t('place.details.website')}</dt>
@@ -36,6 +42,12 @@ export default function PlaceDetailsPage() {
             <div>
               <dt>{t('place.details.openingHours')}</dt>
               <dd>{nl2br(location.openingHours)}</dd>
+            </div>
+          )}
+          {location.collectionDetails && (
+            <div>
+              <dt>{t('place.details.collectionDetails')}</dt>
+              <dd>{nl2br(location.collectionDetails)}</dd>
             </div>
           )}
           {location.notes && (
