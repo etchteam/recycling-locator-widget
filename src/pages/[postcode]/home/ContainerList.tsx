@@ -114,7 +114,9 @@ export default function ContainerList({
               />
               <locator-container-content>
                 <locator-container-name>
-                  <h4>{containerName(container)}</h4>
+                  <h4 className="diamond-text-weight-bold">
+                    {containerName(container)}
+                  </h4>
                 </locator-container-name>
                 {container.cost ? (
                   <locator-container-subscription>
