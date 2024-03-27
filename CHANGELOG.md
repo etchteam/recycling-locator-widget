@@ -1,3 +1,15 @@
+## [1.23.0](https://github.com/etchteam/recycling-locator/compare/v1.22.4...v1.23.0) (2024-03-27)
+
+
+### Features
+
+* container list font hierarchy and split by property type ([7a80399](https://github.com/etchteam/recycling-locator/commit/7a80399223124dd514d571622520e7894bd43cf1))
+
+
+### Bug Fixes
+
+* property type names in tests ([26361db](https://github.com/etchteam/recycling-locator/commit/26361db8f729aff90ad6c8c9c54f0faef710bcf1))
+
 ## [1.22.4](https://github.com/etchteam/recycling-locator/compare/v1.22.3...v1.22.4) (2024-03-26)
 
 
