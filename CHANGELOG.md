@@ -1,3 +1,18 @@
+## [1.24.0](https://github.com/etchteam/recycling-locator/compare/v1.23.0...v1.24.0) (2024-03-27)
+
+
+### Features
+
+* add telephone and collection details ([0f4c4f0](https://github.com/etchteam/recycling-locator/commit/0f4c4f0a91ba3c2c8f9ab40206ad47efec901995))
+* handle new location response ([306c182](https://github.com/etchteam/recycling-locator/commit/306c18201e3350ea9310d882a5add7764caabf40))
+* handle new locations response ([ec59679](https://github.com/etchteam/recycling-locator/commit/ec59679292a3d4c65940e43786e4e53dcea1bacc))
+
+
+### Bug Fixes
+
+* location type and mock ([6e84487](https://github.com/etchteam/recycling-locator/commit/6e8448744d059f06cfb5efbb0926b6641334b8c3))
+* material id equality checks ([350b40b](https://github.com/etchteam/recycling-locator/commit/350b40b45cb827dd53ae61e8b4036753dc10ca0e))
+
 ## [1.23.0](https://github.com/etchteam/recycling-locator/compare/v1.22.4...v1.23.0) (2024-03-27)
 
 
