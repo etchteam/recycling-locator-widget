@@ -67,6 +67,7 @@ export default defineConfig(({ mode }) => {
   if (mode === 'production' && env.VITE_SENTRY_DSN) {
     config.plugins.push(
       sentryVitePlugin({
+        authToken: env.SENTRY_AUTH_TOKEN,
         org: env.SENTRY_ORG,
         project: env.SENTRY_PROJECT,
       }),

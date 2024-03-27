@@ -6,6 +6,7 @@
 
 article {
   container-type: inline-size;
+  overflow-y: auto;
   position: relative;
 }
 
@@ -13,7 +14,10 @@ article {
   border: var(--container-border);
   box-sizing: content-box;
   height: var(--container-height);
-  overflow-y: auto;
+}
+
+.recycling-locator-variant-standalone {
+  height: 100dvh;
 }
 
 .recycling-locator-test-mode {

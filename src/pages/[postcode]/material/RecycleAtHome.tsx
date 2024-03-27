@@ -13,16 +13,13 @@ import '@/components/content/Icon/Icon';
 import '@/components/content/Container/Container';
 
 import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
-import getPropertyDisplayName from '@/lib/getPropertyDisplayName';
 import getPropertyTypeEnum from '@/lib/getPropertyTypeEnum';
 import { LocalAuthority, LocalAuthorityProperty } from '@/types/locatorApi';
 
 function ManyProperties({
-  allProperties,
   allPropertyTypes,
   propertyTypesCollectingThisMaterial,
 }: {
-  readonly allProperties: LocalAuthority['properties'];
   readonly allPropertyTypes: string[];
   readonly propertyTypesCollectingThisMaterial: string[];
 }) {
@@ -63,7 +60,7 @@ function ManyProperties({
                       color={recyclable ? 'positive' : 'negative'}
                     ></locator-icon>
                   </locator-icon-circle>
-                  {getPropertyDisplayName(allProperties, propertyType)}
+                  {propertyType}
                 </Link>
               </locator-icon-link>
             </li>
@@ -171,7 +168,6 @@ export default function RecycleAtHome({
 
       {type === 'manyProperties' && (
         <ManyProperties
-          allProperties={allProperties}
           allPropertyTypes={allPropertyTypes}
           propertyTypesCollectingThisMaterial={
             propertyTypesCollectingThisMaterial

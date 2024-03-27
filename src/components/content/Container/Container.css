@@ -40,7 +40,6 @@ locator-container {
 
   locator-container-subscription {
     font-size: var(--diamond-font-size-sm);
-    font-weight: var(--diamond-font-weight-bold);
   }
 }
 

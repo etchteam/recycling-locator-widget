@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/browser';
-import { Component, ComponentChildren, createRef } from 'preact';
+import { Component, ComponentChildren, ErrorInfo, createRef } from 'preact';
 import '@etchteam/diamond-ui/control/Input/Input';
 
 import '@/components/content/Icon/Icon';
@@ -132,6 +132,7 @@ export default class PlacesMap extends Component<PlacesMapProps> {
         aria-label="${location.name}"
         data-location-id="${location.id}"
         class="locator-places-map__marker${isActive ? ' locator-places-map__marker--active' : ''}"
+        ${this.props.static ? 'disabled="disabled"' : ''}
       >
         ${MapMarker}
       <button>
@@ -218,6 +219,13 @@ export default class PlacesMap extends Component<PlacesMapProps> {
     }
   }
 
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    Sentry.captureException(error, {
+      tags: { component: 'PlacesMap' },
+      extra: { errorInfo },
+    });
+  }
+
   render() {
     return (
       <locator-places-map
@@ -238,6 +246,7 @@ declare module 'react' {
       'locator-places-map': CustomElement;
       'locator-places-map-card': CustomElement<{ padding?: 'none' }>;
       'locator-places-map-wrapper': CustomElement;
+      'locator-places-map-scrim': CustomElement;
     }
   }
 }

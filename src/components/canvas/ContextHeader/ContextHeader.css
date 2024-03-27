@@ -8,7 +8,7 @@ locator-context-header {
   grid-template-columns: 1fr auto;
   padding: var(--diamond-spacing-sm) var(--diamond-spacing);
   position: sticky;
-  top: calc(var(--header-height) + 1px);
+  top: var(--header-height);
   transition: color var(--diamond-transition);
   z-index: 1;
 

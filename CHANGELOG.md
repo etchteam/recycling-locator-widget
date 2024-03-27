@@ -1,3 +1,44 @@
+## [1.23.0](https://github.com/etchteam/recycling-locator/compare/v1.22.4...v1.23.0) (2024-03-27)
+
+
+### Features
+
+* container list font hierarchy and split by property type ([7a80399](https://github.com/etchteam/recycling-locator/commit/7a80399223124dd514d571622520e7894bd43cf1))
+
+
+### Bug Fixes
+
+* property type names in tests ([26361db](https://github.com/etchteam/recycling-locator/commit/26361db8f729aff90ad6c8c9c54f0faef710bcf1))
+
+## [1.22.4](https://github.com/etchteam/recycling-locator/compare/v1.22.3...v1.22.4) (2024-03-26)
+
+
+### Bug Fixes
+
+* recycling locator element type ([4493272](https://github.com/etchteam/recycling-locator/commit/44932726f6d02393dcad8b4dad56d06c6355edd7))
+
+## [1.22.3](https://github.com/etchteam/recycling-locator/compare/v1.22.2...v1.22.3) (2024-03-26)
+
+
+### Bug Fixes
+
+* recycling locator element type ([e36a777](https://github.com/etchteam/recycling-locator/commit/e36a7776397e983a2446740d4e7c2003bd2a3399))
+
+## [1.22.2](https://github.com/etchteam/recycling-locator/compare/v1.22.1...v1.22.2) (2024-03-26)
+
+
+### Bug Fixes
+
+* catch places map errors ([55d8f2f](https://github.com/etchteam/recycling-locator/commit/55d8f2f7d4a80e9fa4b32b52fac4d28a3bb24d3d))
+* update sentry add sourcemaps ([815fc76](https://github.com/etchteam/recycling-locator/commit/815fc767a0396401a6244c7c351a73ce50506585))
+
+## [1.22.1](https://github.com/etchteam/recycling-locator/compare/v1.22.0...v1.22.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* standalone variant rendering issues ([6cb5a65](https://github.com/etchteam/recycling-locator/commit/6cb5a65c8be504120c019ff704ad0fcecfa177bc))
+
 ## [1.22.0](https://github.com/etchteam/recycling-locator/compare/v1.21.0...v1.22.0) (2024-03-22)
 
 

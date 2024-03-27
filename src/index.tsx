@@ -93,3 +93,11 @@ declare global {
       CustomElement<RecyclingLocatorAttributes>;
   }
 }
+
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      'recycling-locator': CustomElement<RecyclingLocatorAttributes>;
+    }
+  }
+}
