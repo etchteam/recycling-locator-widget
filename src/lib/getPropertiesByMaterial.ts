@@ -8,7 +8,7 @@ function hasSchemeWithMaterial(
 ): boolean {
   return property.some((scheme) =>
     scheme.containers.some((container) =>
-      container.materials?.some((material) => material.id === materialId),
+      container.materials?.some((material) => material.id == materialId),
     ),
   );
 }

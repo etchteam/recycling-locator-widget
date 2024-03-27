@@ -82,7 +82,7 @@ function OneProperty({
   const containers = property
     .flatMap((scheme) => scheme.containers)
     .filter((container) =>
-      container.materials?.some((material) => material.id === materialId),
+      container.materials?.some((material) => material.id == materialId),
     );
 
   return (
