@@ -3,7 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import { LocalAuthority, LocalAuthorityProperty } from '@/types/locatorApi';
 
 function hasSchemeWithMaterial(
-  materialId: number,
+  materialId: string,
   property: LocalAuthorityProperty[],
 ): boolean {
   return property.some((scheme) =>
@@ -14,7 +14,7 @@ function hasSchemeWithMaterial(
 }
 
 export default function getPropertiesByMaterial(
-  materialId: number,
+  materialId: string,
   properties: LocalAuthority['properties'],
 ): LocalAuthority['properties'] | undefined {
   const propertyTypes = Object.keys(properties);

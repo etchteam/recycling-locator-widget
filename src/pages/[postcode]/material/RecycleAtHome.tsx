@@ -75,7 +75,7 @@ function OneProperty({
   materialId,
   property,
 }: {
-  readonly materialId: number;
+  readonly materialId: string;
   readonly property: LocalAuthorityProperty[];
 }) {
   const { t } = useTranslation();
@@ -102,7 +102,7 @@ export default function RecycleAtHome({
   allProperties,
   propertiesCollectingThisMaterial,
 }: {
-  readonly materialId: number;
+  readonly materialId: string;
   readonly allProperties: LocalAuthority['properties'];
   readonly propertiesCollectingThisMaterial: LocalAuthority['properties'];
 }) {

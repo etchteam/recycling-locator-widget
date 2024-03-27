@@ -13,7 +13,7 @@ import {
 } from '@/types/locatorApi';
 
 export interface MaterialLoaderResponse {
-  materialId: number;
+  materialId: string;
   localAuthority: LocalAuthority;
   locations: LocationsResponse;
   tip: RecyclingMeta;
@@ -24,7 +24,7 @@ async function getData({
   params,
 }: LoaderFunctionArgs): Promise<MaterialLoaderResponse> {
   const url = new URL(request.url);
-  const materialId = Number(url.searchParams.get('id'));
+  const materialId = url.searchParams.get('id') as string;
   const postcode = params.postcode;
   const localAuthority = await LocatorApi.get<LocalAuthority>(
     `local-authority/${postcode}`,
