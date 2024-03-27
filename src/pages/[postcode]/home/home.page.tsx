@@ -4,7 +4,6 @@ import '@etchteam/diamond-ui/canvas/Card/Card';
 
 import '@/components/content/Container/Container';
 import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
-import getPropertyDisplayName from '@/lib/getPropertyDisplayName';
 
 import { useHomeRecyclingLoaderData } from './home.loader';
 
@@ -30,9 +29,7 @@ export default function HomeRecyclingPage() {
             key={safePropertyType}
           >
             <diamond-card className="diamond-spacing-bottom-md" border radius>
-              <h4 className="diamond-spacing-bottom-md">
-                {getPropertyDisplayName(properties, propertyType)}
-              </h4>
+              <h4 className="diamond-spacing-bottom-md">{propertyType}</h4>
               <SchemeContainerSummary containers={containers} limit={3} />
             </diamond-card>
           </Link>

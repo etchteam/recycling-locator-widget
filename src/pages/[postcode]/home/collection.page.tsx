@@ -26,7 +26,6 @@ import '@/components/content/Icon/Icon';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import TipContent from '@/components/template/TipContent/TipContent';
 import config from '@/config';
-import getPropertyDisplayName from '@/lib/getPropertyDisplayName';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
 
@@ -100,9 +99,7 @@ export default function CollectionPage() {
               <details ref={menuRef}>
                 {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
                 <summary onClick={() => (menuOpen.value = !menuOpen.value)}>
-                  {menuOpen.value
-                    ? 'Collections in this area'
-                    : getPropertyDisplayName(properties, propertyType)}
+                  {menuOpen.value ? 'Collections in this area' : propertyType}
                   <locator-icon icon="expand" />
                 </summary>
                 <nav>
@@ -114,7 +111,7 @@ export default function CollectionPage() {
                         >
                           <diamond-grid align-items="center" gap="xs">
                             <diamond-grid-item grow shrink>
-                              {getPropertyDisplayName(properties, type)}
+                              {type}
                             </diamond-grid-item>
                             <diamond-grid-item>
                               <locator-icon icon="arrow-right" />
@@ -128,9 +125,7 @@ export default function CollectionPage() {
               </details>
             </locator-details>
           ) : (
-            <span className="diamond-text-weight-bold">
-              {getPropertyDisplayName(properties, propertyType)}
-            </span>
+            <span className="diamond-text-weight-bold">{propertyType}</span>
           )}
         </locator-context-header>
         <diamond-section padding="lg">

@@ -90,9 +90,7 @@ describeEndToEndTest('Material page', () => {
 
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const schemeOneText = page
-      .getByText(
-        mockedLaResponse.properties[PROPERTY_TYPE_EN.NARROW_ACCESS][0].name,
-      )
+      .getByText(PROPERTY_TYPE_EN.NARROW_ACCESS)
       .first();
     const somePropertiesText = page.getByText('some properties').first();
     const locationsText = page
@@ -160,9 +158,7 @@ describeEndToEndTest('Material page', () => {
 
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const schemeOneText = page
-      .getByText(
-        mockedLaResponse.properties[PROPERTY_TYPE_EN.NARROW_ACCESS][0].name,
-      )
+      .getByText(PROPERTY_TYPE_EN.NARROW_ACCESS)
       .first();
     const somePropertiesText = page.getByText('all properties').first();
     const locationsText = page

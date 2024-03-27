@@ -12,7 +12,7 @@ locator-details {
       border: 0 none;
       cursor: pointer;
       display: flex;
-      font-weight: var(--diamond-font-weight-bold);
+      font-weight: var(--diamond-font-weight-normal);
       justify-content: space-between;
       padding: var(--_details-padding);
       transition: color var(--diamond-transition);
