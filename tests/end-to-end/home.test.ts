@@ -52,12 +52,10 @@ describeEndToEndTest('Home recycling', () => {
     });
 
     const narrowAccessSchemeText = page
-      .getByText(
-        mockedLaResponse.properties[PROPERTY_TYPE_EN.NARROW_ACCESS][0].name,
-      )
+      .getByText(PROPERTY_TYPE_EN.NARROW_ACCESS)
       .first();
     const kerbsideSchemeText = page
-      .getByText(mockedLaResponse.properties[PROPERTY_TYPE_EN.KERBSIDE][0].name)
+      .getByText(PROPERTY_TYPE_EN.KERBSIDE)
       .first();
 
     await widget.evaluate((node) =>
@@ -136,9 +134,7 @@ describeEndToEndTest('Home recycling', () => {
     });
 
     const kerbsideSchemeText = page
-      .getByText(
-        LocalAuthorityResponse.properties[PROPERTY_TYPE_EN.KERBSIDE][0].name,
-      )
+      .getByText(PROPERTY_TYPE_EN.KERBSIDE)
       .first();
     const kerbsideSchemeLink = page
       .locator('a', { has: kerbsideSchemeText })
