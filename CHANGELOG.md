@@ -1,3 +1,10 @@
+## [1.24.1](https://github.com/etchteam/recycling-locator/compare/v1.24.0...v1.24.1) (2024-03-27)
+
+
+### Bug Fixes
+
+* fab causing horizontal scroll ([721a3e9](https://github.com/etchteam/recycling-locator/commit/721a3e95fd1b9a2fb0589526ef9f9c12a62ca20c))
+
 ## [1.24.0](https://github.com/etchteam/recycling-locator/compare/v1.23.0...v1.24.0) (2024-03-27)
 
 
