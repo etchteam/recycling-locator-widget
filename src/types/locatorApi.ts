@@ -89,10 +89,13 @@ export interface Location {
   name: string;
   latitude: number;
   longitude: number;
+  notes?: string;
+  openingHours?: string;
+  website?: string;
   locations: {
     locationType: 'RECYCLE' | 'HWRC';
     source: 'valpak' | 'wrap';
-    materials: ValpakMaterial[];
+    materials: MaterialWithCategory[];
   }[];
 }
 

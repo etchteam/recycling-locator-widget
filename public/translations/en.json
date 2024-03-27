@@ -295,7 +295,10 @@
     },
     "details": {
       "title": "About this place",
-      "address": "Address"
+      "address": "Address",
+      "website": "Website",
+      "openingHours": "Opening hours",
+      "notes": "Notes"
     },
     "error": {
       "message": "An unexpected error occurred while loading this place."

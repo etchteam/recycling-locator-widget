@@ -1,3 +1,4 @@
+import nl2br from 'nl2br';
 import { useTranslation } from 'react-i18next';
 import { useRouteLoaderData } from 'react-router-dom';
 
@@ -17,6 +18,32 @@ export default function PlaceDetailsPage() {
             <dt>{t('place.details.address')}</dt>
             <dd>{location.address}</dd>
           </div>
+          {location.website && (
+            <div>
+              <dt>{t('place.details.website')}</dt>
+              <dd>
+                <a
+                  href={location.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {location.website}
+                </a>
+              </dd>
+            </div>
+          )}
+          {location.openingHours && (
+            <div>
+              <dt>{t('place.details.openingHours')}</dt>
+              <dd>{nl2br(location.openingHours)}</dd>
+            </div>
+          )}
+          {location.notes && (
+            <div>
+              <dt>{t('place.details.notes')}</dt>
+              <dd>{nl2br(location.notes)}</dd>
+            </div>
+          )}
         </dl>
       </locator-bordered-list>
     </>

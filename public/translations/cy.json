@@ -297,7 +297,10 @@
     },
     "details": {
       "title": "Am y lle hwn",
-      "address": "Cyfeiriad"
+      "address": "Cyfeiriad",
+      "website": "Gwefan",
+      "openingHours": "Oriau agor",
+      "notes": "Nodiadau"
     },
     "error": {
       "message": "Digwyddodd gwall annisgwyl wrth lwytho'r lle hwn."
