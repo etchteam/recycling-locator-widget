@@ -47,7 +47,7 @@ locator-tip {
       border-radius: var(--diamond-border-radius);
       grid-template-areas: 'content image';
       grid-template-columns: 66.666% 33.333%;
-      margin: 0 var(--diamond-spacing) var(--diamond-spacing-xl);
+      margin: 0 0 var(--diamond-spacing-xl);
       padding: 0;
       text-align: left;
 

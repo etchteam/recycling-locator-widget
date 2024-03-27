@@ -4,21 +4,28 @@ export interface PostcodeResponse {
 }
 
 export interface Material {
-  id: number;
+  id: string;
   name: string;
-  popular: boolean;
+  recycleType?: 'Recycle' | 'Re-use';
+  nameCy?: string;
+  popular?: boolean;
+  valpakMaterials?: ValpakMaterial[];
+  aliases?: { id: string; alias: string }[];
+  meta?: RecyclingMeta[];
 }
 
 export interface ValpakMaterial {
-  category: string;
+  id: string;
   code: string;
-  name: string;
+  category?: string;
+  name?: string;
 }
 
 export interface MaterialCategory {
-  id: number;
+  id: string;
   name: string;
-  popular: boolean;
+  nameCy?: string;
+  popular?: boolean;
 }
 
 export interface MaterialWithCategory extends Material {
@@ -83,32 +90,51 @@ export interface LocalAuthority {
 }
 
 export interface Location {
-  id: number;
+  id: string;
+  address: string;
   distance: number;
   name: string;
-  address: string;
   latitude: number;
   longitude: number;
-  materials: ValpakMaterial[];
-  data_source: string;
-  is_hwrc: boolean;
+  notes?: string;
+  openingHours?: string;
+  website?: string;
+  collectionDetails?: string;
+  telephone?: string;
+  locations: {
+    locationType: 'RECYCLE' | 'HWRC';
+    source: 'valpak' | 'wrap';
+    materials: MaterialWithCategory[];
+  }[];
 }
 
 export interface LocationsResponse {
   items: Location[];
-  latitude: number;
-  longitude: number;
+  meta: {
+    latitude: number;
+    longitude: number;
+    radius: number;
+  };
+  pagination: {
+    page: number;
+    total: number;
+  };
 }
 
 export interface RecyclingMeta {
   id: number;
   category: 'HINT' | 'QUESTION';
   title: string;
+  titleCy?: string;
   subtitle: string;
+  subtitleCy?: string;
   content: string;
-  materials: number[];
+  contentCy?: string;
+  materials?: number[];
   path?: string;
   image?: string;
   cta?: string;
+  ctaCy?: string;
   ctaLink?: string;
+  ctaLinkCy?: string;
 }

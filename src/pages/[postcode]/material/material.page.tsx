@@ -45,7 +45,7 @@ function MaterialPageContent() {
     localAuthority.properties,
   );
   const recyclableAtHome = propertiesCollectingThisMaterial !== undefined;
-  const recyclableNearby = locations.length > 0;
+  const recyclableNearby = locations.items.length > 0;
   const recyclable = recyclableAtHome || recyclableNearby;
 
   return (

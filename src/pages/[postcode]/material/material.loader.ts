@@ -8,15 +8,14 @@ import LocatorApi from '@/lib/LocatorApi';
 import getTip from '@/lib/getTip';
 import {
   LocalAuthority,
-  Location,
   LocationsResponse,
   RecyclingMeta,
 } from '@/types/locatorApi';
 
 export interface MaterialLoaderResponse {
-  materialId: number;
+  materialId: string;
   localAuthority: LocalAuthority;
-  locations: Location[];
+  locations: LocationsResponse;
   tip: RecyclingMeta;
 }
 
@@ -25,7 +24,7 @@ async function getData({
   params,
 }: LoaderFunctionArgs): Promise<MaterialLoaderResponse> {
   const url = new URL(request.url);
-  const materialId = Number(url.searchParams.get('id'));
+  const materialId = url.searchParams.get('id') as string;
   const postcode = params.postcode;
   const localAuthority = await LocatorApi.get<LocalAuthority>(
     `local-authority/${postcode}`,
@@ -36,11 +35,11 @@ async function getData({
   const meta = await LocatorApi.get<RecyclingMeta[]>(
     'recycling-meta?categories=HINT',
   );
-
+  console.log(`locations/${postcode}?materials=${materialId}`);
   return {
     localAuthority,
     materialId,
-    locations: locations.items,
+    locations,
     tip: getTip(meta, { materialId }),
   };
 }

@@ -70,7 +70,7 @@ export function PlacesMapPageContent() {
   useEffect(() => {
     if (defaultActiveLocationId) {
       const location = locations.find(
-        (location) => location.id === Number(defaultActiveLocationId),
+        (location) => location.id === defaultActiveLocationId,
       );
 
       if (location) {

@@ -9,7 +9,7 @@ import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
-import { Location } from '@/types/locatorApi';
+import { LocationsResponse } from '@/types/locatorApi';
 
 function NoPlaces() {
   const { t } = useTranslation();
@@ -36,14 +36,14 @@ function NoPlaces() {
   );
 }
 
-function Places({ locations }: { readonly locations: Location[] }) {
+function Places({ locations }: { readonly locations: LocationsResponse }) {
   const { t } = useTranslation();
   const { postcode } = useParams();
   const [searchParams] = useSearchParams();
   const materialId = searchParams.get('id');
   const materialName = searchParams.get('name');
   const tContext = 'material.nearbyPlaces.places';
-  const count = locations.length;
+  const count = locations.items.length;
 
   return (
     <diamond-card padding="none" border radius>
@@ -64,9 +64,9 @@ function Places({ locations }: { readonly locations: Location[] }) {
       </diamond-card>
       <locator-places-map-wrapper>
         <PlacesMap
-          latitude={locations[0].latitude}
-          longitude={locations[0].longitude}
-          locations={locations}
+          latitude={locations.meta.latitude}
+          longitude={locations.meta.longitude}
+          locations={locations.items}
           static
         >
           <Link
@@ -106,9 +106,9 @@ function Places({ locations }: { readonly locations: Location[] }) {
 export default function NearbyPlaces({
   locations,
 }: {
-  readonly locations: Location[];
+  readonly locations: LocationsResponse;
 }) {
-  const hasLocations = locations.length > 0;
+  const hasLocations = locations.items.length > 0;
 
   if (hasLocations) {
     return <Places locations={locations} />;

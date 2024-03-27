@@ -9,13 +9,15 @@ export default function getTip(
   meta: RecyclingMeta[],
   options: {
     path?: string;
-    materialId?: number;
+    materialId?: string | number;
   } = {},
 ): RecyclingMeta {
   const tips = [];
 
   if (options.materialId) {
-    tips.push(...meta.filter((m) => m.materials.includes(options.materialId)));
+    tips.push(
+      ...meta.filter((m) => m.materials.includes(Number(options.materialId))),
+    );
   }
 
   if (options.path) {

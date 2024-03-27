@@ -62,8 +62,8 @@ function Aside({ postcode }: { readonly postcode: string }) {
       >
         {(locations) => (
           <PlacesMap
-            latitude={locations.latitude}
-            longitude={locations.longitude}
+            latitude={locations.meta.latitude}
+            longitude={locations.meta.longitude}
             locations={locations.items}
             static
           >

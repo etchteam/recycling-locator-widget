@@ -295,7 +295,12 @@
     },
     "details": {
       "title": "About this place",
-      "address": "Address"
+      "address": "Address",
+      "phone": "Phone",
+      "website": "Website",
+      "openingHours": "Opening hours",
+      "collectionDetails": "Collection details",
+      "notes": "Notes"
     },
     "error": {
       "message": "An unexpected error occurred while loading this place."

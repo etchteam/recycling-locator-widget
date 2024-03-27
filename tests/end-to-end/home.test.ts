@@ -90,8 +90,7 @@ describeEndToEndTest('Home recycling', () => {
     const locationsCount = page
       .getByText(
         t(`homeRecycling.hwrc.nearbyPlaces.content`, {
-          // Zero locations because the recycling centres are moved out of the list
-          count: 0,
+          count: LocationsResponse.items.length,
         }),
       )
       .first();

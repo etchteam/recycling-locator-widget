@@ -1,5 +1,6 @@
 import { useSignal } from '@preact/signals';
 import groupBy from 'lodash/groupBy';
+import uniqBy from 'lodash/uniqBy';
 import upperFirst from 'lodash/upperFirst';
 import { useTranslation } from 'react-i18next';
 import { Form, useRouteLoaderData } from 'react-router-dom';
@@ -20,10 +21,11 @@ export default function PlacePage() {
   const { recordEvent } = useAnalytics();
   const form = useFormValidation('search');
   const search = useSignal<string>('');
-  const materialCategories = groupBy(location.materials, 'category');
+  const materials = location.locations?.flatMap((l) => l.materials);
+  const materialCategories = groupBy(materials, 'category.name');
   const hasSearchedForMaterial =
     search.value &&
-    location.materials.some((material) =>
+    materials.some((material) =>
       material.name.toLowerCase().includes(search.value.toLowerCase()),
     );
 
@@ -87,7 +89,7 @@ export default function PlacePage() {
               <locator-icon icon="expand" />
             </summary>
             <ul className="diamond-text-size-sm">
-              {materialCategories[category].map((material) => (
+              {uniqBy(materialCategories[category], 'name').map((material) => (
                 <li key={material.name}>{material.name}</li>
               ))}
             </ul>

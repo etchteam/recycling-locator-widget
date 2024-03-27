@@ -75,14 +75,14 @@ function OneProperty({
   materialId,
   property,
 }: {
-  readonly materialId: number;
+  readonly materialId: string;
   readonly property: LocalAuthorityProperty[];
 }) {
   const { t } = useTranslation();
   const containers = property
     .flatMap((scheme) => scheme.containers)
     .filter((container) =>
-      container.materials?.some((material) => material.id === materialId),
+      container.materials?.some((material) => material.id == materialId),
     );
 
   return (
@@ -102,7 +102,7 @@ export default function RecycleAtHome({
   allProperties,
   propertiesCollectingThisMaterial,
 }: {
-  readonly materialId: number;
+  readonly materialId: string;
   readonly allProperties: LocalAuthority['properties'];
   readonly propertiesCollectingThisMaterial: LocalAuthority['properties'];
 }) {
