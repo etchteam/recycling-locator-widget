@@ -271,7 +271,11 @@
       "label": "What do you need to recycle?",
       "nav": {
         "search": "Search",
-        "popular": "Popular"
+        "aToZ": "A-Z"
+      },
+      "aToZ": {
+        "alphabet": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+        "backToTop": "Back to top"
       }
     },
     "map": {

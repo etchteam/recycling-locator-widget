@@ -32,9 +32,7 @@ export default function PopularMaterials({
           <ul>
             {materials.map((material) => (
               <li key={material.id}>
-                <Link to={generatePath(material)} unstable_viewTransition>
-                  {material.name}
-                </Link>
+                <Link to={generatePath(material)}>{material.name}</Link>
               </li>
             ))}
           </ul>
