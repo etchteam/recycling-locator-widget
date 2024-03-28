@@ -1,3 +1,10 @@
+## [1.24.2](https://github.com/etchteam/recycling-locator/compare/v1.24.1...v1.24.2) (2024-03-28)
+
+
+### Bug Fixes
+
+* background ([416474a](https://github.com/etchteam/recycling-locator/commit/416474a9f002f6d926107af64bbbd650e5b3903d))
+
 ## [1.24.1](https://github.com/etchteam/recycling-locator/compare/v1.24.0...v1.24.1) (2024-03-27)
 
 
