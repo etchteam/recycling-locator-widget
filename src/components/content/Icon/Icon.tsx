@@ -17,6 +17,7 @@ export interface IconAttributes {
     | 'map'
     | 'arrow-left'
     | 'arrow-right'
+    | 'arrow-up'
     | 'warning'
     | 'cross-circle'
     | 'tick-circle'

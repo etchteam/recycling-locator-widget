@@ -14,6 +14,8 @@ locator-alphabet-nav {
   diamond-button {
     --diamond-button-padding-block: 0;
     --diamond-button-padding-inline: 0;
+    --diamond-button-color-disabled: var(--color-grey);
+    --diamond-button-border-color-disabled: var(--color-grey);
   }
 
   diamond-button a {

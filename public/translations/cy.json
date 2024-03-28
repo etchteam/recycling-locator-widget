@@ -276,7 +276,8 @@
         "aToZ": "A-Y"
       },
       "aToZ": {
-        "alphabet": ["A", "B", "C", "Ch", "D", "Dd", "E", "F", "Ff", "G", "Ng", "H", "I", "J", "Ll", "M", "N", "O", "P", "Ph", "R", "Rh", "S", "T", "Th", "U", "W", "Y"]
+        "alphabet": ["A", "B", "C", "Ch", "D", "Dd", "E", "F", "Ff", "G", "Ng", "H", "I", "J", "Ll", "M", "N", "O", "P", "Ph", "R", "Rh", "S", "T", "Th", "U", "W", "Y"],
+        "backToTop": "Yn ôl i'r brig"
       }
     },
     "map": {
