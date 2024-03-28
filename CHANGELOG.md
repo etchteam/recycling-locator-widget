@@ -1,3 +1,24 @@
+## [1.25.0](https://github.com/etchteam/recycling-locator/compare/v1.24.2...v1.25.0) (2024-03-28)
+
+
+### Features
+
+* a-z material list page ([e86be73](https://github.com/etchteam/recycling-locator/commit/e86be731138f8bc97977a6d09493a0cf68fc242a))
+* back to top buttons ([aed8001](https://github.com/etchteam/recycling-locator/commit/aed8001bba1e5ff1d765007b9e4abd5cc3f2d3af))
+* render popular searches under the places search box ([726a9a0](https://github.com/etchteam/recycling-locator/commit/726a9a016985021a2572a6fffa2e5d91968d7d80))
+
+
+### Bug Fixes
+
+* half letter short line end ([b2f59dc](https://github.com/etchteam/recycling-locator/commit/b2f59dc68c24ef9de002c64e67f0e62cdca43d99))
+* popular materials title hierarchy ([9b8c296](https://github.com/etchteam/recycling-locator/commit/9b8c296a9de1508db6873835434323582430a914))
+* welsh alphabet sorting and grouping ([7940a7d](https://github.com/etchteam/recycling-locator/commit/7940a7d17cb477f597cf521234ec686321ed7a0a))
+
+
+### Reverts
+
+* welsh debug ([a1885d5](https://github.com/etchteam/recycling-locator/commit/a1885d583a93c192dd53d688491044eff02201f3))
+
 ## [1.24.2](https://github.com/etchteam/recycling-locator/compare/v1.24.1...v1.24.2) (2024-03-28)
 
 
