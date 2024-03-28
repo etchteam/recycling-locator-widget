@@ -5,8 +5,8 @@ locator-bordered-list {
   > h2,
   > h3,
   > h4 {
-    color: var(--diamond-theme-color-muted);
     font-size: var(--diamond-font-size-sm);
+    font-weight: var(--diamond-font-weight-bold);
   }
 
   > nav > ul,

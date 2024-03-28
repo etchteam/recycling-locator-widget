@@ -13,7 +13,7 @@ export default function HomeRecyclingPage() {
     <>
       <h3 className="diamond-spacing-bottom-md">{t(`${tContext}.title`)}</h3>
       <locator-bordered-list size="sm">
-        <h4>{localAuthority.name}</h4>
+        <h4 className="text-color-muted">{localAuthority.name}</h4>
         <dl>
           <div>
             <dt>{t(`${tContext}.website`)}</dt>
