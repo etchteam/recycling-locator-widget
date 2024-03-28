@@ -17,10 +17,20 @@ export default function AtoZPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
   const { materials } = useLoaderData() as PlacesMaterialsLoaderResponse;
-  const groupedMaterials = groupBy(materials, (material) =>
-    material.name[0].toUpperCase(),
+  const alphabet = tArray('places.search.aToZ.alphabet');
+  const multiLetterChars = alphabet.filter((letter) => letter.length > 1);
+  const groupedMaterials = groupBy(materials, (material) => {
+    // Wales alphabet has multi-letter characters, need to match them first
+    const multiLetterChar = multiLetterChars.find(
+      (letter) => material.name.slice(0, letter.length) === letter,
+    );
+    return multiLetterChar || material.name[0].toUpperCase();
+  });
+  const availableLetters = Object.keys(groupedMaterials).toSorted(
+    (letterA, letterB) => {
+      return letterA.localeCompare(letterB);
+    },
   );
-  const availableLetters = Object.keys(groupedMaterials);
 
   function scrollToLetter(event: Event, letter: string) {
     event?.preventDefault();
@@ -49,7 +59,7 @@ export default function AtoZPage() {
       <locator-alphabet-nav className="diamond-spacing-bottom-lg">
         <nav>
           <ul>
-            {tArray('places.search.aToZ.alphabet').map((letter) => (
+            {alphabet.map((letter) => (
               <li key={letter}>
                 <diamond-button width="square">
                   <Link
