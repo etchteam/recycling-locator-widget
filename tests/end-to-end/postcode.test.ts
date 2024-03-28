@@ -31,7 +31,7 @@ describeEndToEndTest('Postcode page', () => {
     const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
 
     await expect(notInUk).not.toBeVisible();
-    await widget.evaluate((node) => node.setAttribute('path', '/EX32%207RB'));
+    await widget.evaluate((node) => node.setAttribute('path', '/EX32 7RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await expect(notInUk).toBeVisible();
     await snapshot(page, 'Postcode not in UK');
@@ -72,7 +72,7 @@ describeEndToEndTest('Postcode page', () => {
     const notFound = page.getByText(t('material.search.notFound')).first();
     const materialText = page.getByText(material).first();
 
-    await widget.evaluate((node) => node.setAttribute('path', '/EX32%207RB'));
+    await widget.evaluate((node) => node.setAttribute('path', '/EX32 7RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await expect(input).toBeVisible();
     await expect(notFound).not.toBeVisible();
@@ -107,7 +107,7 @@ describeEndToEndTest('Postcode page', () => {
     const recyclableText = page.getByText(t('material.hero.yes')).first();
     const materialPageTitle = page.getByText(t('material.title')).first();
 
-    await widget.evaluate((node) => node.setAttribute('path', '/EX32%207RB'));
+    await widget.evaluate((node) => node.setAttribute('path', '/EX32 7RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await expect(input).toBeVisible();
     await expect(materialText).not.toBeVisible();

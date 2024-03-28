@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next';
 import {
   Await,
   Form,
-  Link,
-  useAsyncValue,
   useLoaderData,
   useParams,
   useSearchParams,
@@ -17,43 +15,15 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/composition/BorderedList/BorderedList';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
+import PopularMaterials from '@/components/template/PopularMaterials/PopularMaterials';
 import useFormValidation from '@/lib/useFormValidation';
+import { Material } from '@/types/locatorApi';
 
 import { MaterialSearchLoaderResponse } from './search.loader';
 
-function PopularMaterials() {
-  const { t } = useTranslation();
-  const { postcode } = useParams();
-  const { popularMaterials } = useAsyncValue() as MaterialSearchLoaderResponse;
-
-  if (popularMaterials.length === 0) {
-    return null;
-  }
-
-  return (
-    <diamond-enter type="fade-in-up">
-      <locator-bordered-list size="sm" className="diamond-spacing-top-lg">
-        <h3>{t('common.popularSearches')}</h3>
-        <nav>
-          <ul>
-            {popularMaterials.map(({ id, name }) => (
-              <li key={id}>
-                <Link
-                  to={`/${postcode}/material?id=${id}&name=${encodeURIComponent(name)}`}
-                >
-                  {name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </locator-bordered-list>
-    </diamond-enter>
-  );
-}
-
 export default function MaterialSearchPage() {
   const { t } = useTranslation();
+  const { postcode } = useParams();
   const form = useFormValidation('search');
   const [searchParams] = useSearchParams();
   const { data } = useLoaderData() as {
@@ -64,6 +34,12 @@ export default function MaterialSearchPage() {
   useEffect(() => {
     form.submitting.value = false;
   }, [materialName]);
+
+  function generatePopularMaterialPath(material: Material) {
+    return `/${postcode}/material?id=${material.id}&name=${encodeURIComponent(
+      material.name,
+    )}`;
+  }
 
   return (
     <locator-wrap>
@@ -93,7 +69,12 @@ export default function MaterialSearchPage() {
 
         <Suspense fallback={/* No loading UI necessary */ null}>
           <Await resolve={data}>
-            <PopularMaterials />
+            {({ popularMaterials }) => (
+              <PopularMaterials
+                materials={popularMaterials}
+                generatePath={generatePopularMaterialPath}
+              />
+            )}
           </Await>
         </Suspense>
       </diamond-section>

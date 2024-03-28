@@ -35,7 +35,7 @@ async function getData({
   const meta = await LocatorApi.get<RecyclingMeta[]>(
     'recycling-meta?categories=HINT',
   );
-  console.log(`locations/${postcode}?materials=${materialId}`);
+
   return {
     localAuthority,
     materialId,

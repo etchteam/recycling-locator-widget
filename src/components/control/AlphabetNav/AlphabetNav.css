@@ -1,0 +1,26 @@
+locator-alphabet-nav {
+  --_letter-size: 2rem;
+  display: block;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.21rem; /* specific gap to avoid half a letter short line end */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  diamond-button {
+    --diamond-button-padding-block: 0;
+    --diamond-button-padding-inline: 0;
+    --diamond-button-color-disabled: var(--color-grey);
+    --diamond-button-border-color-disabled: var(--color-grey);
+  }
+
+  diamond-button a {
+    height: var(--_letter-size);
+    text-align: center;
+    width: var(--_letter-size);
+  }
+}

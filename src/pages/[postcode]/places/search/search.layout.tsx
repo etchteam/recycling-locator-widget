@@ -64,8 +64,8 @@ export default function PlacesSearchLayout({
                 </NavLink>
               </li>
               <li>
-                <NavLink to={`/${postcode}/places/search/popular`}>
-                  {t('places.search.nav.popular')}
+                <NavLink to={`/${postcode}/places/search/a-z`}>
+                  {t('places.search.nav.aToZ')}
                 </NavLink>
               </li>
             </ul>
