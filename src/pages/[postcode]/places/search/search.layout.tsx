@@ -4,6 +4,7 @@ import {
   Link,
   NavLink,
   Outlet,
+  useLocation,
   useParams,
   useSearchParams,
 } from 'react-router-dom';
@@ -24,13 +25,14 @@ export default function PlacesSearchLayout({
 }) {
   const { t } = useTranslation();
   const { postcode } = useParams();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const materialId = searchParams.get('materialId');
   const materialName = searchParams.get('materialName');
   const query = materialId
     ? `?materialId=${materialId}&materialName=${materialName}`
     : '';
-
+  console.log(postcode, location.pathname);
   return (
     <locator-layout>
       <locator-header slot="layout-header">

@@ -10,10 +10,9 @@ import PlacePage from './place/place.page';
 import PlacesLayout from './places.layout';
 import placesLoader from './places.loader';
 import PlacesPage from './places.page';
-import popularSearchLoader from './search/popular.loader';
-import PlacesSearchPopularPage from './search/popular.page';
 import placesSearchAction from './search/search.action';
 import PlacesSearchLayout from './search/search.layout';
+import placesSearchLoader from './search/search.loader';
 import PlacesSearchPage from './search/search.page';
 
 const routes: RouteObject[] = [
@@ -45,11 +44,7 @@ const routes: RouteObject[] = [
             index: true,
             element: <PlacesSearchPage />,
             action: placesSearchAction,
-          },
-          {
-            path: 'popular',
-            element: <PlacesSearchPopularPage />,
-            loader: popularSearchLoader,
+            loader: placesSearchLoader,
           },
         ],
       },

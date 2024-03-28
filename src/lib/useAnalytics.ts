@@ -8,7 +8,7 @@ import { useAppState } from './AppState';
 interface AnalyticsEvent {
   /** Document Title (title for the event) */
   dt: string;
-  /** Document Path i.e. /EX32%207RB/places?materialId=1&materialName=Aluminium */
+  /** Document Path i.e. /EX32 7RB/places?materialId=1&materialName=Aluminium */
   dp: string;
   /** Document Hostname */
   dh: string;

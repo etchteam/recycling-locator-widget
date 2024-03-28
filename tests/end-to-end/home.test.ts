@@ -59,7 +59,7 @@ describeEndToEndTest('Home recycling', () => {
       .first();
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32%207RB/home'),
+      node.setAttribute('path', '/EX32 7RB/home'),
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await expect(narrowAccessSchemeText).toBeVisible();
@@ -96,7 +96,7 @@ describeEndToEndTest('Home recycling', () => {
       .first();
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32%207RB/home'),
+      node.setAttribute('path', '/EX32 7RB/home'),
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     recyclingCentreTab.click();
@@ -119,7 +119,7 @@ describeEndToEndTest('Home recycling', () => {
       .first();
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32%207RB/home'),
+      node.setAttribute('path', '/EX32 7RB/home'),
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     contactTab.click();
@@ -156,7 +156,7 @@ describeEndToEndTest('Home recycling', () => {
     );
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32%207RB/home'),
+      node.setAttribute('path', '/EX32 7RB/home'),
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     kerbsideSchemeLink.click();

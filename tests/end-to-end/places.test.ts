@@ -24,7 +24,7 @@ describeEndToEndTest('Places', () => {
     const placeName = page.getByText(LocationsResponse.items[0].name).first();
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32%207RB/places'),
+      node.setAttribute('path', '/EX32 7RB/places'),
     );
 
     await page.waitForRequest(LOCATIONS_ENDPOINT);
@@ -37,7 +37,7 @@ describeEndToEndTest('Places', () => {
     const mockLocation = LocationsResponse.items[0];
 
     await page.route(
-      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25&lang=en-GB`,
+      `${config.locatorApiPath}locations/EX32 7RB?limit=30&radius=25&lang=en-GB`,
       (route) => {
         route.fulfill({
           json: {
@@ -52,7 +52,7 @@ describeEndToEndTest('Places', () => {
     );
 
     await page.route(
-      `${config.locatorApiPath}locations/EX32%207RB?limit=60&radius=25&lang=en-GB`,
+      `${config.locatorApiPath}locations/EX32 7RB?limit=60&radius=25&lang=en-GB`,
       (route) => {
         route.fulfill({
           json: {
@@ -77,7 +77,7 @@ describeEndToEndTest('Places', () => {
     });
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32%207RB/places'),
+      node.setAttribute('path', '/EX32 7RB/places'),
     );
     await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(placesCount30).toBeVisible();
@@ -103,14 +103,14 @@ describeEndToEndTest('Places', () => {
     });
 
     await page.route(
-      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25&lang=en-GB`,
+      `${config.locatorApiPath}locations/EX32 7RB?limit=30&radius=25&lang=en-GB`,
       (route) => {
         route.fulfill({ json: LocationsResponse });
       },
     );
 
     await page.route(
-      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25&materials=undefined&lang=en-GB`,
+      `${config.locatorApiPath}locations/EX32 7RB?limit=30&radius=25&materials=undefined&lang=en-GB`,
       (route) => {
         route.fulfill({
           json: {
@@ -122,7 +122,7 @@ describeEndToEndTest('Places', () => {
     );
 
     await page.route(
-      `${config.locatorApiPath}locations/EX32%207RB?limit=30&radius=25&materials=${ValidMaterialsResponse[0].id}&lang=en-GB`,
+      `${config.locatorApiPath}locations/EX32 7RB?limit=30&radius=25&materials=${ValidMaterialsResponse[0].id}&lang=en-GB`,
       (route) => {
         route.fulfill({ json: LocationsResponse });
       },
@@ -142,7 +142,7 @@ describeEndToEndTest('Places', () => {
       .first();
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32%207RB/places'),
+      node.setAttribute('path', '/EX32 7RB/places'),
     );
 
     await page.waitForRequest(LOCATIONS_ENDPOINT);
@@ -178,7 +178,7 @@ describeEndToEndTest('Places', () => {
       .first();
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32%207RB/places'),
+      node.setAttribute('path', '/EX32 7RB/places'),
     );
 
     await page.waitForRequest(LOCATIONS_ENDPOINT);
