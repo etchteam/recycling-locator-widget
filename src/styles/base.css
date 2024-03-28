@@ -5,6 +5,7 @@
 @import './utils.css';
 
 article {
+  background: var(--diamond-theme-background);
   container-type: inline-size;
   overflow-y: auto;
   position: relative;
