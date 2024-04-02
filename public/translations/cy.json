@@ -1,18 +1,18 @@
 {
   "common": {
-    "and": "a",
+    "and": "+",
     "miles_one": "milltir",
-    "miles_other": "milltiroedd",
+    "miles_other": "milltir",
     "materialsAccepted_one": "deunydd a dderbynnir",
-    "materialsAccepted_other": "deunyddiau wedi'u derbyn",
+    "materialsAccepted_other": "deunyddiau a dderbynnir",
     "popularSearches": "Chwiliadau poblogaidd"
   },
   "actions": {
-    "back": "Yn ol",
+    "back": "Yn ôl",
     "close": "Cau",
-    "search": "Chwiliwch",
-    "searchAgain": "Chwiliwch eto",
-    "tryAgain": "Ceisio eto",
+    "search": "Chwilio",
+    "searchAgain": "Chwilio eto",
+    "tryAgain": "Rhowch gynnig arall arni",
     "listPlaces": "Rhestru lleoedd",
     "showMap": "Dangos map",
     "showList": "Dangos rhestr",
@@ -24,30 +24,30 @@
   },
   "components": {
     "locationInput": {
-      "placeholder": "Rhowch dref neu god post...",
-      "error": "Rhowch leoliad"
+      "placeholder": "Nodwch dref neu god post…",
+      "error": "Nodwch leoliad"
     },
     "materialSearchInput": {
-      "placeholder": "Rhowch enw eitem...",
-      "error": "Rhowch enw eitem"
+      "placeholder": "Nodwch enw eitem…",
+      "error": "Nodwch enw eitem i chwilio amdani"
     },
     "menu": {
-      "whatdoYouWantToDo": "Beth ydych chi eisiau ei wneud?",
-      "changeLocation": "Newidiwch eich lleoliad",
+      "whatdoYouWantToDo": "Beth hoffech chi ei wneud?",
+      "changeLocation": "Newid eich lleoliad",
       "recycleSpecificItem": "Ailgylchu eitem benodol",
-      "homeRecycling": "Gwiriwch eich ailgylchu cartref",
+      "homeRecycling": "Gwirio eich ailgylchu o gartref",
       "findNearbyPlaces": "Dod o hyd i leoedd cyfagos i ailgylchu"
     },
     "container": {
       "subscription": "Gwasanaeth tanysgrifio – £{{cost}}",
       "notes": "Nodiadau am y bin hwn",
       "residualWaste": "Gwastraff gweddilliol",
-      "residualWasteDescription": "Dyma'r gwastraff sy'n cael ei adael ar ôl i'r deunyddiau ailgylchadwy gael eu gwahanu. Hyd yn oed os ydych yn wych am ailgylchu, bydd gennych rywfaint o wastraff gweddilliol o hyd.",
+      "residualWasteDescription": "Dyma’r gwastraff sydd dros ben wedi i’r deunyddiau ailgylchadwy gael eu gwahanu. Hyd yn oed os ydych chi’n ailgylchwr rhagorol, bydd gennych rywfaint o wastraff gweddilliol dros ben.",
       "#2d9cdb": "Glas",
-      "#1579c6": "Glas canol",
+      "#1579c6": "Glas canolig",
       "#2262b9": "Glas tywyll",
       "#56ccf2": "Glas golau",
-      "#d7e7f5": "Glas tawel",
+      "#d7e7f5": "Glas dwl",
       "#828282": "Llwyd",
       "#4f4f4f": "Du",
       "#bdbdbd": "Llwyd golau",
@@ -61,10 +61,10 @@
       "#ad7849": "Brown",
       "#f2994a": "Oren",
       "#ff649e": "Pinc",
-      "#d12767": "Magenta",
-      "#a62f5a": "Marwn",
+      "#d12767": "Majenta",
+      "#a62f5a": "Browngoch",
       "#9946db": "Porffor",
-      "#89c1ab": "Wy hwyaden",
+      "#89c1ab": "Gwyrddlas golau",
       "#ffffff00": "Tryloyw"
     },
     "schemeContainerSummary": {
@@ -86,21 +86,21 @@
     }
   },
   "error": {
-    "title": "Mae rhywbeth wedi mynd o'i le!",
-    "message": "Mae ein tîm wedi cael gwybod am y mater hwn.",
-    "label": "Gadewch i ni gael tro arall...",
-    "cta": "Dechrau eto"
+    "title": "Aeth rhywbeth o’i le!",
+    "message": "Mae ein tîm wedi cael gwybod am y broblem hon.",
+    "label": "Dewch inni roi cynnig arall arni…",
+    "cta": "Rhowch gynnig arall arni"
   },
   "notFound": {
     "title": {
-      "default": "Mae'n ddrwg gennym, ni allem ddod o hyd i'r lleoliad hwnnw.",
-      "notInTheUK": "Mae'n ddrwg gennym, nid yw'r gwasanaeth hwn ar gael yn eich ardal chi."
+      "default": "Sori, doedden ni ddim yn gallu dod o hyd i’r lleoliad hwnnw.",
+      "notInTheUK": "Sori, nid yw’r gwasanaeth hwn ar gael yn eich ardal chi."
     },
-    "ukOnly": "Dim ond rhanbarthau tir mawr y DU y mae’r data yn yr offeryn hwn yn eu cwmpasu.",
-    "label": "Rhowch gynnig ar leoliad arall?",
-    "button": "Chwiliwch eto",
+    "ukOnly": "Mae’r data yn yr offeryn hwn ar gyfer rhanbarthau tir mawr y DU yn unig.",
+    "label": "Rhoi cynnig ar leoliad arall?",
+    "button": "Chwilio eto",
     "aside": {
-      "content": "Mae gwybodaeth ailgylchu ar gael mewn mannau eraill ar gyfer y rhanbarthau hyn yn y DU:",
+      "content": "Mae gwybodaeth ailgylchu ar gael mewn lleoedd eraill ar gyfer y rhanbarthau hyn o’r DU:",
       "isleOfMan": "Ynys Manaw",
       "jersey": "Jersey",
       "guernsey": "Guernsey"
@@ -109,170 +109,171 @@
   "about": {
     "button": {
       "view": "Gweld gwybodaeth",
-      "close": "Gwybodaeth clos"
+      "close": "Cau gwybodaeth"
     },
-    "title": "Am y gwasanaeth hwn",
-    "intro": "Wedi'i bweru gan RecycleNow.com, gellir defnyddio'r offeryn hwn i chwilio a dod o hyd i leoliadau ailgylchu ledled y Deyrnas Unedig.",
+    "title": "Ynglŷn â’r gwasanaeth hwn",
+    "intro": "Caiff yr offeryn hwn ei bweru gan RecycleNow.com, a gellir ei ddefnyddio i chwilio a dod o hyd i leoliadau ailgylchu ledled y Deyrnas Unedig.",
     "becomeAPartner": {
-      "title": "Ychwanegwch yr offeryn hwn i'ch gwefan",
-      "description": "Mae wedi'i greu fel teclyn mewnosodadwy y gellir ei ychwanegu at unrhyw wefan i helpu ymwelwyr i ddarganfod mwy o opsiynau ailgylchu. Er enghraifft, gallai gwneuthurwr diodydd ddefnyddio'r offeryn i ddangos lleoedd i ailgylchu caniau diod.",
-      "cta": "Dod yn bartner",
+      "title": "Ychwanegu’r offeryn hwn at eich gwefan",
+      "description": "Mae wedi cael ei greu fel teclyn y gellir ei wreiddio, a gellir ei ychwanegu at unrhyw wefan i helpu ymwelwyr ddarganfod mwy o opsiynau ailgylchu. Er enghraifft, gallai cynhyrchwr diodydd ddefnyddio’r offeryn i ddangos lleoedd lle gellir ailgylchu caniau diodydd.",
+      "cta": "Bod yn bartner",
       "url": "https://wrap.org.uk/taking-action/citizen-behaviour-change/recycle-now/recycling-locator-tool"
     },
     "feedback": {
-      "title": "Gwella'r gwasanaeth hwn",
-      "description": "Rydym bob amser yn ceisio gwella’r offeryn hwn a byddai gennym ddiddordeb mewn clywed am eich profiad wrth ei ddefnyddio, boed yn dda neu’n ddrwg.",
+      "title": "Gwella’r gwasanaeth hwn",
+      "description": "Rydym bob amser yn awyddus i wella’r offeryn hwn a byddai gennym ddiddordeb clywed am eich profiad o’i ddefnyddio, boed dda neu ddrwg.",
       "cta": "Adborth ar yr offeryn hwn",
       "url": "https://wrapcymru.org.uk/contact-wrap-cymru"
     }
   },
   "start": {
-    "title": "Dod o hyd i leoedd i ailgylchu.",
-    "label": "Ble wyt ti?",
-    "cta": "Dechrau",
+    "title": "Dod o hyd i leoedd ailgylchu.",
+    "label": "Ble’r ydych chi?",
+    "cta": "Dechrau arni",
     "aside": {
       "paragraph": "Defnyddiwch y gwasanaeth hwn i:",
       "list": [
-        "gweld eich lleoedd agosaf i ailgylchu",
+        "weld eich lleoedd ailgylchu agosaf",
         "darganfod sut i ailgylchu eitem benodol",
-        "gwirio beth allwch chi ei ailgylchu gartref"
+        "gwirio beth allwch ei ailgylchu gartref"
       ]
     },
     "homeRecycling": {
-      "title": "Darganfyddwch beth allwch chi ei ailgylchu gartref."
+      "title": "Darganfyddwch beth allwch ei ailgylchu o gartref."
     },
     "material": {
       "title": "Dod o hyd i leoedd i ailgylchu {{material}}"
     }
   },
   "postcode": {
-    "title": "Beth sydd angen i chi ei ailgylchu?",
-    "exploreTheMap": "Archwiliwch y map",
+    "title": "Beth hoffech chi ei ailgylchu?",
+    "exploreTheMap": "Pori’r map",
     "options": {
-      "home": "Casgliad ailgylchu cartref",
+      "home": "Casgliad ailgylchu o gartref",
       "nearest": "Lleoedd agosaf i ailgylchu"
     }
   },
   "material": {
     "title": "Ailgylchu eitem benodol",
-    "loading": "Wrthi'n chwilio'r ardal hon...",
+    "loading": "Chwilio’r ardal hon…",
     "hero": {
-      "yes": "Oes, gellir ei ailgylchu!",
-      "no": "Na, ni ellir ei ailgylchu!"
+      "yes": "Oes, mae modd ei ailgylchu!",
+      "no": "Na, nid oes modd ei ailgylchu!"
     },
     "recycleAtHome": {
-      "cta": "Gwiriwch eich casgliad cartref",
+      "cta": "Gwirio eich casgliad o gartref",
       "noProperties": {
-        "title": "Ni ellir ailgylchu'r eitem hon gartref",
-        "content": "Gwiriwch beth allwch chi ei roi yn eich biniau ailgylchu cartref ac a oes gennych chi gasgliad gwastraff bwyd a gardd."
+        "title": "Ni ellir ailgylchu’r eitem hon o gartref",
+        "content": "Gwirio beth allwch ei roi yn eich biniau ailgylchu gartref ac a oes gennych gasgliad gwastraff bwyd a gwastraff gardd."
       },
       "manyProperties": {
         "title": "Ailgylchu gartref",
-        "collectionSome": "Cesglir yr eitem hon o rai eiddo yn yr ardal.",
-        "collectionAll": "Cesglir yr eitem hon o bob eiddo yn yr ardal."
+        "collectionSome": "Cesglir yr eitem hon o <bold>rai cartrefi</bold> yn yr ardal.",
+        "collectionAll": "Cesglir yr eitem hon o <bold>bob cartref</bold> yn yr ardal."
       },
       "oneProperty": {
         "title": "Ailgylchu gartref",
         "collection_one": "Cesglir yr eitem hon yn y bin hwn:",
-        "collection_other": "Cesglir yr eitem hon yn y biniau hyn:"
+        "collection_other": "Cesglir yr eitemau hyn yn y biniau hyn:"
       }
     },
     "nearbyPlaces": {
       "noPlaces": {
-        "title": "Nid oes unrhyw leoedd cyfagos i ailgylchu'r eitem hon.",
-        "content": "Dim lleoedd o fewn 25 milltir i {{ postcode }}"
+        "title": "Nid oes unrhyw leoedd cyfagos i ailgylchu’r eitem hon.",
+        "content": "Nid oes lle o fewn 25 milltir o {{ postcode }}"
       },
       "places": {
-        "title": "Ailgylchu mewn man cyfagos",
-        "content_one": "Gellir ailgylchu'r eitem hon mewn <bold>1 lle</bold> yn yr ardal.",
-        "content_other": "Mae modd ailgylchu'r eitem hon mewn <bold>{{count}} o lefydd</bold> yn yr ardal.",
-        "contentThirtyPlus": "Gellir ailgylchu'r eitem hon mewn 30+ o leoedd yn yr ardal."
+        "title": "Ailgylchu mewn lle cyfagos",
+        "content_one": "Gellir ailgylchu’r eitem hon mewn <bold>1 lle </bold> yn yr ardal.",
+        "content_other": "Gellir ailgylchu’r eitem hon mewn <bold>{{count}} lle </bold> yn yr ardal.",
+        "contentThirtyPlus": "Gellir ailgylchu’r eitem hon mewn 30+ lle yn yr ardal."
       }
     },
     "search": {
-      "notFound": "Ni allem ddod o hyd i gyfatebiaeth ar gyfer",
-      "help": "Ceisiwch ddefnyddio enw arall ar ei gyfer, neu chwiliwch am eitem neu ddeunydd tebyg."
+      "notFound": "Doedden ni ddim yn gallu dod o hyd i ateb i gyd-fynd â",
+      "help": "Ceisiwch ddefnyddio enw arall arno, neu chwiliwch am eitem neu ddeunydd tebyg."
     },
     "error": {
-      "message": "Digwyddodd gwall annisgwyl wrth chwilio am leoedd i ailgylchu'r eitem hon."
+      "message": "Bu gwall annisgwyl wrth chwilio am leoedd i ailgylchu’r eitem hon."
     }
   },
   "homeRecycling": {
-    "title": "Ailgylchu Cartref",
+    "title": "Ailgylchu Gartref",
     "nav": {
       "collections": "Casgliadau",
       "hwrc": "Canolfan Ailgylchu",
-      "contact": "Cysylltwch"
+      "contact": "Cysylltu"
     },
     "aside": {
-      "paragraph": "Cysylltwch â’r darparwr gwasanaeth hwn os oes angen:",
+      "paragraph": "Cysylltwch â’r darparwr gwasanaeth hwn os oes angen ichi:",
       "list": [
-        "Rhoi gwybod am gasgliad a gollwyd",
-        "Archebwch finiau ychwanegol",
-        "Trefnwch gasgliad o eitemau mawr neu swmpus"
+        "Ddweud am gasgliad a fethwyd",
+        "Archebu biniau ychwanegol",
+        "Trefnu casgliad ar gyfer eitemau mawr neu swmpus"
       ]
     },
     "collections": {
-      "title": "Gwiriwch beth allwch chi ei roi yn eich ailgylchu cartref.",
-      "help": "Dewiswch eich bin i weld manylion y casgliad."
+      "title": "Gwiriwch beth allwch ei roi yn eich ailgylchu gartref.",
+      "help": "Dewiswch eich bin i weld eich manylion casglu."
     },
     "collection": {
       "title": "Casgliadau Ailgylchu",
       "search": {
-        "label": "Gwiriwch beth sy'n mynd ym mhob bin",
-        "positive_one": "Oes, gellir ei ailgylchu yn y bin canlynol...",
-        "positive_other": "Oes, gellir ei ailgylchu yn y biniau canlynol...",
-        "negative": "Na, ni ellir ei ailgylchu yn y biniau canlynol..."
+        "label": "Gwiriwch beth sy’n mynd i bob bin",
+        "positive_one": "Oes, mae modd ei ailgylchu yn y bin canlynol…",
+        "positive_other": "Oes, mae modd ei ailgylchu yn y biniau canlynol…",
+        "negative": "Ni dderbynnir yr eitem hon gan y casgliad ailgylchu o gartref hwn"
       }
     },
     "hwrc": {
-      "title": "Ewch ag eitemau i Ganolfan Ailgylchu yn eich ardal.",
+      "title": "Mynd ag eitemau i Ganolfan Ailgylchu yn eich ardal.",
       "content_zero": "Dim Canolfannau Ailgylchu o fewn 25 milltir",
       "content_one": "1 Canolfan Ailgylchu o fewn 25 milltir",
       "content_other": "{{ count }} Canolfan Ailgylchu o fewn 25 milltir",
-      "contentThirtyPlus": "30+ o Ganolfannau Ailgylchu o fewn 25 milltir",
-      "info": "Mae rhai Canolfannau Ailgylchu ar agor i drigolion lleol yn unig. Gwiriwch cyn i chi wneud eich taith.",
+      "contentThirtyPlus": "30+ Canolfan Ailgylchu o fewn 25 milltir",
+      "info": "Mae rhai Canolfannau Ailgylchu ar agor i breswylwyr lleol yn unig. Gwiriwch cyn ichi wneud y siwrne.",
       "nearbyPlaces": {
-        "title": "Ailgylchu mewn man cyfagos",
-        "content_zero": "Dim lleoedd o fewn 25 milltir",
+        "title": "Ailgylchu mewn lle cyfagos",
+        "content_zero": "Dim lle o fewn 25 milltir",
         "content_one": "1 lle o fewn 25 milltir",
         "content_other": "{{count}} lle o fewn 25 milltir",
-        "contentThirtyPlus": "30+ o leoedd o fewn 25 milltir"
+        "contentThirtyPlus": "30+ lle o fewn 25 milltir"
       }
     },
     "contact": {
-      "title": "Dewch o hyd i ragor o wybodaeth am y gwasanaethau yn eich ardal.",
+      "title": "Mwy o wybodaeth am y gwasanaethau yn eich ardal chi.",
       "website": "Gwefan",
-      "phone": "Ffon",
+      "phone": "Ffôn",
       "address": "Cyfeiriad",
       "notes": {
         "title": "Nodiadau",
-        "paragraphOne": "Cysylltwch â’ch cyngor os ydych:",
+        "paragraphOne": "Cysylltwch â’ch cyngor os:",
         "list": [
-          "yn newydd i'r ardal",
+          "ydych chi’n newydd i’r ardal",
           "nad oes gennych gynhwysydd",
-          "yn ansicr pa un i'w ddefnyddio"
+          "ydych yn ansicr pa un i’w ddefnyddio"
         ],
-        "paragraphTwo": "Byddant hefyd yn gallu dweud wrthych pryd mae pob casgliad wedi'i amserlennu."
+        "paragraphTwo": "Bydd y cyngor hefyd yn gallu dweud wrthych chi pa bryd mae pob casgliad wedi’i drefnu."
       }
     },
     "error": {
-      "message": "Digwyddodd gwall annisgwyl wrth ddod o hyd i'ch gwybodaeth ailgylchu cartref."
+      "message": "Bu gwall annisgwyl wrth ddod o hyd i’ch gwybodaeth ailgylchu o gartref."
     }
   },
   "places": {
     "title": "Lleoedd i ailgylchu",
-    "count_zero": "Nid oes unrhyw leoedd o fewn 25 milltir yn cyfateb i'r chwiliad hwn",
-    "count_one": "{{count}} lle cyfagos o fewn 25 milltir",
+    "count_zero": "Dim lle o fewn 25 milltir",
+    "count_one": "1 lle cyfagos o fewn 25 milltir",
     "count_other": "{{count}} lle agosaf o fewn 25 milltir",
-    "searchPlaceholder": "Ailgylchu eitem benodol...",
-    "loading": "Wrthi'n chwilio'r ardal hon...",
+    "searchPlaceholder": "Ailgylchu eitem benodol…",
+    "loading": "Chwilio’r ardal hon…",
     "viewAll": "Gweld pob man cyfagos",
     "search": {
       "title": "Ailgylchu eitem benodol",
-      "label": "Beth sydd angen i chi ei ailgylchu?",
+      "label": "Beth hoffech chi ei ailgylchu?",
       "nav": {
         "search": "Chwiliwch",
+        "categories": "Categorïau",
         "aToZ": "A-Y"
       },
       "aToZ": {
@@ -281,10 +282,10 @@
       }
     },
     "map": {
-      "searchThisArea": "Chwiliwch yr ardal hon"
+      "searchThisArea": "Chwilio’r ardal hon"
     },
     "error": {
-      "message": "Digwyddodd gwall annisgwyl wrth chwilio am leoedd i ailgylchu yn yr ardal hon."
+      "message": "Bu gwall annisgwyl wrth chwilio am leoedd i ailgylchu yn yr ardal hon."
     }
   },
   "place": {
@@ -293,23 +294,23 @@
       "details": "Manylion"
     },
     "recycle": {
-      "title": "Gwiriwch beth allwch chi ei ailgylchu yn y lle hwn",
+      "title": "Gwirio beth allwch ei ailgylchu yn y lle hwn",
       "search": {
-        "positive": "Oes, gellir ei ailgylchu yn y lle hwn!",
-        "negative": "Na, ni ellir ei ailgylchu yn y lle hwn."
+        "positive": "Oes, mae modd ei ailgylchu yn y lle hwn!",
+        "negative": "Na, nid oes modd ei ailgylchu yn y lle hwn."
       }
     },
     "details": {
-      "title": "Am y lle hwn",
+      "title": "Ynglŷn â’r lle hwn",
       "address": "Cyfeiriad",
-      "phone": "Ffon",
+      "phone": "Ffôn",
       "website": "Gwefan",
-      "openingHours": "Oriau agor",
+      "openingHours": "Oriau",
       "collectionDetails": "Manylion y casgliad",
       "notes": "Nodiadau"
     },
     "error": {
-      "message": "Digwyddodd gwall annisgwyl wrth lwytho'r lle hwn."
+      "message": "Bu gwall annisgwyl wrth lwytho’r lle hwn."
     }
   }
 }

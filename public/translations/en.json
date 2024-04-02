@@ -24,11 +24,11 @@
   },
   "components": {
     "locationInput": {
-      "placeholder": "Enter a town or postcode...",
+      "placeholder": "Enter a town or postcode…",
       "error": "Please enter a location"
     },
     "materialSearchInput": {
-      "placeholder": "Enter the name of an item...",
+      "placeholder": "Enter the name of an item…",
       "error": "Please enter the name of an item"
     },
     "menu": {
@@ -86,7 +86,7 @@
   "error": {
     "title": "Something’s gone wrong!",
     "message": "Our team has been notified about this issue.",
-    "label": "Let’s have another go...",
+    "label": "Let’s have another go…",
     "cta": "Start again"
   },
   "notFound": {
@@ -153,7 +153,7 @@
   },
   "material": {
     "title": "Recycle a specific item",
-    "loading": "Searching this area...",
+    "loading": "Searching this area…",
     "hero": {
       "yes": "Yes, it can be recycled!",
       "no": "No, it can’t be recycled!"
@@ -218,9 +218,9 @@
       "title": "Recycling Collections",
       "search": {
         "label": "Check what goes in each bin",
-        "positive_one": "Yes, it can be recycled in the following bin...",
-        "positive_other": "Yes, it can be recycled in the following bin...",
-        "negative": "No, it can’t be recycled in the following bins..."
+        "positive_one": "Yes, it can be recycled in the following bin…",
+        "positive_other": "Yes, it can be recycled in the following bin…",
+        "negative": "No, it can’t be recycled in the following bins…"
       }
     },
     "hwrc": {
@@ -263,14 +263,15 @@
     "count_zero": "No places within 25 miles match this search",
     "count_one": "{{count}} nearby place within 25 miles",
     "count_other": "{{count}} nearest places within 25 miles",
-    "searchPlaceholder": "Recycle a specific item...",
-    "loading": "Searching this area...",
+    "searchPlaceholder": "Recycle a specific item…",
+    "loading": "Searching this area…",
     "viewAll": "View all nearby places",
     "search": {
       "title": "Recycle a specific item",
       "label": "What do you need to recycle?",
       "nav": {
         "search": "Search",
+        "categories": "Categories",
         "aToZ": "A-Z"
       },
       "aToZ": {
