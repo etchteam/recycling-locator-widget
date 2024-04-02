@@ -1,3 +1,10 @@
+## [1.26.0](https://github.com/etchteam/recycling-locator/compare/v1.25.0...v1.26.0) (2024-04-02)
+
+
+### Features
+
+* translations ([a9a0310](https://github.com/etchteam/recycling-locator/commit/a9a03108cba0f54bdd9fb96ef5214796c9730972))
+
 ## [1.25.0](https://github.com/etchteam/recycling-locator/compare/v1.24.2...v1.25.0) (2024-03-28)
 
 
