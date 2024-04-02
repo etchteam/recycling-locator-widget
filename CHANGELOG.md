@@ -1,3 +1,10 @@
+## [1.27.0](https://github.com/etchteam/recycling-locator/compare/v1.26.0...v1.27.0) (2024-04-02)
+
+
+### Features
+
+* new illustrations ([c47c20f](https://github.com/etchteam/recycling-locator/commit/c47c20fe5e2ca0a1a292b6485948b8f3b9c1301f))
+
 ## [1.26.0](https://github.com/etchteam/recycling-locator/compare/v1.25.0...v1.26.0) (2024-04-02)
 
 
