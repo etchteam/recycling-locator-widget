@@ -16,6 +16,8 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/composition/BorderedList/BorderedList';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import PopularMaterials from '@/components/template/PopularMaterials/PopularMaterials';
+import TipContent from '@/components/template/TipContent/TipContent';
+import config from '@/config';
 import useFormValidation from '@/lib/useFormValidation';
 import { Material } from '@/types/locatorApi';
 
@@ -26,10 +28,9 @@ export default function MaterialSearchPage() {
   const { postcode } = useParams();
   const form = useFormValidation('search');
   const [searchParams] = useSearchParams();
-  const { data } = useLoaderData() as {
-    data: Promise<MaterialSearchLoaderResponse>;
-  };
   const materialName = searchParams.get('name');
+  const { popularMaterials: popularMaterialsPromise, tip: tipPromise } =
+    useLoaderData() as MaterialSearchLoaderResponse;
 
   useEffect(() => {
     form.submitting.value = false;
@@ -42,42 +43,64 @@ export default function MaterialSearchPage() {
   }
 
   return (
-    <locator-wrap>
-      <diamond-section padding="lg">
-        {materialName && (
-          <h3>
-            {t('material.search.notFound')}{' '}
-            <span className="diamond-text-weight-bold">
-              {materialName.toLocaleLowerCase()}
-            </span>
-          </h3>
-        )}
-        <Form method="post" onSubmit={form.handleSubmit}>
-          <diamond-form-group>
-            <label htmlFor="locator-material-input">
-              {t('actions.searchAgain')}
-            </label>
-            <MaterialSearchInput
-              handleBlur={form.handleBlur}
-              handleInput={form.handleInput}
-              submitting={form.submitting.value}
-              valid={form.valid.value}
-            ></MaterialSearchInput>
-            <p className="diamond-text-size-sm">{t('material.search.help')}</p>
-          </diamond-form-group>
-        </Form>
+    <>
+      <div slot="layout-main">
+        <locator-wrap>
+          <diamond-section padding="lg">
+            <diamond-enter type="fade">
+              {materialName && (
+                <h3>
+                  {t('material.search.notFound')}{' '}
+                  <span className="diamond-text-weight-bold">
+                    {materialName.toLocaleLowerCase()}
+                  </span>
+                </h3>
+              )}
+              <Form method="post" onSubmit={form.handleSubmit}>
+                <diamond-form-group>
+                  <label htmlFor="locator-material-input">
+                    {t('actions.searchAgain')}
+                  </label>
+                  <MaterialSearchInput
+                    handleBlur={form.handleBlur}
+                    handleInput={form.handleInput}
+                    submitting={form.submitting.value}
+                    valid={form.valid.value}
+                  ></MaterialSearchInput>
+                  <p className="diamond-text-size-sm">
+                    {t('material.search.help')}
+                  </p>
+                </diamond-form-group>
+              </Form>
+            </diamond-enter>
 
-        <Suspense fallback={/* No loading UI necessary */ null}>
-          <Await resolve={data}>
-            {({ popularMaterials }) => (
-              <PopularMaterials
-                materials={popularMaterials}
-                generatePath={generatePopularMaterialPath}
-              />
-            )}
-          </Await>
-        </Suspense>
-      </diamond-section>
-    </locator-wrap>
+            <Suspense fallback={/* No loading UI necessary */ null}>
+              <Await resolve={popularMaterialsPromise}>
+                {(popularMaterials) => (
+                  <PopularMaterials
+                    materials={popularMaterials}
+                    generatePath={generatePopularMaterialPath}
+                  />
+                )}
+              </Await>
+            </Suspense>
+          </diamond-section>
+        </locator-wrap>
+      </div>
+      <locator-tip slot="layout-aside" text-align="center">
+        <locator-wrap>
+          <img
+            className="diamond-spacing-bottom-sm"
+            src={config.imagePath + 'material-tip.svg'}
+            alt=""
+          />
+          <Suspense fallback={null}>
+            <Await resolve={tipPromise}>
+              {(tip) => <TipContent tip={tip} />}
+            </Await>
+          </Suspense>
+        </locator-wrap>
+      </locator-tip>
+    </>
   );
 }

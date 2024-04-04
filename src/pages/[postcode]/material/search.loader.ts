@@ -2,30 +2,25 @@ import * as Sentry from '@sentry/browser';
 import { defer } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
-import { Material } from '@/types/locatorApi';
+import { getTipByPath } from '@/lib/getTip';
+import { Material, RecyclingMeta } from '@/types/locatorApi';
 
 export interface MaterialSearchLoaderResponse {
-  popularMaterials: Material[];
+  popularMaterials: Promise<Material[]>;
+  tip: Promise<RecyclingMeta>;
 }
 
-async function getData(): Promise<MaterialSearchLoaderResponse> {
-  try {
-    const popularMaterials = await LocatorApi.get<Material[]>(
-      'materials?popular=true',
-    );
-
-    return {
-      popularMaterials,
-    };
-  } catch (error) {
+export default async function materialSearchLoader() {
+  const popularMaterials = LocatorApi.get<Material[]>(
+    'materials?popular=true',
+  ).catch((error) => {
     Sentry.captureException(error, {
       tags: { route: 'Material search loader' },
     });
-    // Let the user carry on without the popularMaterials
-    return Promise.resolve({ popularMaterials: [] });
-  }
-}
+    return Promise.resolve([]);
+  });
 
-export default function materialSearchLoader() {
-  return defer({ data: getData() });
+  const tip = getTipByPath('/:postcode/material/search');
+
+  return defer({ popularMaterials, tip });
 }
