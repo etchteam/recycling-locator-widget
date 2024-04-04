@@ -17,9 +17,8 @@ const routes: RouteObject[] = [
       {
         index: true,
         element: <MaterialPage />,
-        loader: materialLoader,
-        id: 'material',
         errorElement: <MaterialErrorPage />,
+        loader: materialLoader,
       },
       {
         path: 'search',
