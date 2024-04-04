@@ -58,8 +58,10 @@ function MaterialPageContent({
     <diamond-enter type="fade">
       <locator-hero variant={recyclable ? 'positive' : 'negative'}>
         <locator-wrap>
-          <locator-icon icon={recyclable ? 'tick-circle' : 'cross-circle'} />
-          <h3>{t(`material.hero.${recyclable ? 'yes' : 'no'}`)}</h3>
+          <diamond-enter type="fade" delay={0.4}>
+            <locator-icon icon={recyclable ? 'tick-circle' : 'cross-circle'} />
+            <h3>{t(`material.hero.${recyclable ? 'yes' : 'no'}`)}</h3>
+          </diamond-enter>
         </locator-wrap>
       </locator-hero>
       <diamond-enter type="fade-in-up" delay={0.25}>
