@@ -19,14 +19,16 @@ test('sorts properties in the correct order', () => {
     },
   };
 
-  expect(Object.keys(LocalAuthorityMock.properties)).toBe([
+  expect(Object.keys(LocalAuthorityMock.properties)).toStrictEqual([
     PROPERTY_TYPE.ALL,
     PROPERTY_TYPE.KERBSIDE,
     PROPERTY_TYPE.NARROW_ACCESS,
     PROPERTY_TYPE.FLATS_WITH_INDIVIDUAL_BINS,
   ]);
 
-  expect(Object.keys(sortPropertyTypes(LocalAuthorityMock.properties))).toBe([
+  expect(
+    Object.keys(sortPropertyTypes(LocalAuthorityMock.properties)),
+  ).toStrictEqual([
     PROPERTY_TYPE.KERBSIDE,
     PROPERTY_TYPE.FLATS_WITH_INDIVIDUAL_BINS,
     PROPERTY_TYPE.NARROW_ACCESS,
