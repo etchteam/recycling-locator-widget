@@ -1,3 +1,25 @@
+## [1.28.0](https://github.com/etchteam/recycling-locator/compare/v1.27.0...v1.28.0) (2024-04-05)
+
+
+### Features
+
+* home recycling loading and scroll restoration ([7dbbc16](https://github.com/etchteam/recycling-locator/commit/7dbbc1675ebe84f66c9352688634d34992998ab3))
+* place detail loading and view transitions ([be9008c](https://github.com/etchteam/recycling-locator/commit/be9008c0d3c1f97eb9cff544b119ae5bd2948c3d))
+* places loading and view transitions ([c257ca6](https://github.com/etchteam/recycling-locator/commit/c257ca6bdb291d2128a7fdf55f18db45b254bd50))
+* postcode view loading refinements ([a314292](https://github.com/etchteam/recycling-locator/commit/a3142929fd78b7f4baf90675cd122a508ad275a8))
+
+
+### Bug Fixes
+
+* disable percy and fix home collection page loading ([f40ea8f](https://github.com/etchteam/recycling-locator/commit/f40ea8ff183a29cfc2ec6a4d308c532e70df6b34))
+* end to end tests ([dc57ab1](https://github.com/etchteam/recycling-locator/commit/dc57ab104a6d5d836c935c7f50f3c437fcb3e387))
+* hero content jump ([b04015e](https://github.com/etchteam/recycling-locator/commit/b04015ed44a2e4d70ed9e0bdf27354d705bf625e))
+* material autocomplete overlap ([356ccaf](https://github.com/etchteam/recycling-locator/commit/356ccaf45a4776c24f331d9ea0acf605aae4d006))
+* material view transitions ([e7546d8](https://github.com/etchteam/recycling-locator/commit/e7546d8972156ec03ac29c6392672bf60977819e))
+* recycling meta calls not being mocked ([fda37ee](https://github.com/etchteam/recycling-locator/commit/fda37eef6c4cb291b62c7bada9e8be375c32de2a))
+* remove unecessary route id ([85aac80](https://github.com/etchteam/recycling-locator/commit/85aac80142e183180aa893a0052e3664e1a60153))
+* sort by property type test ([b92d688](https://github.com/etchteam/recycling-locator/commit/b92d688b55a1890f4347646315e606949b43f2d2))
+
 ## [1.27.0](https://github.com/etchteam/recycling-locator/compare/v1.26.0...v1.27.0) (2024-04-02)
 
 
