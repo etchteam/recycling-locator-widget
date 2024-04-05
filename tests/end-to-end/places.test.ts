@@ -61,6 +61,10 @@ describeEndToEndTest('Places', () => {
               ...mockLocation,
               id: i,
             })),
+            pagination: {
+              total: 60,
+              page: 1,
+            },
           },
         });
       },

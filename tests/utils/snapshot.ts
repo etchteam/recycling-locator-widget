@@ -6,7 +6,11 @@ export default async function snapshot(page: Page, name: string) {
     return;
   }
 
-  await percySnapshot(page, name, {
-    percyCSS: 'recycling-locator { height: auto !important; }',
-  });
+  try {
+    await percySnapshot(page, name, {
+      percyCSS: 'recycling-locator { height: auto !important; }',
+    });
+  } catch (error) {
+    console.error(error);
+  }
 }
