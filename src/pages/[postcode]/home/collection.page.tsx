@@ -54,6 +54,9 @@ function CollectionPageContent({
   const propertyType = searchParams.get('propertyType') ?? propertyTypes[0];
   const menuOpen = useSignal(false);
   const property = properties[propertyType];
+  const isLoadingNewPath =
+    navigation.state === 'loading' &&
+    !navigation.location?.search.includes(propertyType.replace(' ', '+'));
 
   useEffect(() => {
     if (search) {
@@ -79,7 +82,7 @@ function CollectionPageContent({
             <details ref={menuRef}>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
               <summary onClick={() => (menuOpen.value = !menuOpen.value)}>
-                {menuOpen.value || navigation.state === 'loading'
+                {menuOpen.value || isLoadingNewPath
                   ? 'Collections in this area'
                   : propertyType}
                 <locator-icon icon="expand" />
@@ -112,7 +115,7 @@ function CollectionPageContent({
           <span className="diamond-text-weight-bold">{propertyType}</span>
         )}
       </locator-context-header>
-      {navigation.state !== 'loading' && (
+      {!isLoadingNewPath && (
         <diamond-enter type="fade">
           <diamond-section padding="lg">
             <locator-wrap>
