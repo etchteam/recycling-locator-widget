@@ -106,6 +106,7 @@ export interface Location {
     source: 'valpak' | 'wrap';
     materials: MaterialWithCategory[];
   }[];
+  error?: string;
 }
 
 export interface LocationsResponse {
