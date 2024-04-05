@@ -14,3 +14,8 @@
 .text-color-negative {
   color: var(--color-red-dark);
 }
+
+.layer-one {
+  position: relative;
+  z-index: var(--layer-one);
+}

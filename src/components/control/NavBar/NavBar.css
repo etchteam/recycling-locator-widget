@@ -4,7 +4,7 @@ locator-nav-bar {
   display: block;
   position: sticky;
   top: calc(var(--header-height) + 1px);
-  z-index: 1;
+  z-index: var(--layer-two);
 
   locator-layout:not(:has([slot='layout-aside'])) & {
     top: 0;

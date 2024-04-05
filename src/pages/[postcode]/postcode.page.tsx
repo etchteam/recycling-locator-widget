@@ -120,7 +120,7 @@ export default function PostcodePage() {
       </locator-context-header>
       <locator-wrap>
         <diamond-section padding="lg">
-          <diamond-enter type="fade">
+          <diamond-enter type="fade" className="layer-one">
             <h2
               id="material-search-title"
               className="diamond-text-size-h3 diamond-spacing-bottom-md"

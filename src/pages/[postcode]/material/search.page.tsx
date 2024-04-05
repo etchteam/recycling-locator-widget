@@ -47,7 +47,7 @@ export default function MaterialSearchPage() {
       <div slot="layout-main">
         <locator-wrap>
           <diamond-section padding="lg">
-            <diamond-enter type="fade">
+            <diamond-enter type="fade" className="layer-one">
               {materialName && (
                 <h3>
                   {t('material.search.notFound')}{' '}

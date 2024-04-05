@@ -61,7 +61,7 @@ locator-material-search-input {
     position: absolute;
     top: 100%;
     width: 100%;
-    z-index: 1;
+    z-index: var(--layer-one);
 
     &[data-headlessui-state='open'] {
       display: block;
