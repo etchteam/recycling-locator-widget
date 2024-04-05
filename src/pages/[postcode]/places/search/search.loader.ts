@@ -5,27 +5,18 @@ import LocatorApi from '@/lib/LocatorApi';
 import { Material } from '@/types/locatorApi';
 
 export interface PlacesSearchLoaderResponse {
-  popularMaterials: Material[];
-}
-
-async function getData(): Promise<PlacesSearchLoaderResponse> {
-  try {
-    const popularMaterials = await LocatorApi.get<Material[]>(
-      'materials?popular=true',
-    );
-
-    return {
-      popularMaterials,
-    };
-  } catch (error) {
-    Sentry.captureException(error, {
-      tags: { route: 'Places search loader' },
-    });
-    // Let the user carry on without the popularMaterials
-    return Promise.resolve({ popularMaterials: [] });
-  }
+  popularMaterials: Promise<Material[]>;
 }
 
 export default async function placesSearchLoader() {
-  return defer({ data: getData() });
+  const popularMaterials = LocatorApi.get<Material[]>(
+    'materials?popular=true',
+  ).catch((error) => {
+    Sentry.captureException(error, {
+      tags: { route: 'Places search loader' },
+    });
+    return Promise.resolve([]);
+  });
+
+  return defer({ popularMaterials });
 }

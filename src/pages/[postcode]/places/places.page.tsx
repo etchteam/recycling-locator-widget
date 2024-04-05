@@ -4,8 +4,8 @@ import {
   Await,
   FetcherWithComponents,
   Link,
-  useAsyncValue,
   useFetcher,
+  useNavigation,
   useParams,
   useSearchParams,
 } from 'react-router-dom';
@@ -27,6 +27,7 @@ import config from '@/config';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import formatPostcode from '@/lib/formatPostcode';
 import useAnalytics from '@/lib/useAnalytics';
+import { LocationsResponse } from '@/types/locatorApi';
 
 import { PlacesLoaderResponse, usePlacesLoaderData } from './places.loader';
 
@@ -61,23 +62,26 @@ function Loading() {
   );
 }
 
-function Places() {
+function Places({
+  locations: loadedLocations,
+}: {
+  readonly locations: LocationsResponse;
+}) {
   const { postcode } = useParams();
   const { t } = useTranslation();
-  const loaderData = useAsyncValue() as PlacesLoaderResponse;
-  const fetcher = useFetcher() as FetcherWithComponents<{
-    data: PlacesLoaderResponse;
-  }>;
+  const fetcher = useFetcher() as FetcherWithComponents<PlacesLoaderResponse>;
   const [searchParams, setSearchParams] = useSearchParams();
+  const materialId = searchParams.get('materialId');
 
   // The loader is used initially then the fetcher is used to load more
-  const count =
-    fetcher.data?.data.locations?.length ?? loaderData.locations.length;
-  const allLocations = fetcher.data?.data.locations ?? loaderData.locations;
-  const showLocations = count > 0 && loaderData.materialId !== 'undefined';
-  const showLoadMore =
-    showLocations && !fetcher.data?.data.max && !loaderData.max;
-  const currentPage = fetcher.data?.data.page ?? loaderData.page;
+  const fetchedLocations = fetcher.data?.locations;
+  const locations = (fetchedLocations ?? loadedLocations) as LocationsResponse;
+  const count = locations.items.length;
+  const showLocations = count > 0 && materialId !== 'undefined';
+  const limit = locations.pagination.total;
+  const currentPage = limit / 30;
+  const maxLimit = 120;
+  const showLoadMore = showLocations && count >= limit && limit !== maxLimit;
 
   const handleResetSearch = () => {
     searchParams.delete('materialId');
@@ -98,7 +102,7 @@ function Places() {
           <locator-places-grid className="diamond-spacing-bottom-lg">
             <nav aria-labelledby="places-count">
               <ul>
-                {allLocations.map((location) => {
+                {locations.items.map((location) => {
                   const locationPostcode =
                     PostCodeResolver.extractPostcodeFromString(
                       location.address,
@@ -159,13 +163,13 @@ function Places() {
             large-tablet="4"
           >
             <fetcher.Form method="GET" action={`/${postcode}/places`}>
-              <input type="hidden" name="page" value={currentPage + 1} />
-              {loaderData.materialId && (
-                <input
-                  type="hidden"
-                  name="materialId"
-                  value={loaderData.materialId}
-                />
+              <input
+                type="hidden"
+                name="page"
+                value={Number(currentPage) + 1}
+              />
+              {materialId && (
+                <input type="hidden" name="materialId" value={materialId} />
               )}
               <diamond-button width="full-width">
                 <button type="submit" disabled={fetcher.state !== 'idle'}>
@@ -182,11 +186,16 @@ function Places() {
 
 export default function PlacesPage() {
   const { t } = useTranslation();
+  const navigation = useNavigation();
   const { postcode } = useParams();
   const { recordEvent } = useAnalytics();
-  const { data } = usePlacesLoaderData();
+  const { locations: locationsPromise, tip: tipPromise } =
+    usePlacesLoaderData();
   const [searchParams] = useSearchParams();
   const materialName = searchParams.get('materialName');
+  const isLoadingCurrentPath =
+    navigation.state === 'loading' &&
+    navigation.location.pathname === `/${postcode}/places`;
 
   useEffect(() => {
     recordEvent({
@@ -199,17 +208,21 @@ export default function PlacesPage() {
     <locator-wrap max-width="none" gutter="fluid">
       <diamond-section padding="md">
         <section className="diamond-spacing-bottom-lg">
-          <Suspense fallback={<Loading />}>
-            <Await resolve={data}>
-              <Places />
-            </Await>
-          </Suspense>
+          {isLoadingCurrentPath ? (
+            <Loading />
+          ) : (
+            <Suspense fallback={<Loading />}>
+              <Await resolve={locationsPromise}>
+                {(locations) => <Places locations={locations} />}
+              </Await>
+            </Suspense>
+          )}
         </section>
       </diamond-section>
       <section>
         <Suspense fallback={null}>
-          <Await resolve={data}>
-            {({ tip }) => (
+          <Await resolve={tipPromise}>
+            {(tip) => (
               <diamond-enter type="fade-in-up">
                 <locator-tip text-align="center" wrap="wrap">
                   <img src={config.imagePath + 'material-tip.svg'} alt="" />

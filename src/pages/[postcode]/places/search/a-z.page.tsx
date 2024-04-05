@@ -1,22 +1,28 @@
 import groupBy from 'lodash/groupBy';
+import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Link, useLoaderData, useParams } from 'react-router-dom';
+import { Await, Link, useLoaderData, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
+import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/composition/Wrap/Wrap';
 import '@/components/control/AlphabetNav/AlphabetNav';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/content/Icon/Icon';
 import tArray from '@/lib/tArray';
+import { Material } from '@/types/locatorApi';
 
 import { PlacesMaterialsLoaderResponse } from './materials.loader';
 
-export default function AtoZPage() {
+function AtoZPageContent({
+  materials,
+}: {
+  readonly materials: readonly Material[];
+}) {
   const { t } = useTranslation();
   const { postcode } = useParams();
-  const { materials } = useLoaderData() as PlacesMaterialsLoaderResponse;
   const alphabet = tArray('places.search.aToZ.alphabet');
   const multiLetterChars = alphabet.filter((letter) => letter.length > 1);
   const groupedMaterials = groupBy(materials, (material) => {
@@ -55,7 +61,7 @@ export default function AtoZPage() {
   }
 
   return (
-    <>
+    <diamond-enter type="fade">
       <locator-alphabet-nav className="diamond-spacing-bottom-lg">
         <nav>
           <ul>
@@ -119,6 +125,18 @@ export default function AtoZPage() {
           </locator-bordered-list>
         </>
       ))}
-    </>
+    </diamond-enter>
+  );
+}
+
+export default function AtoZPage() {
+  const { materials } = useLoaderData() as PlacesMaterialsLoaderResponse;
+
+  return (
+    <Suspense fallback={null}>
+      <Await resolve={materials}>
+        {(materials) => <AtoZPageContent materials={materials} />}
+      </Await>
+    </Suspense>
   );
 }

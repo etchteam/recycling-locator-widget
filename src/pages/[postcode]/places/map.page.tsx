@@ -5,7 +5,6 @@ import {
   Await,
   FetcherWithComponents,
   Link,
-  useAsyncValue,
   useFetcher,
   useLocation,
   useParams,
@@ -24,7 +23,7 @@ import Place from '@/components/template/Place/Place';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import directions from '@/lib/directions';
 import useAnalytics from '@/lib/useAnalytics';
-import { Location } from '@/types/locatorApi';
+import { Location, LocationsResponse } from '@/types/locatorApi';
 
 import { PlacesLoaderResponse, usePlacesLoaderData } from './places.loader';
 
@@ -41,27 +40,31 @@ function Loading() {
   );
 }
 
-export function PlacesMapPageContent() {
+export function PlacesMapPageContent({
+  locations: loadedLocations,
+}: {
+  readonly locations: LocationsResponse;
+}) {
   const { postcode } = useParams();
   const { t } = useTranslation();
   const location = useLocation();
   const { recordEvent } = useAnalytics();
-  const loaderData = useAsyncValue() as PlacesLoaderResponse;
   const [searchParams] = useSearchParams();
   const defaultActiveLocationId = searchParams.get('activeLocation');
+  const materialId = searchParams.get('materialId');
+  const fetcher = useFetcher() as FetcherWithComponents<PlacesLoaderResponse>;
+  const fetchedLocations = fetcher.data?.locations;
+  const locations = (fetchedLocations ?? loadedLocations) as LocationsResponse;
+  const defaultLatitude = locations.meta.latitude;
+  const defaultLongitude = locations.meta.longitude;
+
   const activeLocation = useSignal<Location | null>(null);
   const showSearchThisArea = useSignal(false);
   const page = useSignal(1);
   const radius = useSignal(25);
-  const fetcher = useFetcher() as FetcherWithComponents<{
-    data: PlacesLoaderResponse;
-  }>;
-  const lat = useSignal(fetcher.data?.data.latitude ?? loaderData.latitude);
-  const lng = useSignal(fetcher.data?.data.longitude ?? loaderData.longitude);
+  const lat = useSignal(defaultLatitude);
+  const lng = useSignal(defaultLongitude);
 
-  const latitude = fetcher.data?.data.latitude ?? loaderData.latitude;
-  const longitude = fetcher.data?.data.longitude ?? loaderData.longitude;
-  const locations = fetcher.data?.data.locations ?? loaderData.locations;
   const activeLocationPostcode = PostCodeResolver.extractPostcodeFromString(
     activeLocation.value?.address,
   );
@@ -69,7 +72,7 @@ export function PlacesMapPageContent() {
 
   useEffect(() => {
     if (defaultActiveLocationId) {
-      const location = locations.find(
+      const location = locations.items.find(
         (location) => location.id === defaultActiveLocationId,
       );
 
@@ -120,9 +123,9 @@ export function PlacesMapPageContent() {
   return (
     <diamond-enter type="fade">
       <PlacesMap
-        latitude={latitude}
-        longitude={longitude}
-        locations={locations}
+        latitude={defaultLatitude}
+        longitude={defaultLongitude}
+        locations={locations.items}
         activeLocationId={activeLocation.value?.id}
         onMarkerClick={handleMarkerClick}
         onZoom={handleZoom}
@@ -138,12 +141,8 @@ export function PlacesMapPageContent() {
             <input type="hidden" name="radius" value={radius.value} />
             <input type="hidden" name="lat" value={lat.value} />
             <input type="hidden" name="lng" value={lng.value} />
-            {loaderData.materialId && (
-              <input
-                type="hidden"
-                name="materialId"
-                value={loaderData.materialId}
-              />
+            {materialId && (
+              <input type="hidden" name="materialId" value={materialId} />
             )}
             <locator-fab position="top">
               <diamond-button>
@@ -224,12 +223,12 @@ export function PlacesMapPageContent() {
 }
 
 export default function PlacesMapPage() {
-  const { data } = usePlacesLoaderData();
+  const { locations: locationsPromise } = usePlacesLoaderData();
 
   return (
     <Suspense fallback={<Loading />}>
-      <Await resolve={data}>
-        <PlacesMapPageContent />
+      <Await resolve={locationsPromise}>
+        {(locations) => <PlacesMapPageContent locations={locations} />}
       </Await>
     </Suspense>
   );

@@ -1,12 +1,14 @@
+import { defer } from 'react-router-dom';
+
 import LocatorApi from '@/lib/LocatorApi';
 import { Material } from '@/types/locatorApi';
 
 export interface PlacesMaterialsLoaderResponse {
-  materials: Material[];
+  materials: Promise<Material[]>;
 }
 
 export default async function placesMaterialsLoader() {
-  const materials = await LocatorApi.get<Material[]>('materials');
+  const materials = LocatorApi.get<Material[]>('materials');
 
-  return { materials };
+  return defer({ materials });
 }

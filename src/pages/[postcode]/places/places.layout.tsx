@@ -28,7 +28,7 @@ export default function PlacesLayout({
 }) {
   const { t } = useTranslation();
   const { postcode } = useParams();
-  const { data } = usePlacesLoaderData();
+  const { locations: locationsPromise } = usePlacesLoaderData();
   const open = useSignal(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const materialId = searchParams.get('materialId');
@@ -96,12 +96,12 @@ export default function PlacesLayout({
               <locator-places-header-search>
                 {materialName && (
                   <Suspense fallback={null}>
-                    <Await resolve={data}>
-                      {({ locations }) => (
+                    <Await resolve={locationsPromise}>
+                      {(locations) => (
                         <diamond-enter type="fade">
                           <locator-tag-button
                             variant={
-                              locations?.length > 0 &&
+                              locations?.items.length > 0 &&
                               materialId !== 'undefined'
                                 ? 'positive'
                                 : 'negative'
@@ -120,7 +120,10 @@ export default function PlacesLayout({
                     </Await>
                   </Suspense>
                 )}
-                <Link to={`/${postcode}/places/search${query}`}>
+                <Link
+                  to={`/${postcode}/places/search${query}`}
+                  unstable_viewTransition
+                >
                   {!materialName && t('places.searchPlaceholder')}
                   <locator-icon icon="search" color="primary" />
                 </Link>

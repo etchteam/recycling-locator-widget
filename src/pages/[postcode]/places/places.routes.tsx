@@ -20,12 +20,12 @@ import PlacesSearchPage from './search/search.page';
 const routes: RouteObject[] = [
   {
     path: '/:postcode/places',
-    loader: placesLoader,
-    id: 'places',
+    errorElement: <PlacesErrorPage />,
     children: [
       {
         element: <PlacesLayout />,
-        errorElement: <PlacesErrorPage />,
+        loader: placesLoader,
+        id: 'places',
         children: [
           {
             index: true,
@@ -40,7 +40,6 @@ const routes: RouteObject[] = [
       {
         path: 'search',
         element: <PlacesSearchLayout />,
-        errorElement: <PlacesErrorPage />,
         children: [
           {
             index: true,

@@ -7,26 +7,18 @@ import {
 
 import LocatorApi from '@/lib/LocatorApi';
 import PostCodeResolver from '@/lib/PostcodeResolver';
-import getTip from '@/lib/getTip';
-import { Location, LocationsResponse, RecyclingMeta } from '@/types/locatorApi';
+import { getTipByPath } from '@/lib/getTip';
+import { LocationsResponse, RecyclingMeta } from '@/types/locatorApi';
 
 export interface PlacesLoaderResponse {
-  latitude: number;
-  longitude: number;
-  locations: Location[];
-  /** Max is true if no more results can be loaded */
-  max: boolean;
-  /** The page being requested by the loader */
-  page: number;
-  /** The material being requested by the loader */
-  materialId?: string;
-  tip: RecyclingMeta;
+  locations: Promise<LocationsResponse>;
+  tip: Promise<RecyclingMeta>;
 }
 
-async function getData({
+export default async function placesLoader({
   request,
   params,
-}: LoaderFunctionArgs): Promise<PlacesLoaderResponse> {
+}: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const page = Number(url.searchParams.get('page') ?? 1);
   const radius = Number(url.searchParams.get('radius') ?? 25);
@@ -46,32 +38,19 @@ async function getData({
     materialId ? `materials=${materialId}` : undefined,
   ]).join('&');
 
-  const locations = await LocatorApi.get<LocationsResponse>(
+  const locations = LocatorApi.get<LocationsResponse>(
     `locations/${postcode}?${query}`,
   );
-  const locationsCount = locations.items.length;
 
-  const meta = await LocatorApi.get<RecyclingMeta[]>(
-    'recycling-meta?categories=HINT',
-  );
+  const tip = getTipByPath('/:postcode/places');
 
-  return {
-    latitude: locations.meta.latitude,
-    longitude: locations.meta.longitude,
-    locations: locations.items,
-    max: locationsCount < limit || limit === 120,
+  return defer({
     page,
-    materialId,
-    tip: getTip(meta, { path: '/:postcode/places' }),
-  };
-}
-
-export default async function placesLoader(args: LoaderFunctionArgs) {
-  return defer({ data: getData(args) });
+    locations: locations,
+    tip,
+  });
 }
 
 export function usePlacesLoaderData() {
-  return useRouteLoaderData('places') as {
-    data: Promise<PlacesLoaderResponse>;
-  };
+  return useRouteLoaderData('places') as PlacesLoaderResponse;
 }
