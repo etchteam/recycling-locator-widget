@@ -203,12 +203,8 @@
       "contact": "Contact"
     },
     "aside": {
-      "paragraph": "Contact this service provider if you need to:",
-      "list": [
-        "Report a missed collection",
-        "Order additional bins",
-        "Arrange collection of large or bulky items"
-      ]
+      "title": "Need help with your home recycling?",
+      "content": "Contact this service provider if you need to report a missed collection, order additional bins or arrange collection of large or bulky items"
     },
     "collections": {
       "title": "Check what you can put in your home recycling.",

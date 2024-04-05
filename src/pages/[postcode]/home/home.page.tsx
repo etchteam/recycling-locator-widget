@@ -1,23 +1,36 @@
+import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Link, useParams } from 'react-router-dom';
+import { Await, Link, useParams } from 'react-router-dom';
+import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 
+import '@/components/canvas/LoadingCard/LoadingCard';
 import '@/components/content/Container/Container';
 import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
+import sortPropertyTypes from '@/lib/sortPropertyTypes';
+import { LocalAuthority } from '@/types/locatorApi';
 
 import { useHomeRecyclingLoaderData } from './home.loader';
 
-export default function HomeRecyclingPage() {
-  const { t } = useTranslation();
+function Loading() {
+  return (
+    <diamond-enter type="fade-in-up">
+      <locator-loading-card />
+    </diamond-enter>
+  );
+}
+
+function PropertyList({
+  localAuthority,
+}: {
+  readonly localAuthority: LocalAuthority;
+}) {
   const { postcode } = useParams();
-  const { properties } = useHomeRecyclingLoaderData();
+  const properties = sortPropertyTypes(localAuthority.properties);
   const propertyTypes = Object.keys(properties);
 
   return (
-    <section className="diamond-spacing-bottom-lg">
-      <h3>{t('homeRecycling.collections.title')}</h3>
-      <p>{t('homeRecycling.collections.help')}</p>
-
+    <diamond-enter type="fade">
       {propertyTypes.map((propertyType) => {
         const safePropertyType = encodeURIComponent(propertyType);
         const property = properties[propertyType];
@@ -35,6 +48,24 @@ export default function HomeRecyclingPage() {
           </Link>
         );
       })}
+    </diamond-enter>
+  );
+}
+
+export default function HomeRecyclingPage() {
+  const { t } = useTranslation();
+  const { localAuthority } = useHomeRecyclingLoaderData();
+
+  return (
+    <section className="diamond-spacing-bottom-lg">
+      <h3>{t('homeRecycling.collections.title')}</h3>
+      <p>{t('homeRecycling.collections.help')}</p>
+
+      <Suspense fallback={<Loading />}>
+        <Await resolve={localAuthority}>
+          {(la) => <PropertyList localAuthority={la} />}
+        </Await>
+      </Suspense>
     </section>
   );
 }

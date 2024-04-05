@@ -176,7 +176,9 @@ export default function RecycleAtHome({
       )}
 
       <diamond-button width="full-width">
-        <Link to={`/${postcode}/home`}>{t(`material.recycleAtHome.cta`)}</Link>
+        <Link to={`/${postcode}/home`} unstable_viewTransition>
+          {t(`material.recycleAtHome.cta`)}
+        </Link>
       </diamond-button>
     </diamond-card>
   );

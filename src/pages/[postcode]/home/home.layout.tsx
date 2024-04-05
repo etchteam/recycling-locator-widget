@@ -1,7 +1,9 @@
 import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
+import { Suspense } from 'preact/compat';
+import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link, NavLink, Outlet, useParams } from 'react-router-dom';
+import { Await, Link, NavLink, Outlet, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
@@ -16,7 +18,7 @@ import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
 import Menu from '@/components/control/Menu/Menu';
 import config from '@/config';
-import tArray from '@/lib/tArray';
+import useScrollRestoration from '@/lib/useScrollRestoration';
 
 import { useHomeRecyclingLoaderData } from './home.loader';
 
@@ -27,9 +29,11 @@ export default function HomeRecyclingLayout({
 }) {
   const { t } = useTranslation();
   const { postcode } = useParams();
+  const layoutRef = useRef();
   const data = useHomeRecyclingLoaderData();
   const open = useSignal(false);
-  const la = data?.localAuthority;
+  useScrollRestoration(layoutRef);
+  const localAuthority = data?.localAuthority;
 
   return (
     <locator-layout>
@@ -78,34 +82,52 @@ export default function HomeRecyclingLayout({
                 </diamond-button>
                 <div>
                   <h2>{t('homeRecycling.title')}</h2>
-                  {la && <p>{la.name}</p>}
+                  <Suspense fallback={null}>
+                    <Await resolve={localAuthority}>
+                      {(la) => (
+                        <diamond-enter type="fade">
+                          <p>{la.name}</p>
+                        </diamond-enter>
+                      )}
+                    </Await>
+                  </Suspense>
                 </div>
               </locator-header-title>
             </locator-header-content>
           </>
         )}
       </locator-header>
-      <div slot="layout-main" id="locator-layout-main">
+      <div slot="layout-main" id="locator-layout-main" ref={layoutRef}>
         {open.value ? (
           <Menu handleClose={() => (open.value = false)} />
         ) : (
           <>
-            {la && (
+            {localAuthority && (
               <locator-nav-bar>
                 <nav>
                   <ul>
                     <li>
-                      <NavLink to={`/${postcode}/home`} end>
+                      <NavLink
+                        to={`/${postcode}/home`}
+                        unstable_viewTransition
+                        end
+                      >
                         {t('homeRecycling.nav.collections')}
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to={`/${postcode}/home/recycling-centre`}>
+                      <NavLink
+                        to={`/${postcode}/home/recycling-centre`}
+                        unstable_viewTransition
+                      >
                         {t('homeRecycling.nav.hwrc')}
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to={`/${postcode}/home/contact`}>
+                      <NavLink
+                        to={`/${postcode}/home/contact`}
+                        unstable_viewTransition
+                      >
                         {t('homeRecycling.nav.contact')}
                       </NavLink>
                     </li>
@@ -122,31 +144,33 @@ export default function HomeRecyclingLayout({
           </>
         )}
       </div>
-      <locator-tip slot="layout-aside">
+      <locator-tip slot="layout-aside" text-align="center">
         <locator-wrap>
           <img
             src={config.imagePath + 'home-tip.svg'}
             alt=""
             className="diamond-spacing-bottom-sm"
           />
-          <p>{t('homeRecycling.aside.paragraph')}</p>
-          <ul className="diamond-spacing-bottom-md">
-            {tArray('homeRecycling.aside.list').map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          {la && (
-            <diamond-button width="full-width">
-              <a
-                href={la.recyclingUri}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {la.name}
-                <locator-icon icon="external"></locator-icon>
-              </a>
-            </diamond-button>
-          )}
+          <h2>{t('homeRecycling.aside.title')}</h2>
+          <p>{t('homeRecycling.aside.content')}</p>
+          <Suspense fallback={null}>
+            <Await resolve={localAuthority}>
+              {(la) => (
+                <diamond-enter type="fade">
+                  <diamond-button width="full-width">
+                    <a
+                      href={la.recyclingUri}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {la.name}
+                      <locator-icon icon="external"></locator-icon>
+                    </a>
+                  </diamond-button>
+                </diamond-enter>
+              )}
+            </Await>
+          </Suspense>
         </locator-wrap>
       </locator-tip>
     </locator-layout>

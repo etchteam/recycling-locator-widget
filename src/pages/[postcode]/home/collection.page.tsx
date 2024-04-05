@@ -7,9 +7,9 @@ import {
   useParams,
   useSearchParams,
   Form,
-  useLocation,
   useLoaderData,
   Await,
+  useNavigation,
 } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
@@ -26,30 +26,34 @@ import '@/components/content/Icon/Icon';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import TipContent from '@/components/template/TipContent/TipContent';
 import config from '@/config';
+import sortPropertyTypes from '@/lib/sortPropertyTypes';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
+import useScrollRestoration from '@/lib/useScrollRestoration';
+import { LocalAuthority } from '@/types/locatorApi';
 
 import ContainerList from './ContainerList';
 import { HomeCollectionLoaderResponse } from './collection.loader';
 import { useHomeRecyclingLoaderData } from './home.loader';
 
-export default function CollectionPage() {
+function CollectionPageContent({
+  localAuthority,
+}: {
+  readonly localAuthority: LocalAuthority;
+}) {
   const { t } = useTranslation();
+  const navigation = useNavigation();
+  const menuRef = useRef<HTMLDetailsElement>(null);
   const { postcode } = useParams();
-  const { localAuthority, properties } = useHomeRecyclingLoaderData();
-  const { data } = useLoaderData() as {
-    data: Promise<HomeCollectionLoaderResponse>;
-  };
-  const location = useLocation();
   const { recordEvent } = useAnalytics();
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search');
+  const form = useFormValidation('search');
+  const properties = sortPropertyTypes(localAuthority.properties);
   const propertyTypes = Object.keys(properties);
   const propertyType = searchParams.get('propertyType') ?? propertyTypes[0];
-  const property = properties[propertyType];
   const menuOpen = useSignal(false);
-  const form = useFormValidation('search');
-  const menuRef = useRef<HTMLDetailsElement>(null);
+  const property = properties[propertyType];
 
   useEffect(() => {
     if (search) {
@@ -62,102 +66,139 @@ export default function CollectionPage() {
     form.submitting.value = false;
   }, [search]);
 
-  useEffect(() => {
-    // Force close the menu after navigation
-    menuRef.current?.removeAttribute('open');
+  function handleMenuItemClick() {
     menuOpen.value = false;
-  }, [location]);
+    menuRef.current?.removeAttribute('open');
+  }
+
+  return (
+    <>
+      <locator-context-header>
+        {propertyTypes.length > 1 ? (
+          <locator-details menu>
+            <details ref={menuRef}>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+              <summary onClick={() => (menuOpen.value = !menuOpen.value)}>
+                {menuOpen.value || navigation.state === 'loading'
+                  ? 'Collections in this area'
+                  : propertyType}
+                <locator-icon icon="expand" />
+              </summary>
+              <nav>
+                <ul>
+                  {propertyTypes.map((type) => (
+                    <li key={type}>
+                      <Link
+                        to={`/${postcode}/home/collection?propertyType=${type}`}
+                        onClick={handleMenuItemClick}
+                        unstable_viewTransition
+                      >
+                        <diamond-grid align-items="center" gap="xs">
+                          <diamond-grid-item grow shrink>
+                            {type}
+                          </diamond-grid-item>
+                          <diamond-grid-item>
+                            <locator-icon icon="arrow-right" />
+                          </diamond-grid-item>
+                        </diamond-grid>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </details>
+          </locator-details>
+        ) : (
+          <span className="diamond-text-weight-bold">{propertyType}</span>
+        )}
+      </locator-context-header>
+      {navigation.state !== 'loading' && (
+        <diamond-enter type="fade">
+          <diamond-section padding="lg">
+            <locator-wrap>
+              <h3 id="bin-search-title" className="diamond-spacing-bottom-md">
+                {t('homeRecycling.collection.search.label')}
+              </h3>
+
+              <Form method="get" onSubmit={form.handleSubmit}>
+                <input type="hidden" name="propertyType" value={propertyType} />
+                <MaterialSearchInput
+                  inputLabelledBy="bin-search-title"
+                  defaultValue={search}
+                  handleBlur={form.handleBlur}
+                  handleInput={form.handleInput}
+                  submitting={form.submitting.value}
+                  valid={form.valid.value}
+                ></MaterialSearchInput>
+              </Form>
+
+              <div className="diamond-spacing-bottom-sm" />
+
+              <ContainerList property={property} search={search} />
+            </locator-wrap>
+          </diamond-section>
+        </diamond-enter>
+      )}
+    </>
+  );
+}
+
+export default function CollectionPage() {
+  const { t } = useTranslation();
+  const { postcode } = useParams();
+  const { localAuthority: localAuthorityPromise } =
+    useHomeRecyclingLoaderData();
+  const { tip: tipPromise } = useLoaderData() as HomeCollectionLoaderResponse;
+  const layoutRef = useRef();
+  useScrollRestoration(layoutRef);
 
   return (
     <locator-layout>
       <div slot="layout-header">
         <locator-header>
           <locator-header-logo>
-            <Link to={`/${postcode}`}>
+            <Link to={`/${postcode}`} unstable_viewTransition>
               <locator-logo type="logo-only"></locator-logo>
             </Link>
           </locator-header-logo>
           <locator-header-content>
             <locator-header-title>
               <diamond-button>
-                <Link to={`/${postcode}/home`}>
+                <Link to={`/${postcode}/home`} unstable_viewTransition>
                   <locator-icon icon="arrow-left" label="Back"></locator-icon>
                 </Link>
               </diamond-button>
               <div>
                 <h2>{t('homeRecycling.collection.title')}</h2>
-                {localAuthority && <p>{localAuthority.name}</p>}
+                <Suspense fallback={null}>
+                  <Await resolve={localAuthorityPromise}>
+                    {(localAuthority) => (
+                      <diamond-enter type="fade">
+                        <p>{localAuthority.name}</p>
+                      </diamond-enter>
+                    )}
+                  </Await>
+                </Suspense>
               </div>
             </locator-header-title>
           </locator-header-content>
         </locator-header>
       </div>
-      <div slot="layout-main">
-        <locator-context-header>
-          {propertyTypes.length > 1 ? (
-            <locator-details menu>
-              <details ref={menuRef}>
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-                <summary onClick={() => (menuOpen.value = !menuOpen.value)}>
-                  {menuOpen.value ? 'Collections in this area' : propertyType}
-                  <locator-icon icon="expand" />
-                </summary>
-                <nav>
-                  <ul>
-                    {propertyTypes.map((type) => (
-                      <li key={type}>
-                        <Link
-                          to={`/${postcode}/home/collection?propertyType=${type}`}
-                        >
-                          <diamond-grid align-items="center" gap="xs">
-                            <diamond-grid-item grow shrink>
-                              {type}
-                            </diamond-grid-item>
-                            <diamond-grid-item>
-                              <locator-icon icon="arrow-right" />
-                            </diamond-grid-item>
-                          </diamond-grid>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </details>
-            </locator-details>
-          ) : (
-            <span className="diamond-text-weight-bold">{propertyType}</span>
-          )}
-        </locator-context-header>
-        <diamond-section padding="lg">
-          <locator-wrap>
-            <h3 id="bin-search-title" className="diamond-spacing-bottom-md">
-              {t('homeRecycling.collection.search.label')}
-            </h3>
-
-            <Form method="get" onSubmit={form.handleSubmit}>
-              <input type="hidden" name="propertyType" value={propertyType} />
-              <MaterialSearchInput
-                inputLabelledBy="bin-search-title"
-                defaultValue={search}
-                handleBlur={form.handleBlur}
-                handleInput={form.handleInput}
-                submitting={form.submitting.value}
-                valid={form.valid.value}
-              ></MaterialSearchInput>
-            </Form>
-
-            <div className="diamond-spacing-bottom-sm" />
-
-            <ContainerList property={property} search={search} />
-          </locator-wrap>
-        </diamond-section>
+      <div slot="layout-main" ref={layoutRef}>
+        <Suspense fallback={null}>
+          <Await resolve={localAuthorityPromise}>
+            {(localAuthority) => (
+              <CollectionPageContent localAuthority={localAuthority} />
+            )}
+          </Await>
+        </Suspense>
       </div>
       <locator-tip slot="layout-aside" text-align="center">
         <locator-wrap>
           <img src={config.imagePath + 'general-tip.svg'} alt="" />
           <Suspense fallback={null}>
-            <Await resolve={data}>
-              {({ tip }) => <TipContent tip={tip} />}
+            <Await resolve={tipPromise}>
+              {(tip) => <TipContent tip={tip} />}
             </Await>
           </Suspense>
         </locator-wrap>

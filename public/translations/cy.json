@@ -205,12 +205,8 @@
       "contact": "Cysylltu"
     },
     "aside": {
-      "paragraph": "Cysylltwch â’r darparwr gwasanaeth hwn os oes angen ichi:",
-      "list": [
-        "Ddweud am gasgliad a fethwyd",
-        "Archebu biniau ychwanegol",
-        "Trefnu casgliad ar gyfer eitemau mawr neu swmpus"
-      ]
+      "title": "Angen help gyda'ch ailgylchu cartref?",
+      "content": "Cysylltwch â’r darparwr gwasanaeth hwn os oes angen ichi ddweud am gasgliad a fethwyd, archebu biniau ychwanegol neu trefnu casgliad ar gyfer eitemau mawr neu swmpus"
     },
     "collections": {
       "title": "Gwiriwch beth allwch ei roi yn eich ailgylchu gartref.",
