@@ -1,6 +1,7 @@
 import { Suspense } from 'preact/compat';
+import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { useAsyncValue, Await } from 'react-router-dom';
+import { Await, Link, useLoaderData, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/canvas/Loading/Loading';
@@ -8,16 +9,19 @@ import '@/components/content/Icon/Icon';
 import '@/components/canvas/LoadingCard/LoadingCard';
 import '@/components/canvas/Hero/Hero';
 import '@/components/composition/Wrap/Wrap';
+import TipContent from '@/components/template/TipContent/TipContent';
+import config from '@/config';
 import getPropertiesByMaterial from '@/lib/getPropertiesByMaterial';
+import useAnalytics from '@/lib/useAnalytics';
 
 import NearbyPlaces from './NearbyPlaces';
 import RecycleAtHome from './RecycleAtHome';
 import {
-  MaterialLoaderResponse,
-  useMaterialLoaderData,
+  DeferredMaterialLoaderResponse,
+  AwaitedMaterialLoaderResponse,
 } from './material.loader';
 
-function Loading() {
+export function Loading() {
   const { t } = useTranslation();
 
   return (
@@ -36,10 +40,12 @@ function Loading() {
   );
 }
 
-function MaterialPageContent() {
+function MaterialPageContent({
+  localAuthority,
+  locations,
+  materialId,
+}: Partial<AwaitedMaterialLoaderResponse>) {
   const { t } = useTranslation();
-  const { localAuthority, locations, materialId } =
-    useAsyncValue() as MaterialLoaderResponse;
   const propertiesCollectingThisMaterial = getPropertiesByMaterial(
     materialId,
     localAuthority.properties,
@@ -52,8 +58,10 @@ function MaterialPageContent() {
     <diamond-enter type="fade">
       <locator-hero variant={recyclable ? 'positive' : 'negative'}>
         <locator-wrap>
-          <locator-icon icon={recyclable ? 'tick-circle' : 'cross-circle'} />
-          <h3>{t(`material.hero.${recyclable ? 'yes' : 'no'}`)}</h3>
+          <diamond-enter type="fade" delay={0.4}>
+            <locator-icon icon={recyclable ? 'tick-circle' : 'cross-circle'} />
+            <h3>{t(`material.hero.${recyclable ? 'yes' : 'no'}`)}</h3>
+          </diamond-enter>
         </locator-wrap>
       </locator-hero>
       <diamond-enter type="fade-in-up" delay={0.25}>
@@ -77,13 +85,69 @@ function MaterialPageContent() {
 }
 
 export default function MaterialPage() {
-  const { data } = useMaterialLoaderData();
+  const { postcode } = useParams();
+  const { recordEvent } = useAnalytics();
+  const {
+    materialId,
+    materialName,
+    tip: tipPromise,
+    localAuthority: localAuthorityPromise,
+    locations: locationsPromise,
+  } = useLoaderData() as DeferredMaterialLoaderResponse;
+
+  useEffect(() => {
+    if (materialName) {
+      recordEvent({
+        category: 'MaterialResult::MaterialSearch',
+        action: materialName,
+      });
+    }
+  }, [materialName]);
 
   return (
-    <Suspense fallback={<Loading />}>
-      <Await resolve={data}>
-        <MaterialPageContent />
-      </Await>
-    </Suspense>
+    <>
+      <div slot="layout-main">
+        {materialId && (
+          <Link
+            to={`/${postcode}/material/search`}
+            className="diamond-text-decoration-none"
+          >
+            <locator-context-header>
+              <div className="diamond-text-weight-bold">{materialName}</div>
+              <locator-icon icon="search" color="primary" />
+            </locator-context-header>
+          </Link>
+        )}
+        <Suspense fallback={<Loading />}>
+          <Await
+            resolve={Promise.all([localAuthorityPromise, locationsPromise])}
+          >
+            {([localAuthority, locations]) => {
+              return (
+                <MaterialPageContent
+                  localAuthority={localAuthority}
+                  locations={locations}
+                  materialId={materialId}
+                />
+              );
+            }}
+          </Await>
+        </Suspense>
+      </div>
+      <locator-tip slot="layout-aside" text-align="center">
+        <locator-wrap>
+          <img
+            className="diamond-spacing-bottom-sm"
+            src={config.imagePath + 'material-tip.svg'}
+            alt=""
+          />
+          <Suspense fallback={null}>
+            <Await resolve={tipPromise}>
+              {(tip) => <TipContent tip={tip} />}
+            </Await>
+          </Suspense>
+        </locator-wrap>
+      </locator-tip>
+    </>
   );
 }

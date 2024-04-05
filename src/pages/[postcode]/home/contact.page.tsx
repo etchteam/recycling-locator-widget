@@ -1,17 +1,23 @@
+import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
+import { Await } from 'react-router-dom';
+import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/composition/BorderedList/BorderedList';
+import { LocalAuthority } from '@/types/locatorApi';
 
 import { useHomeRecyclingLoaderData } from './home.loader';
 
-export default function HomeRecyclingPage() {
+function HomeRecyclingContactPageContent({
+  localAuthority,
+}: {
+  readonly localAuthority: LocalAuthority;
+}) {
   const { t } = useTranslation();
-  const { localAuthority } = useHomeRecyclingLoaderData();
   const tContext = 'homeRecycling.contact';
 
   return (
-    <>
-      <h3 className="diamond-spacing-bottom-md">{t(`${tContext}.title`)}</h3>
+    <diamond-enter type="fade">
       <locator-bordered-list size="sm">
         <h4 className="text-color-muted">{localAuthority.name}</h4>
         <dl>
@@ -54,6 +60,27 @@ export default function HomeRecyclingPage() {
           )}
         </span>
       </div>
+    </diamond-enter>
+  );
+}
+
+export default function HomeRecyclingContactPage() {
+  const { t } = useTranslation();
+  const { localAuthority: localAuthorityPromise } =
+    useHomeRecyclingLoaderData();
+
+  return (
+    <>
+      <h3 className="diamond-spacing-bottom-md">
+        {t(`homeRecycling.contact.title`)}
+      </h3>
+      <Suspense fallback={/* hitting loading here is unexpected */ null}>
+        <Await resolve={localAuthorityPromise}>
+          {(localAuthority) => (
+            <HomeRecyclingContactPageContent localAuthority={localAuthority} />
+          )}
+        </Await>
+      </Suspense>
     </>
   );
 }

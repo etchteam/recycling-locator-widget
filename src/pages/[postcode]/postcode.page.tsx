@@ -5,6 +5,7 @@ import { Link, Form, Await, useSearchParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
+import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/canvas/ContextHeader/ContextHeader';
@@ -120,56 +121,60 @@ export default function PostcodePage() {
       </locator-context-header>
       <locator-wrap>
         <diamond-section padding="lg">
-          <h2
-            id="material-search-title"
-            className="diamond-text-size-h3 diamond-spacing-bottom-md"
-          >
-            {t('postcode.title')}
-          </h2>
+          <diamond-enter type="fade" className="layer-one">
+            <h2
+              id="material-search-title"
+              className="diamond-text-size-h3 diamond-spacing-bottom-md"
+            >
+              {t('postcode.title')}
+            </h2>
 
-          <Form method="post" onSubmit={form.handleSubmit}>
-            <MaterialSearchInput
-              inputLabelledBy="material-search-title"
-              autofocus={autofocus}
-              handleBlur={form.handleBlur}
-              handleInput={form.handleInput}
-              submitting={form.submitting.value}
-              valid={form.valid.value}
-            ></MaterialSearchInput>
-          </Form>
+            <Form method="post" onSubmit={form.handleSubmit}>
+              <MaterialSearchInput
+                inputLabelledBy="material-search-title"
+                autofocus={autofocus}
+                handleBlur={form.handleBlur}
+                handleInput={form.handleInput}
+                submitting={form.submitting.value}
+                valid={form.valid.value}
+              ></MaterialSearchInput>
+            </Form>
+          </diamond-enter>
 
-          <locator-bordered-list className="diamond-spacing-top-lg">
-            <nav>
-              <ul>
-                <li>
-                  <locator-icon-link>
-                    <Link to={`/${postcode}/home`}>
-                      <locator-icon-circle>
-                        <locator-icon
-                          icon="home"
-                          color="primary"
-                        ></locator-icon>
-                      </locator-icon-circle>
-                      {t('postcode.options.home')}
-                    </Link>
-                  </locator-icon-link>
-                </li>
-                <li>
-                  <locator-icon-link>
-                    <Link to={`/${postcode}/places`}>
-                      <locator-icon-circle>
-                        <locator-icon
-                          icon="distance"
-                          color="primary"
-                        ></locator-icon>
-                      </locator-icon-circle>
-                      {t('postcode.options.nearest')}
-                    </Link>
-                  </locator-icon-link>
-                </li>
-              </ul>
-            </nav>
-          </locator-bordered-list>
+          <diamond-enter type="fade-in-up" delay={0.25}>
+            <locator-bordered-list className="diamond-spacing-top-lg">
+              <nav>
+                <ul>
+                  <li>
+                    <locator-icon-link>
+                      <Link to={`/${postcode}/home`} unstable_viewTransition>
+                        <locator-icon-circle>
+                          <locator-icon
+                            icon="home"
+                            color="primary"
+                          ></locator-icon>
+                        </locator-icon-circle>
+                        {t('postcode.options.home')}
+                      </Link>
+                    </locator-icon-link>
+                  </li>
+                  <li>
+                    <locator-icon-link>
+                      <Link to={`/${postcode}/places`} unstable_viewTransition>
+                        <locator-icon-circle>
+                          <locator-icon
+                            icon="distance"
+                            color="primary"
+                          ></locator-icon>
+                        </locator-icon-circle>
+                        {t('postcode.options.nearest')}
+                      </Link>
+                    </locator-icon-link>
+                  </li>
+                </ul>
+              </nav>
+            </locator-bordered-list>
+          </diamond-enter>
         </diamond-section>
       </locator-wrap>
     </StartLayout>

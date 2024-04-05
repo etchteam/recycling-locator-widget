@@ -1,21 +1,19 @@
 import { LoaderFunctionArgs } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
-import { Location, LocationsResponse } from '@/types/locatorApi';
+import { LocationsResponse } from '@/types/locatorApi';
 
 export interface HomeRecyclingCentreLoaderResponse {
-  locations: Location[];
+  locations: Promise<LocationsResponse>;
 }
 
 export default async function homeRecyclingCentreLoader({
   params,
 }: LoaderFunctionArgs) {
   const postcode = params.postcode;
-  const locations = await LocatorApi.get<LocationsResponse>(
-    `locations/${postcode}`,
-  );
+  const locations = LocatorApi.get<LocationsResponse>(`locations/${postcode}`);
 
   return {
-    locations: locations.items,
+    locations: locations,
   };
 }

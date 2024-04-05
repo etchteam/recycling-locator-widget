@@ -8,6 +8,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
+import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import PopularMaterials from '@/components/template/PopularMaterials/PopularMaterials';
@@ -19,9 +20,7 @@ import { PlacesSearchLoaderResponse } from './search.loader';
 export default function PlacesSearchPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
-  const { data } = useLoaderData() as {
-    data: Promise<PlacesSearchLoaderResponse>;
-  };
+  const { popularMaterials } = useLoaderData() as PlacesSearchLoaderResponse;
   const [searchParams] = useSearchParams();
   const autofocus = searchParams.get('autofocus') === 'true';
   const form = useFormValidation('search');
@@ -35,21 +34,23 @@ export default function PlacesSearchPage() {
   return (
     <>
       <h3 id="places-search-label">{t('places.search.label')}</h3>
-      <Form method="post" onSubmit={form.handleSubmit}>
-        <diamond-form-group>
-          <MaterialSearchInput
-            inputLabelledBy="places-search-label"
-            autofocus={autofocus}
-            handleBlur={form.handleBlur}
-            handleInput={form.handleInput}
-            submitting={form.submitting.value}
-            valid={form.valid.value}
-          ></MaterialSearchInput>
-        </diamond-form-group>
-      </Form>
+      <diamond-enter type="fade" className="layer-one">
+        <Form method="post" onSubmit={form.handleSubmit}>
+          <diamond-form-group>
+            <MaterialSearchInput
+              inputLabelledBy="places-search-label"
+              autofocus={autofocus}
+              handleBlur={form.handleBlur}
+              handleInput={form.handleInput}
+              submitting={form.submitting.value}
+              valid={form.valid.value}
+            ></MaterialSearchInput>
+          </diamond-form-group>
+        </Form>
+      </diamond-enter>
       <Suspense fallback={/* No loading UI necessary */ null}>
-        <Await resolve={data}>
-          {({ popularMaterials }) => (
+        <Await resolve={popularMaterials}>
+          {(popularMaterials) => (
             <PopularMaterials
               materials={popularMaterials}
               generatePath={generatePopularMaterialPath}

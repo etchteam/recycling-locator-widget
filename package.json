@@ -30,7 +30,7 @@
     "storybook:start": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "test": "vitest --ui",
-    "test:ci": "percy exec -- vitest",
+    "test:ci": "vitest",
     "test:unit": "vitest --ui unit",
     "test:end-to-end": "VITE_TEST=true npm run build && vitest --ui end-to-end",
     "test:end-to-end-debug": "DEBUG=pw:api PWDEBUG=console vitest --ui"

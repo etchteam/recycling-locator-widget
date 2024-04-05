@@ -20,40 +20,36 @@ import PlacesSearchPage from './search/search.page';
 const routes: RouteObject[] = [
   {
     path: '/:postcode/places',
+    errorElement: <PlacesErrorPage />,
+    element: <PlacesLayout />,
     loader: placesLoader,
     id: 'places',
     children: [
       {
-        element: <PlacesLayout />,
-        errorElement: <PlacesErrorPage />,
-        children: [
-          {
-            index: true,
-            element: <PlacesPage />,
-          },
-          {
-            path: 'map',
-            element: <PlacesMapPage />,
-          },
-        ],
+        index: true,
+        element: <PlacesPage />,
       },
       {
-        path: 'search',
-        element: <PlacesSearchLayout />,
-        errorElement: <PlacesErrorPage />,
-        children: [
-          {
-            index: true,
-            element: <PlacesSearchPage />,
-            action: placesSearchAction,
-            loader: placesSearchLoader,
-          },
-          {
-            path: 'a-z',
-            element: <AtoZPage />,
-            loader: placesMaterialsLoader,
-          },
-        ],
+        path: 'map',
+        element: <PlacesMapPage />,
+      },
+    ],
+  },
+  {
+    path: '/:postcode/places/search',
+    element: <PlacesSearchLayout />,
+    errorElement: <PlacesErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <PlacesSearchPage />,
+        action: placesSearchAction,
+        loader: placesSearchLoader,
+      },
+      {
+        path: 'a-z',
+        element: <AtoZPage />,
+        loader: placesMaterialsLoader,
       },
     ],
   },

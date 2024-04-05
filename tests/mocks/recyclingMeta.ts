@@ -1,7 +1,7 @@
 import config from '@/config';
 import { RecyclingMeta } from '@/types/locatorApi';
 
-export const RECYCLING_META_ENDPOINT = `${config.locatorApiPath}recycling-meta?categories=HINT&lang=en-GB`;
+export const RECYCLING_META_ENDPOINT = `${config.locatorApiPath}recycling-meta**`;
 
 export const RecyclingMetaResponse: RecyclingMeta[] = [
   {

@@ -1,4 +1,5 @@
 import { ComponentChildren } from 'preact';
+import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import {
   Link,
@@ -16,6 +17,7 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
+import useScrollRestoration from '@/lib/useScrollRestoration';
 
 export default function PlacesSearchLayout({
   children,
@@ -24,6 +26,8 @@ export default function PlacesSearchLayout({
 }) {
   const { t } = useTranslation();
   const { postcode } = useParams();
+  const layoutRef = useRef();
+  useScrollRestoration(layoutRef);
   const [searchParams] = useSearchParams();
   const materialId = searchParams.get('materialId');
   const materialName = searchParams.get('materialName');
@@ -44,7 +48,7 @@ export default function PlacesSearchLayout({
             <h2>{t('places.search.title')}</h2>
           </locator-header-title>
           <diamond-button width="square" size="sm">
-            <Link to={`/${postcode}/places${query}`}>
+            <Link to={`/${postcode}/places${query}`} unstable_viewTransition>
               <locator-icon
                 icon="close"
                 color="primary"
@@ -54,17 +58,24 @@ export default function PlacesSearchLayout({
           </diamond-button>
         </locator-header-content>
       </locator-header>
-      <div slot="layout-main">
+      <div slot="layout-main" ref={layoutRef}>
         <locator-nav-bar>
           <nav>
             <ul>
               <li>
-                <NavLink to={`/${postcode}/places/search`} end>
+                <NavLink
+                  to={`/${postcode}/places/search`}
+                  unstable_viewTransition
+                  end
+                >
                   {t('places.search.nav.search')}
                 </NavLink>
               </li>
               <li>
-                <NavLink to={`/${postcode}/places/search/a-z`}>
+                <NavLink
+                  to={`/${postcode}/places/search/a-z`}
+                  unstable_viewTransition
+                >
                   {t('places.search.nav.aToZ')}
                 </NavLink>
               </li>

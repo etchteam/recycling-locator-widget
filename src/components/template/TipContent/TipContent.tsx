@@ -8,9 +8,13 @@ export default function TipContent({
   tip,
   ctaWidth = 'full-width',
 }: {
-  readonly tip: RecyclingMeta;
+  readonly tip?: RecyclingMeta;
   readonly ctaWidth?: 'full-width' | 'full-width-mobile';
 }) {
+  if (!tip) {
+    return null;
+  }
+
   return (
     <diamond-enter type="fade">
       <p className="diamond-text-weight-bold">{tip.subtitle}</p>

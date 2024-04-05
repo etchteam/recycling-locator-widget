@@ -1,12 +1,8 @@
 import { ComponentChildren } from 'preact';
+import { Suspense } from 'preact/compat';
+import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import {
-  Link,
-  NavLink,
-  Outlet,
-  useParams,
-  useRouteLoaderData,
-} from 'react-router-dom';
+import { Await, Link, NavLink, Outlet, useParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -22,8 +18,9 @@ import '@/components/canvas/MapSvg/MapSvg';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import directions from '@/lib/directions';
 import useAnalytics from '@/lib/useAnalytics';
+import useScrollRestoration from '@/lib/useScrollRestoration';
 
-import { PlaceLoaderResponse } from './place.loader';
+import { usePlaceLoaderData } from './place.loader';
 
 export default function PlaceLayout({
   children,
@@ -32,9 +29,10 @@ export default function PlaceLayout({
 }) {
   const { t } = useTranslation();
   const { postcode, placeName, placePostcode } = useParams();
-  const loaderData = useRouteLoaderData('place') as PlaceLoaderResponse;
+  const { location: locationPromise } = usePlaceLoaderData();
   const { recordEvent } = useAnalytics();
-  const location = loaderData?.location;
+  const layoutRef = useRef();
+  useScrollRestoration(layoutRef);
   const safePlaceName = encodeURIComponent(placeName);
 
   return (
@@ -48,41 +46,41 @@ export default function PlaceLayout({
         <locator-header-content>
           <locator-header-title>
             <diamond-button>
-              <Link to={`/${postcode}/places`}>
+              <Link to={`/${postcode}/places`} unstable_viewTransition>
                 <locator-icon icon="arrow-left" label="Back"></locator-icon>
               </Link>
             </diamond-button>
             <div>
               <h2>{placeName}</h2>
-              <p>{placePostcode}</p>
+              <p>{placePostcode !== 'null' ? placePostcode : ''}</p>
             </div>
           </locator-header-title>
         </locator-header-content>
       </locator-header>
-      <div slot="layout-main">
-        {location && (
-          <locator-nav-bar>
-            <nav>
-              <ul>
-                <li>
-                  <NavLink
-                    to={`/${postcode}/places/${safePlaceName}/${placePostcode}`}
-                    end
-                  >
-                    {t('place.nav.recycle')}
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to={`/${postcode}/places/${safePlaceName}/${placePostcode}/details`}
-                  >
-                    {t('place.nav.details')}
-                  </NavLink>
-                </li>
-              </ul>
-            </nav>
-          </locator-nav-bar>
-        )}
+      <div slot="layout-main" ref={layoutRef}>
+        <locator-nav-bar>
+          <nav>
+            <ul>
+              <li>
+                <NavLink
+                  to={`/${postcode}/places/${safePlaceName}/${placePostcode}`}
+                  unstable_viewTransition
+                  end
+                >
+                  {t('place.nav.recycle')}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to={`/${postcode}/places/${safePlaceName}/${placePostcode}/details`}
+                  unstable_viewTransition
+                >
+                  {t('place.nav.details')}
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+        </locator-nav-bar>
         <diamond-section padding="lg">
           <locator-wrap>
             <Outlet />
@@ -90,56 +88,64 @@ export default function PlaceLayout({
           </locator-wrap>
         </diamond-section>
       </div>
-      {location && (
-        <div slot="layout-aside">
-          <PlacesMap
-            latitude={location.latitude}
-            longitude={location.longitude}
-            locations={[location]}
-            activeLocationId={location.id}
-            static
-          >
-            <Link
-              to={`/${postcode}/places/map?lat=${location.latitude}&lng=${location.longitude}&activeLocation=${location.id}`}
-              aria-label={t('actions.showMap')}
-            >
-              <locator-places-map-scrim />
-            </Link>
-            <locator-places-map-card>
-              <diamond-grid>
-                <diamond-grid-item small-mobile="6">
-                  <diamond-button width="full-width" size="sm">
-                    <Link
-                      to={`/${postcode}/places/map?lat=${location.latitude}&lng=${location.longitude}&activeLocation=${location.id}`}
-                    >
-                      <locator-icon icon="map" />
-                      {t('actions.showMap')}
-                    </Link>
-                  </diamond-button>
-                </diamond-grid-item>
-                <diamond-grid-item small-mobile="6">
-                  <diamond-button width="full-width" size="sm">
-                    <a
-                      href={directions(postcode, location.address)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => {
-                        recordEvent({
-                          category: 'PlaceDetails::Directions',
-                          action: location.address,
-                        });
-                      }}
-                    >
-                      {t('actions.directions')}
-                      <locator-icon icon="external" />
-                    </a>
-                  </diamond-button>
-                </diamond-grid-item>
-              </diamond-grid>
-            </locator-places-map-card>
-          </PlacesMap>
-        </div>
-      )}
+      <div slot="layout-aside" className="display-contents">
+        <Suspense fallback={null}>
+          <Await resolve={locationPromise}>
+            {(location) =>
+              location?.latitude ? (
+                <PlacesMap
+                  latitude={location.latitude}
+                  longitude={location.longitude}
+                  locations={[location]}
+                  activeLocationId={location.id}
+                  static
+                >
+                  <Link
+                    to={`/${postcode}/places/map?lat=${location.latitude}&lng=${location.longitude}&activeLocation=${location.id}`}
+                    aria-label={t('actions.showMap')}
+                  >
+                    <locator-places-map-scrim />
+                  </Link>
+                  <locator-places-map-card>
+                    <diamond-grid>
+                      <diamond-grid-item small-mobile="6">
+                        <diamond-button width="full-width" size="sm">
+                          <Link
+                            to={`/${postcode}/places/map?lat=${location.latitude}&lng=${location.longitude}&activeLocation=${location.id}`}
+                          >
+                            <locator-icon icon="map" />
+                            {t('actions.showMap')}
+                          </Link>
+                        </diamond-button>
+                      </diamond-grid-item>
+                      <diamond-grid-item small-mobile="6">
+                        <diamond-button width="full-width" size="sm">
+                          <a
+                            href={directions(postcode, location.address)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => {
+                              recordEvent({
+                                category: 'PlaceDetails::Directions',
+                                action: location.address,
+                              });
+                            }}
+                          >
+                            {t('actions.directions')}
+                            <locator-icon icon="external" />
+                          </a>
+                        </diamond-button>
+                      </diamond-grid-item>
+                    </diamond-grid>
+                  </locator-places-map-card>
+                </PlacesMap>
+              ) : (
+                <locator-map-svg></locator-map-svg>
+              )
+            }
+          </Await>
+        </Suspense>
+      </div>
     </locator-layout>
   );
 }

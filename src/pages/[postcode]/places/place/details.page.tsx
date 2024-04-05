@@ -1,17 +1,26 @@
 import nl2br from 'nl2br';
+import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { useRouteLoaderData } from 'react-router-dom';
+import { Await } from 'react-router-dom';
 
 import '@/components/composition/BorderedList/BorderedList';
-import { PlaceLoaderResponse } from './place.loader';
+import { Location } from '@/types/locatorApi';
 
-export default function PlaceDetailsPage() {
+import { usePlaceLoaderData } from './place.loader';
+
+function PlaceDetailsPageContent({
+  location,
+}: {
+  readonly location: Location;
+}) {
   const { t } = useTranslation();
-  const { location } = useRouteLoaderData('place') as PlaceLoaderResponse;
+
+  if (location.error) {
+    throw new Error(location.error);
+  }
 
   return (
-    <>
-      <h3 className="diamond-spacing-bottom-md">{t('place.details.title')}</h3>
+    <diamond-enter type="fade">
       <locator-bordered-list size="sm">
         <dl>
           <div>
@@ -58,6 +67,23 @@ export default function PlaceDetailsPage() {
           )}
         </dl>
       </locator-bordered-list>
+    </diamond-enter>
+  );
+}
+
+export default function PlaceDetailsPage() {
+  const { t } = useTranslation();
+  const { location: locationPromise } = usePlaceLoaderData();
+
+  return (
+    <>
+      <h3 className="diamond-spacing-bottom-md">{t('place.details.title')}</h3>
+
+      <Suspense fallback={null}>
+        <Await resolve={locationPromise}>
+          {(location) => <PlaceDetailsPageContent location={location} />}
+        </Await>
+      </Suspense>
     </>
   );
 }

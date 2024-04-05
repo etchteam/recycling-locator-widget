@@ -13,13 +13,12 @@ const routes: RouteObject[] = [
   {
     path: '/:postcode/material',
     element: <MaterialLayout />,
-    loader: materialLoader,
-    id: 'material',
     children: [
       {
         index: true,
         element: <MaterialPage />,
         errorElement: <MaterialErrorPage />,
+        loader: materialLoader,
       },
       {
         path: 'search',
