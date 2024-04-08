@@ -136,6 +136,8 @@ export interface RecyclingMeta {
   image?: string;
   cta?: string;
   ctaCy?: string;
+  ctaCyEn?: string;
   ctaLink?: string;
   ctaLinkCy?: string;
+  ctaLinkCyEn?: string;
 }

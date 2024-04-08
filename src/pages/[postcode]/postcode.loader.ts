@@ -11,6 +11,7 @@ import { LocationsResponse } from '@/types/locatorApi';
 interface PostcodeLoaderResponse {
   postcode: string;
   city: string;
+  inWales: boolean;
   locationsPromise: { data: Record<string, unknown> };
 }
 
@@ -27,6 +28,7 @@ export default async function postcodeLoader({
     return {
       postcode,
       city: geocode.items[0].address.city,
+      inWales: geocode.items[0].address.state === 'Wales',
       locationsPromise: defer({ locations }),
     };
   } catch (error) {

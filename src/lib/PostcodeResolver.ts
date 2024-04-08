@@ -13,6 +13,7 @@ interface HereMapsGeocodeResponse {
     address: {
       city: string;
       countryName: string;
+      state: string;
     };
     position: {
       lat: number;
