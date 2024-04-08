@@ -1,3 +1,18 @@
+## [1.29.0](https://github.com/etchteam/recycling-locator/compare/v1.28.0...v1.29.0) (2024-04-08)
+
+
+### Features
+
+* container name before colour name ([4e2fc25](https://github.com/etchteam/recycling-locator/commit/4e2fc25e5a338e27f9ef6acc33cdc7619912a450))
+* swap out en logos on cy ([9d86803](https://github.com/etchteam/recycling-locator/commit/9d86803b55dd4803974b2505fcf72ee3020e7121))
+* welsh maps ([105e7c1](https://github.com/etchteam/recycling-locator/commit/105e7c15f7fd6ea7ff2b47441b07ecec7c4fde2d))
+
+
+### Bug Fixes
+
+* apply a global type override for i18n language ([c098c51](https://github.com/etchteam/recycling-locator/commit/c098c510183262e921c64d3fa94793620e62a6eb))
+* hide cy logo text ([799b323](https://github.com/etchteam/recycling-locator/commit/799b323d749016a20561f1dd8eca4206ab16fce4))
+
 ## [1.28.0](https://github.com/etchteam/recycling-locator/compare/v1.27.0...v1.28.0) (2024-04-05)
 
 
