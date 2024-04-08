@@ -1,6 +1,8 @@
 import type { service } from '@here/maps-api-for-javascript';
 
 import config from '@/config';
+import i18n from '@/lib/i18n';
+import { Locale } from '@/types/locale';
 import { PostcodeResponse } from '@/types/locatorApi';
 
 import LocatorApi from './LocatorApi';
@@ -29,19 +31,24 @@ export default class PostCodeResolver {
   static async getValidGeocodeData(
     location: string,
   ): Promise<HereMapsGeocodeResponse> {
+    const locale = i18n.language as Locale;
     const { default: H } = await import(
       // @ts-expect-error TS can't find the maps types
       '@here/maps-api-for-javascript/bin/mapsjs.bundle'
     );
     const apikey = config.mapsPlacesKey;
     const platform = new H.service.Platform({ apikey });
-    const service = platform.getSearchService() as service.GeocodingService;
-    let query: { q?: string; qq?: string } = { q: location };
+    const service = platform.getSearchService() as service.SearchService;
+    let query: { q?: string; qq?: string; lang?: Locale } = { q: location };
 
     if (PostCodeResolver.extractPostcodeFromString(location) === location) {
       // If the location is a postcode, use a postalCode Qualified Query (qq)
       // Uses formatting because searches for postcodes with a space are more reliable
       query = { qq: `postalCode=${formatPostcode(location)}` };
+    }
+
+    if (locale && locale !== 'en') {
+      query.lang = locale;
     }
 
     const geocode: HereMapsGeocodeResponse = await new Promise(
@@ -55,8 +62,9 @@ export default class PostCodeResolver {
     }
 
     const { countryName } = geocode.items[0].address;
+    const countryNameLower = countryName.toLowerCase();
 
-    if (countryName.toLowerCase() !== 'united kingdom') {
+    if (!['united kingdom', 'y deyrnas unedig'].includes(countryNameLower)) {
       throw new Error(PostCodeResolver.ERROR_NOT_IN_UK);
     }
 
