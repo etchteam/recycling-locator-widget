@@ -1,30 +1,39 @@
+import { Suspense, lazy } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
 
+import i18n from '@/lib/i18n';
 import { CustomElement } from '@/types/customElement';
-
-import LogoSvg from './recycle-logo.svg?react';
+import { Locale } from '@/types/locale';
 
 export default function Footer() {
   const { t } = useTranslation();
-  const tContext = 'components.footer';
+  const locale = i18n.language as Locale;
+  const logoPath = locale === 'cy' ? 'wales-recycles-logo' : 'recycle-logo';
+  const LogoSvg = lazy(() => import(`./${logoPath}.svg?react`));
 
   const links = ['privacy', 'cookies', 'accessibility'].map((item) => ({
-    href: t(`${tContext}.${item}Link`) as string,
-    label: t(`${tContext}.${item}Label`),
+    href: t(`components.footer.nav.${item}Link`),
+    label: t(`components.footer.nav.${item}Label`),
   }));
 
   return (
     <locator-footer>
       <h2 className="locator-footer-title">
-        {t(`${tContext}.poweredBy`)}{' '}
-        <LogoSvg title={t(`${tContext}.recycleNow`)} />
+        {t('components.footer.poweredBy')}{' '}
+        <Suspense fallback={null}>
+          <LogoSvg title={t('components.footer.recycleNow')} />
+        </Suspense>
       </h2>
-      <p>{t(`${tContext}.inPartnership`)} Valpak</p>
+      <p>{t('components.footer.inPartnership')} Valpak</p>
       <nav>
         <ul>
           {links.map((link) => (
             <li key={link.label}>
-              <a href={link.href} rel="noopener noreferrer" target="_blank">
+              <a
+                href={link.href as string}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 {link.label}
               </a>
             </li>

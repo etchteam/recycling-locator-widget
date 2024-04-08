@@ -18,7 +18,9 @@ import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
 import Menu from '@/components/control/Menu/Menu';
 import config from '@/config';
+import i18n from '@/lib/i18n';
 import useScrollRestoration from '@/lib/useScrollRestoration';
+import { Locale } from '@/types/locale';
 
 import { useHomeRecyclingLoaderData } from './home.loader';
 
@@ -28,6 +30,7 @@ export default function HomeRecyclingLayout({
   readonly children?: ComponentChildren;
 }) {
   const { t } = useTranslation();
+  const locale = i18n.language as Locale;
   const { postcode } = useParams();
   const layoutRef = useRef();
   const data = useHomeRecyclingLoaderData();
@@ -41,7 +44,7 @@ export default function HomeRecyclingLayout({
         {open.value ? (
           <locator-header-content>
             <Link to={`/${postcode}`}>
-              <locator-logo></locator-logo>
+              <locator-logo locale={locale}></locator-logo>
             </Link>
             <diamond-button width="square" size="sm">
               <button

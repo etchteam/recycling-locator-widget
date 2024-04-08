@@ -9,6 +9,20 @@ locator-logo {
     width: 100%;
   }
 
+  .logo-text--cy {
+    display: none;
+  }
+
+  &[locale='cy'] {
+    .logo-text--cy {
+      display: block;
+    }
+
+    .logo-text--en {
+      display: none;
+    }
+  }
+
   &[type='logo-only'] {
     /* Crop the space the logo text takes up to create a 40px square */
     overflow: hidden;

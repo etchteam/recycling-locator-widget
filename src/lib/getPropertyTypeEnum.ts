@@ -1,5 +1,4 @@
-import i18n from 'i18next';
-
+import i18n from '@/lib/i18n';
 import { Locale } from '@/types/locale';
 import { PROPERTY_TYPE_CY, PROPERTY_TYPE_EN } from '@/types/locatorApi';
 

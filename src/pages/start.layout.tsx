@@ -13,7 +13,9 @@ import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
 import Footer from '@/components/content/Footer/Footer';
 import config from '@/config';
+import i18n from '@/lib/i18n';
 import useAnalytics from '@/lib/useAnalytics';
+import { Locale } from '@/types/locale';
 
 function About() {
   const { t } = useTranslation();
@@ -77,6 +79,7 @@ export default function StartLayout({
 }) {
   const { t } = useTranslation();
   const { recordEvent } = useAnalytics();
+  const locale = i18n.language as Locale;
   const open = useSignal(false);
 
   open.subscribe((value) => {
@@ -90,7 +93,7 @@ export default function StartLayout({
     <locator-layout>
       <locator-header slot="layout-header">
         <locator-header-content>
-          <locator-logo></locator-logo>
+          <locator-logo locale={locale}></locator-logo>
           <diamond-button variant="text" width="square">
             <button
               type="button"

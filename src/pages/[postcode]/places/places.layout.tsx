@@ -18,6 +18,8 @@ import '@/components/content/Icon/Icon';
 import '@/components/control/TagButton/TagButton';
 import Menu from '@/components/control/Menu/Menu';
 import formatPostcode from '@/lib/formatPostcode';
+import i18n from '@/lib/i18n';
+import { Locale } from '@/types/locale';
 
 import { usePlacesLoaderData } from './places.loader';
 
@@ -27,6 +29,7 @@ export default function PlacesLayout({
   readonly children?: ComponentChildren;
 }) {
   const { t } = useTranslation();
+  const locale = i18n.language as Locale;
   const { postcode } = useParams();
   const { locations: locationsPromise } = usePlacesLoaderData();
   const open = useSignal(false);
@@ -49,7 +52,7 @@ export default function PlacesLayout({
         {open.value ? (
           <locator-header-content>
             <Link to={`/${postcode}`}>
-              <locator-logo></locator-logo>
+              <locator-logo locale={locale}></locator-logo>
             </Link>
             <diamond-button width="square" size="sm">
               <button
