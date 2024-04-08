@@ -15,7 +15,7 @@ locator-logo {
 
   &[locale='cy'] {
     .logo-text--cy {
-      display: block;
+      display: block !important;
     }
 
     .logo-text--en {
