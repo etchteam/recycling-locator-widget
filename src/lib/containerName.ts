@@ -22,6 +22,11 @@ export default function containerName({
     return `${bodyColourName} ${i18n.t('common.and')} ${lidColourName} ${displayName}`;
   }
 
+  if (bodyColourName && i18n.language === 'cy') {
+    // In Welsh, the object comes first followed by the descriptor
+    return `${displayName} ${bodyColourName}`;
+  }
+
   if (bodyColourName) {
     return `${bodyColourName} ${displayName}`;
   }
