@@ -225,7 +225,10 @@ export default function PlacesPage() {
             {(tip) => (
               <diamond-enter type="fade-in-up">
                 <locator-tip text-align="center" wrap="wrap">
-                  <img src={config.imagePath + 'material-tip.svg'} alt="" />
+                  <img
+                    src={tip?.image ?? config.imagePath + 'material-tip.svg'}
+                    alt=""
+                  />
                   <locator-tip-content>
                     <TipContent tip={tip} ctaWidth="full-width-mobile" />
                     {/** Space for the fab */}

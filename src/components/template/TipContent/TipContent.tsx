@@ -1,7 +1,8 @@
-import { RecyclingMeta } from '@/types/locatorApi';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
+import config from '@/config';
+import { RecyclingMeta } from '@/types/locatorApi';
 import '@/components/content/Icon/Icon';
 
 export default function TipContent({
@@ -17,6 +18,11 @@ export default function TipContent({
 
   return (
     <diamond-enter type="fade">
+      <img
+        className="diamond-spacing-bottom-sm"
+        src={tip.image ?? config.imagePath + 'material-tip.svg'}
+        alt=""
+      />
       <p className="diamond-text-weight-bold">{tip.subtitle}</p>
       <h2>{tip.title}</h2>
       <p>{tip.content}</p>
