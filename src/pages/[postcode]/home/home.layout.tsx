@@ -20,7 +20,6 @@ import Menu from '@/components/control/Menu/Menu';
 import config from '@/config';
 import i18n from '@/lib/i18n';
 import useScrollRestoration from '@/lib/useScrollRestoration';
-import { Locale } from '@/types/locale';
 
 import { useHomeRecyclingLoaderData } from './home.loader';
 
@@ -30,7 +29,7 @@ export default function HomeRecyclingLayout({
   readonly children?: ComponentChildren;
 }) {
   const { t } = useTranslation();
-  const locale = i18n.language as Locale;
+  const locale = i18n.language;
   const { postcode } = useParams();
   const layoutRef = useRef();
   const data = useHomeRecyclingLoaderData();

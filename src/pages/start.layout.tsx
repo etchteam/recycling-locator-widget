@@ -15,7 +15,6 @@ import Footer from '@/components/content/Footer/Footer';
 import config from '@/config';
 import i18n from '@/lib/i18n';
 import useAnalytics from '@/lib/useAnalytics';
-import { Locale } from '@/types/locale';
 
 function About() {
   const { t } = useTranslation();
@@ -79,7 +78,7 @@ export default function StartLayout({
 }) {
   const { t } = useTranslation();
   const { recordEvent } = useAnalytics();
-  const locale = i18n.language as Locale;
+  const locale = i18n.language;
   const open = useSignal(false);
 
   open.subscribe((value) => {

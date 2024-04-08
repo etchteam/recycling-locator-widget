@@ -6,7 +6,6 @@ import '@/components/content/Icon/Icon';
 import config from '@/config';
 import i18n from '@/lib/i18n';
 import { CustomElement } from '@/types/customElement';
-import { Locale } from '@/types/locale';
 import { Location } from '@/types/locatorApi';
 
 import MapMarker from './marker.svg?raw';
@@ -53,7 +52,7 @@ export default class PlacesMap extends Component<PlacesMapProps> {
   }
 
   async initMap() {
-    const locale = i18n.language as Locale;
+    const locale = i18n.language;
     const { default: HereMaps } = await import(
       // @ts-expect-error TS can't find the maps types
       '@here/maps-api-for-javascript/bin/mapsjs.bundle'

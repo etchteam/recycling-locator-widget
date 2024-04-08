@@ -31,7 +31,7 @@ export default class PostCodeResolver {
   static async getValidGeocodeData(
     location: string,
   ): Promise<HereMapsGeocodeResponse> {
-    const locale = i18n.language as Locale;
+    const locale = i18n.language;
     const { default: H } = await import(
       // @ts-expect-error TS can't find the maps types
       '@here/maps-api-for-javascript/bin/mapsjs.bundle'
