@@ -56,14 +56,14 @@ function HomeRecyclingCentrePageContent({
         <h3>{t('homeRecycling.hwrc.title')}</h3>
 
         <diamond-enter type="fade">
-          <p>
-            {t(
-              `homeRecycling.hwrc.content${hwrcLocationsCount >= 30 ? 'ThirtyPlus' : ''}`,
-              { count: hwrcLocationsCount },
-            )}
-          </p>
-          {hwrcLocationsCount > 0 && (
+          {hwrcLocationsCount > 0 ? (
             <>
+              <p>
+                {t(
+                  `homeRecycling.hwrc.content${hwrcLocationsCount >= 30 ? 'ThirtyPlus' : ''}`,
+                  { count: hwrcLocationsCount },
+                )}
+              </p>
               <diamond-card
                 className="theme-info diamond-spacing-bottom-md"
                 padding="sm"
@@ -98,6 +98,17 @@ function HomeRecyclingCentrePageContent({
                 );
               })}
             </>
+          ) : (
+            <diamond-card border radius>
+              <locator-icon-text>
+                <locator-icon-circle variant="negative">
+                  <locator-icon icon="place-hwrc"></locator-icon>
+                </locator-icon-circle>
+                <p className="diamond-text-weight-bold">
+                  {t('homeRecycling.hwrc.content', { count: 0 })}
+                </p>
+              </locator-icon-text>
+            </diamond-card>
           )}
         </diamond-enter>
       </section>

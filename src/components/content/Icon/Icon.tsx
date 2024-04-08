@@ -23,6 +23,7 @@ export interface IconAttributes {
     | 'tick-circle'
     | 'tick'
     | 'place'
+    | 'place-hwrc'
     | 'external'
     | 'expand'
     | 'list'

@@ -3,7 +3,7 @@ locator-nav-bar {
   border-bottom: var(--diamond-border);
   display: block;
   position: sticky;
-  top: calc(var(--header-height) + 1px);
+  top: var(--header-height);
   z-index: var(--layer-two);
 
   locator-layout:not(:has([slot='layout-aside'])) & {
@@ -19,6 +19,8 @@ locator-nav-bar {
     gap: var(--diamond-spacing-sm);
     justify-content: center;
     list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   a {
