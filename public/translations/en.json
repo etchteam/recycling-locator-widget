@@ -220,8 +220,8 @@
       }
     },
     "hwrc": {
-      "title": "Take items to a Recycling Centre in your area.",
-      "content_zero": "No Recycling Centres within 25 miles",
+      "title": "Recycling Centres in your area",
+      "content_zero": "There are no Recycling Centres within 25 miles",
       "content_one": "1 Recycling Centre within 25 miles",
       "content_other": "{{ count }} Recycling Centres within 25 miles",
       "contentThirtyPlus": "30+ Recycling Centres within 25 miles",

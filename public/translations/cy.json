@@ -222,7 +222,7 @@
       }
     },
     "hwrc": {
-      "title": "Mynd ag eitemau i Ganolfan Ailgylchu yn eich ardal.",
+      "title": "Mynd ag eitemau i Ganolfan Ailgylchu yn eich ardal",
       "content_zero": "Dim Canolfannau Ailgylchu o fewn 25 milltir",
       "content_one": "1 Canolfan Ailgylchu o fewn 25 milltir",
       "content_other": "{{ count }} Canolfan Ailgylchu o fewn 25 milltir",
