@@ -4,6 +4,7 @@ import '@etchteam/diamond-ui/control/Input/Input';
 
 import '@/components/content/Icon/Icon';
 import config from '@/config';
+import i18n from '@/lib/i18n';
 import { CustomElement } from '@/types/customElement';
 import { Location } from '@/types/locatorApi';
 
@@ -51,6 +52,7 @@ export default class PlacesMap extends Component<PlacesMapProps> {
   }
 
   async initMap() {
+    const locale = i18n.language;
     const { default: HereMaps } = await import(
       // @ts-expect-error TS can't find the maps types
       '@here/maps-api-for-javascript/bin/mapsjs.bundle'
@@ -59,7 +61,11 @@ export default class PlacesMap extends Component<PlacesMapProps> {
       apikey: this.apiKey,
     });
 
-    const defaultLayers = platform.createDefaultLayers() as any;
+    const defaultLayers = platform.createDefaultLayers(
+      undefined,
+      undefined,
+      locale && locale !== 'en' ? locale : undefined,
+    ) as any;
     const baseLayer = defaultLayers.vector.normal.map as H.map.layer.Layer;
     // Limit the zoom level so people never get a silly radius
     baseLayer.setMin(9);
