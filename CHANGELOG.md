@@ -1,3 +1,10 @@
+## [1.30.0](https://github.com/etchteam/recycling-locator/compare/v1.29.0...v1.30.0) (2024-04-08)
+
+
+### Features
+
+* improved empty state for no nearby hwrcs ([30fa24c](https://github.com/etchteam/recycling-locator/commit/30fa24cd7acb4f93e152b1ce45e21b875f9101d1))
+
 ## [1.29.0](https://github.com/etchteam/recycling-locator/compare/v1.28.0...v1.29.0) (2024-04-08)
 
 
