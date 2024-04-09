@@ -2,10 +2,11 @@ import groupBy from 'lodash/groupBy';
 import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
 import { Await, Link, useLoaderData, useParams } from 'react-router-dom';
-import '@etchteam/diamond-ui/control/Button/Button';
+import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
+import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/composition/Wrap/Wrap';
 import '@/components/control/AlphabetNav/AlphabetNav';
@@ -14,7 +15,7 @@ import '@/components/content/Icon/Icon';
 import tArray from '@/lib/tArray';
 import { Material } from '@/types/locatorApi';
 
-import { PlacesMaterialsLoaderResponse } from './materials.loader';
+import { PlacesSearchAtoZLoaderResponse } from './a-z.loader';
 
 function AtoZPageContent({
   materials,
@@ -130,13 +131,18 @@ function AtoZPageContent({
 }
 
 export default function AtoZPage() {
-  const { materials } = useLoaderData() as PlacesMaterialsLoaderResponse;
+  const { materials: materialsPromise } =
+    useLoaderData() as PlacesSearchAtoZLoaderResponse;
 
   return (
-    <Suspense fallback={null}>
-      <Await resolve={materials}>
-        {(materials) => <AtoZPageContent materials={materials} />}
-      </Await>
-    </Suspense>
+    <diamond-section padding="lg">
+      <locator-wrap>
+        <Suspense fallback={null}>
+          <Await resolve={materialsPromise}>
+            {(materials) => <AtoZPageContent materials={materials} />}
+          </Await>
+        </Suspense>
+      </locator-wrap>
+    </diamond-section>
   );
 }

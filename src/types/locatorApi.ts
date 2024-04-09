@@ -26,6 +26,7 @@ export interface MaterialCategory {
   name: string;
   nameCy?: string;
   popular?: boolean;
+  materials?: Material[];
 }
 
 export interface MaterialWithCategory extends Material {

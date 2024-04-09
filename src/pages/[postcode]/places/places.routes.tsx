@@ -10,8 +10,10 @@ import PlacePage from './place/place.page';
 import PlacesLayout from './places.layout';
 import placesLoader from './places.loader';
 import PlacesPage from './places.page';
+import placesSearchAtoZLoader from './search/a-z.loader';
 import AtoZPage from './search/a-z.page';
-import placesMaterialsLoader from './search/materials.loader';
+import placesSearchCategoriesLoader from './search/categories.loader';
+import CategoriesPage from './search/categories.page';
 import placesSearchAction from './search/search.action';
 import PlacesSearchLayout from './search/search.layout';
 import placesSearchLoader from './search/search.loader';
@@ -47,9 +49,14 @@ const routes: RouteObject[] = [
         loader: placesSearchLoader,
       },
       {
+        path: 'categories',
+        element: <CategoriesPage />,
+        loader: placesSearchCategoriesLoader,
+      },
+      {
         path: 'a-z',
         element: <AtoZPage />,
-        loader: placesMaterialsLoader,
+        loader: placesSearchAtoZLoader,
       },
     ],
   },
