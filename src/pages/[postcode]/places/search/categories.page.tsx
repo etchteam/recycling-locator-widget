@@ -1,64 +1,28 @@
 import { Suspense } from 'preact/compat';
-import { Await, useLoaderData } from 'react-router-dom';
+import { Await, useLoaderData, useParams } from 'react-router-dom';
+import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/composition/Wrap/Wrap';
-import { MaterialCategory } from '@/types/locatorApi';
+import MaterialCategoriesNav from '@/components/control/MaterialCategoriesNav/MaterialCategoriesNav';
 
 import { PlacesSearchCategoriesLoaderResponse } from './categories.loader';
 
-function CategoriesPageContent({
-  materialCategories,
-}: {
-  readonly materialCategories: readonly MaterialCategory[];
-}) {
-  console.log(materialCategories);
-
-  return (
-    <nav>
-      <ul>
-        <li>
-          <button>Automotive</button>
-          <ul>
-            <li>
-              <a href="#link">Tyres</a>
-            </li>
-            <li>
-              <a href="#link">Car batteries</a>
-            </li>
-            <li>
-              <a href="#link">Engine oil</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <button>Cardboard</button>
-          <ul>
-            <li>
-              <a href="#link">Cardboard boxes</a>
-            </li>
-            <li>
-              <a href="#link">Cardboard tubes</a>
-            </li>
-            <li>
-              <a href="#link">Cardboard trays</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  );
-}
-
 export default function CategoriesPage() {
+  const { postcode } = useParams();
   const { materialCategories: materialCategoriesPromise } =
     useLoaderData() as PlacesSearchCategoriesLoaderResponse;
 
   return (
-    <locator-wrap>
+    <locator-wrap max-width="none" gutter="fluid">
       <Suspense fallback={null}>
         <Await resolve={materialCategoriesPromise}>
           {(materialCategories) => (
-            <CategoriesPageContent materialCategories={materialCategories} />
+            <diamond-enter type="fade">
+              <MaterialCategoriesNav
+                basePath={`${postcode}/places`}
+                materialCategories={materialCategories}
+              />
+            </diamond-enter>
           )}
         </Await>
       </Suspense>

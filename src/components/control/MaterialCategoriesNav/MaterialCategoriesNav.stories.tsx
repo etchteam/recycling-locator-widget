@@ -35,7 +35,10 @@ export const MaterialCategoriesNav: StoryObj = {
     ];
 
     return (
-      <MaterialCategoriesNavComponent materialCategories={materialCategories} />
+      <MaterialCategoriesNavComponent
+        basePath="#"
+        materialCategories={materialCategories}
+      />
     );
   },
 };
