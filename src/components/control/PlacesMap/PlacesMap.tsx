@@ -64,7 +64,7 @@ export default class PlacesMap extends Component<PlacesMapProps> {
     const defaultLayers = platform.createDefaultLayers(
       undefined,
       undefined,
-      locale && locale !== 'en' ? locale : undefined,
+      locale === 'cy' ? 'cy' : undefined,
     ) as any;
     const baseLayer = defaultLayers.vector.normal.map as H.map.layer.Layer;
     // Limit the zoom level so people never get a silly radius

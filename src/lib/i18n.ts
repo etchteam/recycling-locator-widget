@@ -21,6 +21,7 @@ export function i18nInit(locale: Locale = 'en') {
     fallbackLng: 'en',
     lng: locale,
     debug: import.meta.env.MODE === 'development',
+    load: 'currentOnly',
     backend: {
       loadPath: `${config.publicPath}translations/{{lng}}.json`,
     },

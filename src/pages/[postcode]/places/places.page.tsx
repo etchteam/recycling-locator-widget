@@ -230,7 +230,11 @@ export default function PlacesPage() {
                     alt=""
                   />
                   <locator-tip-content>
-                    <TipContent tip={tip} ctaWidth="full-width-mobile" />
+                    <TipContent
+                      tip={tip}
+                      ctaWidth="full-width-mobile"
+                      showImage={false}
+                    />
                     {/** Space for the fab */}
                     <div className="diamond-spacing-bottom-xl"></div>
                   </locator-tip-content>
