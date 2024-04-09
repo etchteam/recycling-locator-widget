@@ -47,7 +47,7 @@ function HomeRecyclingCentrePageContent({
   const hwrcLocations = locations.filter((location) =>
     location.locations.some((l) => l.locationType === 'HWRC'),
   );
-  const hwrcLocationsCount = 31;
+  const hwrcLocationsCount = hwrcLocations.length;
   const otherLocationsCount = locations.length;
 
   return (
