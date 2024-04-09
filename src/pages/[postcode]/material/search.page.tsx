@@ -17,7 +17,6 @@ import '@/components/composition/BorderedList/BorderedList';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import PopularMaterials from '@/components/template/PopularMaterials/PopularMaterials';
 import TipContent from '@/components/template/TipContent/TipContent';
-import config from '@/config';
 import useFormValidation from '@/lib/useFormValidation';
 import { Material } from '@/types/locatorApi';
 
@@ -89,11 +88,6 @@ export default function MaterialSearchPage() {
       </div>
       <locator-tip slot="layout-aside" text-align="center">
         <locator-wrap>
-          <img
-            className="diamond-spacing-bottom-sm"
-            src={config.imagePath + 'material-tip.svg'}
-            alt=""
-          />
           <Suspense fallback={null}>
             <Await resolve={tipPromise}>
               {(tip) => <TipContent tip={tip} />}

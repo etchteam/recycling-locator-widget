@@ -126,16 +126,11 @@ export interface RecyclingMeta {
   id: number;
   category: 'HINT' | 'QUESTION';
   title: string;
-  titleCy?: string;
   subtitle: string;
-  subtitleCy?: string;
   content: string;
-  contentCy?: string;
   materials?: number[];
   path?: string;
   image?: string;
   cta?: string;
-  ctaCy?: string;
   ctaLink?: string;
-  ctaLinkCy?: string;
 }

@@ -1,22 +1,34 @@
-import { RecyclingMeta } from '@/types/locatorApi';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/content/Icon/Icon';
+import config from '@/config';
+import { RecyclingMeta } from '@/types/locatorApi';
+
+interface TipContentProps {
+  readonly tip?: RecyclingMeta;
+  readonly ctaWidth?: 'full-width' | 'full-width-mobile';
+  readonly showImage?: boolean;
+}
 
 export default function TipContent({
   tip,
   ctaWidth = 'full-width',
-}: {
-  readonly tip?: RecyclingMeta;
-  readonly ctaWidth?: 'full-width' | 'full-width-mobile';
-}) {
+  showImage = true,
+}: TipContentProps) {
   if (!tip) {
     return null;
   }
 
   return (
     <diamond-enter type="fade">
+      {showImage && (
+        <img
+          className="diamond-spacing-bottom-sm"
+          src={tip.image ?? config.imagePath + 'material-tip.svg'}
+          alt=""
+        />
+      )}
       <p className="diamond-text-weight-bold">{tip.subtitle}</p>
       <h2>{tip.title}</h2>
       <p>{tip.content}</p>

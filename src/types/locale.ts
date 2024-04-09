@@ -1,1 +1,1 @@
-export type Locale = 'en' | 'cy';
+export type Locale = 'en' | 'cy' | 'cy-GB';

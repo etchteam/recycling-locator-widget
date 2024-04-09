@@ -1,10 +1,10 @@
 {
   "common": {
     "and": "and",
+    "miles": "miles",
     "miles_one": "mile",
-    "miles_other": "miles",
+    "materialsAccepted": "materials accepted",
     "materialsAccepted_one": "material accepted",
-    "materialsAccepted_other": "materials accepted",
     "popularSearches": "Popular searches"
   },
   "actions": {
@@ -68,8 +68,8 @@
       "#ffffff00": "Transparent"
     },
     "schemeContainerSummary": {
-      "otherContainers_one": "+1 other bin",
-      "otherContainers_other": "+{{count}} other bins"
+      "otherContainers": "+{{count}} other bins",
+      "otherContainers_one": "+1 other bin"
     },
     "footer": {
       "poweredBy": "Powered by",
@@ -171,8 +171,8 @@
       },
       "oneProperty": {
         "title": "Recycle at home",
-        "collection_one": "This item is collected in this bin:",
-        "collection_other": "This item is collected in these bins:"
+        "collection": "This item is collected in these bins:",
+        "collection_one": "This item is collected in this bin:"
       }
     },
     "nearbyPlaces": {
@@ -182,8 +182,8 @@
       },
       "places": {
         "title": "Recycle at a nearby place",
+        "content": "This item can be recycled at <bold>{{count}} places</bold> in the area.",
         "content_one": "This item can be recycled at <bold>1 place</bold> in the area.",
-        "content_other": "This item can be recycled at <bold>{{count}} places</bold> in the area.",
         "contentThirtyPlus": "This item can be recycled at 30+ places in the area."
       }
     },
@@ -214,23 +214,23 @@
       "title": "Recycling Collections",
       "search": {
         "label": "Check what goes in each bin",
+        "positive": "Yes, it can be recycled in the following bin…",
         "positive_one": "Yes, it can be recycled in the following bin…",
-        "positive_other": "Yes, it can be recycled in the following bin…",
         "negative": "No, it can’t be recycled in the following bins…"
       }
     },
     "hwrc": {
       "title": "Recycling Centres in your area",
+      "content": "{{ count }} Recycling Centres within 25 miles",
       "content_zero": "There are no Recycling Centres within 25 miles",
       "content_one": "1 Recycling Centre within 25 miles",
-      "content_other": "{{ count }} Recycling Centres within 25 miles",
       "contentThirtyPlus": "30+ Recycling Centres within 25 miles",
       "info": "Some Recycling Centres are open to local residents only. Please check before you make your journey.",
       "nearbyPlaces": {
         "title": "Recycle at a nearby place",
+        "content": "{{count}} places within 25 miles",
         "content_zero": "No places within 25 miles",
         "content_one": "1 place within 25 miles",
-        "content_other": "{{count}} places within 25 miles",
         "contentThirtyPlus": "30+ places within 25 miles"
       }
     },
@@ -256,9 +256,9 @@
   },
   "places": {
     "title": "Places to recycle",
+    "count": "{{count}} nearest places within 25 miles",
     "count_zero": "No places within 25 miles match this search",
     "count_one": "{{count}} nearby place within 25 miles",
-    "count_other": "{{count}} nearest places within 25 miles",
     "searchPlaceholder": "Recycle a specific item…",
     "loading": "Searching this area…",
     "viewAll": "View all nearby places",
