@@ -19,3 +19,8 @@
   position: relative;
   z-index: var(--layer-one);
 }
+
+.scroll-anchor {
+  /* Scroll anchors need extra space above for scrollIntoView to be positioned correctly */
+  scroll-margin-block-start: var(--diamond-spacing-xl);
+}

@@ -58,7 +58,7 @@ function AtoZPageContent({
       ?.closest('locator-wrap')
       ?.querySelector('locator-alphabet-nav');
 
-    element?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    element?.scrollIntoView({ block: 'center', behavior: 'smooth' });
   }
 
   return (
@@ -88,7 +88,7 @@ function AtoZPageContent({
           <diamond-grid>
             <diamond-grid-item grow shrink>
               <h3
-                className="diamond-text-weight-bold diamond-text-size-h4"
+                className="diamond-text-weight-bold diamond-text-size-h4 scroll-anchor"
                 id={`letter-${letter}`}
               >
                 {letter}
