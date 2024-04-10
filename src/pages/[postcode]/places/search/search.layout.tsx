@@ -69,7 +69,12 @@ export default function PlacesSearchLayout() {
                   to={`/${postcode}/places/search/categories`}
                   unstable_viewTransition
                 >
-                  {t('places.search.nav.categories')}
+                  <span className="hidden-tablet">
+                    {t('places.search.nav.categories')}
+                  </span>
+                  <span className="hidden visible-tablet">
+                    {t('places.search.nav.recyclingCategories')}
+                  </span>
                 </NavLink>
               </li>
               <li>
@@ -77,7 +82,12 @@ export default function PlacesSearchLayout() {
                   to={`/${postcode}/places/search/a-z`}
                   unstable_viewTransition
                 >
-                  {t('places.search.nav.aToZ')}
+                  <span className="hidden-tablet">
+                    {t('places.search.nav.aToZ')}
+                  </span>
+                  <span className="hidden visible-tablet">
+                    {t('places.search.nav.aToZofItems')}
+                  </span>
                 </NavLink>
               </li>
             </ul>

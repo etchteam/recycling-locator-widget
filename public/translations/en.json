@@ -268,8 +268,10 @@
       "label": "What do you need to recycle?",
       "nav": {
         "search": "Search",
+        "recyclingCategories": "Recycling categories",
         "categories": "Categories",
-        "aToZ": "A-Z"
+        "aToZ": "A-Z",
+        "aToZofItems": "A-Z of items"
       },
       "aToZ": {
         "alphabet": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
