@@ -1,10 +1,10 @@
 {
   "common": {
     "and": "+",
+    "miles": "milltir",
     "miles_one": "milltir",
-    "miles_other": "milltir",
+    "materialsAccepted": "deunyddiau a dderbynnir",
     "materialsAccepted_one": "deunydd a dderbynnir",
-    "materialsAccepted_other": "deunyddiau a dderbynnir",
     "popularSearches": "Chwiliadau poblogaidd"
   },
   "actions": {
@@ -32,7 +32,7 @@
       "error": "Nodwch enw eitem i chwilio amdani"
     },
     "menu": {
-      "whatdoYouWantToDo": "Beth hoffech chi ei wneud?",
+      "whatDoYouWantToDo": "Beth hoffech chi ei wneud?",
       "changeLocation": "Newid eich lleoliad",
       "recycleSpecificItem": "Ailgylchu eitem benodol",
       "homeRecycling": "Gwirio eich ailgylchu o gartref",
@@ -68,8 +68,8 @@
       "#ffffff00": "Tryloyw"
     },
     "schemeContainerSummary": {
-      "otherContainers_one": "+1 bin arall",
-      "otherContainers_other": "+{{count}} bin arall"
+      "otherContainers": "+{{count}} bin arall",
+      "otherContainers_one": "+1 bin arall"
     },
     "footer": {
       "poweredBy": "Pwerwyd gan",
@@ -173,8 +173,8 @@
       },
       "oneProperty": {
         "title": "Ailgylchu gartref",
-        "collection_one": "Cesglir yr eitem hon yn y bin hwn:",
-        "collection_other": "Cesglir yr eitemau hyn yn y biniau hyn:"
+        "collection": "Cesglir yr eitemau hyn yn y biniau hyn:",
+        "collection_one": "Cesglir yr eitem hon yn y bin hwn:"
       }
     },
     "nearbyPlaces": {
@@ -184,8 +184,8 @@
       },
       "places": {
         "title": "Ailgylchu mewn lle cyfagos",
+        "content": "Gellir ailgylchu’r eitem hon mewn <bold>{{count}} lle </bold> yn yr ardal.",
         "content_one": "Gellir ailgylchu’r eitem hon mewn <bold>1 lle </bold> yn yr ardal.",
-        "content_other": "Gellir ailgylchu’r eitem hon mewn <bold>{{count}} lle </bold> yn yr ardal.",
         "contentThirtyPlus": "Gellir ailgylchu’r eitem hon mewn 30+ lle yn yr ardal."
       }
     },
@@ -216,23 +216,23 @@
       "title": "Casgliadau Ailgylchu",
       "search": {
         "label": "Gwiriwch beth sy’n mynd i bob bin",
+        "positive": "Oes, mae modd ei ailgylchu yn y biniau canlynol…",
         "positive_one": "Oes, mae modd ei ailgylchu yn y bin canlynol…",
-        "positive_other": "Oes, mae modd ei ailgylchu yn y biniau canlynol…",
         "negative": "Ni dderbynnir yr eitem hon gan y casgliad ailgylchu o gartref hwn"
       }
     },
     "hwrc": {
       "title": "Mynd ag eitemau i Ganolfan Ailgylchu yn eich ardal",
+      "content": "{{ count }} Canolfan Ailgylchu o fewn 25 milltir",
       "content_zero": "Dim Canolfannau Ailgylchu o fewn 25 milltir",
       "content_one": "1 Canolfan Ailgylchu o fewn 25 milltir",
-      "content_other": "{{ count }} Canolfan Ailgylchu o fewn 25 milltir",
       "contentThirtyPlus": "30+ Canolfan Ailgylchu o fewn 25 milltir",
       "info": "Mae rhai Canolfannau Ailgylchu ar agor i breswylwyr lleol yn unig. Gwiriwch cyn ichi wneud y siwrne.",
       "nearbyPlaces": {
         "title": "Ailgylchu mewn lle cyfagos",
+        "content": "{{count}} lle o fewn 25 milltir",
         "content_zero": "Dim lle o fewn 25 milltir",
         "content_one": "1 lle o fewn 25 milltir",
-        "content_other": "{{count}} lle o fewn 25 milltir",
         "contentThirtyPlus": "30+ lle o fewn 25 milltir"
       }
     },
@@ -258,9 +258,9 @@
   },
   "places": {
     "title": "Lleoedd i ailgylchu",
+    "count": "{{count}} lle agosaf o fewn 25 milltir",
     "count_zero": "Dim lle o fewn 25 milltir",
     "count_one": "1 lle cyfagos o fewn 25 milltir",
-    "count_other": "{{count}} lle agosaf o fewn 25 milltir",
     "searchPlaceholder": "Ailgylchu eitem benodol…",
     "loading": "Chwilio’r ardal hon…",
     "viewAll": "Gweld pob man cyfagos",

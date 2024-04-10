@@ -10,7 +10,6 @@ import '@/components/canvas/LoadingCard/LoadingCard';
 import '@/components/canvas/Hero/Hero';
 import '@/components/composition/Wrap/Wrap';
 import TipContent from '@/components/template/TipContent/TipContent';
-import config from '@/config';
 import getPropertiesByMaterial from '@/lib/getPropertiesByMaterial';
 import useAnalytics from '@/lib/useAnalytics';
 
@@ -136,11 +135,6 @@ export default function MaterialPage() {
       </div>
       <locator-tip slot="layout-aside" text-align="center">
         <locator-wrap>
-          <img
-            className="diamond-spacing-bottom-sm"
-            src={config.imagePath + 'material-tip.svg'}
-            alt=""
-          />
           <Suspense fallback={null}>
             <Await resolve={tipPromise}>
               {(tip) => <TipContent tip={tip} />}

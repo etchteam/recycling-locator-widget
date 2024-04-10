@@ -13,6 +13,7 @@ interface HereMapsGeocodeResponse {
     address: {
       city: string;
       countryName: string;
+      state: string;
     };
     position: {
       lat: number;
@@ -47,8 +48,8 @@ export default class PostCodeResolver {
       query = { qq: `postalCode=${formatPostcode(location)}` };
     }
 
-    if (locale && locale !== 'en') {
-      query.lang = locale;
+    if (locale === 'cy') {
+      query.lang = 'cy';
     }
 
     const geocode: HereMapsGeocodeResponse = await new Promise(

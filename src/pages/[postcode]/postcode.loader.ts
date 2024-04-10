@@ -6,6 +6,7 @@ import {
 
 import LocatorApi from '@/lib/LocatorApi';
 import PostCodeResolver from '@/lib/PostcodeResolver';
+import i18n from '@/lib/i18n';
 import { LocationsResponse } from '@/types/locatorApi';
 
 interface PostcodeLoaderResponse {
@@ -23,6 +24,15 @@ export default async function postcodeLoader({
     const locations = LocatorApi.get<LocationsResponse>(
       `locations/${postcode}?limit=30&radius=25`,
     );
+    const isInWales = geocode.items[0].address.state === 'Wales';
+
+    if (i18n.language === 'en' && isInWales) {
+      // Use English Welsh for Wales locations
+      i18n.changeLanguage('cy-GB');
+    } else if (i18n.language === 'cy-GB' && !isInWales) {
+      // Handle the user changing back to an English location in the same session
+      i18n.changeLanguage('en');
+    }
 
     return {
       postcode,

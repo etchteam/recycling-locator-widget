@@ -1,3 +1,18 @@
+## [1.31.0](https://github.com/etchteam/recycling-locator/compare/v1.30.0...v1.31.0) (2024-04-09)
+
+
+### Features
+
+* cy-GB language support ([26c6505](https://github.com/etchteam/recycling-locator/commit/26c6505eb26547c288a51199d688161194249df6))
+* display ctaCyEn links for locations in wales ([b366c82](https://github.com/etchteam/recycling-locator/commit/b366c82d3c813ef24f537f48f4373a48e38a3cd0))
+* display uploaded tip svgs ([842e6b0](https://github.com/etchteam/recycling-locator/commit/842e6b0720b6b347800f72d9d9da7e66f1fffa33))
+* minor translation fixes ([04e8546](https://github.com/etchteam/recycling-locator/commit/04e8546e1bbf2d10d49ff6e168584eb22ee7f8c1))
+
+
+### Reverts
+
+* translation debug ([6ec258c](https://github.com/etchteam/recycling-locator/commit/6ec258ce2ed8b0dedcfdfb6241542557c24094da))
+
 ## [1.30.0](https://github.com/etchteam/recycling-locator/compare/v1.29.0...v1.30.0) (2024-04-08)
 
 

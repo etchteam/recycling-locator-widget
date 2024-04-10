@@ -25,7 +25,6 @@ import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import TipContent from '@/components/template/TipContent/TipContent';
-import config from '@/config';
 import sortPropertyTypes from '@/lib/sortPropertyTypes';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
@@ -198,7 +197,6 @@ export default function CollectionPage() {
       </div>
       <locator-tip slot="layout-aside" text-align="center">
         <locator-wrap>
-          <img src={config.imagePath + 'general-tip.svg'} alt="" />
           <Suspense fallback={null}>
             <Await resolve={tipPromise}>
               {(tip) => <TipContent tip={tip} />}
