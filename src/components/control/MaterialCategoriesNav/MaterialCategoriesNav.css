@@ -1,4 +1,6 @@
 locator-material-categories-nav {
+  --_materials-border: 1px solid var(--color-grey-lightest);
+
   display: block;
   position: relative;
 
@@ -35,7 +37,7 @@ locator-material-categories-nav {
   }
 
   a {
-    border-top: 1px solid var(--color-grey-lightest);
+    border-top: var(--_materials-border);
     color: inherit;
     display: block;
     padding-block: var(--diamond-spacing-sm);
@@ -67,9 +69,9 @@ locator-material-categories-nav {
   .material-categories-nav__materials {
     background: var(--diamond-theme-background);
     left: 100cqw;
-    max-height: calc(var(--container-height) - (var(--header-height) * 2));
     min-width: 100%;
     opacity: 0;
+    padding-block-start: 0;
     position: absolute;
     top: 0;
     transition:
@@ -80,15 +82,24 @@ locator-material-categories-nav {
     z-index: var(--layer-one);
 
     li:first-child {
-      margin-block-end: var(--diamond-spacing);
+      background: var(--diamond-theme-background);
+      border-bottom: var(--diamond-border);
+      margin-block-end: var(--diamond-spacing-sm);
+      padding: var(--diamond-spacing) 0 var(--diamond-spacing-sm);
+      position: sticky;
+      top: 0;
 
       button {
         justify-content: flex-start;
       }
+
+      + li a {
+        border-top: 0 none;
+      }
     }
 
     li:last-child a {
-      border-bottom: 1px solid var(--color-grey-lightest);
+      border-bottom: var(--_materials-border);
     }
 
     li[data-active='true'] > & {
@@ -107,7 +118,9 @@ locator-material-categories-nav {
       display: flex;
     }
 
-    ul {
+    .material-categories-nav__categories,
+    .material-categories-nav__materials {
+      min-width: 50%;
       padding-block: var(--diamond-spacing-xl);
       width: 50%;
     }
@@ -121,13 +134,9 @@ locator-material-categories-nav {
       }
     }
 
-    .material-categories-nav__materials {
+    .material-categories-nav__materials,
+    li[data-active='true'] .material-categories-nav__materials {
       left: 50%;
-      min-width: 50%;
-
-      li[data-active='true'] > & {
-        left: 50%;
-      }
 
       li:first-child {
         display: none;
