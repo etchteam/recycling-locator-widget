@@ -1,7 +1,9 @@
 import { useSignal } from '@preact/signals';
+import { Link } from 'react-router-dom';
 
 import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
+
 import { CustomElement } from '@/types/customElement';
 import { MaterialCategory } from '@/types/locatorApi';
 
@@ -15,7 +17,6 @@ export default function MaterialCategoriesNav({
   materialCategories,
   basePath,
 }: MaterialCategoriesNavProps) {
-  console.log(materialCategories);
   const activeCategoryId = useSignal<string | null>(null);
 
   function handleCategoryClick(categoryId: string | null) {
@@ -25,7 +26,7 @@ export default function MaterialCategoriesNav({
   return (
     <locator-material-categories-nav>
       <nav>
-        <ul>
+        <ul className="material-categories-nav__categories">
           {materialCategories.map((category) => {
             const isActive = activeCategoryId.value === category.id;
             const materialListId = `category-${category.id}-materials`;
@@ -44,7 +45,10 @@ export default function MaterialCategoriesNav({
                     color="primary"
                   ></locator-icon>
                 </button>
-                <ul id={materialListId}>
+                <ul
+                  className="material-categories-nav__materials"
+                  id={materialListId}
+                >
                   <li>
                     <button
                       type="button"
@@ -61,11 +65,11 @@ export default function MaterialCategoriesNav({
                   </li>
                   {category.materials.map((material) => (
                     <li key={material.id}>
-                      <a
-                        href={`${basePath}?materialId=${material.id}&materialName=${encodeURIComponent(material.name)}`}
+                      <Link
+                        to={`${basePath}?materialId=${material.id}&materialName=${encodeURIComponent(material.name)}`}
                       >
                         {material.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>

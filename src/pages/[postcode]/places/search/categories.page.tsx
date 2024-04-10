@@ -13,19 +13,17 @@ export default function CategoriesPage() {
     useLoaderData() as PlacesSearchCategoriesLoaderResponse;
 
   return (
-    <locator-wrap max-width="none" gutter="fluid">
-      <Suspense fallback={null}>
-        <Await resolve={materialCategoriesPromise}>
-          {(materialCategories) => (
-            <diamond-enter type="fade">
-              <MaterialCategoriesNav
-                basePath={`${postcode}/places`}
-                materialCategories={materialCategories}
-              />
-            </diamond-enter>
-          )}
-        </Await>
-      </Suspense>
-    </locator-wrap>
+    <Suspense fallback={null}>
+      <Await resolve={materialCategoriesPromise}>
+        {(materialCategories) => (
+          <diamond-enter type="fade">
+            <MaterialCategoriesNav
+              basePath={`/${postcode}/places`}
+              materialCategories={materialCategories}
+            />
+          </diamond-enter>
+        )}
+      </Await>
+    </Suspense>
   );
 }
