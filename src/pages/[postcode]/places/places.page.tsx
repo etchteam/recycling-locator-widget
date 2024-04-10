@@ -1,4 +1,6 @@
+import { useSignal } from '@preact/signals';
 import { Suspense, useEffect } from 'preact/compat';
+import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import {
   Await,
@@ -70,6 +72,8 @@ function Places({
   const { postcode } = useParams();
   const { t } = useTranslation();
   const fetcher = useFetcher() as FetcherWithComponents<PlacesLoaderResponse>;
+  const loadMoreButton = useRef<HTMLButtonElement>(null);
+  const lastLoadMoreOffset = useSignal<number>(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const materialId = searchParams.get('materialId');
 
@@ -88,6 +92,22 @@ function Places({
     searchParams.delete('materialName');
     setSearchParams(searchParams);
   };
+
+  useEffect(() => {
+    const offset = loadMoreButton.current?.offsetTop - 200;
+
+    if (lastLoadMoreOffset.value === 0) {
+      lastLoadMoreOffset.value = offset;
+    } else {
+      // Scroll back to where the load more button used to be to fix a bug where some browsers
+      // stick users at the bottom of the scroll area ignoring the new content being added above
+      loadMoreButton.current
+        ?.closest('locator-layout')
+        ?.shadowRoot?.querySelector('[part="main"]')
+        ?.scrollTo({ top: lastLoadMoreOffset.value });
+      lastLoadMoreOffset.value = offset;
+    }
+  }, [count]);
 
   return (
     <diamond-enter type="fade">
@@ -114,9 +134,11 @@ function Places({
                       <Link
                         to={`/${postcode}/places/${locationName}/${locationPostcode}`}
                       >
-                        <diamond-card border radius>
-                          <Place location={location} />
-                        </diamond-card>
+                        <diamond-enter type="fade">
+                          <diamond-card border radius>
+                            <Place location={location} />
+                          </diamond-card>
+                        </diamond-enter>
                       </Link>
                     </li>
                   );
@@ -172,7 +194,11 @@ function Places({
                 <input type="hidden" name="materialId" value={materialId} />
               )}
               <diamond-button width="full-width">
-                <button type="submit" disabled={fetcher.state !== 'idle'}>
+                <button
+                  type="submit"
+                  disabled={fetcher.state !== 'idle'}
+                  ref={loadMoreButton}
+                >
                   {t('actions.loadMore')}
                 </button>
               </diamond-button>
