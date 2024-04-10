@@ -1,3 +1,10 @@
+## [1.31.1](https://github.com/etchteam/recycling-locator/compare/v1.31.0...v1.31.1) (2024-04-10)
+
+
+### Bug Fixes
+
+* load more scroll issue ([dc38db3](https://github.com/etchteam/recycling-locator/commit/dc38db3a8c7c3fe161b8c6079c928d7e6ae0c15d))
+
 ## [1.31.0](https://github.com/etchteam/recycling-locator/compare/v1.30.0...v1.31.0) (2024-04-09)
 
 
