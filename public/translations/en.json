@@ -5,7 +5,8 @@
     "miles_one": "mile",
     "materialsAccepted": "materials accepted",
     "materialsAccepted_one": "material accepted",
-    "popularSearches": "Popular searches"
+    "popularSearches": "Popular searches",
+    "updated": "Updated"
   },
   "actions": {
     "back": "Back",
@@ -75,12 +76,14 @@
       "poweredBy": "Powered by",
       "recycleNow": "Recycle Now",
       "inPartnership": "in partnership with",
-      "privacyLabel": "Privacy Policy",
-      "privacyLink": "https://www.recyclenow.com/privacy-policy",
-      "cookiesLabel": "Cookies Policy",
-      "cookiesLink": "https://www.recyclenow.com/cookies-policy",
-      "accessibilityLabel": "Accessibility Statement",
-      "accessibilityLink": "https://www.recyclenow.com/accessibility-statement"
+      "nav": {
+        "privacyLabel": "Privacy Policy",
+        "privacyLink": "https://www.recyclenow.com/privacy-policy",
+        "cookiesLabel": "Cookies Policy",
+        "cookiesLink": "https://www.recyclenow.com/cookies-policy",
+        "accessibilityLabel": "Accessibility Statement",
+        "accessibilityLink": "https://www.recyclenow.com/accessibility-statement"
+      }
     }
   },
   "error": {
@@ -267,8 +270,10 @@
       "label": "What do you need to recycle?",
       "nav": {
         "search": "Search",
+        "recyclingCategories": "Recycling categories",
         "categories": "Categories",
-        "aToZ": "A-Z"
+        "aToZ": "A-Z",
+        "aToZofItems": "A-Z of items"
       },
       "aToZ": {
         "alphabet": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],

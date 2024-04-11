@@ -86,7 +86,8 @@ locator-layout {
   }
 
   &:not(:has([slot='layout-aside']))::part(main) {
-    overflow-y: auto;
+    max-width: 100cqw;
+    overflow: hidden auto;
   }
 
   &::part(aside) {

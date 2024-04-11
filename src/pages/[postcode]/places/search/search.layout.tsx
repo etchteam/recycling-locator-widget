@@ -1,4 +1,3 @@
-import { ComponentChildren } from 'preact';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import {
@@ -8,22 +7,16 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
-import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/composition/Layout/Layout';
 import '@/components/composition/Header/Header';
-import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
 import useScrollRestoration from '@/lib/useScrollRestoration';
 
-export default function PlacesSearchLayout({
-  children,
-}: {
-  readonly children?: ComponentChildren;
-}) {
+export default function PlacesSearchLayout() {
   const { t } = useTranslation();
   const { postcode } = useParams();
   const layoutRef = useRef();
@@ -73,21 +66,34 @@ export default function PlacesSearchLayout({
               </li>
               <li>
                 <NavLink
+                  to={`/${postcode}/places/search/categories`}
+                  unstable_viewTransition
+                >
+                  <span className="hidden-tablet">
+                    {t('places.search.nav.categories')}
+                  </span>
+                  <span className="hidden visible-tablet">
+                    {t('places.search.nav.recyclingCategories')}
+                  </span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
                   to={`/${postcode}/places/search/a-z`}
                   unstable_viewTransition
                 >
-                  {t('places.search.nav.aToZ')}
+                  <span className="hidden-tablet">
+                    {t('places.search.nav.aToZ')}
+                  </span>
+                  <span className="hidden visible-tablet">
+                    {t('places.search.nav.aToZofItems')}
+                  </span>
                 </NavLink>
               </li>
             </ul>
           </nav>
         </locator-nav-bar>
-        <diamond-section padding="lg">
-          <locator-wrap>
-            <Outlet />
-            {children}
-          </locator-wrap>
-        </diamond-section>
+        <Outlet />
       </div>
     </locator-layout>
   );

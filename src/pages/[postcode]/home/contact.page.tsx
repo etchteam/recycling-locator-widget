@@ -54,7 +54,7 @@ function HomeRecyclingContactPageContent({
       <hr />
       <div className="diamond-spacing-top-sm diamond-text-size-sm">
         <span className="text-color-muted">
-          Updated:{' '}
+          {t('common.updated')}:{' '}
           {new Intl.DateTimeFormat('en-GB').format(
             new Date(localAuthority.lastUpdate),
           )}
