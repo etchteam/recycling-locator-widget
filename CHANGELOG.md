@@ -1,3 +1,11 @@
+## [1.32.1](https://github.com/etchteam/recycling-locator/compare/v1.32.0...v1.32.1) (2024-04-11)
+
+
+### Bug Fixes
+
+* category nav ios fixes ([542e9dc](https://github.com/etchteam/recycling-locator/commit/542e9dc2e12d46a432bdcd77a6f23551bc65b16b))
+* randomUUID is not a fn ([bbfc48f](https://github.com/etchteam/recycling-locator/commit/bbfc48f12c0d055b8acce6b0b24fef137fe9bf09))
+
 ## [1.32.0](https://github.com/etchteam/recycling-locator/compare/v1.31.1...v1.32.0) (2024-04-11)
 
 
