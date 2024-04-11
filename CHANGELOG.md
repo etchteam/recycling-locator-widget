@@ -1,3 +1,10 @@
+## [1.32.2](https://github.com/etchteam/recycling-locator/compare/v1.32.1...v1.32.2) (2024-04-11)
+
+
+### Bug Fixes
+
+* diamond ui input zoom ([625d908](https://github.com/etchteam/recycling-locator/commit/625d9083eee4af65e55cb30541fcfdb4d72e1e00))
+
 ## [1.32.1](https://github.com/etchteam/recycling-locator/compare/v1.32.0...v1.32.1) (2024-04-11)
 
 
