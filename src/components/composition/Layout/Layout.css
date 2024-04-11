@@ -24,17 +24,9 @@ locator-layout {
     --_layout-header-height: auto;
   }
 
-  .recycling-locator-variant-standalone & {
-    min-height: 100cqh;
-  }
-
   &:not(:has([slot='layout-aside'])) {
     grid-template-rows: var(--_layout-header-height) 1fr auto;
     height: var(--container-height);
-
-    .recycling-locator-variant-standalone & {
-      height: 100cqh;
-    }
 
     .recycling-locator-test-mode & {
       height: auto;
@@ -47,10 +39,6 @@ locator-layout {
 
     &:has(locator-places-header) {
       --_layout-header-height: var(--header-height);
-    }
-
-    .recycling-locator-variant-standalone & {
-      height: 100cqh;
     }
 
     .recycling-locator-test-mode & {

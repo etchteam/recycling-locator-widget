@@ -18,6 +18,7 @@ export default function MaterialCategoriesNav({
   basePath,
 }: MaterialCategoriesNavProps) {
   const activeCategoryId = useSignal<string | null>(null);
+  const hasActive = activeCategoryId.value !== null;
 
   function handleCategoryClick(categoryId: string | null) {
     activeCategoryId.value = categoryId;
@@ -26,7 +27,9 @@ export default function MaterialCategoriesNav({
   return (
     <locator-material-categories-nav>
       <nav>
-        <ul className="material-categories-nav__categories">
+        <ul
+          className={`material-categories-nav__categories ${hasActive ? 'material-categories-nav__categories--has-active' : ''}`}
+        >
           {materialCategories.map((category) => {
             const isActive = activeCategoryId.value === category.id;
             const materialListId = `category-${category.id}-materials`;

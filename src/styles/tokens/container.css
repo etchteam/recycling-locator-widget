@@ -17,3 +17,7 @@
     --container-height: 640px;
   }
 }
+
+.recycling-locator-variant-standalone {
+  --container-height: 100cqh;
+}

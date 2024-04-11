@@ -22,6 +22,7 @@ locator-material-categories-nav {
     background: none;
     border: 0 none;
     border-radius: var(--diamond-border-radius);
+    color: var(--diamond-theme-color);
     column-gap: var(--diamond-spacing-sm);
     cursor: pointer;
     display: inline-flex;
@@ -57,7 +58,7 @@ locator-material-categories-nav {
       background: var(--color-primary-lightest);
     }
 
-    &:has([data-active='true']) > li > button {
+    &.material-categories-nav__categories--has-active > li > button {
       opacity: 0;
       transition:
         opacity var(--diamond-transition),
@@ -128,7 +129,7 @@ locator-material-categories-nav {
     .material-categories-nav__categories {
       border-right: var(--diamond-border);
 
-      &:has([data-active='true']) > li > button {
+      &.material-categories-nav__categories--has-active > li > button {
         opacity: 1;
         visibility: visible;
       }
