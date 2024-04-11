@@ -1,3 +1,20 @@
+## [1.32.0](https://github.com/etchteam/recycling-locator/compare/v1.31.1...v1.32.0) (2024-04-11)
+
+
+### Features
+
+* bonus navbar wordsmith ([9f81db0](https://github.com/etchteam/recycling-locator/commit/9f81db015d58ba571ebc05a279cd576f9b0b1914))
+* category nav polish ([f52c052](https://github.com/etchteam/recycling-locator/commit/f52c05263834d01d9744a0e1f198ed37474ac5f4))
+* material categories ui ([3098e7e](https://github.com/etchteam/recycling-locator/commit/3098e7e93bf1630a66c16f0535df75c7f6d6cef1))
+* material category nav scaffolding ([e82533f](https://github.com/etchteam/recycling-locator/commit/e82533fc32d1dc23a114c6264de414e219f1c478))
+* sticky category scroll ([2e37ea1](https://github.com/etchteam/recycling-locator/commit/2e37ea1f959b61abf5d3cb04ec77cbbe0b7b3c80))
+
+
+### Bug Fixes
+
+* missing updated translation ([8d9db5d](https://github.com/etchteam/recycling-locator/commit/8d9db5d85781c8c7163647406f748996964e4c36))
+* **WRAP-549:** a-z list scroll positions ([00f4fd2](https://github.com/etchteam/recycling-locator/commit/00f4fd23e7210875c0e803e6a993554b1ef20660))
+
 ## [1.31.1](https://github.com/etchteam/recycling-locator/compare/v1.31.0...v1.31.1) (2024-04-10)
 
 
