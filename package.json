@@ -21,7 +21,7 @@
   "scripts": {
     "start": "run-p start:css start:vite",
     "start:css": "npm run build:css -- --watch",
-    "start:vite": "vite",
+    "start:vite": "vite --host",
     "build": "npm run build:css && vite build",
     "build:css": "postcss src/styles/base.css -o public/styles.css",
     "release": "semantic-release",
