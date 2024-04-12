@@ -120,7 +120,7 @@ describe('searchContainerList', () => {
   const mockContainerList = getContainerList(mock);
 
   test('Empty searches return the original containerList', () => {
-    expect(searchContainerList(mockContainerList, undefined)).toEqual({
+    expect(searchContainerList(mockContainerList)).toEqual({
       containerList: mockContainerList,
     });
   });
