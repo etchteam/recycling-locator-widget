@@ -1,3 +1,11 @@
+## [1.33.0](https://github.com/etchteam/recycling-locator/compare/v1.32.2...v1.33.0) (2024-04-12)
+
+
+### Features
+
+* conditional container list ([ac5160d](https://github.com/etchteam/recycling-locator/commit/ac5160dcfddb073af5ce74b5cdad68c4cdf42a2a))
+* getContainerList (WIP) ([2d6a9c4](https://github.com/etchteam/recycling-locator/commit/2d6a9c41115f32be7dfeb63496b832934a8a56a1))
+
 ## [1.32.2](https://github.com/etchteam/recycling-locator/compare/v1.32.1...v1.32.2) (2024-04-11)
 
 
