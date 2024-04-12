@@ -297,6 +297,9 @@
     },
     "recycle": {
       "title": "Gwirio beth allwch ei ailgylchu yn y lle hwn",
+      "singleCategory": "Gallwch ailgylchu <bold>{{category}}</bold> yn y lle hwn",
+      "theseItemsAreRecycled": "Mae'r eitemau hyn yn cael eu hailgylchu yn y lle hwn",
+      "theseItemsAreRecycled_one": "Mae'r eitem hon yn cael ei hailgylchu yn y lle hwn",
       "search": {
         "positive": "Oes, mae modd ei ailgylchu yn y lle hwn!",
         "negative": "Na, nid oes modd ei ailgylchu yn y lle hwn."

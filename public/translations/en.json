@@ -297,6 +297,9 @@
     },
     "recycle": {
       "title": "Check what you can recycle at this place",
+      "singleCategory": "You can recycle <bold>{{category}}</bold> at this place",
+      "theseItemsAreRecycled": "These items are recycled at this place",
+      "theseItemsAreRecycled_one": "This item is recycled at this place",
       "search": {
         "positive": "Yes, it can be recycled at this place!",
         "negative": "No, it can’t be recycled at this place."

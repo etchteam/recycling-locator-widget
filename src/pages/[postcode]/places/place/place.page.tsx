@@ -3,7 +3,7 @@ import groupBy from 'lodash/groupBy';
 import uniqBy from 'lodash/uniqBy';
 import upperFirst from 'lodash/upperFirst';
 import { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { Await, Form } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
@@ -32,6 +32,7 @@ function PlacePageContent({ location }: { readonly location: Location }) {
   const search = useSignal<string>('');
   const materials = location.locations?.flatMap((l) => l.materials);
   const materialCategories = groupBy(materials, 'category.name');
+  const materialCategoryNames = Object.keys(materialCategories);
   const hasSearchedForMaterial =
     search.value &&
     materials.some((material) =>
@@ -56,14 +57,77 @@ function PlacePageContent({ location }: { readonly location: Location }) {
     }
   };
 
+  if (materialCategoryNames.length === 1) {
+    const materials = uniqBy(
+      materialCategories[materialCategoryNames[0]],
+      'name',
+    );
+
+    return (
+      <diamond-enter type="fade">
+        <h3 className="diamond-spacing-bottom-md">
+          {materialCategoryNames[0] === 'Others' ? (
+            t('place.recycle.theseItemsAreRecycled', {
+              count: materials.length,
+            })
+          ) : (
+            <Trans
+              i18nKey={'place.recycle.singleCategory'}
+              components={{ bold: <strong /> }}
+              values={{ category: materialCategoryNames[0] }}
+            />
+          )}
+        </h3>
+        <diamond-card border radius>
+          <ul className="diamond-text-size-sm">
+            {materials.map((material) => (
+              <li key={material.name}>{material.name}</li>
+            ))}
+          </ul>
+        </diamond-card>
+      </diamond-enter>
+    );
+  }
+
+  if (materialCategoryNames.length <= 3) {
+    return (
+      <diamond-enter type="fade">
+        <h3 id="material-search-title" className="diamond-spacing-bottom-md">
+          {t('place.recycle.theseItemsAreRecycled')}
+        </h3>
+
+        {materialCategoryNames.map((category) => (
+          <diamond-card
+            className="diamond-spacing-bottom-sm"
+            key={category}
+            border
+            radius
+          >
+            {upperFirst(category)}
+            <ul className="diamond-text-size-sm">
+              {uniqBy(materialCategories[category], 'name').map((material) => (
+                <li key={material.name}>{material.name}</li>
+              ))}
+            </ul>
+          </diamond-card>
+        ))}
+      </diamond-enter>
+    );
+  }
+
   return (
-    <>
+    <diamond-enter type="fade">
+      <h3 id="material-search-title" className="diamond-spacing-bottom-md">
+        {t('place.recycle.title')}
+      </h3>
+
       <diamond-enter type="fade" className="layer-one">
         <Form method="get" onSubmit={handleSearch}>
           <MaterialSearchInput
             inputLabelledBy="material-search-title"
             handleBlur={form.handleBlur}
             handleInput={form.handleInput}
+            handleReset={() => (search.value = '')}
             valid={form.valid.value}
           ></MaterialSearchInput>
         </Form>
@@ -93,7 +157,7 @@ function PlacePageContent({ location }: { readonly location: Location }) {
       </div>
 
       <diamond-enter type="fade-in-up" delay={0.25}>
-        {Object.keys(materialCategories).map((category) => (
+        {materialCategoryNames.map((category) => (
           <locator-details key={category} className="diamond-spacing-bottom-sm">
             <details>
               <summary>
@@ -111,25 +175,18 @@ function PlacePageContent({ location }: { readonly location: Location }) {
           </locator-details>
         ))}
       </diamond-enter>
-    </>
+    </diamond-enter>
   );
 }
 
 export default function PlacePage() {
-  const { t } = useTranslation();
   const { location: locationPromise } = usePlaceLoaderData();
 
   return (
-    <>
-      <h3 id="material-search-title" className="diamond-spacing-bottom-md">
-        {t('place.recycle.title')}
-      </h3>
-
-      <Suspense fallback={<Loading />}>
-        <Await resolve={locationPromise}>
-          {(location) => <PlacePageContent location={location} />}
-        </Await>
-      </Suspense>
-    </>
+    <Suspense fallback={<Loading />}>
+      <Await resolve={locationPromise}>
+        {(location) => <PlacePageContent location={location} />}
+      </Await>
+    </Suspense>
   );
 }
