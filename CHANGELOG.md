@@ -1,3 +1,10 @@
+## [1.34.0](https://github.com/etchteam/recycling-locator/compare/v1.33.0...v1.34.0) (2024-04-12)
+
+
+### Features
+
+* place details material category conditions ([80244d6](https://github.com/etchteam/recycling-locator/commit/80244d600e5d934edbfa5f7628a994d272316233))
+
 ## [1.33.0](https://github.com/etchteam/recycling-locator/compare/v1.32.2...v1.33.0) (2024-04-12)
 
 
