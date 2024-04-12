@@ -63,6 +63,11 @@ locator-details {
     }
   }
 
+  &[flush] details {
+    --_details-padding: var(--diamond-spacing-xs);
+    border: 0 none;
+  }
+
   &[menu] details {
     border: 0 none;
     padding: 0;

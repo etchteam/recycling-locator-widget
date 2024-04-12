@@ -25,6 +25,7 @@ import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import TipContent from '@/components/template/TipContent/TipContent';
+import getContainerList from '@/lib/getContainerList';
 import sortPropertyTypes from '@/lib/sortPropertyTypes';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
@@ -45,14 +46,15 @@ function CollectionPageContent({
   const menuRef = useRef<HTMLDetailsElement>(null);
   const { postcode } = useParams();
   const { recordEvent } = useAnalytics();
-  const [searchParams] = useSearchParams();
-  const search = searchParams.get('search');
   const form = useFormValidation('search');
   const properties = sortPropertyTypes(localAuthority.properties);
   const propertyTypes = Object.keys(properties);
-  const propertyType = searchParams.get('propertyType') ?? propertyTypes[0];
   const menuOpen = useSignal(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('search');
+  const propertyType = searchParams.get('propertyType') ?? propertyTypes[0];
   const property = properties[propertyType];
+  const containerList = getContainerList(property);
   const isLoadingNewPath =
     navigation.state === 'loading' &&
     !navigation.location?.search.includes(propertyType.replace(' ', '+'));
@@ -129,6 +131,9 @@ function CollectionPageContent({
                   defaultValue={search}
                   handleBlur={form.handleBlur}
                   handleInput={form.handleInput}
+                  handleReset={() =>
+                    setSearchParams({ propertyType, search: '' })
+                  }
                   submitting={form.submitting.value}
                   valid={form.valid.value}
                 ></MaterialSearchInput>
@@ -136,7 +141,11 @@ function CollectionPageContent({
 
               <div className="diamond-spacing-bottom-sm" />
 
-              <ContainerList property={property} search={search} />
+              <ContainerList
+                localAuthority={localAuthority}
+                containerList={containerList}
+                search={search}
+              />
             </locator-wrap>
           </diamond-section>
         </diamond-enter>

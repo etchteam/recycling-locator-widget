@@ -20,7 +20,6 @@ locator-container {
   }
 
   locator-container-name,
-  locator-container-subscription,
   locator-container-content {
     display: block;
   }
@@ -36,10 +35,6 @@ locator-container {
     font-size: var(--diamond-font-size-default);
     font-weight: var(--diamond-font-weight-base);
     margin-block-end: 0;
-  }
-
-  locator-container-subscription {
-    font-size: var(--diamond-font-size-sm);
   }
 }
 

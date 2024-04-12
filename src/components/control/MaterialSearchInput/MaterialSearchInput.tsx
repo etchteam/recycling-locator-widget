@@ -23,6 +23,7 @@ interface MaterialSearchInputProps {
   readonly autofocus?: boolean;
   readonly handleBlur?: (value: string) => void;
   readonly handleInput?: (value: string) => void;
+  readonly handleReset?: () => void;
 }
 
 /**
@@ -135,7 +136,10 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
                   {this.inputValue.value && (
                     <button
                       type="reset"
-                      onClick={() => (this.inputValue.value = '')}
+                      onClick={() => {
+                        this.inputValue.value = '';
+                        this.props.handleReset?.();
+                      }}
                     >
                       <locator-icon
                         icon="close"

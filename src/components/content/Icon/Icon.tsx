@@ -28,7 +28,10 @@ export interface IconAttributes {
     | 'expand'
     | 'list'
     | 'sync'
-    | 'menu';
+    | 'menu'
+    | 'food'
+    | 'garden'
+    | 'dry';
   readonly color?: 'primary' | 'muted' | 'positive' | 'negative';
   readonly label?: string;
 }

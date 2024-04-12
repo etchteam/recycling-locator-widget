@@ -40,10 +40,7 @@
       "findNearbyPlaces": "Dod o hyd i leoedd cyfagos i ailgylchu"
     },
     "container": {
-      "subscription": "Gwasanaeth tanysgrifio – £{{cost}}",
       "notes": "Nodiadau am y bin hwn",
-      "residualWaste": "Gwastraff gweddilliol",
-      "residualWasteDescription": "Dyma’r gwastraff sydd dros ben wedi i’r deunyddiau ailgylchadwy gael eu gwahanu. Hyd yn oed os ydych chi’n ailgylchwr rhagorol, bydd gennych rywfaint o wastraff gweddilliol dros ben.",
       "#2d9cdb": "Glas",
       "#1579c6": "Glas canolig",
       "#2262b9": "Glas tywyll",
@@ -220,7 +217,13 @@
         "positive": "Oes, mae modd ei ailgylchu yn y biniau canlynol…",
         "positive_one": "Oes, mae modd ei ailgylchu yn y bin canlynol…",
         "negative": "Ni dderbynnir yr eitem hon gan y casgliad ailgylchu o gartref hwn"
-      }
+      },
+      "multipleCollectionsOperate": "Mae casgliadau lluosog yn gweithredu yn eich ardal",
+      "eligibleMaterials": "Mae'r deunyddiau y gallwch eu rhoi ym mhob bin yn dibynnu ar ba gasgliad sy'n berthnasol i'ch cartref.",
+      "collectedFoodItems": "Cesglir yr eitemau bwyd hyn:",
+      "collectedGardenItems": "Cesglir yr eitemau gardd hyn:",
+      "binsInYourArea": "Defnyddir y biniau hyn yn eich ardal chi:",
+      "gardenSubscription": "Mae casglu gwastraff gardd yn wasanaeth tanysgrifio a gall <bold>ffioedd fod yn berthnasol</bold> mewn rhai ardaloedd. Cysylltwch â'ch cyngor i ddysgu mwy."
     },
     "hwrc": {
       "title": "Mynd ag eitemau i Ganolfan Ailgylchu yn eich ardal",

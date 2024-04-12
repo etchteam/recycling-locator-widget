@@ -2,6 +2,7 @@ import { CustomElement } from '@/types/customElement';
 
 export interface DetailsAttributes {
   readonly menu?: boolean;
+  readonly flush?: boolean;
 }
 
 declare module 'react' {
