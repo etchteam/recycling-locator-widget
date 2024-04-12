@@ -9,6 +9,11 @@ locator-icon-circle {
   justify-content: center;
   padding: 3px;
 
+  &[variant='primary'] {
+    --_background: var(--color-primary-dark);
+    --_color: var(--color-white);
+  }
+
   &[variant='positive'] {
     --_background: var(--theme-background-positive);
     --_color: var(--color-white);

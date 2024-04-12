@@ -1,7 +1,7 @@
 import { CustomElement } from '@/types/customElement';
 
 export interface IconCircleAttributes {
-  variant?: 'positive' | 'negative';
+  variant?: 'positive' | 'negative' | 'primary';
 }
 
 declare module 'react' {

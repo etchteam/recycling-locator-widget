@@ -1,189 +1,298 @@
 import groupBy from 'lodash/groupBy';
-import uniqueId from 'lodash/uniqueId';
 import nl2br from 'nl2br';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
+import '@/components/canvas/IconCircle/IconCircle';
+import '@/components/composition/IconText/IconText';
 import '@/components/content/Container/Container';
+import '@/components/content/Icon/Icon';
 import '@/components/control/Details/Details';
 import containerName from '@/lib/containerName';
-import { LocalAuthorityProperty, Container } from '@/types/locatorApi';
+import {
+  ContainerList as ContainerListType,
+  searchContainerList,
+} from '@/lib/getContainerList';
+import { Container, LocalAuthority } from '@/types/locatorApi';
 
-type ContainerWithSchemeType = Container & {
-  schemeType: 'Dry' | 'Food' | 'Garden' | 'Residual';
-};
+function ContainerNotes({
+  container,
+  flush,
+}: {
+  readonly container: Container;
+  readonly flush?: boolean;
+}) {
+  const { t } = useTranslation();
 
-function useContainers(
-  property: LocalAuthorityProperty[],
-  search: string,
-): {
-  containers: ContainerWithSchemeType[];
-  allContainers: ContainerWithSchemeType[];
-  filteredContainers: ContainerWithSchemeType[];
-} {
-  const allContainers = property.flatMap((scheme) => {
-    return scheme.containers.map((container) => ({
-      ...container,
-      schemeType: scheme.type,
-    }));
-  });
+  if (!container.notes || container.notes?.length === 0) {
+    return null;
+  }
 
-  const filteredContainers = search
-    ? allContainers.filter((container) =>
-        container.materials?.some(
-          (material) => material.name.toLowerCase() === search.toLowerCase(),
-        ),
-      )
-    : allContainers;
-
-  const containers =
-    filteredContainers.length > 0 ? filteredContainers : allContainers;
-
-  return { containers, allContainers, filteredContainers };
+  return (
+    <locator-details
+      className="diamond-spacing-top-sm diamond-spacing-bottom-sm"
+      flush={flush}
+    >
+      <details>
+        <summary>
+          <locator-details-summary-content>
+            <span className="diamond-text-size-sm">
+              {t('components.container.notes')}
+            </span>
+            <locator-details-summary-preview>
+              {container.notes}
+            </locator-details-summary-preview>
+          </locator-details-summary-content>
+          <locator-icon icon="expand" />
+        </summary>
+        <p
+          className="diamond-text-size-sm"
+          dangerouslySetInnerHTML={{
+            __html: nl2br(container.notes.join('\n\n')),
+          }}
+        />
+      </details>
+    </locator-details>
+  );
 }
 
-function useSearchResultType(
-  filteredContainerCount: number,
-  search: string,
-): 'positive' | 'negative' | undefined {
-  if (search && filteredContainerCount === 0) {
-    return 'negative';
-  }
+function DryContainer({ container }: { readonly container: Container }) {
+  const materialCategories = groupBy(container.materials, 'category.name');
 
-  if (search && filteredContainerCount > 0) {
-    return 'positive';
-  }
+  return (
+    <>
+      <locator-container className="diamond-spacing-bottom-sm">
+        <locator-container-svg
+          name={container.name}
+          body-colour={container.bodyColour}
+          lid-colour={container.lidColour}
+        />
+        <locator-container-content>
+          <locator-container-name className="diamond-text-weight-bold">
+            {containerName(container)}
+          </locator-container-name>
+        </locator-container-content>
+      </locator-container>
+      {Object.keys(materialCategories)?.map((category) => (
+        <locator-details key={category} className="diamond-spacing-bottom-sm">
+          <details>
+            <summary>
+              {category}
+              <locator-icon icon="expand" />
+            </summary>
+            <ul className="diamond-text-size-sm">
+              {materialCategories[category].map((material) => (
+                <li key={material.name}>{material.name}</li>
+              ))}
+            </ul>
+          </details>
+        </locator-details>
+      ))}
+      <ContainerNotes container={container} />
+    </>
+  );
+}
 
-  return undefined;
+function FoodAndGardenContainers({
+  localAuthority,
+  containerList,
+}: {
+  readonly localAuthority: LocalAuthority;
+  readonly containerList: ContainerListType;
+}) {
+  const { t } = useTranslation();
+  const hasGardenSubscription = containerList.Garden?.some(
+    (container) => container.cost && container.cost > 0,
+  );
+
+  return (
+    <>
+      {['Food', 'Garden'].map((streamType) => {
+        if (!containerList[streamType]) {
+          return null;
+        }
+
+        const icon = streamType.toLowerCase() as 'food' | 'garden';
+
+        return (
+          <diamond-card
+            className="diamond-spacing-bottom-lg"
+            key={streamType}
+            border
+            radius
+          >
+            <locator-icon-text className="diamond-spacing-bottom-sm">
+              <locator-icon-circle variant="primary">
+                <locator-icon icon={icon} />
+              </locator-icon-circle>
+              <h4>{streamType}</h4>
+            </locator-icon-text>
+            <div className="diamond-text-size-sm diamond-spacing-bottom-sm">
+              <p>{t(`homeRecycling.collection.collected${streamType}Items`)}</p>
+              <ul>
+                {containerList[streamType][0].materials.map((material) => (
+                  <li key={material.name}>{material.name}</li>
+                ))}
+              </ul>
+              <p>{t(`homeRecycling.collection.binsInYourArea`)}</p>
+            </div>
+            <ul
+              role="list"
+              className="list-style-none diamond-spacing-bottom-md"
+            >
+              {containerList[streamType].map((container) => (
+                <li key={container.name} className="diamond-spacing-bottom-md">
+                  <locator-container>
+                    <locator-container-svg
+                      name={container.name}
+                      body-colour={container.bodyColour}
+                      lid-colour={container.lidColour}
+                    />
+                    <locator-container-content>
+                      <locator-container-name className="diamond-text-weight-bold">
+                        {containerName({
+                          displayName: container.name,
+                          bodyColour: container.bodyColour,
+                          lidColour: container.lidColour,
+                        })}
+                      </locator-container-name>
+                    </locator-container-content>
+                  </locator-container>
+                  <ContainerNotes container={container} flush />
+                </li>
+              ))}
+            </ul>
+            {streamType === 'Garden' && hasGardenSubscription && (
+              <>
+                <hr className="diamond-spacing-bottom-sm" />
+                <p className="diamond-text-size-sm">
+                  <Trans
+                    i18nKey={'homeRecycling.collection.gardenSubscription'}
+                    components={{ bold: <strong /> }}
+                  />
+                </p>
+                {localAuthority.gardenWasteUri && (
+                  <diamond-button width="full-width" size="sm">
+                    <a
+                      href={localAuthority.gardenWasteUri}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {localAuthority.name}
+                      <locator-icon icon="external"></locator-icon>
+                    </a>
+                  </diamond-button>
+                )}
+              </>
+            )}
+          </diamond-card>
+        );
+      })}
+    </>
+  );
 }
 
 export default function ContainerList({
-  property,
+  localAuthority,
+  containerList: originalContainerList,
   search,
 }: {
-  readonly property: LocalAuthorityProperty[];
+  readonly localAuthority: LocalAuthority;
+  readonly containerList: ContainerListType;
   readonly search: string;
 }) {
   const { t } = useTranslation();
-  const { containers, filteredContainers } = useContainers(property, search);
-  const filteredContainerCount = filteredContainers.length;
-  const searchResultType = useSearchResultType(filteredContainerCount, search);
+  const { containerList, containerCount, searchResult } = searchContainerList(
+    originalContainerList,
+    search,
+  );
 
   return (
     <>
       <div className="diamond-spacing-bottom-lg">
-        {searchResultType && (
+        {searchResult ? (
           <diamond-enter type="fade">
             <diamond-card
-              className={`theme-${searchResultType}`}
+              className={`theme-${searchResult}`}
               padding="sm"
               radius
             >
               <locator-icon-text>
                 <locator-icon
-                  icon={`${searchResultType === 'positive' ? 'tick' : 'cross'}-circle`}
+                  icon={`${searchResult === 'positive' ? 'tick' : 'cross'}-circle`}
                 ></locator-icon>
                 <p className="diamond-text-size-sm">
-                  {t(`homeRecycling.collection.search.${searchResultType}`, {
-                    count: filteredContainerCount,
+                  {t(`homeRecycling.collection.search.${searchResult}`, {
+                    count: containerCount,
                   })}
                 </p>
               </locator-icon-text>
             </diamond-card>
           </diamond-enter>
+        ) : (
+          <>
+            {containerList.Dry?.length > 1 && (
+              <p className="diamond-text-size-sm diamond-spacing-top-md">
+                <strong>
+                  {t('homeRecycling.collection.multipleCollectionsOperate')}
+                </strong>
+                <br />
+                {t('homeRecycling.collection.eligibleMaterials')}
+              </p>
+            )}
+          </>
         )}
       </div>
 
-      {containers.map((container) => {
-        const materialCategories = groupBy(
-          container.materials,
-          'category.name',
-        );
-
-        return (
-          <section
-            className="diamond-spacing-bottom-lg"
-            key={uniqueId(container.name)}
-          >
-            <locator-container className="diamond-spacing-bottom-md">
-              <locator-container-svg
-                name={container.name}
-                body-colour={container.bodyColour}
-                lid-colour={container.lidColour}
-              />
-              <locator-container-content>
-                <locator-container-name>
-                  <h4 className="diamond-text-weight-bold">
-                    {containerName(container)}
-                  </h4>
-                </locator-container-name>
-                {container.cost ? (
-                  <locator-container-subscription>
-                    {t('components.container.subscription', {
-                      cost: container.cost,
-                    })}
-                  </locator-container-subscription>
-                ) : null}
-              </locator-container-content>
-            </locator-container>
-            {Object.keys(materialCategories)?.map((category) => (
-              <locator-details
-                key={category}
-                className="diamond-spacing-bottom-sm"
+      {containerList.Dry?.length === 1 ? (
+        <ul role="list" className="list-style-none diamond-spacing-bottom-md">
+          {containerList.Dry[0].containers.map((container) => (
+            <li key={container.name} className="diamond-spacing-bottom-md">
+              <DryContainer container={container} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <>
+          {containerList.Dry.map((scheme) => (
+            <diamond-card
+              className="diamond-spacing-bottom-lg"
+              key={scheme.name}
+              border
+              radius
+            >
+              <locator-icon-text className="diamond-spacing-bottom-sm">
+                <locator-icon-circle variant="primary">
+                  <locator-icon icon="dry" />
+                </locator-icon-circle>
+                <h4>{scheme.name}</h4>
+              </locator-icon-text>
+              <p className="diamond-text-size-sm diamond-spacing-bottom-md">
+                {t(`homeRecycling.collection.binsInYourArea`)}
+              </p>
+              <ul
+                role="list"
+                className="list-style-none diamond-spacing-bottom-md"
               >
-                <details>
-                  <summary>
-                    {category}
-                    <locator-icon icon="expand" />
-                  </summary>
-                  <ul className="diamond-text-size-sm">
-                    {materialCategories[category].map((material) => (
-                      <li key={material.name}>{material.name}</li>
-                    ))}
-                  </ul>
-                </details>
-              </locator-details>
-            ))}
-            {container.schemeType === 'Residual' && (
-              <locator-details className="diamond-spacing-bottom-sm">
-                <details>
-                  <summary>
-                    {t('components.container.residualWaste')}
-                    <locator-icon icon="expand" />
-                  </summary>
-                  <p className="diamond-text-size-sm">
-                    {t('components.container.residualWasteDescription')}
-                  </p>
-                </details>
-              </locator-details>
-            )}
-            {container.notes?.length > 0 && (
-              <locator-details className="diamond-spacing-bottom-sm">
-                <details>
-                  <summary>
-                    <locator-details-summary-content>
-                      <span className="diamond-text-size-sm">
-                        {t('components.container.notes')}
-                      </span>
-                      <locator-details-summary-preview>
-                        {container.notes}
-                      </locator-details-summary-preview>
-                    </locator-details-summary-content>
-                    <locator-icon icon="expand" />
-                  </summary>
-                  <p
-                    className="diamond-text-size-sm"
-                    dangerouslySetInnerHTML={{
-                      __html: nl2br(container.notes.join('\n\n')),
-                    }}
-                  />
-                </details>
-              </locator-details>
-            )}
-          </section>
-        );
-      })}
+                {scheme.containers.map((container) => (
+                  <li
+                    key={container.name}
+                    className="diamond-spacing-bottom-md"
+                  >
+                    <DryContainer container={container} />
+                  </li>
+                ))}
+              </ul>
+            </diamond-card>
+          ))}
+        </>
+      )}
+
+      <FoodAndGardenContainers
+        localAuthority={localAuthority}
+        containerList={containerList}
+      />
     </>
   );
 }

@@ -40,10 +40,7 @@
       "findNearbyPlaces": "Find nearby places to recycle"
     },
     "container": {
-      "subscription": "Subscription service – £{{cost}}",
       "notes": "Notes about this bin",
-      "residualWaste": "Residual waste",
-      "residualWasteDescription": "This is the waste that is left once the recyclable materials have been separated. Even if you are excellent at recycling, you will still have some residual waste left over.",
       "#2d9cdb": "Blue",
       "#1579c6": "Mid blue",
       "#2262b9": "Dark blue",
@@ -217,10 +214,16 @@
       "title": "Recycling Collections",
       "search": {
         "label": "Check what goes in each bin",
-        "positive": "Yes, it can be recycled in the following bin…",
+        "positive": "Yes, it can be recycled in the following bins…",
         "positive_one": "Yes, it can be recycled in the following bin…",
         "negative": "No, it can’t be recycled in the following bins…"
-      }
+      },
+      "multipleCollectionsOperate": "Multiple collections operate in your area",
+      "eligibleMaterials": "The materials you can put in each bin depends on which collection applies to your household.",
+      "collectedFoodItems": "These food items are collected:",
+      "collectedGardenItems": "These garden items are collected:",
+      "binsInYourArea": "These bins are used in your area:",
+      "gardenSubscription": "Garden waste collection is a subscription service and <bold>fees may apply</bold> in some areas. Contact your council to learn more."
     },
     "hwrc": {
       "title": "Recycling Centres in your area",
