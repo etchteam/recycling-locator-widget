@@ -212,6 +212,7 @@
     },
     "collection": {
       "title": "Casgliadau Ailgylchu",
+      "summary": "Casgliadau yn yr ardal hon",
       "search": {
         "label": "Gwiriwch beth sy’n mynd i bob bin",
         "positive": "Oes, mae modd ei ailgylchu yn y biniau canlynol…",

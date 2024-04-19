@@ -212,6 +212,7 @@
     },
     "collection": {
       "title": "Recycling Collections",
+      "summary": "Collections in this area",
       "search": {
         "label": "Check what goes in each bin",
         "positive": "Yes, it can be recycled in the following bins…",
@@ -250,7 +251,7 @@
         "paragraphOne": "Please contact your council if you:",
         "list": [
           "are new to the area",
-          "do not have a container",
+          "do not have a bin",
           "are unsure which one to use"
         ],
         "paragraphTwo": "They will also be able to tell you when each collection is scheduled."
