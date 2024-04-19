@@ -1,3 +1,11 @@
+## [1.34.1](https://github.com/etchteam/recycling-locator/compare/v1.34.0...v1.34.1) (2024-04-19)
+
+
+### Bug Fixes
+
+* bins not containers ([a6e4948](https://github.com/etchteam/recycling-locator/commit/a6e49485555df7237402ab2c987126ba64a26afe))
+* translate the collection summary ([ac8b58b](https://github.com/etchteam/recycling-locator/commit/ac8b58b7a463572c767bb6604e5058d0b3e2d729))
+
 ## [1.34.0](https://github.com/etchteam/recycling-locator/compare/v1.33.0...v1.34.0) (2024-04-12)
 
 
