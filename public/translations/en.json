@@ -212,6 +212,7 @@
     },
     "collection": {
       "title": "Recycling Collections",
+      "summary": "Collections in this area",
       "search": {
         "label": "Check what goes in each bin",
         "positive": "Yes, it can be recycled in the following bins…",

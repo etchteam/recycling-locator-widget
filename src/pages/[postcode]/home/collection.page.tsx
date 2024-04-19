@@ -84,7 +84,7 @@ function CollectionPageContent({
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
               <summary onClick={() => (menuOpen.value = !menuOpen.value)}>
                 {menuOpen.value || isLoadingNewPath
-                  ? 'Collections in this area'
+                  ? t('homeRecycling.collection.summary')
                   : propertyType}
                 <locator-icon icon="expand" />
               </summary>
