@@ -26,11 +26,6 @@ interface AnalyticsEvent {
   ea?: string;
 }
 
-interface AnalyticsResponse {
-  status: 'ok' | 'error';
-  details: string;
-}
-
 async function sendAnalyticsRequest(event: AnalyticsEvent) {
   if (!config.enableAnalytics) {
     return;
@@ -38,18 +33,12 @@ async function sendAnalyticsRequest(event: AnalyticsEvent) {
 
   try {
     const query = new URLSearchParams(event as any);
-    const response = await fetch(`${config.locatorAnalyticsPath}?${query}`, {
+    await fetch(`${config.locatorAnalyticsPath}?${query}`, {
       method: 'GET',
       headers: {
         'X-Requested-With': config.packageVersion,
       },
     });
-
-    const data: AnalyticsResponse = await response.json();
-
-    if (data?.status === 'error') {
-      throw new Error(data.details);
-    }
   } catch (error) {
     Sentry.captureException(error, {
       tags: { analytics: 'sendHit' },

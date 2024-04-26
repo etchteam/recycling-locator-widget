@@ -28,7 +28,9 @@ export default function RootLayout() {
   }, [startPath, currentHref]);
 
   useEffect(() => {
-    recordView();
+    if (loadedStartPath.value) {
+      recordView();
+    }
   }, [location]);
 
   if (!loadedStartPath.value) {
