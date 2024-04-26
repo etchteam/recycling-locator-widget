@@ -46,7 +46,7 @@ locator-material-search-input {
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-name: fade;
-    animation-timing-function: var(--diamond-transition-enter-timing);
+    animation-timing-function: var(--diamond-transition-timing-enter);
     background: var(--diamond-theme-background);
     border: var(--diamond-border);
     border-radius: var(--diamond-border-radius);
