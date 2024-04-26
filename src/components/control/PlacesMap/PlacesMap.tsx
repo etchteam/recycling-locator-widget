@@ -48,7 +48,11 @@ export default class PlacesMap extends Component<PlacesMapProps> {
   enableZoomEvent: boolean;
 
   resizeMap() {
-    this.MapInstance?.getViewPort().resize();
+    try {
+      this.MapInstance?.getViewPort().resize();
+    } catch (error) {
+      // Ignore resize errors
+    }
   }
 
   async initMap() {
