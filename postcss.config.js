@@ -3,6 +3,7 @@ import modifySelectors from 'modify-selectors';
 import inlineImports from 'postcss-import';
 import importGlob from 'postcss-import-ext-glob';
 import minify from 'postcss-minify';
+import nesting from 'postcss-nesting';
 
 const config = {
   plugins: [
@@ -10,7 +11,8 @@ const config = {
     importGlob,
     // ...then inline all the @import statements
     inlineImports,
-    autoprefixer,
+    // undo nesting until samsung internet support drops https://caniuse.com/css-nesting
+    nesting,
     // Scope css variables to the web component :host instead of :root
     modifySelectors({
       replace: [
@@ -20,6 +22,7 @@ const config = {
         },
       ],
     }),
+    autoprefixer,
     minify,
   ],
 };

@@ -21,7 +21,7 @@ locator-material-search-input {
   diamond-input {
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
-    flex-grow: 1;
+    flex: 1 1 auto;
   }
 
   button[type='submit'] {
