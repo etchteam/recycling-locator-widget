@@ -32,11 +32,11 @@ locator-places-map {
 
   locator-places-map-card,
   .locator-places-map__marker {
-    animation-duration: var(--diamond-transition-enter-duration);
+    animation-duration: var(--diamond-transition-duration-enter);
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-name: fade;
-    animation-timing-function: var(--diamond-transition-enter-timing);
+    animation-timing-function: var(--diamond-transition-timing-enter);
   }
 
   .locator-places-map__marker {
