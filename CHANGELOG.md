@@ -1,3 +1,23 @@
+## [1.35.0](https://github.com/etchteam/recycling-locator/compare/v1.34.1...v1.35.0) (2024-04-26)
+
+
+### Features
+
+* deploy on release [skip release] ([4e1f839](https://github.com/etchteam/recycling-locator/commit/4e1f8398922068cbaca1cd0f1cc65f4180a98b12))
+* deploy on release [skip release] ([a9ff030](https://github.com/etchteam/recycling-locator/commit/a9ff0300ff19f9571fe9e9b065af282c69eac910))
+* re-instate marker feedback [skip release] ([995c0ec](https://github.com/etchteam/recycling-locator/commit/995c0ecca78928aaa162e493f09d2c0a9848c8f4))
+* re-instate marker feedback [skip release] ([2c76e71](https://github.com/etchteam/recycling-locator/commit/2c76e7174c25cd560f5bceb4c095e253417e0634))
+* separate skipping ci from release [skip release] ([2cb0de0](https://github.com/etchteam/recycling-locator/commit/2cb0de038d846496272ff91f3d0301dac38aa8c1))
+* temproarily disable marker feedback [skip ci] ([c4c3417](https://github.com/etchteam/recycling-locator/commit/c4c3417afccb8efe976ef290227f4784c9c3efaa))
+* temproarily disable marker feedback [skip ci] ([69cc38f](https://github.com/etchteam/recycling-locator/commit/69cc38fb7772ee58656a3852aa9dd97ab65c86c1))
+* temproarily disable marker feedback [skip ci] ([e4b4fb3](https://github.com/etchteam/recycling-locator/commit/e4b4fb38988ae5c09f568123e4539df65ec40d6c))
+
+
+### Bug Fixes
+
+* analytics send hit and maps resize error spam ([add32dd](https://github.com/etchteam/recycling-locator/commit/add32dd7a15082956cff1b5c45c23a994a2c62bb))
+* nested styles on samsung internet browser ([0db9615](https://github.com/etchteam/recycling-locator/commit/0db9615d08f8b5e8f3b1616ad01d009d585bcd6d))
+
 ## [1.34.1](https://github.com/etchteam/recycling-locator/compare/v1.34.0...v1.34.1) (2024-04-19)
 
 
