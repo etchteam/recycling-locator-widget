@@ -1,3 +1,10 @@
+## [1.36.0](https://github.com/etchteam/recycling-locator/compare/v1.35.0...v1.36.0) (2024-04-26)
+
+
+### Features
+
+* update diamond ([f838fb5](https://github.com/etchteam/recycling-locator/commit/f838fb53220b9290980003f5a4e4e46219f0b04b))
+
 ## [1.35.0](https://github.com/etchteam/recycling-locator/compare/v1.34.1...v1.35.0) (2024-04-26)
 
 
