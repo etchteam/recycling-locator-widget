@@ -1,3 +1,10 @@
+## [1.37.1](https://github.com/etchteam/recycling-locator/compare/v1.37.0...v1.37.1) (2024-04-29)
+
+
+### Bug Fixes
+
+* enable sentry integrations ([de88c7f](https://github.com/etchteam/recycling-locator/commit/de88c7f62c6edc0da5e24f2c02ef05ef5fb18505))
+
 ## [1.37.0](https://github.com/etchteam/recycling-locator/compare/v1.36.0...v1.37.0) (2024-04-29)
 
 
