@@ -64,6 +64,8 @@ function Aside({ postcode }: { readonly postcode: string }) {
       >
         {(locations) => {
           if (locations.error) {
+            // This can happen when the postcode is not found by the API but is found by HERE maps
+            // The postcode checks on the API are stricter
             Sentry.captureMessage(locations.error, {
               tags: { route: 'PostcodeAside' },
             });
