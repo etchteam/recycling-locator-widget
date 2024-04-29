@@ -17,6 +17,7 @@ locator-map-svg {
   }
 
   &::part(content) {
+    box-sizing: border-box;
     margin: 0 auto;
     padding: var(--diamond-spacing);
     width: min(100%, calc(var(--wrap-max-width) - var(--diamond-spacing-lg)));

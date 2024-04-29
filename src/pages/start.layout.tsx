@@ -82,10 +82,12 @@ export default function StartLayout({
   const open = useSignal(false);
 
   open.subscribe((value) => {
-    recordEvent({
-      category: 'About',
-      action: value ? 'Open' : 'Close',
-    });
+    if (value === true) {
+      recordEvent({
+        category: 'About',
+        action: 'Open',
+      });
+    }
   });
 
   return (

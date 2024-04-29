@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser';
 import { Suspense } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
@@ -61,29 +62,41 @@ function Aside({ postcode }: { readonly postcode: string }) {
         resolve={locationsPromise.data.locations}
         errorElement={<MapErrorFallback postcode={postcode} />}
       >
-        {(locations) => (
-          <PlacesMap
-            latitude={locations.meta.latitude}
-            longitude={locations.meta.longitude}
-            locations={locations.items}
-            static
-          >
-            <Link
-              to={`/${postcode}/places/map`}
-              aria-label={t('actions.showMap')}
+        {(locations) => {
+          if (locations.error) {
+            // This can happen when the postcode is not found by the API but is found by HERE maps
+            // The postcode checks on the API are stricter
+            Sentry.captureMessage(locations.error, {
+              tags: { route: 'PostcodeAside' },
+            });
+
+            return <MapErrorFallback postcode={postcode} />;
+          }
+
+          return (
+            <PlacesMap
+              latitude={locations.meta.latitude}
+              longitude={locations.meta.longitude}
+              locations={locations.items}
+              static
             >
-              <locator-places-map-scrim />
-            </Link>
-            <locator-places-map-card padding="none">
-              <diamond-button width="full-width">
-                <Link to={`/${postcode}/places/map`}>
-                  {t('postcode.exploreTheMap')}
-                  <locator-icon icon="map" color="primary"></locator-icon>
-                </Link>
-              </diamond-button>
-            </locator-places-map-card>
-          </PlacesMap>
-        )}
+              <Link
+                to={`/${postcode}/places/map`}
+                aria-label={t('actions.showMap')}
+              >
+                <locator-places-map-scrim />
+              </Link>
+              <locator-places-map-card padding="none">
+                <diamond-button width="full-width">
+                  <Link to={`/${postcode}/places/map`}>
+                    {t('postcode.exploreTheMap')}
+                    <locator-icon icon="map" color="primary"></locator-icon>
+                  </Link>
+                </diamond-button>
+              </locator-places-map-card>
+            </PlacesMap>
+          );
+        }}
       </Await>
     </Suspense>
   );
