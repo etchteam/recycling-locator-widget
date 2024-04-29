@@ -1,5 +1,7 @@
+import uniqueId from 'lodash/uniqueId';
 import { useTranslation } from 'react-i18next';
 
+import '@/components/content/Container/Container';
 import containerName from '@/lib/containerName';
 import { Container } from '@/types/locatorApi';
 
@@ -17,7 +19,10 @@ export default function SchemeContainerSummary({
   return (
     <ul role="list" className="list-style-none diamond-spacing-bottom-md">
       {firstContainers.map((container) => (
-        <li key={container.name} className="diamond-spacing-bottom-sm">
+        <li
+          key={uniqueId(container.name)}
+          className="diamond-spacing-bottom-sm"
+        >
           <locator-container>
             <locator-container-svg
               name={container.name}
