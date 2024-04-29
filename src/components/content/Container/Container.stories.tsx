@@ -47,9 +47,6 @@ export const Container: StoryObj = {
           ></locator-container-svg>
           <locator-container-content>
             <locator-container-name>Paid for box</locator-container-name>
-            <locator-container-subscription>
-              Subscription service &ndash; £50
-            </locator-container-subscription>
           </locator-container-content>
         </locator-container>
       </diamond-grid-item>
@@ -63,9 +60,6 @@ export const Container: StoryObj = {
             <locator-container-name>
               Kitchen caddy with notes
             </locator-container-name>
-            <locator-container-notes>
-              Containers can be black or green.
-            </locator-container-notes>
           </locator-container-content>
         </locator-container>
       </diamond-grid-item>
@@ -79,12 +73,6 @@ export const Container: StoryObj = {
             <locator-container-name>
               Paid for kitchen caddy with notes
             </locator-container-name>
-            <locator-container-subscription>
-              Subscription service &ndash; £50
-            </locator-container-subscription>
-            <locator-container-notes>
-              Containers can be black or green.
-            </locator-container-notes>
           </locator-container-content>
         </locator-container>
       </diamond-grid-item>
