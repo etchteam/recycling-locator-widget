@@ -45,7 +45,8 @@ function PlacePageContent({ location }: { readonly location: Location }) {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    const value = new FormData(event.submitter.form).get('search') as string;
+    const form = event?.submitter?.form ?? undefined;
+    const value = new FormData(form).get('search') as string;
 
     if (value) {
       recordEvent({

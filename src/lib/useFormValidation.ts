@@ -8,7 +8,8 @@ export default function useFormValidation(fieldName: string) {
   const submitting = useSignal(false);
 
   const handleSubmit = (event) => {
-    const value = new FormData(event.submitter.form).get(fieldName) as string;
+    const form = event?.submitter?.form ?? undefined;
+    const value = new FormData(form).get(fieldName) as string;
 
     if (!value) {
       event.preventDefault();
