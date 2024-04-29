@@ -1,3 +1,21 @@
+## [1.37.0](https://github.com/etchteam/recycling-locator/compare/v1.36.0...v1.37.0) (2024-04-29)
+
+
+### Features
+
+* locations error comment ([5ef61ee](https://github.com/etchteam/recycling-locator/commit/5ef61ee26cb7a756264afe89befe3b47ba3be347))
+
+
+### Bug Fixes
+
+* disable sentry integrations to only send manual reports ([e4a9b8b](https://github.com/etchteam/recycling-locator/commit/e4a9b8b37e9074f23cbb8b8124d04843de91ae01))
+* handle locations error on postcode route ([226b764](https://github.com/etchteam/recycling-locator/commit/226b76407e3f17f8d9c5c3a00df89f8bf95ce29e))
+* input and map svg button overflow ([01a7c79](https://github.com/etchteam/recycling-locator/commit/01a7c797c85d057dd0a90c5e168dcfd8ea2b9756))
+* possibility of duplicate keys in SchemeContainerSummary ([dc8b9fd](https://github.com/etchteam/recycling-locator/commit/dc8b9fd3979fa3a60f18e8c76b6dc8154250082a))
+* remove use of components that no longer exist ([55a3999](https://github.com/etchteam/recycling-locator/commit/55a3999a961edde513adc0ca8718830cdf885e99))
+* stop about close event firing ([00bced9](https://github.com/etchteam/recycling-locator/commit/00bced98a1fd842b722611e60cb988862f7ba6fc))
+* submitter undefined ([6e2d88b](https://github.com/etchteam/recycling-locator/commit/6e2d88bcd0c1483caee7485080816b6a589370ec))
+
 ## [1.36.0](https://github.com/etchteam/recycling-locator/compare/v1.35.0...v1.36.0) (2024-04-26)
 
 
