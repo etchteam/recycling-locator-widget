@@ -55,9 +55,13 @@ export function PlacesMapPageContent({
   const fetcher = useFetcher() as FetcherWithComponents<PlacesLoaderResponse>;
   const fetchedLocations = fetcher.data?.locations;
   const locations = (fetchedLocations ?? loadedLocations) as LocationsResponse;
+
+  if (locations.error) {
+    throw new Error(locations.error);
+  }
+
   const defaultLatitude = locations.meta.latitude;
   const defaultLongitude = locations.meta.longitude;
-
   const activeLocation = useSignal<Location | null>(null);
   const showSearchThisArea = useSignal(false);
   const page = useSignal(1);
