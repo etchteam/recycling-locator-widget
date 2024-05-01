@@ -1,3 +1,17 @@
+## [1.37.2](https://github.com/etchteam/recycling-locator/compare/v1.37.1...v1.37.2) (2024-05-01)
+
+
+### Bug Fixes
+
+* avoid search for empty material value ([78a9044](https://github.com/etchteam/recycling-locator/commit/78a9044e85d027c48a1091bd34c49726b2eb270f))
+* failed to fetch errors ([186be19](https://github.com/etchteam/recycling-locator/commit/186be196c83116c32187171995c76d7c8875eed3))
+* handle empty loader data for error route ([251af03](https://github.com/etchteam/recycling-locator/commit/251af0360b43afa9bc60428d2d6daedcba7e9640))
+* handle locations error responses ([7fad1c7](https://github.com/etchteam/recycling-locator/commit/7fad1c7fc3e4d1515b0457eca8bba21d60319e1f))
+* handle possible undefined properties object ([2567345](https://github.com/etchteam/recycling-locator/commit/2567345fa059d9827753a91d12afdfe090a3238a))
+* ignore here maps occasionally failing to dispose itself ([0f3a2df](https://github.com/etchteam/recycling-locator/commit/0f3a2dfd9654b0359d4c86ddddc6868a097feac5))
+* more handling for empty properties ([7101977](https://github.com/etchteam/recycling-locator/commit/7101977de8ad8bbd50bd8eff5afc828bc2dfea52))
+* regex string escape ([4bfdc26](https://github.com/etchteam/recycling-locator/commit/4bfdc269e1a855f2e10f96b7a7a24e4faf312822))
+
 ## [1.37.1](https://github.com/etchteam/recycling-locator/compare/v1.37.0...v1.37.1) (2024-04-29)
 
 
