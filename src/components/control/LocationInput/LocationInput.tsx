@@ -43,11 +43,12 @@ export default class LocationInput extends Component<LocationInputProps> {
 
   autosuggest = async (query: string): Promise<HereMapsAutosuggestResult> => {
     try {
+      const safeQuery = encodeURIComponent(query);
       const apiKey = `apiKey=${this.apiKey}`;
       const bbox = `in=bbox:${this.boundingBox}`;
       const resultTypes = `result_types=${this.resultTypes}`;
       const response = await fetch(
-        `${this.autosuggestEndpoint}?q=${query}&${apiKey}&${bbox}&${resultTypes}`,
+        `${this.autosuggestEndpoint}?q=${safeQuery}&${apiKey}&${bbox}&${resultTypes}`,
       );
       return response.json();
     } catch (error) {

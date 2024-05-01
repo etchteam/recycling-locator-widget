@@ -33,7 +33,7 @@ async function sendAnalyticsRequest(event: AnalyticsEvent) {
 
   try {
     const query = new URLSearchParams(event as any);
-    await fetch(`${config.locatorAnalyticsPath}?${query}`, {
+    await fetch(encodeURI(`${config.locatorAnalyticsPath}?${query}`), {
       method: 'GET',
       headers: {
         'X-Requested-With': config.packageVersion,
