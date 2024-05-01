@@ -30,7 +30,8 @@
     },
     "materialSearchInput": {
       "placeholder": "Nodwch enw eitem…",
-      "error": "Nodwch enw eitem i chwilio amdani"
+      "error": "Nodwch enw eitem i chwilio amdani",
+      "notFound": "Doedden ni ddim yn gallu dod o hyd i ateb i gyd-fynd â {{query}}"
     },
     "menu": {
       "whatDoYouWantToDo": "Beth hoffech chi ei wneud?",

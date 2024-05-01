@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import { Signal, signal } from '@preact/signals';
 import * as Sentry from '@sentry/browser';
+import debounce from 'lodash/debounce';
 import uniq from 'lodash/uniq';
 import { Component, createRef } from 'preact';
 import '@etchteam/diamond-ui/control/Input/Input';
@@ -59,9 +60,7 @@ export default class LocationInput extends Component<LocationInputProps> {
     }
   };
 
-  handleInput = async (event: preact.JSX.TargetedEvent<HTMLInputElement>) => {
-    const query = event.currentTarget.value;
-
+  handleInput = debounce(async (query: string) => {
     if (query.length <= 3) {
       return;
     }
@@ -70,7 +69,7 @@ export default class LocationInput extends Component<LocationInputProps> {
     const locations = result.items.map((item) => item.title);
     this.locationSuggestions.value = locations;
     this.props.handleInput?.(query);
-  };
+  }, 500);
 
   handleBlur = (event: preact.JSX.TargetedEvent<HTMLInputElement>) => {
     this.props.handleBlur?.(event.currentTarget.value);
@@ -96,7 +95,7 @@ export default class LocationInput extends Component<LocationInputProps> {
             placeholder={placeholder}
             id={inputId}
             list={listId}
-            onInput={this.handleInput}
+            onInput={(event) => this.handleInput(event.currentTarget?.value)}
             onBlur={this.handleBlur}
             ref={this.inputRef}
             aria-invalid={!valid}

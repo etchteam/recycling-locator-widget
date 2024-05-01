@@ -2,6 +2,7 @@
 import { Combobox } from '@headlessui/react';
 import { Signal, signal } from '@preact/signals';
 import * as Sentry from '@sentry/browser';
+import debounce from 'lodash/debounce';
 import escapeRegExp from 'lodash/escapeRegExp';
 import uniq from 'lodash/uniq';
 import { Component, createRef } from 'preact';
@@ -33,6 +34,7 @@ interface MaterialSearchInputProps {
  */
 export default class MaterialSearchInput extends Component<MaterialSearchInputProps> {
   materialSuggestions: Signal<Material[]>;
+  materialNotFound: Signal<string | null>;
   inputValue: Signal<string>;
   inputRef = createRef<HTMLInputElement>();
   buttonRef = createRef<HTMLButtonElement>();
@@ -40,6 +42,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
   constructor(props: MaterialSearchInputProps) {
     super(props);
     this.materialSuggestions = signal([]);
+    this.materialNotFound = signal(null);
     this.inputValue = signal(this.props.defaultValue ?? '');
   }
 
@@ -56,54 +59,76 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     }
   };
 
-  handleInput = async (
-    event: preact.JSX.TargetedEvent<HTMLInputElement> | string,
-  ) => {
-    const query =
-      typeof event === 'string' ? event : event.currentTarget?.value;
+  handleInput = debounce(
+    async (query: string) => {
+      this.inputValue.value = query ?? '';
 
-    this.inputValue.value = query;
+      if ((query ?? '').length < 3) {
+        return;
+      }
 
-    if (query.length <= 3) {
-      return;
-    }
-
-    const materials = await this.autosuggest(query);
-    this.materialSuggestions.value = materials;
-    this.props.handleInput?.(query);
-  };
+      const materials = await this.autosuggest(query);
+      this.materialSuggestions.value = materials;
+      this.props.handleInput?.(query);
+    },
+    250,
+    { leading: true },
+  );
 
   handleBlur = () => {
     this.props.handleBlur?.(this.inputValue.value);
   };
 
   handleOptionSelected = async (query: string) => {
+    this.materialNotFound.value = null;
     // Manually set the value of the input field to the selected option
     // using a ref because combobox doesn't render the value update fast enough
-    this.inputRef.current.value = query;
+    this.inputRef.current.value = query ?? '';
     // Optimistically submit the form
+    // There's a known issue where this causes the form to submit on blur:
+    // https://github.com/tailwindlabs/headlessui/issues/2932#issuecomment-2088459994
     this.buttonRef.current?.click();
     // Send the usual input event in case submission fails
     this.handleInput(query);
   };
 
-  handleKeyPress = (event: KeyboardEvent) => {
+  handleKeyPress = (
+    event: preact.JSX.TargetedKeyboardEvent<HTMLInputElement>,
+  ) => {
     if (event.key === 'Enter') {
-      this.buttonRef.current?.click();
+      this.handleOptionSelected(event.currentTarget?.value ?? '');
+    }
+  };
+
+  handleButtonClick = (event: Event) => {
+    const query = this.inputRef.current.value;
+    const isRealMaterial =
+      this.materialSuggestions.value?.some?.(
+        (material) => material.name === query,
+      ) ?? [];
+
+    if (!isRealMaterial && query) {
+      event.preventDefault();
+      this.materialNotFound.value = query;
     }
   };
 
   render() {
     const inputId = this.props.inputId ?? 'locator-material-input';
     const submitting = this.props.submitting ?? false;
-    const valid = this.props.valid ?? true;
+    const materialNotFound = this.materialNotFound.value;
+    const valid = materialNotFound === null && (this.props.valid ?? true);
     const placeholder =
       this.props.placeholder ??
       i18n.t('components.materialSearchInput.placeholder');
     const materials = uniq(this.materialSuggestions.value);
     let showMaterials = this.inputValue.value && materials.length > 0;
 
-    if (materials.length === 1 && materials[0].name === this.inputValue.value) {
+    if (
+      this.inputValue.value &&
+      materials.length === 1 &&
+      materials[0].name === this.inputValue.value
+    ) {
       showMaterials = false;
     }
 
@@ -113,6 +138,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
           <Combobox
             value={this.inputValue.value}
             onChange={this.handleOptionSelected}
+            nullable
           >
             {(open) => (
               <>
@@ -123,7 +149,9 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
                     autoComplete="off"
                     ref={this.inputRef}
                     placeholder={placeholder}
-                    onChange={this.handleInput}
+                    onChange={(event) =>
+                      this.handleInput(event.currentTarget?.value)
+                    }
                     onBlur={this.handleBlur}
                     onKeyUp={this.handleKeyPress}
                     id={inputId}
@@ -175,9 +203,10 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
           </Combobox>
           <diamond-button width="square" variant="primary">
             <button
-              ref={this.buttonRef}
               type="submit"
+              ref={this.buttonRef}
               disabled={submitting && submitting !== 'false'}
+              onClick={this.handleButtonClick}
             >
               <locator-icon
                 icon="search"
@@ -192,7 +221,11 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
             className="text-color-negative diamond-text-size-sm diamond-spacing-top-sm"
             aria-live="polite"
           >
-            {i18n.t('components.materialSearchInput.error')}
+            {materialNotFound
+              ? i18n.t('components.materialSearchInput.notFound', {
+                  query: materialNotFound,
+                })
+              : i18n.t('components.materialSearchInput.error')}
           </p>
         )}
       </>
