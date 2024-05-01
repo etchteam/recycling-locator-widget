@@ -121,6 +121,7 @@ export interface LocationsResponse {
     page: number;
     total: number;
   };
+  error?: string;
 }
 
 export interface RecyclingMeta {

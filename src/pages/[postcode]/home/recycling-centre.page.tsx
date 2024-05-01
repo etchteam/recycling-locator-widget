@@ -44,6 +44,7 @@ function HomeRecyclingCentrePageContent({
 }) {
   const { t } = useTranslation();
   const { postcode } = useParams();
+
   const hwrcLocations = locations.filter((location) =>
     location.locations.some((l) => l.locationType === 'HWRC'),
   );
@@ -167,9 +168,13 @@ export default function HomeRecyclingCentrePage() {
   return (
     <Suspense fallback={<Loading />}>
       <Await resolve={locationsPromise}>
-        {(locations) => (
-          <HomeRecyclingCentrePageContent locations={locations.items} />
-        )}
+        {(locations) => {
+          if (locations.error) {
+            throw new Error(locations.error);
+          }
+
+          return <HomeRecyclingCentrePageContent locations={locations.items} />;
+        }}
       </Await>
     </Suspense>
   );

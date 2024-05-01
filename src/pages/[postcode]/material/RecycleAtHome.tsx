@@ -109,7 +109,7 @@ export default function RecycleAtHome({
   const PROPERTY_TYPE = getPropertyTypeEnum();
   const { postcode } = useParams();
   const { t } = useTranslation();
-  const allPropertyTypes = Object.keys(allProperties);
+  const allPropertyTypes = Object.keys(allProperties ?? {});
   const propertyTypesCollectingThisMaterial = Object.keys(
     propertiesCollectingThisMaterial ?? {},
   );

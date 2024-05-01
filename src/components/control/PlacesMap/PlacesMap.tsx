@@ -211,8 +211,12 @@ export default class PlacesMap extends Component<PlacesMapProps> {
   }
 
   componentWillUnmount() {
-    this.MapInstance.dispose();
-    window.removeEventListener('resize', this.resizeMap);
+    try {
+      this.MapInstance.dispose();
+      window.removeEventListener('resize', this.resizeMap);
+    } catch (error) {
+      // Ignore unmounting errors
+    }
   }
 
   componentDidUpdate(previousProps: Readonly<PlacesMapProps>) {

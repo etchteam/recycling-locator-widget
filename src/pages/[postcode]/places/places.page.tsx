@@ -80,6 +80,11 @@ function Places({
   // The loader is used initially then the fetcher is used to load more
   const fetchedLocations = fetcher.data?.locations;
   const locations = (fetchedLocations ?? loadedLocations) as LocationsResponse;
+
+  if (locations.error) {
+    throw new Error(locations.error);
+  }
+
   const count = locations.items.length;
   const showLocations = count > 0 && materialId !== 'undefined';
   const limit = locations.pagination.total;
