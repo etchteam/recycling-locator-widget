@@ -1,3 +1,16 @@
+## [1.38.0](https://github.com/etchteam/recycling-locator/compare/v1.37.2...v1.38.0) (2024-05-01)
+
+
+### Features
+
+* force search selection ([8005d46](https://github.com/etchteam/recycling-locator/commit/8005d46a377a3447b06daecdc0bfffb534143bee))
+
+
+### Bug Fixes
+
+* home collections e2e test ([d8b09ff](https://github.com/etchteam/recycling-locator/commit/d8b09ff89211d7b71cfe00cec5baf0b4a700f14b))
+* stuck in submitting state and home collection test ([51bca31](https://github.com/etchteam/recycling-locator/commit/51bca31d48603b8c7195f8c4cb27f49db7cab644))
+
 ## [1.37.2](https://github.com/etchteam/recycling-locator/compare/v1.37.1...v1.37.2) (2024-05-01)
 
 
