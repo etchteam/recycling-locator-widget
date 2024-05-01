@@ -2,6 +2,7 @@
 import { Combobox } from '@headlessui/react';
 import { Signal, signal } from '@preact/signals';
 import * as Sentry from '@sentry/browser';
+import escapeRegExp from 'lodash/escapeRegExp';
 import uniq from 'lodash/uniq';
 import { Component, createRef } from 'preact';
 import '@etchteam/diamond-ui/control/Input/Input';
@@ -152,7 +153,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
                   <Combobox.Options static>
                     {materials.map((material) => {
                       const displayName = material.name.replace(
-                        RegExp(this.inputValue.value, 'ig'),
+                        RegExp(escapeRegExp(this.inputValue.value), 'ig'),
                         (match) =>
                           `<span class="diamond-text-weight-bold">${match}</span>`,
                       );
