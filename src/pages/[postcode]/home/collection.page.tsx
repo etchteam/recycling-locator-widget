@@ -10,6 +10,7 @@ import {
   useLoaderData,
   Await,
   useNavigation,
+  useLocation,
 } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
@@ -45,6 +46,7 @@ function CollectionPageContent({
   const navigation = useNavigation();
   const menuRef = useRef<HTMLDetailsElement>(null);
   const { postcode } = useParams();
+  const location = useLocation();
   const { recordEvent } = useAnalytics();
   const form = useFormValidation('search');
   const properties = sortPropertyTypes(localAuthority.properties);
@@ -68,7 +70,7 @@ function CollectionPageContent({
     }
 
     form.submitting.value = false;
-  }, [search]);
+  }, [search, location]);
 
   function handleMenuItemClick() {
     menuOpen.value = false;

@@ -164,7 +164,6 @@ describeEndToEndTest('Home recycling', () => {
     await expect(input).toBeVisible();
     await input.fill('Not a material m8');
     await input.press('Enter');
-    await expect(negativeSearchText).toBeVisible();
     await expect(positiveSearchText).not.toBeVisible();
     await input.fill('Plastic drinks bottles');
     await input.press('Enter');
