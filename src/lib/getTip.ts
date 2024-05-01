@@ -31,7 +31,7 @@ export default function getTip(
     tips.push(...meta.filter((m) => m.materials.length === 0 && !m.path));
   }
 
-  return tips[random(0, tips.length - 1)];
+  return tips[random(0, tips.length - 1)] ?? null;
 }
 
 /**
@@ -41,7 +41,6 @@ function handleTipError(error: Error) {
   Sentry.captureException(error, {
     tags: { route: 'Get tip' },
   });
-  return Promise.resolve(null);
 }
 
 export async function getTipByPath(path: string) {
@@ -50,6 +49,7 @@ export async function getTipByPath(path: string) {
     return getTip(meta, { path });
   } catch (error) {
     handleTipError(error);
+    return Promise.resolve(null);
   }
 }
 
@@ -61,5 +61,6 @@ export async function getTipByMaterial(materialId: string) {
     return getTip(meta, { materialId });
   } catch (error) {
     handleTipError(error);
+    return Promise.resolve(null);
   }
 }

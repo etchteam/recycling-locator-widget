@@ -5,6 +5,7 @@ import {
   Await,
   Form,
   useLoaderData,
+  useLocation,
   useParams,
   useSearchParams,
 } from 'react-router-dom';
@@ -25,6 +26,7 @@ import { MaterialSearchLoaderResponse } from './search.loader';
 export default function MaterialSearchPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
+  const location = useLocation();
   const form = useFormValidation('search');
   const [searchParams] = useSearchParams();
   const materialName = searchParams.get('name');
@@ -33,7 +35,7 @@ export default function MaterialSearchPage() {
 
   useEffect(() => {
     form.submitting.value = false;
-  }, [materialName]);
+  }, [materialName, location]);
 
   function generatePopularMaterialPath(material: Material) {
     return `/${postcode}/material?id=${material.id}&name=${encodeURIComponent(

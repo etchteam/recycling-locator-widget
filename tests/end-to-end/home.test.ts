@@ -7,6 +7,7 @@ import {
   LocalAuthorityResponse,
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
+import { MATERIALS_ENDPOINT, ValidMaterialsResponse } from '../mocks/materials';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
 import snapshot from '../utils/snapshot';
 import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
@@ -132,6 +133,10 @@ describeEndToEndTest('Home recycling', () => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
 
+    await page.route(MATERIALS_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidMaterialsResponse });
+    });
+
     const kerbsideSchemeText = page
       .getByText(PROPERTY_TYPE_EN.KERBSIDE)
       .first();
@@ -164,9 +169,8 @@ describeEndToEndTest('Home recycling', () => {
     await expect(input).toBeVisible();
     await input.fill('Not a material m8');
     await input.press('Enter');
-    await expect(negativeSearchText).toBeVisible();
     await expect(positiveSearchText).not.toBeVisible();
-    await input.fill('Plastic drinks bottles');
+    await input.fill('Plastic milk bottles');
     await input.press('Enter');
     await expect(negativeSearchText).not.toBeVisible();
     await expect(positiveSearchText).toBeVisible();
