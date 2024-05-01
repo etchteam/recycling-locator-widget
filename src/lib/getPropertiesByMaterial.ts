@@ -15,7 +15,7 @@ function hasSchemeWithMaterial(
 
 export default function getPropertiesByMaterial(
   materialId: string,
-  properties: LocalAuthority['properties'],
+  properties: LocalAuthority['properties'] = {},
 ): LocalAuthority['properties'] | undefined {
   const propertyTypes = Object.keys(properties);
 

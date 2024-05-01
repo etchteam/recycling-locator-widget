@@ -3,7 +3,7 @@ import { LocalAuthority } from '@/types/locatorApi';
 import getPropertyTypeEnum from './getPropertyTypeEnum';
 
 export default function sortPropertyTypes(
-  properties: LocalAuthority['properties'],
+  properties: LocalAuthority['properties'] = {},
 ) {
   const PROPERTY_TYPE = getPropertyTypeEnum();
   const sortOrder = [
