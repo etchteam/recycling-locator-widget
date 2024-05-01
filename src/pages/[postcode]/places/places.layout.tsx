@@ -30,7 +30,8 @@ export default function PlacesLayout({
   const { t } = useTranslation();
   const locale = i18n.language;
   const { postcode } = useParams();
-  const { locations: locationsPromise } = usePlacesLoaderData();
+  const loaderData = usePlacesLoaderData();
+  const locationsPromise = loaderData?.locations;
   const open = useSignal(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const materialId = searchParams.get('materialId');
