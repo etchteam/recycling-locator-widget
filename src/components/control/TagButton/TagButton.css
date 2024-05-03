@@ -10,7 +10,7 @@ locator-tag-button {
     display: block;
     font-weight: bold;
     gap: var(--diamond-spacing-sm);
-    max-width: 13rem;
+    max-width: 13em;
     overflow: hidden;
     padding: var(--diamond-spacing-xs) var(--diamond-spacing-lg)
       var(--diamond-spacing-xs) var(--diamond-spacing-sm);

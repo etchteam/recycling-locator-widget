@@ -7,6 +7,7 @@
 article {
   background: var(--diamond-theme-background);
   container-type: inline-size;
+  font-size: var(--diamond-font-size-base);
   overflow-y: auto;
   position: relative;
 }

@@ -5,13 +5,13 @@
     var(--font-family-default)
   );
 
-  --diamond-font-size-h3: 1.5rem;
+  --diamond-font-size-h3: 1.5em;
 
   --diamond-icon-size: calc(1em * var(--diamond-font-line-height));
 }
 
 @media (width >= 768px) {
   :host {
-    --diamond-font-size-h2: 1.75rem;
+    --diamond-font-size-h2: 1.75em;
   }
 }

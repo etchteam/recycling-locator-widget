@@ -49,7 +49,7 @@ locator-places-header {
       border-radius: var(--diamond-border-radius);
       margin-inline-end: var(--diamond-spacing);
       width: auto;
-      width: 18rem;
+      width: 18em;
     }
   }
 }

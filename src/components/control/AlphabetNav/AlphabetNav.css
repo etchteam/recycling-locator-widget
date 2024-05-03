@@ -1,11 +1,11 @@
 locator-alphabet-nav {
-  --_letter-size: 2rem;
+  --_letter-size: 2em;
   display: block;
 
   ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.21rem; /* specific gap to avoid half a letter short line end */
+    gap: 0.21em; /* specific gap to avoid half a letter short line end */
     list-style: none;
     margin: 0;
     padding: 0;

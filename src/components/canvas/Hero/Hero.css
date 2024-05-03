@@ -13,7 +13,7 @@ locator-hero {
 
   /* small tablet */
   @container (width >= 600px) {
-    min-width: 20rem;
+    min-width: 20em;
   }
 
   h1,
@@ -26,7 +26,7 @@ locator-hero {
   locator-icon {
     color: var(--_icon-color);
     /* Giant icon just for the hero */
-    font-size: 3rem;
+    font-size: 3em;
     margin-block-end: var(--diamond-spacing);
   }
 

@@ -86,7 +86,7 @@ locator-layout {
 
   [slot='layout-aside'] locator-places-map {
     /* Maps need to take up a minimum amount of space when placed in the layout aside */
-    min-height: 30rem;
+    min-height: 30em;
   }
 
   @container (width >= 768px) {
