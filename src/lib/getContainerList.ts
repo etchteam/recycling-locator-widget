@@ -5,7 +5,6 @@ import { Container, LocalAuthorityProperty } from '@/types/locatorApi';
 
 export interface ContainerList {
   Dry?: LocalAuthorityProperty[];
-  Residual?: Container[];
   Garden?: Container[];
   Food?: Container[];
 }
@@ -71,7 +70,6 @@ export default function getContainerList(
 
   // Group the schemes by type
   const streamType = groupBy(property, 'type');
-  delete streamType.Residual;
 
   containerList.Dry = streamType.Dry ?? [];
 

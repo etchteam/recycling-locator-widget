@@ -48,18 +48,6 @@ const mock: LocalAuthorityProperty[] = [
     ],
   },
   {
-    name: 'Kerbside Properties - Wycombe area',
-    type: 'Residual',
-    containers: [
-      {
-        name: 'Wheeled Bin',
-        displayName: 'Wheeled Bin',
-        bodyColour: 'Black',
-        lidColour: 'Black',
-      },
-    ],
-  },
-  {
     name: 'Communal Properties - Chiltern area',
     type: 'Dry',
     containers: [

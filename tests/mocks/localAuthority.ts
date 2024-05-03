@@ -586,34 +586,6 @@ export const LocalAuthorityResponse: LocalAuthority = {
         notes:
           'Fortnightly Collections through out the year. Collections suspended Christmas week and New Years week.',
       },
-      {
-        name: 'All properties',
-        type: 'Residual',
-        containers: [
-          {
-            name: 'Wheeled Bin',
-            displayName: 'Wheeled Bin (240L)',
-            bodyColour: '#4f4f4f',
-            lidColour: '#4f4f4f',
-            notes: [],
-          },
-          {
-            name: 'Non-Reusable Sack',
-            displayName: 'Non-Reusable Sack',
-            bodyColour: '#4f4f4f',
-            lidColour: '#4f4f4f',
-            notes: [],
-          },
-          {
-            name: 'Communal Wheeled Bin',
-            displayName: 'Communal Wheeled Bin (181 to 240L)',
-            bodyColour: '#4f4f4f',
-            lidColour: null,
-            notes: [],
-          },
-        ],
-        notes: '870 are on 140 litre wheeled bins',
-      },
     ],
     'Kerbside properties': [
       {
@@ -1457,34 +1429,6 @@ export const LocalAuthorityResponse: LocalAuthority = {
         ],
         notes:
           'Fortnightly Collections through out the year. Collections suspended Christmas week and New Years week.',
-      },
-      {
-        name: 'All properties',
-        type: 'Residual',
-        containers: [
-          {
-            name: 'Wheeled Bin',
-            displayName: 'Wheeled Bin (240L)',
-            bodyColour: '#4f4f4f',
-            lidColour: '#4f4f4f',
-            notes: [],
-          },
-          {
-            name: 'Non-Reusable Sack',
-            displayName: 'Non-Reusable Sack',
-            bodyColour: '#4f4f4f',
-            lidColour: '#4f4f4f',
-            notes: [],
-          },
-          {
-            name: 'Communal Wheeled Bin',
-            displayName: 'Communal Wheeled Bin (181 to 240L)',
-            bodyColour: '#4f4f4f',
-            lidColour: null,
-            notes: [],
-          },
-        ],
-        notes: '870 are on 140 litre wheeled bins',
       },
     ],
   },
