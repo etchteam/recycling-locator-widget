@@ -37,13 +37,25 @@ const routes: RouteObject[] = [
   },
 ];
 
+/**
+ * A flash of this loading fallback often displays before styles or any components have had a
+ * chance to load. It'll be swapped out for the actual UI as soon as it's ready.
+ */
 function Loading() {
   return (
-    <locator-loading>
-      <locator-hero>
-        <locator-icon icon="distance" color="muted"></locator-icon>
-      </locator-hero>
-    </locator-loading>
+    <div
+      style={{
+        height: '100%',
+        width: '100%',
+        // minimum --container-height in case that hasn't loaded yet
+        minHeight: '540px',
+        // this border will blend in as a fallback in case border styles haven't loaded yet
+        border: 'var(--recycling-locator-container-border, 1px solid #cfd1d3)',
+        borderRadius: 'var(--recycling-locator-container-border-radius, 0)',
+        margin: '-1px -1px 0 -1px',
+        boxSizing: 'content-box',
+      }}
+    />
   );
 }
 
