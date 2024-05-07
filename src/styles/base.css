@@ -13,6 +13,7 @@ article {
 
 .recycling-locator-variant-widget {
   border: var(--container-border);
+  border-radius: var(--container-border-radius);
   box-sizing: content-box;
   height: var(--container-height);
 }
