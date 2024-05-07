@@ -1,3 +1,10 @@
+## [1.38.1](https://github.com/etchteam/recycling-locator/compare/v1.38.0...v1.38.1) (2024-05-07)
+
+
+### Bug Fixes
+
+* flash of unstyled icon ([aebf90f](https://github.com/etchteam/recycling-locator/commit/aebf90fc8cc29952f3b1a5de4962ae7fac2103d0))
+
 ## [1.38.0](https://github.com/etchteam/recycling-locator/compare/v1.37.2...v1.38.0) (2024-05-01)
 
 
