@@ -29,9 +29,10 @@ export default function PlacesSearchPage() {
   const form = useFormValidation('search');
 
   function generatePopularMaterialPath(material: Material) {
-    return `/${postcode}/places?materialId=${material.id}&materialName=${encodeURIComponent(
-      material.name,
-    )}`;
+    const placesSearchParams = new URLSearchParams();
+    placesSearchParams.set('materials', material.id);
+    placesSearchParams.set('search', material.name);
+    return `/${postcode}/places?${placesSearchParams.toString()}`;
   }
 
   return (

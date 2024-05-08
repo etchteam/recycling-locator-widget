@@ -22,11 +22,6 @@ export default function PlacesSearchLayout() {
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
   const [searchParams] = useSearchParams();
-  const materialId = searchParams.get('materialId');
-  const materialName = searchParams.get('materialName');
-  const query = materialId
-    ? `?materialId=${materialId}&materialName=${materialName}`
-    : '';
 
   return (
     <locator-layout>
@@ -41,7 +36,10 @@ export default function PlacesSearchLayout() {
             <h2>{t('places.search.title')}</h2>
           </locator-header-title>
           <diamond-button width="square" size="sm">
-            <Link to={`/${postcode}/places${query}`} unstable_viewTransition>
+            <Link
+              to={`/${postcode}/places?${searchParams.toString()}`}
+              unstable_viewTransition
+            >
               <locator-icon
                 icon="close"
                 color="primary"

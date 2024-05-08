@@ -1,18 +1,13 @@
 import groupBy from 'lodash/groupBy';
 import uniqBy from 'lodash/uniqBy';
 
+import { containerHasMaterialName } from '@/lib/containerHasMaterial';
 import { Container, LocalAuthorityProperty } from '@/types/locatorApi';
 
 export interface ContainerList {
   Dry?: LocalAuthorityProperty[];
   Garden?: Container[];
   Food?: Container[];
-}
-
-function containerHasMaterial(container: Container, search: string): boolean {
-  return container.materials?.some(
-    (material) => material.name.toLowerCase() === search.toLowerCase(),
-  );
 }
 
 export function searchContainerList(
@@ -32,14 +27,14 @@ export function searchContainerList(
   filteredContainerList.Dry = containerList.Dry.map((scheme) => ({
     ...scheme,
     containers: scheme.containers.filter((container) =>
-      containerHasMaterial(container, search),
+      containerHasMaterialName(container, search),
     ),
   })).filter((scheme) => scheme.containers.length > 0);
 
   ['Garden', 'Food'].forEach((streamType) => {
     if (
       !containerList[streamType] ||
-      !containerHasMaterial(containerList[streamType][0], search)
+      !containerHasMaterialName(containerList[streamType][0], search)
     ) {
       return;
     }

@@ -112,15 +112,21 @@ function AtoZPageContent({
           >
             <nav>
               <ul>
-                {groupedMaterials[letter].map((material) => (
-                  <li key={material.id}>
-                    <Link
-                      to={`/${postcode}/places?materialId=${material.id}&materialName=${encodeURIComponent(material.name)}`}
-                    >
-                      {material.name}
-                    </Link>
-                  </li>
-                ))}
+                {groupedMaterials[letter].map((material) => {
+                  const placesSearchParams = new URLSearchParams();
+                  placesSearchParams.set('materials', material.id);
+                  placesSearchParams.set('search', material.name);
+
+                  return (
+                    <li key={material.id}>
+                      <Link
+                        to={`/${postcode}/places?${placesSearchParams.toString()}`}
+                      >
+                        {material.name}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
           </locator-bordered-list>

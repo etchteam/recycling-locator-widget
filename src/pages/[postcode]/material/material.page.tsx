@@ -1,7 +1,13 @@
 import { Suspense } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Await, Link, useLoaderData, useParams } from 'react-router-dom';
+import {
+  Await,
+  Link,
+  useLoaderData,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/canvas/Loading/Loading';
@@ -42,12 +48,15 @@ export function Loading() {
 function MaterialPageContent({
   localAuthority,
   locations,
-  materialId,
-}: Partial<AwaitedMaterialLoaderResponse>) {
+}: Readonly<Partial<AwaitedMaterialLoaderResponse>>) {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
   const propertiesCollectingThisMaterial = getPropertiesByMaterial(
-    materialId,
     localAuthority.properties,
+    {
+      materials: searchParams.get('materials'),
+      category: searchParams.get('category'),
+    },
   );
   const recyclableAtHome = propertiesCollectingThisMaterial !== undefined;
   const recyclableNearby = locations.items.length > 0;
@@ -67,7 +76,6 @@ function MaterialPageContent({
         <locator-wrap>
           <section className="diamond-spacing-bottom-lg">
             <RecycleAtHome
-              materialId={materialId}
               allProperties={localAuthority.properties}
               propertiesCollectingThisMaterial={
                 propertiesCollectingThisMaterial
@@ -87,32 +95,32 @@ export default function MaterialPage() {
   const { postcode } = useParams();
   const { recordEvent } = useAnalytics();
   const {
-    materialId,
-    materialName,
     tip: tipPromise,
     localAuthority: localAuthorityPromise,
     locations: locationsPromise,
   } = useLoaderData() as DeferredMaterialLoaderResponse;
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get('search');
 
   useEffect(() => {
-    if (materialName) {
+    if (search) {
       recordEvent({
         category: 'MaterialResult::MaterialSearch',
-        action: materialName,
+        action: search,
       });
     }
-  }, [materialName]);
+  }, [search]);
 
   return (
     <>
       <div slot="layout-main">
-        {materialId && (
+        {search && (
           <Link
             to={`/${postcode}/material/search`}
             className="diamond-text-decoration-none"
           >
             <locator-context-header>
-              <div className="diamond-text-weight-bold">{materialName}</div>
+              <div className="diamond-text-weight-bold">{search}</div>
               <locator-icon icon="search" color="primary" />
             </locator-context-header>
           </Link>
@@ -126,7 +134,6 @@ export default function MaterialPage() {
                 <MaterialPageContent
                   localAuthority={localAuthority}
                   locations={locations}
-                  materialId={materialId}
                 />
               );
             }}

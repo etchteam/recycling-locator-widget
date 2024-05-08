@@ -1,4 +1,3 @@
-import compact from 'lodash/compact';
 import {
   LoaderFunctionArgs,
   defer,
@@ -7,6 +6,7 @@ import {
 
 import LocatorApi from '@/lib/LocatorApi';
 import PostCodeResolver from '@/lib/PostcodeResolver';
+import createSearchParams from '@/lib/createSearchParams';
 import { getTipByPath } from '@/lib/getTip';
 import { LocationsResponse, RecyclingMeta } from '@/types/locatorApi';
 
@@ -21,25 +21,26 @@ export default async function placesLoader({
 }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const page = Number(url.searchParams.get('page') ?? 1);
-  const radius = Number(url.searchParams.get('radius') ?? 25);
-  const materialId = url.searchParams.get('materialId');
   const lat = url.searchParams.get('lat');
   const lng = url.searchParams.get('lng');
-  const limit = page * 30;
 
   const postcode =
     lat && lng
       ? await PostCodeResolver.fromLatLng(Number(lat), Number(lng))
       : params.postcode;
 
-  const query = compact([
-    `limit=${limit}`,
-    `radius=${radius}`,
-    materialId ? `materials=${materialId}` : undefined,
-  ]).join('&');
+  const searchParams = createSearchParams(
+    ['limit', 'radius', 'materials', 'category'],
+    {
+      limit: page * 30,
+      radius: url.searchParams.get('radius') ?? 25,
+      materials: url.searchParams.get('materials'),
+      category: url.searchParams.get('category'),
+    },
+  );
 
   const locations = LocatorApi.get<LocationsResponse>(
-    `locations/${postcode}?${query}`,
+    `locations/${postcode}?${searchParams.toString()}`,
   );
 
   const tip = getTipByPath('/:postcode/places');

@@ -1,6 +1,7 @@
 import { ActionFunctionArgs, redirect } from 'react-router-dom';
 
 import PostCodeResolver from '@/lib/PostcodeResolver';
+import createSearchParams from '@/lib/createSearchParams';
 
 function handleError(error: Error) {
   if (error instanceof Error) {
@@ -38,13 +39,13 @@ export async function homeRecyclingStartAction({
 export async function materialStartAction({ request }: ActionFunctionArgs) {
   try {
     const formData = await request.formData();
-    const materialId = formData.get('id');
-    const materialName = formData.get('name');
     const postcode = await resolvePostcode(formData);
-
-    return redirect(
-      `/${postcode}/material?id=${materialId}&name=${materialName}`,
+    const searchParams = createSearchParams(
+      ['materials', 'category', 'search'],
+      formData,
     );
+
+    return redirect(`/${postcode}/material?${searchParams.toString()}`);
   } catch (error) {
     handleError(error);
   }

@@ -13,9 +13,21 @@ import MaterialSearchInput from '@/components/control/MaterialSearchInput/Materi
 import '@/components/control/Details/Details';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
-import { Location } from '@/types/locatorApi';
+import { Location, MaterialWithCategory } from '@/types/locatorApi';
 
 import { usePlaceLoaderData } from './place.loader';
+
+export function placeHasMaterialName(
+  search: string,
+  materials: MaterialWithCategory[] = [],
+): boolean {
+  return materials.some((material) => {
+    const materialName = material.name.toLowerCase();
+    const categoryName = material.category?.name.toLowerCase();
+    const safeSearch = search.toLowerCase();
+    return safeSearch === materialName || safeSearch === categoryName;
+  });
+}
 
 function Loading() {
   return (
@@ -34,10 +46,7 @@ function PlacePageContent({ location }: { readonly location: Location }) {
   const materialCategories = groupBy(materials, 'category.name');
   const materialCategoryNames = Object.keys(materialCategories);
   const hasSearchedForMaterial =
-    search.value &&
-    materials.some((material) =>
-      material.name.toLowerCase().includes(search.value.toLowerCase()),
-    );
+    search.value && placeHasMaterialName(search.value, materials);
 
   if (location.error) {
     throw new Error(location.error);

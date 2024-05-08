@@ -1,29 +1,27 @@
 import { LoaderFunctionArgs } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
-import { Material } from '@/types/locatorApi';
+import { MaterialSearch } from '@/types/locatorApi';
 
-export interface MaterialStartLoaderResponse {
-  name: string;
-  id: string;
-}
+export type MaterialStartLoaderResponse = MaterialSearch;
 
 export default async function materialStartLoader({
   request,
 }: LoaderFunctionArgs) {
   const url = new URL(request.url);
-  const materialName = url.searchParams.get('name');
+  const search = url.searchParams.get('search');
   const formData = new FormData();
-  formData.set('search', materialName);
-  const materials = await LocatorApi.post<Material[]>('materials', formData);
-  const { name, id } = materials?.[0] ?? {};
+  formData.set('search', search);
 
-  if (!id) {
+  const materials = await LocatorApi.post<MaterialSearch[]>(
+    'materials',
+    formData,
+  );
+  const material = materials?.[0];
+
+  if (!material?.id) {
     throw new Response('Material not found', { status: 404 });
   }
 
-  return {
-    name,
-    id,
-  };
+  return material;
 }

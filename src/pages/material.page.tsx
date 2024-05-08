@@ -14,7 +14,9 @@ import { MaterialStartLoaderResponse } from './material.loader';
 
 export default function MaterialStartPage() {
   const { t } = useTranslation();
-  const { name, id } = useLoaderData() as MaterialStartLoaderResponse;
+  const { name, id, type } = useLoaderData() as MaterialStartLoaderResponse;
+  const searchType =
+    type === 'LocatorMaterialCategory' ? 'category' : 'materials';
 
   return (
     <StartLayout>
@@ -22,8 +24,8 @@ export default function MaterialStartPage() {
         <diamond-section padding="lg">
           <h2>{t('start.material.title', { material: name })}</h2>
           <LocationForm action="/material">
-            <input type="hidden" name="id" value={id} />
-            <input type="hidden" name="name" value={name} />
+            <input type="hidden" name={searchType} value={id} />
+            <input type="hidden" name="search" value={name} />
           </LocationForm>
         </diamond-section>
       </locator-wrap>
