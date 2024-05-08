@@ -1,3 +1,13 @@
+## [1.38.2](https://github.com/etchteam/recycling-locator/compare/v1.38.1...v1.38.2) (2024-05-08)
+
+
+### Bug Fixes
+
+* combine :host selectors ([d47500b](https://github.com/etchteam/recycling-locator/commit/d47500b02806dd0884b07eacb7e28a0877c72f62))
+* container list test ([488f409](https://github.com/etchteam/recycling-locator/commit/488f409510996b5fb0c2cac617f00bcdb1680a8e))
+* controlled font scaling ([d32fc6d](https://github.com/etchteam/recycling-locator/commit/d32fc6d095be93485d17b8bdc7113b948728e4c9))
+* handle the api removal of residual schemes ([9555951](https://github.com/etchteam/recycling-locator/commit/9555951d1d13c9b2e47410e3045cb648fb4863fc))
+
 ## [1.38.1](https://github.com/etchteam/recycling-locator/compare/v1.38.0...v1.38.1) (2024-05-07)
 
 
