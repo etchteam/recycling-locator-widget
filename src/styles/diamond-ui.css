@@ -1,7 +1,7 @@
 @import '../../node_modules/@etchteam/diamond-ui/diamond-ui.css';
 
-/* Override rem units */
 :host {
+  /* Override rem units */
   /* Ignore rem if host site html font-size is set to lower than 14px */
   --diamond-font-size-base: max(14px, 0.875rem);
 
@@ -12,6 +12,13 @@
   --diamond-font-size-h4: 1.25em;
   --diamond-spacing-thumb: 2.75em;
   --diamond-spacing: 1em;
+
+  /* Redefine body styles from diamond because we don't have a <body> element */
+  color: var(--diamond-theme-color);
+  font-family: var(--diamond-font-family);
+  font-size: var(--diamond-font-size-base);
+  -webkit-font-smoothing: antialiased;
+  line-height: var(--diamond-font-line-height);
 }
 
 @media (width >= 768px) {
@@ -20,17 +27,6 @@
     --diamond-font-size-h1: 3em;
     --diamond-font-size-h2: 2em;
   }
-}
-
-/**
-  * Redefine body styles from diamond because we don't have a <body> element
-  */
-:host {
-  color: var(--diamond-theme-color);
-  font-family: var(--diamond-font-family);
-  font-size: var(--diamond-font-size-base);
-  -webkit-font-smoothing: antialiased;
-  line-height: var(--diamond-font-line-height);
 }
 
 h1,
