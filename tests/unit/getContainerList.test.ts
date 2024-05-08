@@ -98,7 +98,7 @@ const mock: LocalAuthorityProperty[] = [
 describe('getContainerList', () => {
   test('Returns a list of containers in the expected format', () => {
     expect(getContainerList(mock)).toEqual({
-      Dry: [mock[0], mock[2]],
+      Dry: [mock[0], mock[1]],
       Garden: [mock[3].containers[0]],
     });
   });
@@ -116,7 +116,7 @@ describe('searchContainerList', () => {
   test('Search returns containerList of containers with matching materials', () => {
     expect(searchContainerList(mockContainerList, 'Aluminium foil')).toEqual({
       containerList: {
-        Dry: [{ ...mock[0], containers: [mock[0].containers[0]] }, mock[2]],
+        Dry: [{ ...mock[0], containers: [mock[0].containers[0]] }, mock[1]],
       },
       containerCount: 2,
       searchResult: 'positive',
