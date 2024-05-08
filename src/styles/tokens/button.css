@@ -1,4 +1,6 @@
 diamond-button {
+  --_size: 1em;
+
   --diamond-button-background: var(--color-white);
   --diamond-button-background-hover: var(--color-primary-lightest);
   --diamond-button-background-disabled: var(--diamond-button-background);
@@ -8,7 +10,7 @@ diamond-button {
   --diamond-button-color: var(--color-primary-dark);
   --diamond-button-color-hover: var(--color-primary-dark);
   --diamond-button-color-disabled: var(--color-primary);
-  --diamond-button-padding-block: 0.75rem;
+  --diamond-button-padding-block: 0.75em;
 
   --diamond-button-primary-background: var(--color-primary-dark);
   --diamond-button-primary-background-hover: color-mix(
@@ -36,5 +38,5 @@ diamond-button[variant='primary'] {
 }
 
 diamond-button[width='square'][size='sm'] {
-  --diamond-button-padding-block: 0.5rem;
+  --diamond-button-padding-block: 0.5em;
 }
