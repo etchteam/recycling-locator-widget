@@ -74,7 +74,7 @@ export enum PROPERTY_TYPE_CY {
 
 export interface LocalAuthorityProperty {
   name: string;
-  type: 'Dry' | 'Food' | 'Garden' | 'Residual';
+  type: 'Dry' | 'Food' | 'Garden';
   containers: Container[];
   notes?: string[];
 }
