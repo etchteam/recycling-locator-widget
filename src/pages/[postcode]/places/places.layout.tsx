@@ -131,7 +131,7 @@ export default function PlacesLayout({
                   </Suspense>
                 )}
                 <Link
-                  to={`/${postcode}/places/search${query}`}
+                  to={`/${postcode}/places/search?${query.toString()}`}
                   unstable_viewTransition
                 >
                   {!search && t('places.searchPlaceholder')}

@@ -285,7 +285,7 @@ export default function PlacesPage() {
       <diamond-enter type="fade" delay={0.25}>
         <locator-fab sticky>
           <diamond-button size="sm" variant="primary">
-            <Link to={`/${postcode}/places/map`}>
+            <Link to={`/${postcode}/places/map?${searchParams.toString()}`}>
               <locator-icon icon="map"></locator-icon>
               {t('actions.showMap')}
             </Link>

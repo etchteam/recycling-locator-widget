@@ -18,11 +18,11 @@ export function containerHasMaterialId(
 ): boolean {
   return container.materials?.some((material) => {
     if (materials) {
-      return material.id === materials;
+      return material.id == materials;
     }
 
     if (category) {
-      return material.category.id === category;
+      return material.category.id == category;
     }
 
     return false;

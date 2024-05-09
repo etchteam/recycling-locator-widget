@@ -14,11 +14,11 @@ export default async function placesSearchAction({
     'materials',
     formData,
   );
-  const material = materials?.[0];
+  const material = materials.find((m) => m.name === search);
   const searchParams = new URLSearchParams();
   searchParams.set('search', search);
 
-  if (material && material?.name === search) {
+  if (material) {
     const searchType =
       material.type === 'LocatorMaterialCategory' ? 'category' : 'materials';
     searchParams.set(searchType, material.id);

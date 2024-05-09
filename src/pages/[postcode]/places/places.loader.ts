@@ -7,7 +7,7 @@ import {
 import LocatorApi from '@/lib/LocatorApi';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import createSearchParams from '@/lib/createSearchParams';
-import { getTipByPath } from '@/lib/getTip';
+import { getTipByMaterial, getTipByPath } from '@/lib/getTip';
 import { LocationsResponse, RecyclingMeta } from '@/types/locatorApi';
 
 export interface PlacesLoaderResponse {
@@ -23,6 +23,7 @@ export default async function placesLoader({
   const page = Number(url.searchParams.get('page') ?? 1);
   const lat = url.searchParams.get('lat');
   const lng = url.searchParams.get('lng');
+  const materials = url.searchParams.get('materials');
 
   const postcode =
     lat && lng
@@ -34,8 +35,8 @@ export default async function placesLoader({
     {
       limit: page * 30,
       radius: url.searchParams.get('radius') ?? 25,
-      materials: url.searchParams.get('materials'),
       category: url.searchParams.get('category'),
+      materials,
     },
   );
 
@@ -43,7 +44,9 @@ export default async function placesLoader({
     `locations/${postcode}?${searchParams.toString()}`,
   );
 
-  const tip = getTipByPath('/:postcode/places');
+  const tip = materials
+    ? getTipByMaterial(materials.split(',')[0])
+    : getTipByPath('/:postcode/places');
 
   return defer({
     page,

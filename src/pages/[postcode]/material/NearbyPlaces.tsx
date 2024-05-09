@@ -43,6 +43,7 @@ function Places({ locations }: { readonly locations: LocationsResponse }) {
   const [searchParams] = useSearchParams();
   const tContext = 'material.nearbyPlaces.places';
   const count = locations.items.length;
+
   const placesSearchParams = createSearchParams(
     ['materials', 'category', 'search'],
     searchParams,

@@ -14,18 +14,17 @@ export default async function postcodeAction({
     'materials',
     formData,
   );
-  const material = materials?.[0];
+  const material = materials.find((m) => m.name === search);
+  const searchParams = new URLSearchParams();
+  searchParams.set('search', search);
 
-  if (!material || material?.name !== search) {
-    const safeSearchTerm = encodeURIComponent(search);
-    return redirect(`/${postcode}/material/search?name=${safeSearchTerm}`);
+  if (!material) {
+    return redirect(`/${postcode}/material/search?${searchParams.toString()}`);
   }
 
   const searchType =
     material.type === 'LocatorMaterialCategory' ? 'category' : 'materials';
-  const searchParams = new URLSearchParams();
   searchParams.set(searchType, material.id);
-  searchParams.set('search', search);
 
   return redirect(`/${postcode}/material?${searchParams.toString()}`);
 }

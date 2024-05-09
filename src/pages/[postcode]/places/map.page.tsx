@@ -217,7 +217,7 @@ export function PlacesMapPageContent({
           <diamond-enter type="fade" delay={0.5}>
             <locator-fab>
               <diamond-button size="sm" variant="primary">
-                <Link to={`/${postcode}/places`}>
+                <Link to={`/${postcode}/places?${searchParams.toString()}`}>
                   <locator-icon icon="list"></locator-icon>
                   {t('actions.showList')}
                 </Link>

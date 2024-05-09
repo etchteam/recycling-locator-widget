@@ -9,6 +9,9 @@ import StartLayout from '@/pages/start.layout';
 
 import LocationForm from './LocationForm';
 
+/**
+ * The user only has to enter a location to skip straight to the home recycling page.
+ */
 export default function HomeRecyclingStartPage() {
   const { t } = useTranslation();
 

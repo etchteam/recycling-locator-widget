@@ -63,7 +63,11 @@ function PlacePageContent({ location }: { readonly location: Location }) {
         action: value,
       });
 
-      search.value = value;
+      // Wait before setting the new value to make it clear the UI has changed
+      search.value = '';
+      setTimeout(() => {
+        search.value = value;
+      }, 200);
     }
   };
 
