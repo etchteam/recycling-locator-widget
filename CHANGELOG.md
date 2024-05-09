@@ -1,3 +1,19 @@
+## [1.39.0](https://github.com/etchteam/recycling-locator/compare/v1.38.2...v1.39.0) (2024-05-09)
+
+
+### Features
+
+* better material search handling ([1c1c686](https://github.com/etchteam/recycling-locator/commit/1c1c686448c985c56dda3014bc20fd7d0f9332a1))
+* handle category searches (untested) ([7faf9e9](https://github.com/etchteam/recycling-locator/commit/7faf9e97c7db414d788d8977edb42c26196e58b6))
+* standardise usage of a few functions ([f17d1d8](https://github.com/etchteam/recycling-locator/commit/f17d1d828c6e958492303d82c380d49c3f0c5cd7))
+* update headless ui for blur fix ([efd3ac9](https://github.com/etchteam/recycling-locator/commit/efd3ac9964662d8a5a20b86c47ecfce5fc0cf4af))
+
+
+### Bug Fixes
+
+* e2e material tests ([3269efa](https://github.com/etchteam/recycling-locator/commit/3269efa348cf67818e76a7d7f5688834d06eb1ea))
+* getPropertiesByMaterial test ([b3cfab4](https://github.com/etchteam/recycling-locator/commit/b3cfab46cba624bb7198366bf916589d63c2b9ea))
+
 ## [1.38.2](https://github.com/etchteam/recycling-locator/compare/v1.38.1...v1.38.2) (2024-05-08)
 
 
