@@ -1,24 +1,12 @@
 import { Container } from '@/types/locatorApi';
 
-export function containerHasMaterialName(
-  container: Container,
-  search: string,
-): boolean {
-  return container.materials?.some((material) => {
-    const materialName = material.name.toLowerCase();
-    const categoryName = material.category.name.toLowerCase();
-    const safeSearch = search.toLowerCase();
-    return safeSearch === materialName || safeSearch === categoryName;
-  });
-}
-
-export function containerHasMaterialId(
+export default function containerHasMaterial(
   container: Container,
   { materials, category }: { materials?: string; category?: string } = {},
 ): boolean {
   return container.materials?.some((material) => {
     if (materials) {
-      return material.id == materials;
+      return materials.split(',').includes(String(material.id));
     }
 
     if (category) {

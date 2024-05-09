@@ -1,8 +1,7 @@
 /**
- * Create a URLSearchParams object for the given keys
- * Accepts FormData, URLSearchParams or an object to take values from
+ * Map FormData, URLSearchParams or object keys to a URLSearchParams object
  */
-export default function createSearchParams(
+export default function mapSearchParams(
   keys: string[],
   form: FormData | URLSearchParams | object,
 ): URLSearchParams {

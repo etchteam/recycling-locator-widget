@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import createSearchParams from '@/lib/createSearchParams';
+import mapSearchParams from '@/lib/mapSearchParams';
 
 test('returns a URLSearchParams object for matching FormData keys', () => {
   const form = new FormData();
@@ -9,7 +9,7 @@ test('returns a URLSearchParams object for matching FormData keys', () => {
   form.append('query', 'bottle');
   form.append('postcode', 'EX327RB');
 
-  const searchParams = createSearchParams(
+  const searchParams = mapSearchParams(
     ['materials', 'category', 'query', 'keyNotInForm'],
     form,
   );
@@ -29,7 +29,7 @@ test('returns a URLSearchParams object for matching Object keys', () => {
     postcode: 'EX327RB',
   };
 
-  const searchParams = createSearchParams(
+  const searchParams = mapSearchParams(
     ['materials', 'category', 'query', 'keyNotInForm'],
     obj,
   );
@@ -48,7 +48,7 @@ test('returns a URLSearchParams object for matching URLSearchParams keys', () =>
   originalSearchParams.append('query', 'bottle');
   originalSearchParams.append('postcode', 'EX327RB');
 
-  const searchParams = createSearchParams(
+  const searchParams = mapSearchParams(
     ['materials', 'category', 'query', 'keyNotInForm'],
     originalSearchParams,
   );

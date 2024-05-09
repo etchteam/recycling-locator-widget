@@ -1,7 +1,7 @@
 import { ActionFunctionArgs, redirect } from 'react-router-dom';
 
 import PostCodeResolver from '@/lib/PostcodeResolver';
-import createSearchParams from '@/lib/createSearchParams';
+import mapSearchParams from '@/lib/mapSearchParams';
 
 function handleError(error: Error) {
   if (error instanceof Error) {
@@ -40,7 +40,7 @@ export async function materialStartAction({ request }: ActionFunctionArgs) {
   try {
     const formData = await request.formData();
     const postcode = await resolvePostcode(formData);
-    const searchParams = createSearchParams(
+    const searchParams = mapSearchParams(
       ['materials', 'category', 'search'],
       formData,
     );

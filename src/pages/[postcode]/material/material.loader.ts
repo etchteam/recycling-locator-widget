@@ -1,8 +1,8 @@
 import { defer, LoaderFunctionArgs } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
-import createSearchParams from '@/lib/createSearchParams';
 import { getTipByMaterial } from '@/lib/getTip';
+import mapSearchParams from '@/lib/mapSearchParams';
 import {
   LocalAuthority,
   LocationsResponse,
@@ -31,7 +31,7 @@ export default async function materialLoader({
   );
 
   const url = new URL(request.url);
-  const searchParams = createSearchParams(
+  const searchParams = mapSearchParams(
     ['materials', 'category'],
     url.searchParams,
   );

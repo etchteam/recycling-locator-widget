@@ -9,7 +9,7 @@ import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
-import createSearchParams from '@/lib/createSearchParams';
+import mapSearchParams from '@/lib/mapSearchParams';
 import { LocationsResponse } from '@/types/locatorApi';
 
 function NoPlaces() {
@@ -44,7 +44,7 @@ function Places({ locations }: { readonly locations: LocationsResponse }) {
   const tContext = 'material.nearbyPlaces.places';
   const count = locations.items.length;
 
-  const placesSearchParams = createSearchParams(
+  const placesSearchParams = mapSearchParams(
     ['materials', 'category', 'search'],
     searchParams,
   );

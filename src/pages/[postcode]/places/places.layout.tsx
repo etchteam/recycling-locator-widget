@@ -17,9 +17,9 @@ import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/TagButton/TagButton';
 import Menu from '@/components/control/Menu/Menu';
-import createSearchParams from '@/lib/createSearchParams';
 import formatPostcode from '@/lib/formatPostcode';
 import i18n from '@/lib/i18n';
+import mapSearchParams from '@/lib/mapSearchParams';
 
 import { usePlacesLoaderData } from './places.loader';
 
@@ -36,7 +36,7 @@ export default function PlacesLayout({
   const open = useSignal(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search');
-  const query = createSearchParams(
+  const query = mapSearchParams(
     ['materials', 'category', 'search', 'autofocus'],
     {
       materials: searchParams.get('materials'),

@@ -13,7 +13,7 @@ import '@/components/content/Icon/Icon';
 import '@/components/content/Container/Container';
 
 import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
-import { containerHasMaterialId } from '@/lib/containerHasMaterial';
+import containerHasMaterial from '@/lib/containerHasMaterial';
 import getPropertyTypeEnum from '@/lib/getPropertyTypeEnum';
 import { LocalAuthority, LocalAuthorityProperty } from '@/types/locatorApi';
 
@@ -82,7 +82,7 @@ function OneProperty({
   const containers = property
     .flatMap((scheme) => scheme.containers)
     .filter((container) =>
-      containerHasMaterialId(container, {
+      containerHasMaterial(container, {
         materials: searchParams.get('materials'),
         category: searchParams.get('category'),
       }),

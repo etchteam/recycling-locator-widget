@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';
 
+import mapSearchParams from '@/lib/mapSearchParams';
 import { CustomElement } from '@/types/customElement';
 import { MaterialCategory } from '@/types/locatorApi';
 
@@ -67,9 +68,10 @@ export default function MaterialCategoriesNav({
                     </button>
                   </li>
                   {category.materials.map((material) => {
-                    const searchParams = new URLSearchParams();
-                    searchParams.set('materials', material.id);
-                    searchParams.set('search', material.name);
+                    const searchParams = mapSearchParams(
+                      ['materials', 'search'],
+                      { materials: material.id, search: material.name },
+                    );
 
                     return (
                       <li key={material.id}>

@@ -1,8 +1,9 @@
 import groupBy from 'lodash/groupBy';
 import uniqBy from 'lodash/uniqBy';
 
-import { containerHasMaterialName } from '@/lib/containerHasMaterial';
 import { Container, LocalAuthorityProperty } from '@/types/locatorApi';
+
+import materialNameSearch from './materialNameSearch';
 
 export interface ContainerList {
   Dry?: LocalAuthorityProperty[];
@@ -27,14 +28,14 @@ export function searchContainerList(
   filteredContainerList.Dry = containerList.Dry.map((scheme) => ({
     ...scheme,
     containers: scheme.containers.filter((container) =>
-      containerHasMaterialName(container, search),
+      materialNameSearch(search, container.materials),
     ),
   })).filter((scheme) => scheme.containers.length > 0);
 
   ['Garden', 'Food'].forEach((streamType) => {
     if (
       !containerList[streamType] ||
-      !containerHasMaterialName(containerList[streamType][0], search)
+      !materialNameSearch(search, containerList[streamType][0].materials)
     ) {
       return;
     }

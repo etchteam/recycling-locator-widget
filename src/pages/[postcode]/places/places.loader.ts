@@ -6,8 +6,8 @@ import {
 
 import LocatorApi from '@/lib/LocatorApi';
 import PostCodeResolver from '@/lib/PostcodeResolver';
-import createSearchParams from '@/lib/createSearchParams';
 import { getTipByMaterial, getTipByPath } from '@/lib/getTip';
+import mapSearchParams from '@/lib/mapSearchParams';
 import { LocationsResponse, RecyclingMeta } from '@/types/locatorApi';
 
 export interface PlacesLoaderResponse {
@@ -30,7 +30,7 @@ export default async function placesLoader({
       ? await PostCodeResolver.fromLatLng(Number(lat), Number(lng))
       : params.postcode;
 
-  const searchParams = createSearchParams(
+  const searchParams = mapSearchParams(
     ['limit', 'radius', 'materials', 'category'],
     {
       limit: page * 30,

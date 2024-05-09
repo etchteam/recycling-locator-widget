@@ -1,8 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 
+import containerHasMaterial from '@/lib/containerHasMaterial';
 import { LocalAuthority, LocalAuthorityProperty } from '@/types/locatorApi';
-
-import { containerHasMaterialId } from './containerHasMaterial';
 
 function hasSchemeWithMaterial(
   property: LocalAuthorityProperty[],
@@ -10,7 +9,7 @@ function hasSchemeWithMaterial(
 ): boolean {
   return property.some((scheme) =>
     scheme.containers.some((container) =>
-      containerHasMaterialId(container, { materials, category }),
+      containerHasMaterial(container, { materials, category }),
     ),
   );
 }

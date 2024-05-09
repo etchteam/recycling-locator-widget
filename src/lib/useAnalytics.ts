@@ -33,12 +33,15 @@ async function sendAnalyticsRequest(event: AnalyticsEvent) {
 
   try {
     const query = new URLSearchParams(event as any);
-    await fetch(encodeURI(`${config.locatorAnalyticsPath}?${query}`), {
-      method: 'GET',
-      headers: {
-        'X-Requested-With': config.packageVersion,
+    await fetch(
+      encodeURI(`${config.locatorAnalyticsPath}?${query.toString()}`),
+      {
+        method: 'GET',
+        headers: {
+          'X-Requested-With': config.packageVersion,
+        },
       },
-    });
+    );
   } catch (error) {
     Sentry.captureException(error, {
       tags: { analytics: 'sendHit' },
