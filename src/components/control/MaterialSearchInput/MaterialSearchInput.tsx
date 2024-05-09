@@ -1,5 +1,10 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import { Combobox } from '@headlessui/react';
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxOption,
+  ComboboxOptions,
+} from '@headlessui/react';
 import { Signal, signal } from '@preact/signals';
 import * as Sentry from '@sentry/browser';
 import debounce from 'lodash/debounce';
@@ -85,8 +90,6 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     // using a ref because combobox doesn't render the value update fast enough
     this.inputRef.current.value = query ?? '';
     // Optimistically submit the form
-    // There's a known issue where this causes the form to submit on blur:
-    // https://github.com/tailwindlabs/headlessui/issues/2932#issuecomment-2088459994
     this.buttonRef.current?.click();
     // Send the usual input event in case submission fails
     this.handleInput(query);
@@ -138,12 +141,11 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
           <Combobox
             value={this.inputValue.value}
             onChange={this.handleOptionSelected}
-            nullable
           >
             {(open) => (
               <>
                 <diamond-input state={valid ? undefined : 'invalid'}>
-                  <Combobox.Input
+                  <ComboboxInput
                     name="search"
                     type="text"
                     autoComplete="off"
@@ -178,7 +180,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
                   )}
                 </diamond-input>
                 {open && showMaterials && (
-                  <Combobox.Options static>
+                  <ComboboxOptions static>
                     {materials.map((material) => {
                       const displayName = this.inputValue.value
                         ? material.name.replace(
@@ -189,14 +191,14 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
                         : material.name;
 
                       return (
-                        <Combobox.Option
+                        <ComboboxOption
                           key={material.id}
                           value={material.name}
                           dangerouslySetInnerHTML={{ __html: displayName }}
                         />
                       );
                     })}
-                  </Combobox.Options>
+                  </ComboboxOptions>
                 )}
               </>
             )}

@@ -34,7 +34,7 @@ describeEndToEndTest('Material page', () => {
     await widget.evaluate((node) =>
       node.setAttribute(
         'path',
-        '/EX32 7RB/material?id=43&name=Plastic milk bottles',
+        '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
       ),
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
@@ -101,7 +101,7 @@ describeEndToEndTest('Material page', () => {
     await widget.evaluate((node) =>
       node.setAttribute(
         'path',
-        '/EX32 7RB/material?id=43&name=Plastic milk bottles',
+        '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
       ),
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
@@ -169,7 +169,7 @@ describeEndToEndTest('Material page', () => {
     await widget.evaluate((node) =>
       node.setAttribute(
         'path',
-        '/EX32 7RB/material?id=43&name=Plastic milk bottles',
+        '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
       ),
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
@@ -199,7 +199,10 @@ describeEndToEndTest('Material page', () => {
 
     await expect(recyclableText).not.toBeVisible();
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32 7RB/material?id=79&name=Car batteries'),
+      node.setAttribute(
+        'path',
+        '/EX32 7RB/material?materials=79&search=Car batteries',
+      ),
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
@@ -229,7 +232,7 @@ describeEndToEndTest('Material page', () => {
     await widget.evaluate((node) =>
       node.setAttribute(
         'path',
-        '/EX32 7RB/material?id=122&name=Toilet roll wrapping',
+        '/EX32 7RB/material?materials=122&search=Toilet roll wrapping',
       ),
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);

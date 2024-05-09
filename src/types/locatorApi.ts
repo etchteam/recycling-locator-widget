@@ -3,6 +3,12 @@ export interface PostcodeResponse {
   postcode?: string;
 }
 
+export interface MaterialSearch {
+  id: string;
+  name: string;
+  type: 'LocatorMaterial' | 'LocatorMaterialCategory';
+}
+
 export interface Material {
   id: string;
   name: string;

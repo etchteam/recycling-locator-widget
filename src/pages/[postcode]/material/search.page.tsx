@@ -29,18 +29,19 @@ export default function MaterialSearchPage() {
   const location = useLocation();
   const form = useFormValidation('search');
   const [searchParams] = useSearchParams();
-  const materialName = searchParams.get('name');
+  const search = searchParams.get('search');
   const { popularMaterials: popularMaterialsPromise, tip: tipPromise } =
     useLoaderData() as MaterialSearchLoaderResponse;
 
   useEffect(() => {
     form.submitting.value = false;
-  }, [materialName, location]);
+  }, [search, location]);
 
   function generatePopularMaterialPath(material: Material) {
-    return `/${postcode}/material?id=${material.id}&name=${encodeURIComponent(
-      material.name,
-    )}`;
+    const materialSearchParams = new URLSearchParams();
+    materialSearchParams.set('materials', material.id);
+    materialSearchParams.set('search', material.name);
+    return `/${postcode}/material?${materialSearchParams.toString()}`;
   }
 
   return (
@@ -49,11 +50,11 @@ export default function MaterialSearchPage() {
         <locator-wrap>
           <diamond-section padding="lg">
             <diamond-enter type="fade" className="layer-one">
-              {materialName && (
+              {search && (
                 <h3>
                   {t('material.search.notFound')}{' '}
                   <span className="diamond-text-weight-bold">
-                    {materialName.toLocaleLowerCase()}
+                    {search.toLocaleLowerCase()}
                   </span>
                 </h3>
               )}

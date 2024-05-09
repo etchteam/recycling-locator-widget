@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@etchteam/diamond-ui": "^1.31.1",
-    "@headlessui/react": "^1.7.19",
+    "@headlessui/react": "^2.0.3",
     "@here/maps-api-for-javascript": "^1.50.0",
     "@preact/signals": "^1.2.2",
     "@sentry/browser": "^7.101.1",

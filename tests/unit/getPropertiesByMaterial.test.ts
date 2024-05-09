@@ -44,7 +44,7 @@ test('Returns properties that accept the given material', () => {
     ],
   } as unknown as LocalAuthority['properties'];
 
-  expect(getPropertiesByMaterial('1', properties)).toEqual({
+  expect(getPropertiesByMaterial(properties, { materials: '1' })).toEqual({
     [PROPERTY_TYPE_EN.ALL]: properties[PROPERTY_TYPE_EN.ALL],
   });
 });

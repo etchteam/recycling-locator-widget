@@ -9,6 +9,7 @@ import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
+import mapSearchParams from '@/lib/mapSearchParams';
 import { LocationsResponse } from '@/types/locatorApi';
 
 function NoPlaces() {
@@ -40,10 +41,13 @@ function Places({ locations }: { readonly locations: LocationsResponse }) {
   const { t } = useTranslation();
   const { postcode } = useParams();
   const [searchParams] = useSearchParams();
-  const materialId = searchParams.get('id');
-  const materialName = searchParams.get('name');
   const tContext = 'material.nearbyPlaces.places';
   const count = locations.items.length;
+
+  const placesSearchParams = mapSearchParams(
+    ['materials', 'category', 'search'],
+    searchParams,
+  );
 
   return (
     <diamond-card padding="none" border radius>
@@ -70,7 +74,7 @@ function Places({ locations }: { readonly locations: LocationsResponse }) {
           static
         >
           <Link
-            to={`/${postcode}/places?materialId=${materialId}&materialName=${materialName}`}
+            to={`/${postcode}/places?${placesSearchParams.toString()}`}
             aria-label={t('actions.showMap')}
           >
             <locator-places-map-scrim />
@@ -81,9 +85,7 @@ function Places({ locations }: { readonly locations: LocationsResponse }) {
         <diamond-grid>
           <diamond-grid-item small-mobile="6">
             <diamond-button width="full-width">
-              <Link
-                to={`/${postcode}/places?materialId=${materialId}&materialName=${materialName}`}
-              >
+              <Link to={`/${postcode}/places?${placesSearchParams.toString()}`}>
                 {t('actions.listPlaces')}
               </Link>
             </diamond-button>
@@ -91,7 +93,7 @@ function Places({ locations }: { readonly locations: LocationsResponse }) {
           <diamond-grid-item small-mobile="6">
             <diamond-button width="full-width">
               <Link
-                to={`/${postcode}/places/map?materialId=${materialId}&materialName=${materialName}`}
+                to={`/${postcode}/places/map?${placesSearchParams.toString()}`}
               >
                 {t('actions.showMap')}
               </Link>

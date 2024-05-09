@@ -51,7 +51,8 @@ export function PlacesMapPageContent({
   const { recordEvent } = useAnalytics();
   const [searchParams] = useSearchParams();
   const defaultActiveLocationId = searchParams.get('activeLocation');
-  const materialId = searchParams.get('materialId');
+  const materials = searchParams.get('materials');
+  const category = searchParams.get('category');
   const fetcher = useFetcher() as FetcherWithComponents<PlacesLoaderResponse>;
   const fetchedLocations = fetcher.data?.locations;
   const locations = (fetchedLocations ?? loadedLocations) as LocationsResponse;
@@ -145,8 +146,11 @@ export function PlacesMapPageContent({
             <input type="hidden" name="radius" value={radius.value} />
             <input type="hidden" name="lat" value={lat.value} />
             <input type="hidden" name="lng" value={lng.value} />
-            {materialId && (
-              <input type="hidden" name="materialId" value={materialId} />
+            {materials && (
+              <input type="hidden" name="materials" value={materials} />
+            )}
+            {category && (
+              <input type="hidden" name="category" value={category} />
             )}
             <locator-fab position="top">
               <diamond-button>
@@ -213,7 +217,7 @@ export function PlacesMapPageContent({
           <diamond-enter type="fade" delay={0.5}>
             <locator-fab>
               <diamond-button size="sm" variant="primary">
-                <Link to={`/${postcode}/places`}>
+                <Link to={`/${postcode}/places?${searchParams.toString()}`}>
                   <locator-icon icon="list"></locator-icon>
                   {t('actions.showList')}
                 </Link>

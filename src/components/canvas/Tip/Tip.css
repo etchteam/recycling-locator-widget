@@ -56,6 +56,7 @@ locator-tip {
         margin: 0;
         max-height: 100%;
         object-fit: cover;
+        padding-inline-end: var(--diamond-spacing);
         width: 100%;
       }
 

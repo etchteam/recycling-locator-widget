@@ -75,7 +75,8 @@ function Places({
   const loadMoreButton = useRef<HTMLButtonElement>(null);
   const lastLoadMoreOffset = useSignal<number>(0);
   const [searchParams, setSearchParams] = useSearchParams();
-  const materialId = searchParams.get('materialId');
+  const materials = searchParams.get('materials');
+  const category = searchParams.get('category');
 
   // The loader is used initially then the fetcher is used to load more
   const fetchedLocations = fetcher.data?.locations;
@@ -86,15 +87,16 @@ function Places({
   }
 
   const count = locations.items.length;
-  const showLocations = count > 0 && materialId !== 'undefined';
+  const showLocations = count > 0 && materials !== 'undefined';
   const limit = locations.pagination.total;
   const currentPage = limit / 30;
   const maxLimit = 120;
   const showLoadMore = showLocations && count >= limit && limit !== maxLimit;
 
   const handleResetSearch = () => {
-    searchParams.delete('materialId');
-    searchParams.delete('materialName');
+    searchParams.delete('materials');
+    searchParams.delete('category');
+    searchParams.delete('search');
     setSearchParams(searchParams);
   };
 
@@ -195,8 +197,11 @@ function Places({
                 name="page"
                 value={Number(currentPage) + 1}
               />
-              {materialId && (
-                <input type="hidden" name="materialId" value={materialId} />
+              {materials && (
+                <input type="hidden" name="materials" value={materials} />
+              )}
+              {category && (
+                <input type="hidden" name="category" value={category} />
               )}
               <diamond-button width="full-width">
                 <button
@@ -223,17 +228,19 @@ export default function PlacesPage() {
   const { locations: locationsPromise, tip: tipPromise } =
     usePlacesLoaderData();
   const [searchParams] = useSearchParams();
-  const materialName = searchParams.get('materialName');
+  const search = searchParams.get('search');
   const isLoadingCurrentPath =
     navigation.state === 'loading' &&
     navigation.location.pathname === `/${postcode}/places`;
 
   useEffect(() => {
-    recordEvent({
-      category: 'PlacesList::MaterialSearch',
-      action: materialName,
-    });
-  }, [materialName]);
+    if (search) {
+      recordEvent({
+        category: 'PlacesList::MaterialSearch',
+        action: search,
+      });
+    }
+  }, [search]);
 
   return (
     <locator-wrap max-width="none" gutter="fluid">
@@ -278,7 +285,7 @@ export default function PlacesPage() {
       <diamond-enter type="fade" delay={0.25}>
         <locator-fab sticky>
           <diamond-button size="sm" variant="primary">
-            <Link to={`/${postcode}/places/map`}>
+            <Link to={`/${postcode}/places/map?${searchParams.toString()}`}>
               <locator-icon icon="map"></locator-icon>
               {t('actions.showMap')}
             </Link>

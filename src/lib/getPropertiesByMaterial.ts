@@ -1,21 +1,22 @@
 import isEmpty from 'lodash/isEmpty';
 
+import containerHasMaterial from '@/lib/containerHasMaterial';
 import { LocalAuthority, LocalAuthorityProperty } from '@/types/locatorApi';
 
 function hasSchemeWithMaterial(
-  materialId: string,
   property: LocalAuthorityProperty[],
+  { materials, category }: { materials?: string; category?: string },
 ): boolean {
   return property.some((scheme) =>
     scheme.containers.some((container) =>
-      container.materials?.some((material) => material.id == materialId),
+      containerHasMaterial(container, { materials, category }),
     ),
   );
 }
 
 export default function getPropertiesByMaterial(
-  materialId: string,
   properties: LocalAuthority['properties'] = {},
+  { materials, category }: { materials?: string; category?: string } = {},
 ): LocalAuthority['properties'] | undefined {
   const propertyTypes = Object.keys(properties);
 
@@ -23,7 +24,7 @@ export default function getPropertiesByMaterial(
     (propertiesWithMaterial, propertyType) => {
       const property = properties[propertyType];
 
-      if (hasSchemeWithMaterial(materialId, property)) {
+      if (hasSchemeWithMaterial(property, { materials, category })) {
         propertiesWithMaterial[propertyType] = property;
       }
 

@@ -1,7 +1,6 @@
 import { RouteObject } from 'react-router-dom';
 
 import HomeRecyclingStartPage from './home-recycling.page';
-import materialStartLoader from './material.loader';
 import MaterialStartPage from './material.page';
 import NotFoundPage from './not-found.page';
 import startAction, {
@@ -26,7 +25,6 @@ const routes: RouteObject[] = [
   {
     path: '/material',
     element: <MaterialStartPage />,
-    loader: materialStartLoader,
     action: materialStartAction,
     errorElement: <NotFoundPage />,
   },

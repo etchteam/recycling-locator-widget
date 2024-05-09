@@ -11,6 +11,7 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@/components/content/Icon/Icon';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import '@/components/control/Details/Details';
+import materialNameSearch from '@/lib/materialNameSearch';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
 import { Location } from '@/types/locatorApi';
@@ -34,10 +35,7 @@ function PlacePageContent({ location }: { readonly location: Location }) {
   const materialCategories = groupBy(materials, 'category.name');
   const materialCategoryNames = Object.keys(materialCategories);
   const hasSearchedForMaterial =
-    search.value &&
-    materials.some((material) =>
-      material.name.toLowerCase().includes(search.value.toLowerCase()),
-    );
+    search.value && materialNameSearch(search.value, materials);
 
   if (location.error) {
     throw new Error(location.error);
@@ -54,7 +52,11 @@ function PlacePageContent({ location }: { readonly location: Location }) {
         action: value,
       });
 
-      search.value = value;
+      // Wait before setting the new value to make it clear the UI has changed
+      search.value = '';
+      setTimeout(() => {
+        search.value = value;
+      }, 200);
     }
   };
 

@@ -2,24 +2,20 @@ import { defer, LoaderFunctionArgs } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
 import { getTipByMaterial } from '@/lib/getTip';
+import mapSearchParams from '@/lib/mapSearchParams';
 import {
   LocalAuthority,
   LocationsResponse,
   RecyclingMeta,
 } from '@/types/locatorApi';
 
-interface MaterialLoaderResponse {
-  materialId: string;
-  materialName: string;
-}
-
-export interface DeferredMaterialLoaderResponse extends MaterialLoaderResponse {
+export interface DeferredMaterialLoaderResponse {
   localAuthority: Promise<LocalAuthority>;
   locations: Promise<LocationsResponse>;
   tip: Promise<RecyclingMeta>;
 }
 
-export interface AwaitedMaterialLoaderResponse extends MaterialLoaderResponse {
+export interface AwaitedMaterialLoaderResponse {
   localAuthority: LocalAuthority;
   locations: LocationsResponse;
   tip?: RecyclingMeta;
@@ -29,21 +25,22 @@ export default async function materialLoader({
   request,
   params,
 }: LoaderFunctionArgs) {
-  const url = new URL(request.url);
-  const materialId = url.searchParams.get('id');
-  const materialName = url.searchParams.get('name');
   const postcode = params.postcode;
   const localAuthority = LocatorApi.get<LocalAuthority>(
     `local-authority/${postcode}`,
   );
-  const locations = LocatorApi.get<LocationsResponse>(
-    `locations/${postcode}?materials=${materialId}`,
+
+  const url = new URL(request.url);
+  const searchParams = mapSearchParams(
+    ['materials', 'category'],
+    url.searchParams,
   );
-  const tip = getTipByMaterial(materialId);
+  const locations = LocatorApi.get<LocationsResponse>(
+    `locations/${postcode}?${searchParams.toString()}`,
+  );
+  const tip = getTipByMaterial(url.searchParams.get('materials'));
 
   return defer({
-    materialId,
-    materialName,
     localAuthority,
     locations,
     tip,

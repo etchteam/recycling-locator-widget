@@ -19,6 +19,7 @@ import '@/components/control/TagButton/TagButton';
 import Menu from '@/components/control/Menu/Menu';
 import formatPostcode from '@/lib/formatPostcode';
 import i18n from '@/lib/i18n';
+import mapSearchParams from '@/lib/mapSearchParams';
 
 import { usePlacesLoaderData } from './places.loader';
 
@@ -34,15 +35,21 @@ export default function PlacesLayout({
   const locationsPromise = loaderData?.locations;
   const open = useSignal(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const materialId = searchParams.get('materialId');
-  const materialName = searchParams.get('materialName');
-  const query = materialId
-    ? `?materialId=${materialId}&materialName=${materialName}&autofocus=true`
-    : '?autofocus=true';
+  const search = searchParams.get('search');
+  const query = mapSearchParams(
+    ['materials', 'category', 'search', 'autofocus'],
+    {
+      materials: searchParams.get('materials'),
+      category: searchParams.get('category'),
+      search,
+      autofocus: 'true',
+    },
+  );
 
   const handleResetSearch = () => {
-    searchParams.delete('materialId');
-    searchParams.delete('materialName');
+    searchParams.delete('materials');
+    searchParams.delete('category');
+    searchParams.delete('search');
     setSearchParams(searchParams);
   };
 
@@ -97,7 +104,7 @@ export default function PlacesLayout({
                 </div>
               </locator-header-title>
               <locator-places-header-search>
-                {materialName && (
+                {search && (
                   <Suspense fallback={null}>
                     <Await resolve={locationsPromise}>
                       {(locations) => (
@@ -105,13 +112,13 @@ export default function PlacesLayout({
                           <locator-tag-button
                             variant={
                               locations?.items.length > 0 &&
-                              materialId !== 'undefined'
+                              searchParams.get('materials') !== 'undefined'
                                 ? 'positive'
                                 : 'negative'
                             }
                           >
                             <button type="button" onClick={handleResetSearch}>
-                              {materialName}
+                              {search}
                               <locator-icon
                                 icon="close"
                                 label={t('actions.resetSearch')}
@@ -124,10 +131,10 @@ export default function PlacesLayout({
                   </Suspense>
                 )}
                 <Link
-                  to={`/${postcode}/places/search${query}`}
+                  to={`/${postcode}/places/search?${query.toString()}`}
                   unstable_viewTransition
                 >
-                  {!materialName && t('places.searchPlaceholder')}
+                  {!search && t('places.searchPlaceholder')}
                   <locator-icon icon="search" color="primary" />
                 </Link>
               </locator-places-header-search>

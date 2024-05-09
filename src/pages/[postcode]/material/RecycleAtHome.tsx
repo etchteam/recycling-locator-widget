@@ -1,5 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -13,6 +13,7 @@ import '@/components/content/Icon/Icon';
 import '@/components/content/Container/Container';
 
 import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
+import containerHasMaterial from '@/lib/containerHasMaterial';
 import getPropertyTypeEnum from '@/lib/getPropertyTypeEnum';
 import { LocalAuthority, LocalAuthorityProperty } from '@/types/locatorApi';
 
@@ -72,17 +73,19 @@ function ManyProperties({
 }
 
 function OneProperty({
-  materialId,
   property,
 }: {
-  readonly materialId: string;
   readonly property: LocalAuthorityProperty[];
 }) {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
   const containers = property
     .flatMap((scheme) => scheme.containers)
     .filter((container) =>
-      container.materials?.some((material) => material.id == materialId),
+      containerHasMaterial(container, {
+        materials: searchParams.get('materials'),
+        category: searchParams.get('category'),
+      }),
     );
 
   return (
@@ -98,11 +101,9 @@ function OneProperty({
 }
 
 export default function RecycleAtHome({
-  materialId,
   allProperties,
   propertiesCollectingThisMaterial,
 }: {
-  readonly materialId: string;
   readonly allProperties: LocalAuthority['properties'];
   readonly propertiesCollectingThisMaterial: LocalAuthority['properties'];
 }) {
@@ -156,7 +157,6 @@ export default function RecycleAtHome({
 
       {type === 'oneProperty' && (
         <OneProperty
-          materialId={materialId}
           property={
             propertiesCollectingThisMaterial[PROPERTY_TYPE.ALL] ??
             propertiesCollectingThisMaterial[

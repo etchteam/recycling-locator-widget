@@ -1,22 +1,30 @@
 import { ActionFunctionArgs, redirect } from 'react-router-dom';
 
 import LocatorApi from '@/lib/LocatorApi';
-import { Material } from '@/types/locatorApi';
+import { MaterialSearch } from '@/types/locatorApi';
 
 export default async function postcodeAction({
   request,
   params,
 }: ActionFunctionArgs) {
-  const formData = await request.formData();
-  const materials = await LocatorApi.post<Material[]>('materials', formData);
-  const { name, id } = materials?.[0] ?? {};
   const postcode = params.postcode;
+  const formData = await request.formData();
+  const search = formData.get('search') as string;
+  const materials = await LocatorApi.post<MaterialSearch[]>(
+    'materials',
+    formData,
+  );
+  const material = materials.find((m) => m.name === search);
+  const searchParams = new URLSearchParams();
+  searchParams.set('search', search);
 
-  if (name === formData.get('search')) {
-    const safeName = encodeURIComponent(name);
-    return redirect(`/${postcode}/material?id=${id}&name=${safeName}`);
+  if (!material) {
+    return redirect(`/${postcode}/material/search?${searchParams.toString()}`);
   }
 
-  const safeSearchTerm = encodeURIComponent(formData.get('search') as string);
-  return redirect(`/${postcode}/material/search?name=${safeSearchTerm}`);
+  const searchType =
+    material.type === 'LocatorMaterialCategory' ? 'category' : 'materials';
+  searchParams.set(searchType, material.id);
+
+  return redirect(`/${postcode}/material?${searchParams.toString()}`);
 }

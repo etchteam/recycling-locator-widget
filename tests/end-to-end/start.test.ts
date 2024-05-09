@@ -169,14 +169,18 @@ describeEndToEndTest('Start page', () => {
     });
 
     const input = page.locator('input').first();
-    const materialName = ValidMaterialsResponse[0].name;
     const materialStartPageTitle = page
-      .getByText(t('start.material.title', { material: materialName }))
+      .getByText(
+        t('start.material.title', { material: 'Plastic drinks bottles' }),
+      )
       .first();
     const recyclableText = page.getByText(t('material.hero.yes')).first();
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/material?name=Plastic drinks bottles'),
+      node.setAttribute(
+        'path',
+        `/material?materials=44&search=Plastic drinks bottles`,
+      ),
     );
     await expect(materialStartPageTitle).toBeVisible();
     await expect(input).toBeVisible();

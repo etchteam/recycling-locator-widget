@@ -3,16 +3,12 @@ import uniqBy from 'lodash/uniqBy';
 
 import { Container, LocalAuthorityProperty } from '@/types/locatorApi';
 
+import materialNameSearch from './materialNameSearch';
+
 export interface ContainerList {
   Dry?: LocalAuthorityProperty[];
   Garden?: Container[];
   Food?: Container[];
-}
-
-function containerHasMaterial(container: Container, search: string): boolean {
-  return container.materials?.some(
-    (material) => material.name.toLowerCase() === search.toLowerCase(),
-  );
 }
 
 export function searchContainerList(
@@ -32,14 +28,14 @@ export function searchContainerList(
   filteredContainerList.Dry = containerList.Dry.map((scheme) => ({
     ...scheme,
     containers: scheme.containers.filter((container) =>
-      containerHasMaterial(container, search),
+      materialNameSearch(search, container.materials),
     ),
   })).filter((scheme) => scheme.containers.length > 0);
 
   ['Garden', 'Food'].forEach((streamType) => {
     if (
       !containerList[streamType] ||
-      !containerHasMaterial(containerList[streamType][0], search)
+      !materialNameSearch(search, containerList[streamType][0].materials)
     ) {
       return;
     }
