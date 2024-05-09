@@ -41,7 +41,7 @@ locator-material-search-input {
     padding: 0;
   }
 
-  ul {
+  div[role='listbox'] {
     animation-duration: 0.25s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
@@ -68,7 +68,7 @@ locator-material-search-input {
     }
   }
 
-  li {
+  div[role='option'] {
     border-bottom: var(--diamond-border);
     cursor: pointer;
     padding: var(--diamond-spacing-sm);
@@ -88,7 +88,7 @@ locator-material-search-input {
   }
 
   @container (width > 768px) {
-    ul {
+    div[role='listbox'] {
       max-height: calc(var(--_option-height) * 6.5);
     }
   }
