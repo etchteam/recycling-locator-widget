@@ -1,3 +1,15 @@
+## [1.40.0](https://github.com/etchteam/recycling-locator/compare/v1.39.1...v1.40.0) (2024-05-10)
+
+
+### Features
+
+* better docs ([d2b27fc](https://github.com/etchteam/recycling-locator/commit/d2b27fc0e9befa485e23752d2f6e4fc66f016de7))
+
+
+### Bug Fixes
+
+* duplicate headings ([3da6fa6](https://github.com/etchteam/recycling-locator/commit/3da6fa6dcb99c63ed6dcda6f1e66680662bfd156))
+
 ## [1.39.1](https://github.com/etchteam/recycling-locator/compare/v1.39.0...v1.39.1) (2024-05-10)
 
 
