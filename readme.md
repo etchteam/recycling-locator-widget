@@ -58,13 +58,13 @@ Use the `locale` attribute to set the language.
 
 The language code for Welsh (`cy`) is currently the only supported language code.
 
-#### Script
+**Script**
 
 ```html
 <script src="..." data-locale="cy"></script>
 ```
 
-#### Web component
+**Web component**
 
 ```html
 <recycling-locator locale="cy"></recycling-locator>
@@ -74,13 +74,13 @@ The language code for Welsh (`cy`) is currently the only supported language code
 
 Accepted values are red, blue, green, orange, purple, brown, navy, or black.
 
-#### Script
+**Script**
 
 ```html
 <script src="..." data-theme="red"></script>
 ```
 
-#### Web component
+**Web component**
 
 ```html
 <recycling-locator theme="red"></recycling-locator>
@@ -122,13 +122,13 @@ The initial path to load. Common examples include:
 
 To discover other possible initial path combinations, take note of the path in the URL whilst navigating on the standalone version of the tool at [locator.recyclenow.com](https://locator.recyclenow.com/).
 
-#### Script
+**Script**
 
 ```html
 <script src="..." data-initial-path="/home-recycling"></script>
 ```
 
-#### Web component
+**Web component**
 
 ```html
 <recycling-locator path="/home-recycling"></recycling-locator>
