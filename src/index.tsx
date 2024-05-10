@@ -25,7 +25,7 @@ export interface RecyclingLocatorAttributes {
    * The initial path to load
    * - /{postcode} to pre-fill the location
    * - /home-recycling for home recycling embeds
-   * - /material?name={materialName} to pre-select a material
+   * - /material?materials=111&search=Cereal boxes to pre-select a material
    */
   readonly path?: string;
   /**
@@ -81,7 +81,7 @@ export default function RecyclingLocator({
 register(
   RecyclingLocator,
   'recycling-locator',
-  ['locale', 'postcode', 'variant', 'basename', 'path', 'theme'],
+  ['locale', 'variant', 'basename', 'path', 'theme'],
   {
     shadow: true,
   },

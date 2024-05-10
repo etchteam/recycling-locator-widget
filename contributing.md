@@ -4,7 +4,9 @@ Guidelines for contributions to the Recycling Locator codebase.
 
 ## Get started
 
-Make sure you're using the right node version:
+Before starting, you will need access to [recycle locator proxy](https://github.com/etchteam/recycle-locator) and have it running locally.
+
+Make sure you're using the right node version
 
 ```bash
 nvm use
@@ -28,15 +30,11 @@ Start the local development server on [http://localhost:3020](http://localhost:3
 npm start
 ```
 
-You will need the [recycle locator widget api](https://github.com/etchteam/recycle-locator) running on `rl.test` or you will need to connect to staging/production.
-
-For component documentation run:
+For component documentation, start storybook on on [http://localhost:6006/](http://localhost:6006/)
 
 ```bash
 npm run storybook
 ```
-
-Storybook will be available on [http://localhost:6006/](http://localhost:6006/)
 
 ## Folder structure
 
@@ -83,21 +81,21 @@ Tests will run through `vitest`, for the end-to-end tests Playwright launches a 
 
 #### Unit tests
 
-To run unit tests only use the unit test filter.
+Run only unit tests
 
 ```bash
-npm test unit
+npm run test:unit
 ```
 
 #### End to end tests
 
-To run only the E2E tests.
+Run only the E2E tests
 
 ```bash
 npm run test:end-to-end
 ```
 
-To enable E2E test debugging use the debug command.
+Or enable E2E test debugging
 
 ```bash
 npm run test:end-to-end-debug
@@ -112,3 +110,10 @@ Unit tests exist for lib functions in /tests/unit using Vitest.
 End-to-end tests exist for route coverage in /tests/end-to-end using Playwright.
 
 All end-to-end tests must be wrapped in the `describeEndToEndTest` function which handles setting up the Playwright browser `page` context.
+
+## wrap-rlw.js
+
+This file exists on the [recycle locator proxy](https://github.com/etchteam/recycle-locator) under `resources/assets/js/widget/index.js`.
+
+Be aware that any changes to routes, may result in knock on changes being needed in this script.
+
