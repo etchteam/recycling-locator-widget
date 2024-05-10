@@ -1,3 +1,10 @@
+## [1.39.1](https://github.com/etchteam/recycling-locator/compare/v1.39.0...v1.39.1) (2024-05-10)
+
+
+### Bug Fixes
+
+* better handling for empty places material search ([3439144](https://github.com/etchteam/recycling-locator/commit/34391449d83a7639228ee7febecbe664e05bd418))
+
 ## [1.39.0](https://github.com/etchteam/recycling-locator/compare/v1.38.2...v1.39.0) (2024-05-09)
 
 
