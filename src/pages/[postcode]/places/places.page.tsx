@@ -71,10 +71,12 @@ function Places({
 }) {
   const { postcode } = useParams();
   const { t } = useTranslation();
+  const { recordEvent } = useAnalytics();
   const fetcher = useFetcher() as FetcherWithComponents<PlacesLoaderResponse>;
   const loadMoreButton = useRef<HTMLButtonElement>(null);
   const lastLoadMoreOffset = useSignal<number>(0);
   const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('search');
   const materials = searchParams.get('materials');
   const category = searchParams.get('category');
 
@@ -86,9 +88,9 @@ function Places({
     throw new Error(locations.error);
   }
 
-  const count = locations.items.length;
+  const count = locations.items?.length ?? 0;
   const showLocations = count > 0 && materials !== 'undefined';
-  const limit = locations.pagination.total;
+  const limit = locations.pagination?.total ?? 30;
   const currentPage = limit / 30;
   const maxLimit = 120;
   const showLoadMore = showLocations && count >= limit && limit !== maxLimit;
@@ -99,6 +101,15 @@ function Places({
     searchParams.delete('search');
     setSearchParams(searchParams);
   };
+
+  useEffect(() => {
+    if (search) {
+      recordEvent({
+        category: `PlacesList::MaterialSearch::${showLocations ? '' : 'Empty'}`,
+        action: search,
+      });
+    }
+  }, [search]);
 
   useEffect(() => {
     const offset = loadMoreButton.current?.offsetTop - 200;
@@ -224,23 +235,12 @@ export default function PlacesPage() {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const { postcode } = useParams();
-  const { recordEvent } = useAnalytics();
   const { locations: locationsPromise, tip: tipPromise } =
     usePlacesLoaderData();
   const [searchParams] = useSearchParams();
-  const search = searchParams.get('search');
   const isLoadingCurrentPath =
     navigation.state === 'loading' &&
     navigation.location.pathname === `/${postcode}/places`;
-
-  useEffect(() => {
-    if (search) {
-      recordEvent({
-        category: 'PlacesList::MaterialSearch',
-        action: search,
-      });
-    }
-  }, [search]);
 
   return (
     <locator-wrap max-width="none" gutter="fluid">
