@@ -7,14 +7,50 @@ export interface PlaceLoaderResponse {
   location: Promise<Location>;
 }
 
-export default async function placeLoader({ params }: LoaderFunctionArgs) {
-  // TODO(WRAP-207): Use params.id instead
-  const location = LocatorApi.get<Location>(
-    `location/${params.placeName}/${params.placePostcode}`,
+function loadPlaceByProvider({
+  provider,
+  id,
+  postcode,
+}: {
+  provider: 'wrap' | 'valpak';
+  id: string;
+  postcode?: string;
+}) {
+  return LocatorApi.get<Location>(
+    provider === 'wrap'
+      ? `location/${provider}/${id}`
+      : `location/${provider}/${id}/${postcode}`,
   );
+}
+
+function loadPlaceByNameAndPostcode({
+  name,
+  postcode,
+}: {
+  name: string;
+  postcode: string;
+}) {
+  return LocatorApi.get<Location>(`location/${name}/${postcode}`);
+}
+
+export default async function placeLoader({ params }: LoaderFunctionArgs) {
+  const { placeNameOrProvider, placePostcodeOrId, placePostcode } = params;
+
+  if (placeNameOrProvider === 'wrap' || placeNameOrProvider === 'valpak') {
+    return {
+      location: loadPlaceByProvider({
+        provider: placeNameOrProvider,
+        id: placePostcodeOrId,
+        postcode: placePostcode,
+      }),
+    };
+  }
 
   return {
-    location,
+    location: loadPlaceByNameAndPostcode({
+      name: placeNameOrProvider,
+      postcode: placePostcodeOrId,
+    }),
   };
 }
 
