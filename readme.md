@@ -1,19 +1,153 @@
 # Recycling Locator
 
-## Welsh language support
+Powered by RecycleNow.com, this tool can be used to search and find recycling locations throughout the United Kingdom. It’s been created as an embeddable widget that can be added to any website to help visitors discover more recycling options.
 
-Use the `locale` attribute to set the language. `cy` is currently the only supported language code.
+## Add the widget to your website
+
+To apply to embed the widget on your website, email us at [PartnerEnquiries@wrap.org.uk](mailto:PartnerEnquiries@wrap.org.uk).
+
+Installation won't work until your application has been approved.
+
+### Option 1: Install the script
+
+Add the script above the closing `</body>` tag.
+
+```html
+<script src="https://rl.recyclenow.com/wrap-rlw.js" async defer></script>
+```
+
+Include an element with the id "wrap-rlw" into your HTML, this is where the widget will be output.
+
+```html
+<div id="wrap-rlw"></div>
+```
+
+Include the global stylesheet (optional)
+
+```css
+<link href="">
+```
+
+### Option 2: Install the web component
+
+Install via NPM
+
+```bash
+npm i -S @etchteam/recycling-locator`
+```
+
+Include the web component in your HTML, this is where the widget will be output.
+
+```html
+<recycling-locator></recycling-locator>
+```
+
+Include the stylesheet within your website styles (optional)
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@etchteam/recycling-locator@latest/dist/recycling-locator.css">
+```
+
+⚠️ Dependabot is configured to notify daily for NPM version changes, falling out of date means the widget could stop working due to upstream breaking API changes.
+
+## Available settings
+
+### Locale
+
+Use the `locale` attribute to set the language.
+
+The language code for Welsh (`cy`) is currently the only supported language code.
+
+#### Script
+
+```html
+<script src="..." data-locale="cy"></script>
+```
+
+#### Web component
 
 ```html
 <recycling-locator locale="cy"></recycling-locator>
 ```
 
-## Prefilled location
+### Theme
 
-Provide the `postcode` attribute to skip initial location entry.
+Accepted values are red, blue, green, orange, purple, brown, navy, or black.
+
+#### Script
 
 ```html
-<recycling-locator postcode="AB123CD"></recycling-locator>
+<script src="..." data-theme="red"></script>
+```
+
+#### Web component
+
+```html
+<recycling-locator theme="red"></recycling-locator>
+```
+
+#### CSS variables
+
+For more granular control over the theme, add CSS variables to your stylesheet.
+
+```css
+:root{
+  /* The primary colour is the main color that's changed via theme presets */
+  --recycling-locator-color-primary-lightest: #eef5e5;
+  --recycling-locator-color-primary-light: #dfefc8;
+  --recycling-locator-color-primary: #8dc63f;
+  --recycling-locator-color-primary-dark: #297f00;
+
+  /* Other variables control specific parts of the UI */
+  --recycling-locator-theme-background: #fff;
+  --recycling-locator-theme-background-muted-light: #f5f6f8;
+  --recycling-locator-theme-heading-color-light: #222;
+  --recycling-locator-theme-color-light: #222;
+  --recycling-locator-theme-color-muted-light: #4f4f4f;
+  --recycling-locator-theme-color-hover: var(--recycling-locator-color-primary-dark);
+  --recycling-locator-theme-border-color-light: #cfd1d3;
+  --recycling-locator-theme-border-color-hover-light: var(--recycling-locator-color-primary-dark);
+  --recycling-locator-theme-link-color: #0077ab;
+}
+```
+
+### Path
+
+The initial path to load. Common examples include:
+
+- `/{postcode}` to pre-fill the location
+- `/home-recycling` for home recycling embeds
+- `/material?materials=111&search=Cereal boxes` to pre-select a material
+- `/{postcode}/places/{placeName}/{placePostcode}` to load a single place
+
+To discover other possible initial path combinations, take note of the path in the URL whilst navigating on the standalone version of the tool at [locator.recyclenow.com](https://locator.recyclenow.com/).
+
+#### Script
+
+```html
+<script src="..." data-initial-path="/home-recycling"></script>
+```
+
+#### Web component
+
+```html
+<recycling-locator path="/home-recycling"></recycling-locator>
+```
+
+### Materials
+
+This setting is only available for the script embed method for backwards compatibility. The same can be achieved by passing materials in the `path` web component attribute.
+
+Example with material id:
+
+```html
+<script src="..." data-materials="1"></script>
+```
+
+Example with multiple materials:
+
+```html
+<script src="..." data-materials="[1,2]"></script>
 ```
 
 ## Listening for when the locator has loaded
