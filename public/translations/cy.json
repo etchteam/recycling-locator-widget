@@ -129,6 +129,10 @@
     "title": "Dod o hyd i leoedd ailgylchu.",
     "label": "Ble’r ydych chi?",
     "cta": "Dechrau arni",
+    "geolocation": {
+      "label": "Defnyddiwch fy lleoliad",
+      "permission": "Angen caniatâd"
+    },
     "aside": {
       "paragraph": "Defnyddiwch y gwasanaeth hwn i:",
       "list": [
