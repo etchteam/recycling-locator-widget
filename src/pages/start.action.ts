@@ -21,6 +21,13 @@ function handleError(error: Error) {
 
 export async function resolvePostcode(formData: FormData) {
   const location = formData.get('location') as string;
+  const lat = Number(formData.get('lat'));
+  const lng = Number(formData.get('lng'));
+
+  if (lat && lng) {
+    return PostCodeResolver.fromLatLng(lat, lng);
+  }
+
   return PostCodeResolver.fromString(location);
 }
 

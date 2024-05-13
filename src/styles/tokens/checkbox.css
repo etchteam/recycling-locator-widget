@@ -1,0 +1,3 @@
+:host {
+  --diamond-input-checked: var(--color-primary-dark);
+}

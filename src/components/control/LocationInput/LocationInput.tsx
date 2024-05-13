@@ -21,6 +21,7 @@ interface LocationInputProps {
   readonly placeholder?: string;
   readonly valid?: boolean;
   readonly autofocus?: boolean;
+  readonly disabled?: boolean;
   readonly handleBlur?: (value: string) => void;
   readonly handleInput?: (value: string) => void;
 }
@@ -91,6 +92,7 @@ export default class LocationInput extends Component<LocationInputProps> {
             type="text"
             name="location"
             autoFocus={this.props.autofocus}
+            disabled={this.props.disabled}
             autoComplete="street-address"
             placeholder={placeholder}
             id={inputId}

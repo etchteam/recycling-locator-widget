@@ -129,6 +129,10 @@
     "title": "Find places to recycle.",
     "label": "Where are you?",
     "cta": "Get started",
+    "geolocation": {
+      "label": "Use my location",
+      "permission": "Requires permission"
+    },
     "aside": {
       "paragraph": "Use this service to:",
       "list": [

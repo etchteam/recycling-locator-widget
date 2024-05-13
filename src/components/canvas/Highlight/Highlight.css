@@ -1,0 +1,9 @@
+locator-highlight {
+  background: var(--diamond-theme-background, --theme-background-info);
+  border-radius: var(--diamond-border-radius);
+  color: var(--diamond-theme-color, --theme-color-info);
+  display: inline-block;
+  padding: var(--diamond-spacing-xs) var(--diamond-spacing-sm);
+  transition: background var(--diamond-transition) color
+    var(--diamond-transition);
+}
