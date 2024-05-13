@@ -9,9 +9,12 @@ import {
   useSubmit,
 } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
+import '@etchteam/diamond-ui/composition/Grid/Grid';
+import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/control/RadioCheckbox/RadioCheckbox';
 
+import '@/components/canvas/Highlight/Highlight';
 import LocationInput from '@/components/control/LocationInput/LocationInput';
 import { useAppState } from '@/lib/AppState';
 import useFormValidation from '@/lib/useFormValidation';
@@ -83,39 +86,43 @@ export default function LocationForm({
         ></LocationInput>
       </diamond-form-group>
       {isStandalone && (
-        <>
-          <diamond-radio-checkbox
-            state={geolocationError.value ? 'invalid' : undefined}
-            className="diamond-spacing-bottom-md diamond-text-size-sm"
-          >
-            <label>
-              <input
-                type="checkbox"
-                name="geolocation"
-                value="yes"
-                onChange={(event) =>
-                  (geolocation.value = (
-                    event.target as HTMLInputElement
-                  ).checked)
-                }
-                aria-invalid={geolocationError.value}
-                aria-errormessage={
-                  geolocationError.value ? 'geolocation-error' : undefined
-                }
-              />
-              {t('start.geolocation.label')}
-            </label>
-          </diamond-radio-checkbox>
-          {geolocationError.value && (
-            <p
+        <diamond-grid
+          align-items="center"
+          className="diamond-spacing-bottom-md"
+        >
+          <diamond-grid-item grow shrink>
+            <diamond-radio-checkbox
+              state={geolocationError.value ? 'invalid' : undefined}
+              className="diamond-text-size-sm"
+            >
+              <label>
+                <input
+                  type="checkbox"
+                  name="geolocation"
+                  value="yes"
+                  onChange={(event) =>
+                    (geolocation.value = (
+                      event.target as HTMLInputElement
+                    ).checked)
+                  }
+                  aria-invalid={geolocationError.value}
+                  aria-errormessage={
+                    geolocationError.value ? 'geolocation-error' : undefined
+                  }
+                />
+                {t('start.geolocation.label')}
+              </label>
+            </diamond-radio-checkbox>
+          </diamond-grid-item>
+          <diamond-grid-item>
+            <locator-highlight
               id="geolocation-error"
-              className="text-color-negative diamond-text-size-sm diamond-spacing-top-xs"
-              aria-live="polite"
+              className={`diamond-text-size-xs ${geolocationError.value ? 'theme-negative' : 'theme-info'}`}
             >
               {t('start.geolocation.permission')}
-            </p>
-          )}
-        </>
+            </locator-highlight>
+          </diamond-grid-item>
+        </diamond-grid>
       )}
       {children}
       <diamond-button width="full-width" variant="primary">
