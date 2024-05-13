@@ -1,3 +1,16 @@
+## [1.41.0](https://github.com/etchteam/recycling-locator/compare/v1.40.0...v1.41.0) (2024-05-13)
+
+
+### Features
+
+* adds a use my location checkbox to the standalone app ([0b21255](https://github.com/etchteam/recycling-locator/commit/0b21255602df685befbe4dfecfd6451a93fb9b3a))
+* use my location checkbox ([234e6b0](https://github.com/etchteam/recycling-locator/commit/234e6b0f0c0405e26d49e8f29e2db1abe17d06ae))
+
+
+### Reverts
+
+* debug ([a099f1a](https://github.com/etchteam/recycling-locator/commit/a099f1ade86560ff39ad245de07cb56ea633382b))
+
 ## [1.40.0](https://github.com/etchteam/recycling-locator/compare/v1.39.1...v1.40.0) (2024-05-10)
 
 
