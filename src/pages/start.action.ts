@@ -23,7 +23,7 @@ export async function resolvePostcode(formData: FormData) {
   const location = formData.get('location') as string;
   const lat = Number(formData.get('lat'));
   const lng = Number(formData.get('lng'));
-  console.log(lat, lng, location);
+
   if (lat && lng) {
     return PostCodeResolver.fromLatLng(lat, lng);
   }
