@@ -15,7 +15,7 @@ export default function sortPropertyTypes(
   ] as string[];
 
   return Object.keys(properties)
-    .toSorted((a, b) => {
+    .sort((a, b) => {
       return sortOrder.indexOf(a) - sortOrder.indexOf(b);
     })
     .reduce((sorted, propertyType) => {
