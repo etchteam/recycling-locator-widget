@@ -29,7 +29,7 @@ function ManyProperties({
   const tContext = 'material.recycleAtHome.manyProperties';
   const allPropertiesRecycle =
     propertyTypesCollectingThisMaterial.length === allPropertyTypes.length;
-  const sortedPropertyTypes = allPropertyTypes
+  const sortedPropertyTypes = [...allPropertyTypes]
     .sort((propertyType) =>
       propertyTypesCollectingThisMaterial.includes(propertyType) ? -1 : 1,
     )
