@@ -1,3 +1,12 @@
+## [1.41.1](https://github.com/etchteam/recycling-locator/compare/v1.41.0...v1.41.1) (2024-05-14)
+
+
+### Bug Fixes
+
+* dont modify all property types ([eb0e54b](https://github.com/etchteam/recycling-locator/commit/eb0e54bea4f6f6e14dfef91665f1208485124ea9))
+* **locator-highlight:** contrast issues ([5627462](https://github.com/etchteam/recycling-locator/commit/56274624e946f00e748d13ad5a1dd5d8d3dcada4))
+* remove use of toSorted ([82f4a8f](https://github.com/etchteam/recycling-locator/commit/82f4a8fa3c955a6e471fb6e78e80c58c6a5740ff))
+
 ## [1.41.0](https://github.com/etchteam/recycling-locator/compare/v1.40.0...v1.41.0) (2024-05-13)
 
 
