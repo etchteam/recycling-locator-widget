@@ -9,6 +9,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "experimentalDecorators": true,
+    "lib": ["ESNext.Array"],
     "paths": {
       "react": ["./node_modules/preact/compat/"],
       "react-dom": ["./node_modules/preact/compat/"],
