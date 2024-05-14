@@ -1,5 +1,8 @@
 locator-highlight {
-  background: var(--diamond-theme-background, --theme-background-info);
+  background: var(
+    --diamond-theme-background-muted,
+    --theme-background-info-muted
+  );
   border-radius: var(--diamond-border-radius);
   color: var(--diamond-theme-color, --theme-color-info);
   display: inline-block;
