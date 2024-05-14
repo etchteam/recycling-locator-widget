@@ -30,7 +30,7 @@ function ManyProperties({
   const allPropertiesRecycle =
     propertyTypesCollectingThisMaterial.length === allPropertyTypes.length;
   const sortedPropertyTypes = allPropertyTypes
-    .toSorted((propertyType) =>
+    .sort((propertyType) =>
       propertyTypesCollectingThisMaterial.includes(propertyType) ? -1 : 1,
     )
     .filter((propertyType) => propertyType !== PROPERTY_TYPE.ALL);
