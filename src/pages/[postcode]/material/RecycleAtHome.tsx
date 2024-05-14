@@ -29,8 +29,8 @@ function ManyProperties({
   const tContext = 'material.recycleAtHome.manyProperties';
   const allPropertiesRecycle =
     propertyTypesCollectingThisMaterial.length === allPropertyTypes.length;
-  const sortedPropertyTypes = allPropertyTypes
-    .toSorted((propertyType) =>
+  const sortedPropertyTypes = [...allPropertyTypes]
+    .sort((propertyType) =>
       propertyTypesCollectingThisMaterial.includes(propertyType) ? -1 : 1,
     )
     .filter((propertyType) => propertyType !== PROPERTY_TYPE.ALL);

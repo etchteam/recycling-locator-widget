@@ -33,7 +33,7 @@ function AtoZPageContent({
     );
     return multiLetterChar || material.name[0].toUpperCase();
   });
-  const availableLetters = Object.keys(groupedMaterials).toSorted(
+  const availableLetters = Object.keys(groupedMaterials).sort(
     (letterA, letterB) => {
       return letterA.localeCompare(letterB);
     },
