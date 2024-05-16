@@ -209,10 +209,6 @@ document
   });
 ```
 
-## Self-hosting assets
-
-
-
 ## Contributing
 
 Looking to contribute to the code? A good starting point is [the contributing docs](https://github.com/etchteam/recycling-locator-widget/blob/main/contributing.md).
