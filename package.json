@@ -36,7 +36,7 @@
     "test:end-to-end-debug": "DEBUG=pw:api PWDEBUG=console vitest --ui"
   },
   "dependencies": {
-    "@etchteam/diamond-ui": "^1.31.1",
+    "@etchteam/diamond-ui": "^1.35.1",
     "@headlessui/react": "^2.0.3",
     "@here/maps-api-for-javascript": "^1.50.0",
     "@preact/signals": "^1.2.2",
