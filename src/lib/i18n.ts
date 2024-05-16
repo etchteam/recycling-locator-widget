@@ -2,6 +2,7 @@ import i18n from 'i18next';
 import HttpBackend, { HttpBackendOptions } from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
+import config from '@/config';
 import { Locale } from '@/types/locale';
 
 i18n
@@ -14,7 +15,10 @@ i18n
 /**
  * Init i18next with the given locale.
  **/
-export function i18nInit(locale: Locale = 'en', publicPath: string) {
+export function i18nInit(
+  locale: Locale = 'en',
+  publicPath = config.publicPath,
+) {
   // For all options read: https://www.i18next.com/overview/configuration-options
   i18n.init<HttpBackendOptions>({
     fallbackLng: 'en',
