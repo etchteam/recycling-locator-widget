@@ -1,3 +1,16 @@
+## [1.42.0](https://github.com/etchteam/recycling-locator/compare/v1.41.2...v1.42.0) (2024-05-16)
+
+
+### Features
+
+* add the public path prop ([ca3a763](https://github.com/etchteam/recycling-locator/commit/ca3a763f80604af3200ac7dafe3261aa1e879e55))
+
+
+### Bug Fixes
+
+* correct casing of observed attributes ([16adca3](https://github.com/etchteam/recycling-locator/commit/16adca32e62f53c84fc070dc9cabd995d195bcce))
+* i18ninit parameters ([53b25f0](https://github.com/etchteam/recycling-locator/commit/53b25f049d1f6d971533156047a22e354155a5d7))
+
 ## [1.41.2](https://github.com/etchteam/recycling-locator/compare/v1.41.1...v1.41.2) (2024-05-16)
 
 
