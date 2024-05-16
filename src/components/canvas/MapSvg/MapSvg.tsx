@@ -1,17 +1,17 @@
 import { ComponentChildren } from 'preact';
 import register from 'preact-custom-element';
 
-import config from '@/config';
+import { useAppState } from '@/lib/AppState';
 import { CustomElement } from '@/types/customElement';
 
 export default function MapSvg({
   children,
-}: Readonly<{
-  children: ComponentChildren;
-}>) {
+}: Readonly<{ children: ComponentChildren }>) {
+  const { publicPath } = useAppState();
+
   return (
     <>
-      <img part="image" src={`${config.publicPath}images/map.svg`} alt="" />
+      <img part="image" src={`${publicPath}images/map.svg`} alt="" />
       <div part="content">{children}</div>
     </>
   );

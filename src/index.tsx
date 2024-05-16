@@ -29,6 +29,11 @@ export interface RecyclingLocatorAttributes {
    */
   readonly path?: string;
   /**
+   * The public URL to load assets from, should end with a /
+   * If not provided, jsdelivr CDN will be used
+   */
+  readonly publicPath?: string;
+  /**
    * Sets a preset theme which modifies the primary color
    */
   readonly theme?:
@@ -55,6 +60,7 @@ export default function RecyclingLocator({
   variant = 'widget',
   basename = '/',
   path,
+  publicPath = config.publicPath,
   theme = 'green',
 }: RecyclingLocatorAttributes) {
   const classes = compact([
@@ -65,13 +71,14 @@ export default function RecyclingLocator({
 
   return (
     <>
-      <link rel="stylesheet" href={`${config.publicPath}styles.css`} />
+      <link rel="stylesheet" href={`${publicPath}styles.css`} />
       <article className={classes}>
         <Entrypoint
           locale={locale}
           variant={variant}
           basename={basename}
           path={path}
+          publicPath={publicPath}
         />
       </article>
     </>
@@ -81,7 +88,7 @@ export default function RecyclingLocator({
 register(
   RecyclingLocator,
   'recycling-locator',
-  ['locale', 'variant', 'basename', 'path', 'theme'],
+  ['locale', 'variant', 'basename', 'path', 'public-path', 'theme'],
   {
     shadow: true,
   },

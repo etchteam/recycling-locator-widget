@@ -2,7 +2,7 @@ import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/content/Icon/Icon';
-import config from '@/config';
+import { useAppState } from '@/lib/AppState';
 import { RecyclingMeta } from '@/types/locatorApi';
 
 interface TipContentProps {
@@ -16,18 +16,18 @@ export default function TipContent({
   ctaWidth = 'full-width',
   showImage = true,
 }: TipContentProps) {
+  const { publicPath } = useAppState();
+
   if (!tip) {
     return null;
   }
 
+  const tipImgSrc = tip.image ?? `${publicPath}images/material-tip.svg`;
+
   return (
     <diamond-enter type="fade">
       {showImage && (
-        <img
-          className="diamond-spacing-bottom-sm"
-          src={tip.image ?? config.imagePath + 'material-tip.svg'}
-          alt=""
-        />
+        <img className="diamond-spacing-bottom-sm" src={tipImgSrc} alt="" />
       )}
       <p className="diamond-text-weight-bold">{tip.subtitle}</p>
       <h2>{tip.title}</h2>

@@ -12,7 +12,7 @@ import '@/components/content/Icon/Icon';
 import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
 import Footer from '@/components/content/Footer/Footer';
-import config from '@/config';
+import { useAppState } from '@/lib/AppState';
 import i18n from '@/lib/i18n';
 import useAnalytics from '@/lib/useAnalytics';
 
@@ -60,10 +60,13 @@ function About() {
 }
 
 export function DefaultAside() {
+  const { publicPath } = useAppState();
+  const generalTipImgSrc = `${publicPath}images/general-tip.svg`;
+
   return (
     <locator-tip slot="layout-aside" type="image">
       <locator-wrap>
-        <img src={config.imagePath + 'general-tip.svg'} alt="" />
+        <img src={generalTipImgSrc} alt="" />
       </locator-wrap>
     </locator-tip>
   );
