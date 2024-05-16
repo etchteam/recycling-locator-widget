@@ -1,3 +1,11 @@
+## [1.41.2](https://github.com/etchteam/recycling-locator/compare/v1.41.1...v1.41.2) (2024-05-16)
+
+
+### Bug Fixes
+
+* api path ([b5cc9d0](https://github.com/etchteam/recycling-locator/commit/b5cc9d0fff4bed22369b976106fe84fe54a1a292))
+* diamond checkbox alignment and disabled btn hover ([c809d58](https://github.com/etchteam/recycling-locator/commit/c809d582116c52227fc040b26102fd5bb37358c0))
+
 ## [1.41.1](https://github.com/etchteam/recycling-locator/compare/v1.41.0...v1.41.1) (2024-05-14)
 
 
