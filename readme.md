@@ -24,8 +24,8 @@ Include an element with the id "wrap-rlw" into your HTML, this is where the widg
 
 Include the global stylesheet (optional)
 
-```css
-<link href="">
+```html
+<link href="https://rl.recyclenow.com/recycling-locator.css">
 ```
 
 ### Option 2: Install the web component
@@ -136,7 +136,9 @@ To discover other possible initial path combinations, take note of the path in t
 
 ### Materials
 
-This setting is only available for the script embed method for backwards compatibility. The same can be achieved by passing materials in the `path` web component attribute.
+This setting is **only available for the script installation method** for backwards compatibility.
+
+The same can be achieved by passing materials in the `path` web component attribute.
 
 Example with material id:
 
@@ -150,6 +152,51 @@ Example with multiple materials:
 <script src="..." data-materials="[1,2]"></script>
 ```
 
+### Public path
+
+This setting is **only available for the web component installation method**.
+
+This setting can be used to set a public URL to load assets from, the path should always end with a `/`.
+
+If not provided, [jsdelivr CDN](https://www.jsdelivr.com/) will be used.
+
+The following example would serve assets from your websites public directory:
+
+```html
+<recycling-locator public-path="/public/"></recycling-locator>
+```
+
+To self-host assets, static files can be moved from node_modules using a postinstall script.
+
+```bash
+cp -r ./node_modules/@etchteam/recycling-locator/dist/images ./public
+cp -r ./node_modules/@etchteam/recycling-locator/dist/translations ./public
+cp ./node_modules/@etchteam/recycling-locator/dist/recycling-locator.css ./public
+cp ./node_modules/@etchteam/recycling-locator/dist/styles.css ./public
+```
+
+## Content Security Policy (CSP)
+
+If your website implements a CSP, it'll need some changes based on whether the script or web component installation option is being used.
+
+**Script**
+
+- `img-src data: https://rl.recyclenow.com https://*.here.com;`
+- `script-src https://rl.recyclenow.com 'unsafe-eval';`
+- `connect-src blob: https://rl.recyclenow.com https://*.sentry.io https://*.hereapi.com https://*.here.com;`
+- `style-src 'unsafe-inline' https://rl.recyclenow.com;`
+- `font-src https://*.here.com;`
+- `worker-src blob:;`
+
+**Web component**
+
+- `img-src data: https://cdn.jsdelivr.net https://*.here.com;`
+- `script-src 'self' 'unsafe-eval';`
+- `connect-src blob: https://cdn.jsdelivr.net https://rl.recyclenow.com https://*.sentry.io https://*.hereapi.com https://*.here.com;`
+- `style-src 'unsafe-inline' https://cdn.jsdelivr.net;`
+- `font-src https://*.here.com;`
+- `worker-src blob:;`
+
 ## Listening for when the locator has loaded
 
 The `<recycling-locator>` will dispatch a custom "ready" event when the UI has rendered.
@@ -161,6 +208,10 @@ document
     console.info('Ready to recycle');
   });
 ```
+
+## Self-hosting assets
+
+
 
 ## Contributing
 
