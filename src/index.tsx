@@ -88,7 +88,7 @@ export default function RecyclingLocator({
 register(
   RecyclingLocator,
   'recycling-locator',
-  ['locale', 'variant', 'basename', 'path', 'publicPath', 'theme'],
+  ['locale', 'variant', 'basename', 'path', 'public-path', 'theme'],
   {
     shadow: true,
   },
