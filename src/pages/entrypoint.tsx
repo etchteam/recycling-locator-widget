@@ -73,7 +73,7 @@ export default function Entrypoint(
 ) {
   const { locale, variant, basename } = props;
 
-  i18nInit(locale);
+  i18nInit(locale, props.publicPath);
 
   const router =
     variant === 'standalone'

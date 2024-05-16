@@ -17,7 +17,7 @@ import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
 import Menu from '@/components/control/Menu/Menu';
-import config from '@/config';
+import { useAppState } from '@/lib/AppState';
 import i18n from '@/lib/i18n';
 import useScrollRestoration from '@/lib/useScrollRestoration';
 
@@ -28,6 +28,7 @@ export default function HomeRecyclingLayout({
 }: {
   readonly children?: ComponentChildren;
 }) {
+  const { publicPath } = useAppState();
   const { t } = useTranslation();
   const locale = i18n.language;
   const { postcode } = useParams();
@@ -36,6 +37,7 @@ export default function HomeRecyclingLayout({
   const open = useSignal(false);
   useScrollRestoration(layoutRef);
   const localAuthority = data?.localAuthority;
+  const homeTipImgSrc = `${publicPath}images/home-tip.svg`;
 
   return (
     <locator-layout>
@@ -149,7 +151,7 @@ export default function HomeRecyclingLayout({
       <locator-tip slot="layout-aside" text-align="center">
         <locator-wrap>
           <img
-            src={config.imagePath + 'home-tip.svg'}
+            src={homeTipImgSrc}
             alt=""
             className="diamond-spacing-bottom-sm"
           />

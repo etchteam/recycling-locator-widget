@@ -2,7 +2,6 @@ import i18n from 'i18next';
 import HttpBackend, { HttpBackendOptions } from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
-import config from '@/config';
 import { Locale } from '@/types/locale';
 
 i18n
@@ -15,7 +14,7 @@ i18n
 /**
  * Init i18next with the given locale.
  **/
-export function i18nInit(locale: Locale = 'en') {
+export function i18nInit(locale: Locale = 'en', publicPath: string) {
   // For all options read: https://www.i18next.com/overview/configuration-options
   i18n.init<HttpBackendOptions>({
     fallbackLng: 'en',
@@ -23,7 +22,7 @@ export function i18nInit(locale: Locale = 'en') {
     debug: import.meta.env.MODE === 'development',
     load: 'currentOnly',
     backend: {
-      loadPath: `${config.publicPath}translations/{{lng}}.json`,
+      loadPath: `${publicPath}translations/{{lng}}.json`,
     },
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

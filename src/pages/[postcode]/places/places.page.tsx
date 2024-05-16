@@ -25,7 +25,7 @@ import '@/components/content/Icon/Icon';
 import '@/components/control/Fab/Fab';
 import Place from '@/components/template/Place/Place';
 import TipContent from '@/components/template/TipContent/TipContent';
-import config from '@/config';
+import { useAppState } from '@/lib/AppState';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import formatPostcode from '@/lib/formatPostcode';
 import useAnalytics from '@/lib/useAnalytics';
@@ -232,6 +232,7 @@ function Places({
 }
 
 export default function PlacesPage() {
+  const { publicPath } = useAppState();
   const { t } = useTranslation();
   const navigation = useNavigation();
   const { postcode } = useParams();
@@ -241,6 +242,7 @@ export default function PlacesPage() {
   const isLoadingCurrentPath =
     navigation.state === 'loading' &&
     navigation.location.pathname === `/${postcode}/places`;
+  const materialTipImgSrc = `${publicPath}images/material-tip.svg`;
 
   return (
     <locator-wrap max-width="none" gutter="fluid">
@@ -263,10 +265,7 @@ export default function PlacesPage() {
             {(tip) => (
               <diamond-enter type="fade-in-up">
                 <locator-tip text-align="center" wrap="wrap">
-                  <img
-                    src={tip?.image ?? config.imagePath + 'material-tip.svg'}
-                    alt=""
-                  />
+                  <img src={tip?.image ?? materialTipImgSrc} alt="" />
                   <locator-tip-content>
                     <TipContent
                       tip={tip}
