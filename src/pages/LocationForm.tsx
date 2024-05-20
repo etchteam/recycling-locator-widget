@@ -37,6 +37,7 @@ export default function LocationForm({
   const autofocus = searchParams.get('autofocus') === 'true';
   const geolocation = useSignal(false);
   const geolocationError = useSignal(false);
+  const newTab = useSignal(false);
   const submit = useSubmit();
   const app = useAppState();
   const isStandalone = app.variant === 'standalone';
@@ -85,7 +86,7 @@ export default function LocationForm({
           valid={form.valid.value || geolocation.value}
         ></LocationInput>
       </diamond-form-group>
-      {isStandalone && (
+      {isStandalone ? (
         <diamond-grid
           align-items="center"
           className="diamond-spacing-bottom-md"
@@ -120,6 +121,32 @@ export default function LocationForm({
               className={`diamond-text-size-xs ${geolocationError.value ? 'theme-negative' : 'theme-info'}`}
             >
               {t('start.geolocation.permission')}
+            </locator-highlight>
+          </diamond-grid-item>
+        </diamond-grid>
+      ) : (
+        <diamond-grid
+          align-items="center"
+          className="diamond-spacing-bottom-md"
+        >
+          <diamond-grid-item grow shrink>
+            <diamond-radio-checkbox className="diamond-text-size-sm">
+              <label>
+                <input
+                  type="checkbox"
+                  name="new-tab"
+                  value="yes"
+                  onChange={(event) =>
+                    (newTab.value = (event.target as HTMLInputElement).checked)
+                  }
+                />
+                {t('start.newTab.label')}
+              </label>
+            </diamond-radio-checkbox>
+          </diamond-grid-item>
+          <diamond-grid-item>
+            <locator-highlight className="diamond-text-size-xs theme-info">
+              {t('start.newTab.bestExperience')}
             </locator-highlight>
           </diamond-grid-item>
         </diamond-grid>

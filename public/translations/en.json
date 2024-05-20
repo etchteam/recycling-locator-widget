@@ -133,6 +133,10 @@
       "label": "Use my location",
       "permission": "Requires permission"
     },
+    "newTab": {
+      "label": "Continue in a new tab",
+      "bestExperience": "Best experience"
+    },
     "aside": {
       "paragraph": "Use this service to:",
       "list": [
