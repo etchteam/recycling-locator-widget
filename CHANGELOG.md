@@ -1,3 +1,10 @@
+## [1.43.0](https://github.com/etchteam/recycling-locator/compare/v1.42.0...v1.43.0) (2024-05-21)
+
+
+### Features
+
+* add dependabot config ([1a9d533](https://github.com/etchteam/recycling-locator/commit/1a9d533c28d753dcf3cce8380d90bd0a2f2e1883))
+
 ## [1.42.0](https://github.com/etchteam/recycling-locator/compare/v1.41.2...v1.42.0) (2024-05-16)
 
 
