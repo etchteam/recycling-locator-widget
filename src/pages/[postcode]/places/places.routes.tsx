@@ -61,8 +61,7 @@ const routes: RouteObject[] = [
     ],
   },
   {
-    // TODO(WRAP-207): Move to /:postcode/places/:id
-    path: '/:postcode/places/:placeName/:placePostcode',
+    path: '/:postcode/places/:placeNameOrProvider/:placePostcodeOrId/:placePostcode?',
     element: <PlaceLayout />,
     errorElement: <PlaceErrorPage />,
     loader: placeLoader,

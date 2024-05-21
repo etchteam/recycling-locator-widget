@@ -145,12 +145,12 @@ function Places({
                     PostCodeResolver.extractPostcodeFromString(
                       location.address,
                     );
-                  const locationName = encodeURIComponent(location.name);
+                  const provider = location.locations[0].source;
 
                   return (
                     <li key={`${location.id}`}>
                       <Link
-                        to={`/${postcode}/places/${locationName}/${locationPostcode}`}
+                        to={`/${postcode}/places/${provider}/${location.id}/${locationPostcode}`}
                       >
                         <diamond-enter type="fade">
                           <diamond-card border radius>
