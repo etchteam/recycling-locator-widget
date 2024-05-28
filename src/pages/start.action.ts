@@ -45,6 +45,7 @@ async function handleRedirect(formData: FormData, path = '') {
     const url = new URL(`https://${domain}${route}`);
     url.searchParams.set('locale', locale);
     window.open(url, '_blank').focus();
+    return new Response(null, { status: 204 });
   }
 
   return redirect(route);

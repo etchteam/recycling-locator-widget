@@ -17,6 +17,7 @@ import '@etchteam/diamond-ui/control/RadioCheckbox/RadioCheckbox';
 import '@/components/canvas/Highlight/Highlight';
 import LocationInput from '@/components/control/LocationInput/LocationInput';
 import { useAppState } from '@/lib/AppState';
+import i18n from '@/lib/i18n';
 import useFormValidation from '@/lib/useFormValidation';
 
 export default function LocationForm({
@@ -39,6 +40,7 @@ export default function LocationForm({
   const geolocationError = useSignal(false);
   const submit = useSubmit();
   const app = useAppState();
+  const locale = i18n.language;
   const isStandalone = app.variant === 'standalone';
 
   useEffect(() => {
@@ -75,7 +77,7 @@ export default function LocationForm({
 
   return (
     <Form action={action} method="post" onSubmit={handleSubmit}>
-      <input type="hidden" name="locale" value={app.locale} />
+      <input type="hidden" name="locale" value={locale} />
       <diamond-form-group className="diamond-spacing-bottom-md">
         <label htmlFor="location-input">{label ?? t('start.label')}</label>
         <LocationInput
