@@ -1,3 +1,18 @@
+## [1.44.0](https://github.com/etchteam/recycling-locator/compare/v1.43.0...v1.44.0) (2024-05-28)
+
+
+### Features
+
+* empty response on new tab ([15fad11](https://github.com/etchteam/recycling-locator/commit/15fad11b507ff77291ed6338617fae4644bb9f4d))
+* open a new tab in the start action ([faac873](https://github.com/etchteam/recycling-locator/commit/faac87395305504972b570d356cc60a17b66ae0f))
+* remove new tab signal ([d28ad6d](https://github.com/etchteam/recycling-locator/commit/d28ad6d1e66c4f8bec61d3035118eabe5efe418c))
+* standalone app checkbox ([da68f16](https://github.com/etchteam/recycling-locator/commit/da68f165ba2192b4a8411cf17c8ec6aa6b4e40cc))
+
+
+### Bug Fixes
+
+* start page tests ([3bcda60](https://github.com/etchteam/recycling-locator/commit/3bcda60662628d5d123f6143a1318a4701ff16e8))
+
 ## [1.43.0](https://github.com/etchteam/recycling-locator/compare/v1.42.0...v1.43.0) (2024-05-21)
 
 
