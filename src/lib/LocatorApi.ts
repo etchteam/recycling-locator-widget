@@ -1,3 +1,5 @@
+import uniqueId from 'lodash/uniqueId';
+
 import config from '@/config';
 import i18n from '@/lib/i18n';
 
@@ -17,6 +19,8 @@ export default class LocatorApi {
 
     const response = await fetch(fullUrl.toString(), {
       headers: {
+        'X-Request-ID':
+          window?.crypto?.randomUUID?.() ?? uniqueId('request-id'),
         'X-Requested-With': config.packageVersion,
         'Accept-Language': locale,
       },
