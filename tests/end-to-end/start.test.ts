@@ -27,7 +27,7 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: GuernseyGeocodeResponse });
     });
 
-    const input = page.locator('input').first();
+    const input = page.locator('input[type="text"]').first();
     const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
     await expect(input).toBeVisible();
     await expect(notInUk).not.toBeVisible();
@@ -43,7 +43,7 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
 
-    const input = page.locator('input').first();
+    const input = page.locator('input[type="text"]').first();
     const postcode = page.getByText('EX32 7RB').first();
     const city = page.getByText('Barnstaple').first();
     const postcodePageTitle = page.getByText(t('postcode.title')).first();
@@ -68,7 +68,7 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: ValidPostcodeResponse });
     });
 
-    const input = page.locator('input').first();
+    const input = page.locator('input[type="text"]').first();
     const postcode = page.getByText('EX32 7RB').first();
     const city = page.getByText('Barnstaple').first();
     const postcodePageTitle = page.getByText(t('postcode.title')).first();
@@ -94,7 +94,7 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: InvalidPostcodeResponse });
     });
 
-    const input = page.locator('input').first();
+    const input = page.locator('input[type="text"]').first();
     const postcode = page.getByText('EX32 7RB').first();
     const city = page.getByText('Barnstaple').first();
     const notFoundPageTitle = page
@@ -124,7 +124,7 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
 
-    const input = page.locator('input').first();
+    const input = page.locator('input[type="text"]').first();
     const homeStartPageTitle = page
       .getByText(t('start.homeRecycling.title'))
       .first();
@@ -168,7 +168,7 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
-    const input = page.locator('input').first();
+    const input = page.locator('input[type="text"]').first();
     const materialStartPageTitle = page
       .getByText(
         t('start.material.title', { material: 'Plastic drinks bottles' }),

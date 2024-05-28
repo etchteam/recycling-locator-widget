@@ -133,6 +133,10 @@
       "label": "Defnyddiwch fy lleoliad",
       "permission": "Angen caniatâd"
     },
+    "newTab": {
+      "label": "Parhewch mewn tab newydd",
+      "bestExperience": "Profiad gorau"
+    },
     "aside": {
       "paragraph": "Defnyddiwch y gwasanaeth hwn i:",
       "list": [

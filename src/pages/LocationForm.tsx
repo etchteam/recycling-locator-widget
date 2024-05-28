@@ -17,6 +17,7 @@ import '@etchteam/diamond-ui/control/RadioCheckbox/RadioCheckbox';
 import '@/components/canvas/Highlight/Highlight';
 import LocationInput from '@/components/control/LocationInput/LocationInput';
 import { useAppState } from '@/lib/AppState';
+import i18n from '@/lib/i18n';
 import useFormValidation from '@/lib/useFormValidation';
 
 export default function LocationForm({
@@ -39,6 +40,7 @@ export default function LocationForm({
   const geolocationError = useSignal(false);
   const submit = useSubmit();
   const app = useAppState();
+  const locale = i18n.language;
   const isStandalone = app.variant === 'standalone';
 
   useEffect(() => {
@@ -75,6 +77,7 @@ export default function LocationForm({
 
   return (
     <Form action={action} method="post" onSubmit={handleSubmit}>
+      <input type="hidden" name="locale" value={locale} />
       <diamond-form-group className="diamond-spacing-bottom-md">
         <label htmlFor="location-input">{label ?? t('start.label')}</label>
         <LocationInput
@@ -85,12 +88,12 @@ export default function LocationForm({
           valid={form.valid.value || geolocation.value}
         ></LocationInput>
       </diamond-form-group>
-      {isStandalone && (
+      {isStandalone ? (
         <diamond-grid
           align-items="center"
           className="diamond-spacing-bottom-md"
         >
-          <diamond-grid-item grow shrink>
+          <diamond-grid-item>
             <diamond-radio-checkbox
               state={geolocationError.value ? 'invalid' : undefined}
               className="diamond-text-size-sm"
@@ -120,6 +123,25 @@ export default function LocationForm({
               className={`diamond-text-size-xs ${geolocationError.value ? 'theme-negative' : 'theme-info'}`}
             >
               {t('start.geolocation.permission')}
+            </locator-highlight>
+          </diamond-grid-item>
+        </diamond-grid>
+      ) : (
+        <diamond-grid
+          align-items="center"
+          className="diamond-spacing-bottom-md"
+        >
+          <diamond-grid-item>
+            <diamond-radio-checkbox className="diamond-text-size-sm">
+              <label>
+                <input type="checkbox" name="new-tab" value="yes" />
+                {t('start.newTab.label')}
+              </label>
+            </diamond-radio-checkbox>
+          </diamond-grid-item>
+          <diamond-grid-item>
+            <locator-highlight className="diamond-text-size-xs theme-positive">
+              {t('start.newTab.bestExperience')}
             </locator-highlight>
           </diamond-grid-item>
         </diamond-grid>
