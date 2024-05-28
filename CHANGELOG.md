@@ -1,3 +1,15 @@
+## [1.46.0](https://github.com/etchteam/recycling-locator/compare/v1.45.0...v1.46.0) (2024-05-28)
+
+
+### Features
+
+* add document start header ([1a2fc46](https://github.com/etchteam/recycling-locator/commit/1a2fc46426da17f81d53edd67a4b84731755b5e5))
+
+
+### Bug Fixes
+
+* only update the rl widget inside the demo folder ([904e9f0](https://github.com/etchteam/recycling-locator/commit/904e9f0f84d39dc4ae645f690013bca88300ee34))
+
 ## [1.45.0](https://github.com/etchteam/recycling-locator/compare/v1.44.0...v1.45.0) (2024-05-28)
 
 
