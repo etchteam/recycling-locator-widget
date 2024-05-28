@@ -37,7 +37,6 @@ export default function LocationForm({
   const autofocus = searchParams.get('autofocus') === 'true';
   const geolocation = useSignal(false);
   const geolocationError = useSignal(false);
-  const newTab = useSignal(false);
   const submit = useSubmit();
   const app = useAppState();
   const isStandalone = app.variant === 'standalone';
@@ -133,14 +132,7 @@ export default function LocationForm({
           <diamond-grid-item>
             <diamond-radio-checkbox className="diamond-text-size-sm">
               <label>
-                <input
-                  type="checkbox"
-                  name="new-tab"
-                  value="yes"
-                  onChange={(event) =>
-                    (newTab.value = (event.target as HTMLInputElement).checked)
-                  }
-                />
+                <input type="checkbox" name="new-tab" value="yes" />
                 {t('start.newTab.label')}
               </label>
             </diamond-radio-checkbox>
