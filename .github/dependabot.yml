@@ -1,14 +1,8 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/"
+    directory: "/demo"
     schedule:
       interval: "daily"
-    groups:
-      security:
-        applies-to: security-updates
-        dependency-type: "production"
-      locator:
-        applies-to: version-updates
-        patterns:
-          - "@etchteam/recycling-locator"
+    allow:
+      - dependency-name: "@etchteam/recycling-locator"
