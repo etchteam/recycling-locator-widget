@@ -1,3 +1,10 @@
+## [1.45.0](https://github.com/etchteam/recycling-locator/compare/v1.44.0...v1.45.0) (2024-05-28)
+
+
+### Features
+
+* send the x-request-id header ([096fd8c](https://github.com/etchteam/recycling-locator/commit/096fd8cecbcae4903efcb64132e8784df6e76f96))
+
 ## [1.44.0](https://github.com/etchteam/recycling-locator/compare/v1.43.0...v1.44.0) (2024-05-28)
 
 
