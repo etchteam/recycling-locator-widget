@@ -39,8 +39,8 @@
   --theme-background-info-muted: var(--color-blue-lightest);
   --theme-background-info: var(--color-blue-lightest);
   --theme-heading-color-info: var(--color-blue-dark);
-  --theme-color-info: var(--color-blue-dark);
-  --theme-link-color-info: var(--color-blue-dark);
+  --theme-color-info: var(--color-blue-darkest);
+  --theme-link-color-info: var(--color-blue-darkest);
 
   --theme-background-positive-muted: var(--color-green-light);
   --theme-background-positive: var(--color-green);

@@ -76,6 +76,7 @@ export default function LocationForm({
 
   return (
     <Form action={action} method="post" onSubmit={handleSubmit}>
+      <input type="hidden" name="locale" value={app.locale} />
       <diamond-form-group className="diamond-spacing-bottom-md">
         <label htmlFor="location-input">{label ?? t('start.label')}</label>
         <LocationInput
@@ -91,7 +92,7 @@ export default function LocationForm({
           align-items="center"
           className="diamond-spacing-bottom-md"
         >
-          <diamond-grid-item grow shrink>
+          <diamond-grid-item>
             <diamond-radio-checkbox
               state={geolocationError.value ? 'invalid' : undefined}
               className="diamond-text-size-sm"
@@ -129,7 +130,7 @@ export default function LocationForm({
           align-items="center"
           className="diamond-spacing-bottom-md"
         >
-          <diamond-grid-item grow shrink>
+          <diamond-grid-item>
             <diamond-radio-checkbox className="diamond-text-size-sm">
               <label>
                 <input
@@ -145,7 +146,7 @@ export default function LocationForm({
             </diamond-radio-checkbox>
           </diamond-grid-item>
           <diamond-grid-item>
-            <locator-highlight className="diamond-text-size-xs theme-info">
+            <locator-highlight className="diamond-text-size-xs theme-positive">
               {t('start.newTab.bestExperience')}
             </locator-highlight>
           </diamond-grid-item>
