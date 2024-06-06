@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Await } from 'react-router-dom';
 
 import '@/components/composition/BorderedList/BorderedList';
+import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { Location } from '@/types/locatorApi';
 
 import { usePlaceLoaderData } from './place.loader';
@@ -21,7 +22,7 @@ function PlaceDetailsPageContent({
 
   return (
     <diamond-enter type="fade">
-      <locator-bordered-list size="sm">
+      <locator-bordered-list size="sm" className="diamond-spacing-bottom-md">
         <dl>
           <div>
             <dt>{t('place.details.address')}</dt>
@@ -67,6 +68,8 @@ function PlaceDetailsPageContent({
           )}
         </dl>
       </locator-bordered-list>
+
+      <RateThisInfo />
     </diamond-enter>
   );
 }

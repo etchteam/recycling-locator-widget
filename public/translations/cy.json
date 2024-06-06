@@ -82,6 +82,23 @@
         "accessibilityLabel": "Datganiad Hygyrchedd",
         "accessibilityLink": "https://www.walesrecycles.org.uk/cy/datganiad-hygyrchedd"
       }
+    },
+    "rateThisInfo": {
+      "title": "Sut fyddech chi'n graddio'r wybodaeth hon?",
+      "thumbUp": "Bawd i fyny",
+      "thumbDown": "Bawd i lawr",
+      "help": "Bydd eich adborth yn helpu i wella'r gwasanaeth hwn",
+      "cta": "Anfon adborth",
+      "comment": {
+        "label": "Gadewch sylw i egluro pam.",
+        "placeholder": "Ychwanegwch eich meddyliau...",
+        "error": "Rhowch sylw"
+      },
+      "result": {
+        "positive": "Rydych chi'n hoffi hyn!",
+        "negative": "Dydych chi ddim yn hoffi hwn!",
+        "confirmation": "Diolch i chi, am rannu eich syniadau."
+      }
     }
   },
   "error": {
