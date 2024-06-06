@@ -99,6 +99,13 @@
         "negative": "Dydych chi ddim yn hoffi hwn!",
         "confirmation": "Diolch i chi, am rannu eich syniadau."
       }
+    },
+    "reportMissingMaterial": {
+      "title": "Os credwch y dylid ei ychwanegu at yr offeryn hwn, <button>dewiswch pa ddeunydd ydyw</button>.",
+      "placeholder": "Dewiswch ddeunydd...",
+      "error": "Dewiswch ddeunydd os gwelwch yn dda",
+      "cta": "Rhoi gwybod am ddeunydd coll",
+      "confirmation": "Rydych chi wedi rhoi gwybod am yr eitem goll hon"
     }
   },
   "error": {

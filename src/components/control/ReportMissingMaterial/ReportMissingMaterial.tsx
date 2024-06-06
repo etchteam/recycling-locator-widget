@@ -1,6 +1,7 @@
 import { useSignal } from '@preact/signals';
 import * as Sentry from '@sentry/browser';
 import { useCallback, useEffect } from 'preact/hooks';
+import { Trans, useTranslation } from 'react-i18next';
 import '@etchteam/diamond-ui/composition/Collapse/Collapse';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/control/Button/Button';
@@ -19,6 +20,8 @@ export default function ReportMissingMaterial({
 }: {
   readonly missingMaterial: string;
 }) {
+  const { t } = useTranslation();
+  const tContext = 'components.reportMissingMaterial';
   const feedbackFormOpen = useSignal(false);
   const materialCategories = useSignal<string[]>([]);
   const selectedCategory = useSignal<string | null>(null);
@@ -88,23 +91,24 @@ export default function ReportMissingMaterial({
         </locator-icon-circle>
         {!hasSubmittedFeedback.value && (
           <p>
-            If you think it should be added to this tool, please{' '}
-            <button
-              type="button"
-              className="locator-report-missing-material__toggle"
-              onClick={toggleFeedbackForm}
-              aria-controls="report-missing-material-collapse"
-              aria-expanded={feedbackFormOpen.value}
-            >
-              select which material it is
-            </button>
-            .
+            <Trans
+              i18nKey={`${tContext}.title`}
+              components={{
+                button: (
+                  <button
+                    type="button"
+                    className="locator-report-missing-material__toggle"
+                    onClick={toggleFeedbackForm}
+                    aria-controls="report-missing-material-collapse"
+                    aria-expanded={feedbackFormOpen.value}
+                  />
+                ),
+              }}
+            />
           </p>
         )}
         <output htmlFor="suggested-category">
-          {hasSubmittedFeedback.value
-            ? 'You’ve reported this missing item'
-            : ''}
+          {hasSubmittedFeedback.value ? t(`${tContext}.confirmation`) : ''}
         </output>
       </locator-icon-text>
       <diamond-collapse
@@ -116,7 +120,7 @@ export default function ReportMissingMaterial({
             htmlFor="report-missing-material-category"
             className="diamond-sr-only"
           >
-            Select a material
+            {t(`${tContext}.placeholder`)}
           </label>
           <diamond-input
             state={showCategoryError.value ? 'invalid' : undefined}
@@ -133,7 +137,7 @@ export default function ReportMissingMaterial({
                   : undefined
               }
             >
-              <option value="">Select a material...</option>
+              <option value="">{t(`${tContext}.placeholder`)}</option>
               {materialCategories.value.map((category) => (
                 <option key={category} value={category}>
                   {category}
@@ -148,13 +152,13 @@ export default function ReportMissingMaterial({
               className="text-color-negative diamond-text-size-sm diamond-spacing-top-xs"
               aria-live="polite"
             >
-              Please select a material
+              {t(`${tContext}.error`)}
             </p>
           )}
         </diamond-form-group>
         <diamond-button width="full-width">
           <button type="button" onClick={sendFeedback}>
-            Report missing item
+            {t(`${tContext}.cta`)}
           </button>
         </diamond-button>
       </diamond-collapse>
