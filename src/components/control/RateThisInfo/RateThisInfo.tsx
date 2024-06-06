@@ -1,21 +1,23 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useSignal } from '@preact/signals';
+import { useTranslation } from 'react-i18next';
 import '@etchteam/diamond-ui/control/Input/Input';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/composition/Collapse/Collapse';
 
 import '@/components/content/Icon/Icon';
+
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
 import { CustomElement } from '@/types/customElement';
 
 export default function RateThisInfo() {
+  const { t } = useTranslation();
+  const tContext = 'components.rateThisInfo';
   const rating = useSignal<'positive' | 'negative' | undefined>(undefined);
   const hasSubmittedFeedback = useSignal(false);
   const commentField = useFormValidation('comment');
   const commentOpen = !!rating.value && !hasSubmittedFeedback.value;
-  const ratingResult =
-    rating.value === 'positive' ? 'You like this!' : 'You dislike this!';
   const { recordEvent } = useAnalytics();
 
   function handleRatingChange(value: 'positive' | 'negative') {
@@ -49,8 +51,8 @@ export default function RateThisInfo() {
           <legend>
             <h2>
               {hasSubmittedFeedback.value
-                ? ratingResult
-                : 'How would you rate this information?'}
+                ? t(`${tContext}.result.${rating.value}`)
+                : t(`${tContext}.title`)}
             </h2>
           </legend>
           <div className="locator-rate-this-info__rating">
@@ -63,7 +65,7 @@ export default function RateThisInfo() {
                 disabled={hasSubmittedFeedback.value}
                 onChange={() => handleRatingChange('positive')}
               />
-              <locator-icon icon="thumb-up" label="Thumb up" />
+              <locator-icon icon="thumb-up" label={t(`${tContext}.thumbUp`)} />
             </label>
             <label>
               <input
@@ -74,25 +76,30 @@ export default function RateThisInfo() {
                 disabled={hasSubmittedFeedback.value}
                 onChange={() => handleRatingChange('negative')}
               />
-              <locator-icon icon="thumb-down" label="Thumb down" />
+              <locator-icon
+                icon="thumb-down"
+                label={t(`${tContext}.thumbDown`)}
+              />
             </label>
           </div>
         </fieldset>
         {!rating.value && (
           <p className="text-color-muted diamond-text-size-sm">
-            Your feedback will help to improve this service
+            {t(`${tContext}.help`)}
           </p>
         )}
         <diamond-collapse open={!!rating.value && !hasSubmittedFeedback.value}>
           <diamond-form-group className="locator-rate-this-info__comment diamond-spacing-bottom-md">
             <label htmlFor="rating-comment">
-              Please leave a comment to explain why.
+              {t(`${tContext}.comment.label`)}
             </label>
-            <diamond-input>
+            <diamond-input
+              state={commentField.valid.value ? undefined : 'invalid'}
+            >
               <textarea
                 id="rating-comment"
                 name="comment"
-                placeholder="Add your thoughts..."
+                placeholder={t(`${tContext}.comment.placeholder`)}
                 onBlur={(event) =>
                   commentField.handleInput(event.currentTarget?.value)
                 }
@@ -112,12 +119,12 @@ export default function RateThisInfo() {
                 className="text-color-negative diamond-text-size-sm diamond-spacing-top-xs"
                 aria-live="polite"
               >
-                This is required
+                {t(`${tContext}.comment.error`)}
               </p>
             )}
           </diamond-form-group>
           <diamond-button width="full-width">
-            <button type="submit">Send feedback</button>
+            <button type="submit">{t(`${tContext}.cta`)}</button>
           </diamond-button>
         </diamond-collapse>
         <output
@@ -126,7 +133,7 @@ export default function RateThisInfo() {
           htmlFor="rating-thumb-up rating-thumb-down rating-comment"
         >
           {hasSubmittedFeedback.value
-            ? 'Thank you, for sharing your thoughts.'
+            ? t(`${tContext}.result.confirmation`)
             : ''}
         </output>
       </form>

@@ -82,6 +82,23 @@
         "accessibilityLabel": "Accessibility Statement",
         "accessibilityLink": "https://www.recyclenow.com/accessibility-statement"
       }
+    },
+    "rateThisInfo": {
+      "title": "How would you rate this information?",
+      "thumbUp": "Thumb up",
+      "thumbDown": "Thumb down",
+      "help": "Your feedback will help to improve this service",
+      "cta": "Send feedback",
+      "comment": {
+        "label": "Please leave a comment to explain why.",
+        "placeholder": "Add your thoughts...",
+        "error": "Please enter a comment"
+      },
+      "result": {
+        "positive": "You like this!",
+        "negative": "You don’t like this!",
+        "confirmation": "Thank you, for sharing your thoughts."
+      }
     }
   },
   "error": {
