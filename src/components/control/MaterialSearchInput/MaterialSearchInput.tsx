@@ -224,9 +224,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
             aria-live="polite"
           >
             {materialNotFound
-              ? i18n.t('components.materialSearchInput.notFound', {
-                  query: materialNotFound,
-                })
+              ? i18n.t('components.materialSearchInput.notFound')
               : i18n.t('components.materialSearchInput.error')}
           </p>
         )}

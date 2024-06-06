@@ -31,7 +31,7 @@
     "materialSearchInput": {
       "placeholder": "Enter the name of an item…",
       "error": "Please enter the name of an item",
-      "notFound": "We couldn’t find a match for {{query}}"
+      "notFound": "We couldn’t find a match for this item. Please try using an alternative name for it."
     },
     "menu": {
       "whatDoYouWantToDo": "What do you want to do?",

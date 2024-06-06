@@ -31,7 +31,7 @@
     "materialSearchInput": {
       "placeholder": "Nodwch enw eitem…",
       "error": "Nodwch enw eitem i chwilio amdani",
-      "notFound": "Doedden ni ddim yn gallu dod o hyd i ateb i gyd-fynd â {{query}}"
+      "notFound": "Ni allem ddod o hyd i gyfatebiaeth ar gyfer yr eitem hon. Ceisiwch ddefnyddio enw arall ar ei gyfer."
     },
     "menu": {
       "whatDoYouWantToDo": "Beth hoffech chi ei wneud?",
