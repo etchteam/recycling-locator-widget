@@ -15,6 +15,7 @@ import '@/components/content/Icon/Icon';
 import '@/components/canvas/LoadingCard/LoadingCard';
 import '@/components/canvas/Hero/Hero';
 import '@/components/composition/Wrap/Wrap';
+import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import TipContent from '@/components/template/TipContent/TipContent';
 import getPropertiesByMaterial from '@/lib/getPropertiesByMaterial';
 import useAnalytics from '@/lib/useAnalytics';
@@ -84,6 +85,9 @@ function MaterialPageContent({
           </section>
           <section className="diamond-spacing-bottom-lg">
             <NearbyPlaces locations={locations} />
+          </section>
+          <section className="diamond-spacing-bottom-lg">
+            <RateThisInfo />
           </section>
         </locator-wrap>
       </diamond-enter>

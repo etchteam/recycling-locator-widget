@@ -25,6 +25,7 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
+import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import TipContent from '@/components/template/TipContent/TipContent';
 import getContainerList from '@/lib/getContainerList';
 import sortPropertyTypes from '@/lib/sortPropertyTypes';
@@ -148,6 +149,8 @@ function CollectionPageContent({
                 containerList={containerList}
                 search={search}
               />
+
+              <RateThisInfo />
             </locator-wrap>
           </diamond-section>
         </diamond-enter>

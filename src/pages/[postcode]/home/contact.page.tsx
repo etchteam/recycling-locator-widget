@@ -4,6 +4,7 @@ import { Await } from 'react-router-dom';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/composition/BorderedList/BorderedList';
+import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { LocalAuthority } from '@/types/locatorApi';
 
 import { useHomeRecyclingLoaderData } from './home.loader';
@@ -52,7 +53,7 @@ function HomeRecyclingContactPageContent({
         </dl>
       </locator-bordered-list>
       <hr />
-      <div className="diamond-spacing-top-sm diamond-text-size-sm">
+      <div className="diamond-spacing-top-sm diamond-spacing-bottom-md diamond-text-size-sm">
         <span className="text-color-muted">
           {t('common.updated')}:{' '}
           {new Intl.DateTimeFormat('en-GB').format(
@@ -60,6 +61,8 @@ function HomeRecyclingContactPageContent({
           )}
         </span>
       </div>
+
+      <RateThisInfo />
     </diamond-enter>
   );
 }
