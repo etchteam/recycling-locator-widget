@@ -50,7 +50,7 @@ function PropertyList({
         );
       })}
 
-      <RateThisInfo basePath={`/${postcode}/home`} />
+      <RateThisInfo />
     </diamond-enter>
   );
 }
