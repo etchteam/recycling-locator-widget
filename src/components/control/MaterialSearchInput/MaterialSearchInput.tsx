@@ -15,6 +15,7 @@ import '@etchteam/diamond-ui/control/Input/Input';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/content/Icon/Icon';
+import ReportMissingMaterial from '../ReportMissingMaterial/ReportMissingMaterial';
 import LocatorApi from '@/lib/LocatorApi';
 import i18n from '@/lib/i18n';
 import { CustomElement } from '@/types/customElement';
@@ -169,6 +170,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
                       type="reset"
                       onClick={() => {
                         this.inputValue.value = '';
+                        this.materialNotFound.value = null;
                         this.props.handleReset?.();
                       }}
                     >
@@ -220,13 +222,18 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
         {!valid && (
           <p
             id={`${this.props.inputId}-error`}
-            className="text-color-negative diamond-text-size-sm diamond-spacing-top-sm"
+            className="text-color-negative diamond-spacing-top-sm"
             aria-live="polite"
           >
             {materialNotFound
               ? i18n.t('components.materialSearchInput.notFound')
               : i18n.t('components.materialSearchInput.error')}
           </p>
+        )}
+        {materialNotFound && (
+          <ReportMissingMaterial
+            missingMaterial={this.materialNotFound.value}
+          />
         )}
       </>
     );

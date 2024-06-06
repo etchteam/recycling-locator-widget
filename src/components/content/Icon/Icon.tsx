@@ -33,7 +33,9 @@ export interface IconAttributes {
     | 'garden'
     | 'dry'
     | 'thumb-up'
-    | 'thumb-down';
+    | 'thumb-down'
+    | 'list-add'
+    | 'list-tick';
   readonly color?: 'primary' | 'muted' | 'positive' | 'negative';
   readonly label?: string;
 }
