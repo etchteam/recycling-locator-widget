@@ -1,19 +1,21 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useSignal } from '@preact/signals';
-import { Link } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Input/Input';
 import '@etchteam/diamond-ui/control/Button/Button';
+import '@etchteam/diamond-ui/composition/Collapse/Collapse';
 
 import '@/components/content/Icon/Icon';
 import useAnalytics from '@/lib/useAnalytics';
+import useFormValidation from '@/lib/useFormValidation';
 import { CustomElement } from '@/types/customElement';
 
-export default function RateThisInfo({
-  basePath,
-}: {
-  readonly basePath: string;
-}) {
+export default function RateThisInfo() {
   const rating = useSignal<'positive' | 'negative' | undefined>(undefined);
+  const hasSubmittedFeedback = useSignal(false);
+  const commentField = useFormValidation('comment');
+  const commentOpen = !!rating.value && !hasSubmittedFeedback.value;
+  const ratingResult =
+    rating.value === 'positive' ? 'You like this!' : 'You dislike this!';
   const { recordEvent } = useAnalytics();
 
   function handleRatingChange(value: 'positive' | 'negative') {
@@ -26,44 +28,108 @@ export default function RateThisInfo({
     });
   }
 
+  function handleSubmit(event: Event) {
+    event.preventDefault();
+    const feedback = new FormData(event.target as HTMLFormElement);
+
+    if (!feedback.get('comment')) {
+      commentField.valid.value = false;
+      return;
+    }
+
+    // Need somewhere to send this feedback to
+    console.log(feedback.get('rating'), feedback.get('comment'));
+    hasSubmittedFeedback.value = true;
+  }
+
   return (
     <locator-rate-this-info>
-      <fieldset>
-        <legend>
-          <h2>How would you rate this information?</h2>
-        </legend>
-        <div className="locator-rate-this-info__rating">
-          <label>
-            <input
-              type="radio"
-              id="rating-thumb-up"
-              name="rating"
-              value="1"
-              onChange={() => handleRatingChange('positive')}
-            />
-            <locator-icon icon="thumb-up" label="Thumb up" />
-          </label>
-          <label>
-            <input
-              type="radio"
-              id="rating-thumb-down"
-              name="rating"
-              value="-1"
-              onChange={() => handleRatingChange('negative')}
-            />
-            <locator-icon icon="thumb-down" label="Thumb down" />
-          </label>
-        </div>
-      </fieldset>
-      <output htmlFor="rating-thumb-up rating-thumb-down">
-        {rating.value && (
-          <p>
-            Please take a moment to{' '}
-            <Link to={`${basePath}/rating-${rating.value}`}>explain why</Link>
+      <form onSubmit={handleSubmit}>
+        <fieldset>
+          <legend>
+            <h2>
+              {hasSubmittedFeedback.value
+                ? ratingResult
+                : 'How would you rate this information?'}
+            </h2>
+          </legend>
+          <div className="locator-rate-this-info__rating">
+            <label>
+              <input
+                type="radio"
+                id="rating-thumb-up"
+                name="rating"
+                value="1"
+                disabled={hasSubmittedFeedback.value}
+                onChange={() => handleRatingChange('positive')}
+              />
+              <locator-icon icon="thumb-up" label="Thumb up" />
+            </label>
+            <label>
+              <input
+                type="radio"
+                id="rating-thumb-down"
+                name="rating"
+                value="-1"
+                disabled={hasSubmittedFeedback.value}
+                onChange={() => handleRatingChange('negative')}
+              />
+              <locator-icon icon="thumb-down" label="Thumb down" />
+            </label>
+          </div>
+        </fieldset>
+        {!rating.value && (
+          <p className="text-color-muted diamond-text-size-sm">
+            Your feedback will help to improve this service
           </p>
         )}
-      </output>
-      {!rating.value && <p>Your feedback will help to improve this service</p>}
+        <diamond-collapse open={!!rating.value && !hasSubmittedFeedback.value}>
+          <diamond-form-group className="locator-rate-this-info__comment diamond-spacing-bottom-md">
+            <label htmlFor="rating-comment">
+              Please leave a comment to explain why.
+            </label>
+            <diamond-input>
+              <textarea
+                id="rating-comment"
+                name="comment"
+                placeholder="Add your thoughts..."
+                onBlur={(event) =>
+                  commentField.handleInput(event.currentTarget?.value)
+                }
+                onInput={(event) =>
+                  commentField.handleBlur(event.currentTarget?.value)
+                }
+                disabled={!commentOpen}
+                aria-invalid={!commentField.valid.value}
+                aria-errormessage={
+                  !commentField.valid.value ? 'rating-comment-error' : undefined
+                }
+              ></textarea>
+            </diamond-input>
+            {!commentField.valid.value && (
+              <p
+                id="rating-comment-error"
+                className="text-color-negative diamond-text-size-sm diamond-spacing-top-xs"
+                aria-live="polite"
+              >
+                This is required
+              </p>
+            )}
+          </diamond-form-group>
+          <diamond-button width="full-width">
+            <button type="submit">Send feedback</button>
+          </diamond-button>
+        </diamond-collapse>
+        <output
+          name="result"
+          className="text-color-positive diamond-text-size-sm"
+          htmlFor="rating-thumb-up rating-thumb-down rating-comment"
+        >
+          {hasSubmittedFeedback.value
+            ? 'Thank you, for sharing your thoughts.'
+            : ''}
+        </output>
+      </form>
     </locator-rate-this-info>
   );
 }
