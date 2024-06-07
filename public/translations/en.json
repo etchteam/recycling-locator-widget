@@ -31,7 +31,7 @@
     "materialSearchInput": {
       "placeholder": "Enter the name of an item…",
       "error": "Please enter the name of an item",
-      "notFound": "We couldn’t find a match for {{query}}"
+      "notFound": "We couldn’t find a match for this item. Please try using an alternative name for it."
     },
     "menu": {
       "whatDoYouWantToDo": "What do you want to do?",
@@ -99,6 +99,13 @@
         "negative": "You don’t like this!",
         "confirmation": "Thank you, for sharing your thoughts."
       }
+    },
+    "reportMissingMaterial": {
+      "title": "If you think it should be added to this tool, please <button>select which material it is</button>.",
+      "placeholder": "Select a material...",
+      "error": "Please select a material",
+      "cta": "Report missing material",
+      "confirmation": "You’ve reported this missing item"
     }
   },
   "error": {

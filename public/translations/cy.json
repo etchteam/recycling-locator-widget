@@ -31,7 +31,7 @@
     "materialSearchInput": {
       "placeholder": "Nodwch enw eitem…",
       "error": "Nodwch enw eitem i chwilio amdani",
-      "notFound": "Doedden ni ddim yn gallu dod o hyd i ateb i gyd-fynd â {{query}}"
+      "notFound": "Ni allem ddod o hyd i gyfatebiaeth ar gyfer yr eitem hon. Ceisiwch ddefnyddio enw arall ar ei gyfer."
     },
     "menu": {
       "whatDoYouWantToDo": "Beth hoffech chi ei wneud?",
@@ -99,6 +99,13 @@
         "negative": "Dydych chi ddim yn hoffi hwn!",
         "confirmation": "Diolch i chi, am rannu eich syniadau."
       }
+    },
+    "reportMissingMaterial": {
+      "title": "Os credwch y dylid ei ychwanegu at yr offeryn hwn, <button>dewiswch pa ddeunydd ydyw</button>.",
+      "placeholder": "Dewiswch ddeunydd...",
+      "error": "Dewiswch ddeunydd os gwelwch yn dda",
+      "cta": "Rhoi gwybod am ddeunydd coll",
+      "confirmation": "Rydych chi wedi rhoi gwybod am yr eitem goll hon"
     }
   },
   "error": {

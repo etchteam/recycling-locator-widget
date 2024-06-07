@@ -39,7 +39,7 @@ export default function RateThisInfo() {
       return;
     }
 
-    // Need somewhere to send this feedback to
+    // @TODO: Need somewhere to send this feedback to
     console.log(feedback.get('rating'), feedback.get('comment'));
     hasSubmittedFeedback.value = true;
   }

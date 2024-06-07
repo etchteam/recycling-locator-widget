@@ -69,9 +69,6 @@ export default function MaterialSearchPage() {
                     submitting={form.submitting.value}
                     valid={form.valid.value}
                   ></MaterialSearchInput>
-                  <p className="diamond-text-size-sm">
-                    {t('material.search.help')}
-                  </p>
                 </diamond-form-group>
               </Form>
             </diamond-enter>
