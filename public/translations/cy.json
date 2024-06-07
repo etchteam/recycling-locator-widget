@@ -92,7 +92,7 @@
       "comment": {
         "label": "Gadewch sylw i egluro pam.",
         "placeholder": "Ychwanegwch eich meddyliau...",
-        "error": "Rhowch sylw"
+        "error": "Rhowch sylw gydag uchafswm o 250 nod"
       },
       "result": {
         "positive": "Rydych chi'n hoffi hyn!",
