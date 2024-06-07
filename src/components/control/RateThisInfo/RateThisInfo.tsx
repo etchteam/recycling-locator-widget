@@ -8,7 +8,6 @@ import '@etchteam/diamond-ui/composition/Collapse/Collapse';
 import '@/components/content/Icon/Icon';
 
 import useAnalytics from '@/lib/useAnalytics';
-import useFormValidation from '@/lib/useFormValidation';
 import { CustomElement } from '@/types/customElement';
 
 export default function RateThisInfo() {
@@ -16,14 +15,14 @@ export default function RateThisInfo() {
   const tContext = 'components.rateThisInfo';
   const rating = useSignal<'positive' | 'negative' | undefined>(undefined);
   const hasSubmittedFeedback = useSignal(false);
-  const commentField = useFormValidation('comment');
+  const comment = useSignal('');
+  const commentValid = useSignal(true);
   const commentOpen = !!rating.value && !hasSubmittedFeedback.value;
   const { recordEvent } = useAnalytics();
 
   function handleRatingChange(value: 'positive' | 'negative') {
     rating.value = value;
 
-    // Record rating changes in standard analytics for users that never submit an explanation
     recordEvent({
       category: 'Rating',
       action: value,
@@ -32,16 +31,31 @@ export default function RateThisInfo() {
 
   function handleSubmit(event: Event) {
     event.preventDefault();
-    const feedback = new FormData(event.target as HTMLFormElement);
 
-    if (!feedback.get('comment')) {
-      commentField.valid.value = false;
+    if (comment.value.length === 0 || comment.value.length > 250) {
+      commentValid.value = false;
       return;
     }
 
-    // @TODO: Need somewhere to send this feedback to
-    console.log(feedback.get('rating'), feedback.get('comment'));
+    recordEvent({
+      category: 'Rating::Feedback',
+      action: `Rating: ${rating.value}, Comment: ${comment.value}`,
+    });
+
     hasSubmittedFeedback.value = true;
+  }
+
+  function handleCommentBlur(value: string) {
+    comment.value = value;
+    commentValid.value = Boolean(value) && value.length <= 250;
+  }
+
+  function handleCommentInput(value: string) {
+    comment.value = value;
+
+    if (value && value.length <= 250) {
+      commentValid.value = true;
+    }
   }
 
   return (
@@ -93,27 +107,34 @@ export default function RateThisInfo() {
             <label htmlFor="rating-comment">
               {t(`${tContext}.comment.label`)}
             </label>
-            <diamond-input
-              state={commentField.valid.value ? undefined : 'invalid'}
-            >
+            <diamond-input state={commentValid.value ? undefined : 'invalid'}>
               <textarea
                 id="rating-comment"
                 name="comment"
                 placeholder={t(`${tContext}.comment.placeholder`)}
                 onBlur={(event) =>
-                  commentField.handleInput(event.currentTarget?.value)
+                  handleCommentBlur(event.currentTarget?.value)
                 }
                 onInput={(event) =>
-                  commentField.handleBlur(event.currentTarget?.value)
+                  handleCommentInput(event.currentTarget?.value)
                 }
                 disabled={!commentOpen}
-                aria-invalid={!commentField.valid.value}
+                aria-invalid={!commentValid.value}
                 aria-errormessage={
-                  !commentField.valid.value ? 'rating-comment-error' : undefined
+                  !commentValid.value ? 'rating-comment-error' : undefined
                 }
               ></textarea>
+              <span
+                className={
+                  comment.value.length > 250
+                    ? 'text-color-negative'
+                    : 'text-color-muted'
+                }
+              >
+                {comment.value.length} / 250
+              </span>
             </diamond-input>
-            {!commentField.valid.value && (
+            {!commentValid.value && (
               <p
                 id="rating-comment-error"
                 className="text-color-negative diamond-text-size-sm diamond-spacing-top-xs"
