@@ -106,5 +106,20 @@ locator-rate-this-info {
       font-size: var(--diamond-font-size-sm);
       justify-content: center;
     }
+
+    diamond-input {
+      /* extra space for the count */
+      padding-block-end: var(--diamond-spacing);
+      /* position context for the count */
+      position: relative;
+    }
+
+    span {
+      bottom: 0;
+      font-size: var(--diamond-font-size-xs);
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+    }
   }
 }

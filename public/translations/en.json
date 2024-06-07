@@ -92,7 +92,7 @@
       "comment": {
         "label": "Please leave a comment to explain why.",
         "placeholder": "Add your thoughts...",
-        "error": "Please enter a comment"
+        "error": "Enter a comment with a maximum of 250 characters"
       },
       "result": {
         "positive": "You like this!",

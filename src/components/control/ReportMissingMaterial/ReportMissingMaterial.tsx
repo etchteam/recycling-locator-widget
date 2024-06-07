@@ -12,6 +12,7 @@ import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 
 import LocatorApi from '@/lib/LocatorApi';
+import useAnalytics from '@/lib/useAnalytics';
 import { CustomElement } from '@/types/customElement';
 import { MaterialCategory } from '@/types/locatorApi';
 
@@ -27,6 +28,7 @@ export default function ReportMissingMaterial({
   const selectedCategory = useSignal<string | null>(null);
   const showCategoryError = useSignal(false);
   const hasSubmittedFeedback = useSignal(false);
+  const { recordEvent } = useAnalytics();
 
   useEffect(() => {
     // Reset the form state when the missing material changes
@@ -63,8 +65,11 @@ export default function ReportMissingMaterial({
       return;
     }
 
-    // @TODO: Need somewhere to send this feedback to
-    console.log(missingMaterial, selectedCategory.value);
+    recordEvent({
+      category: 'Material::Feedback',
+      action: `Missing material: ${missingMaterial}, Suggested category: ${selectedCategory.value}`,
+    });
+
     hasSubmittedFeedback.value = true;
     feedbackFormOpen.value = false;
   }, []);
