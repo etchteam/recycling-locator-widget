@@ -68,10 +68,8 @@ export default function MaterialSearchPage() {
                     handleInput={form.handleInput}
                     submitting={form.submitting.value}
                     valid={form.valid.value}
+                    includeFeedbackForm
                   ></MaterialSearchInput>
-                  <p className="diamond-text-size-sm">
-                    {t('material.search.help')}
-                  </p>
                 </diamond-form-group>
               </Form>
             </diamond-enter>

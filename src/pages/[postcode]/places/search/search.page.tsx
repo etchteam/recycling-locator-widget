@@ -49,6 +49,7 @@ export default function PlacesSearchPage() {
                 handleInput={form.handleInput}
                 submitting={form.submitting.value}
                 valid={form.valid.value}
+                includeFeedbackForm
               ></MaterialSearchInput>
             </diamond-form-group>
           </Form>

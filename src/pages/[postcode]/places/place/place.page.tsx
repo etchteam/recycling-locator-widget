@@ -11,6 +11,7 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@/components/content/Icon/Icon';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import '@/components/control/Details/Details';
+import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import materialNameSearch from '@/lib/materialNameSearch';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
@@ -188,7 +189,18 @@ export default function PlacePage() {
   return (
     <Suspense fallback={<Loading />}>
       <Await resolve={locationPromise}>
-        {(location) => <PlacePageContent location={location} />}
+        {(location) => (
+          <>
+            <PlacePageContent location={location} />
+            <diamond-enter
+              className="diamond-spacing-top-md"
+              type="fade"
+              delay={0.25}
+            >
+              <RateThisInfo />
+            </diamond-enter>
+          </>
+        )}
       </Await>
     </Suspense>
   );

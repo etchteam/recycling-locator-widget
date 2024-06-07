@@ -31,7 +31,11 @@ export interface IconAttributes {
     | 'menu'
     | 'food'
     | 'garden'
-    | 'dry';
+    | 'dry'
+    | 'thumb-up'
+    | 'thumb-down'
+    | 'list-add'
+    | 'list-tick';
   readonly color?: 'primary' | 'muted' | 'positive' | 'negative';
   readonly label?: string;
 }

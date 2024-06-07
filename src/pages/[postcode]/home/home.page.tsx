@@ -6,6 +6,7 @@ import '@etchteam/diamond-ui/canvas/Card/Card';
 
 import '@/components/canvas/LoadingCard/LoadingCard';
 import '@/components/content/Container/Container';
+import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
 import sortPropertyTypes from '@/lib/sortPropertyTypes';
 import { LocalAuthority } from '@/types/locatorApi';
@@ -48,6 +49,8 @@ function PropertyList({
           </Link>
         );
       })}
+
+      <RateThisInfo />
     </diamond-enter>
   );
 }

@@ -16,6 +16,10 @@
   color: var(--color-red-dark);
 }
 
+.text-color-positive {
+  color: var(--color-green-dark);
+}
+
 .layer-one {
   position: relative;
   z-index: var(--layer-one);
