@@ -29,6 +29,7 @@ interface MaterialSearchInputProps {
   readonly defaultValue?: string;
   readonly valid?: boolean;
   readonly autofocus?: boolean;
+  readonly includeFeedbackForm?: boolean;
   readonly handleBlur?: (value: string) => void;
   readonly handleInput?: (value: string) => void;
   readonly handleReset?: () => void;
@@ -230,7 +231,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
               : i18n.t('components.materialSearchInput.error')}
           </p>
         )}
-        {materialNotFound && (
+        {materialNotFound && this.props.includeFeedbackForm && (
           <ReportMissingMaterial
             missingMaterial={this.materialNotFound.value}
           />

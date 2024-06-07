@@ -150,6 +150,7 @@ export default function PostcodePage() {
                 handleInput={form.handleInput}
                 submitting={form.submitting.value}
                 valid={form.valid.value}
+                includeFeedbackForm
               ></MaterialSearchInput>
             </Form>
           </diamond-enter>
