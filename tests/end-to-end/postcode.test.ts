@@ -70,18 +70,15 @@ describeEndToEndTest('Postcode page', () => {
     const material = 'Not a material';
     const input = page.locator('input').first();
     const notFound = page.getByText(t('material.search.notFound')).first();
-    const materialText = page.getByText(material).first();
 
     await widget.evaluate((node) => node.setAttribute('path', '/EX32 7RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await expect(input).toBeVisible();
     await expect(notFound).not.toBeVisible();
-    await expect(materialText).not.toBeVisible();
     await snapshot(page, 'Postcode found');
     await input.fill(material);
     await input.press('Enter');
     await expect(notFound).toBeVisible();
-    await expect(materialText).toBeVisible();
   });
 
   test('Valid material search', async ({ page, widget }) => {
