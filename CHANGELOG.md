@@ -1,3 +1,27 @@
+## [1.47.0](https://github.com/etchteam/recycling-locator/compare/v1.46.0...v1.47.0) (2024-06-12)
+
+
+### Features
+
+* add the rating comment form ([f43833b](https://github.com/etchteam/recycling-locator/commit/f43833bdb5103d09c18a2c580406490d6f5c1e7c))
+* conditionally show the material feedback ([534f755](https://github.com/etchteam/recycling-locator/commit/534f755b62d79a14ed079580bde9c6d2ea5b8e96))
+* cy error translation ([b883ee3](https://github.com/etchteam/recycling-locator/commit/b883ee3f409c92dd668cabae95ec61f417425f43))
+* limit comment length and send feedback as an event ([cb1f3f9](https://github.com/etchteam/recycling-locator/commit/cb1f3f9a32e62b84404859223416adeb80c713d6))
+* rate all the info ([4dfd7f1](https://github.com/etchteam/recycling-locator/commit/4dfd7f1fada6f1ff8a8587aae740ae901be774cd))
+* rate this info component ([6c25859](https://github.com/etchteam/recycling-locator/commit/6c258595c61bf95812c07b2b60a06efedc017543))
+* rate this info i18n ([09655af](https://github.com/etchteam/recycling-locator/commit/09655af7df64988b5b6bd26958bc2144edcc8279))
+* report missing material component ([46cd2db](https://github.com/etchteam/recycling-locator/commit/46cd2dbb7c89e1e4ecdd24bc42e7784c12616675))
+* report missing material i18n ([e823e2b](https://github.com/etchteam/recycling-locator/commit/e823e2b57a605caa96603460ea28c90b51a59079))
+* send missing materials as analytics events ([592ec46](https://github.com/etchteam/recycling-locator/commit/592ec46b86af1428a68aa69354c1246be83e0209))
+* update the material not found error message ([6e906aa](https://github.com/etchteam/recycling-locator/commit/6e906aa600fa152e58f29394ec955b0d0d4cb858))
+
+
+### Bug Fixes
+
+* dependabot upgraded storybook ([40a1a42](https://github.com/etchteam/recycling-locator/commit/40a1a42974ee9f49394bd894b3c34454edbd14be))
+* linting by downgrading eslint ([883b988](https://github.com/etchteam/recycling-locator/commit/883b988873e421ca54e6b9ca96d9b865306509b0))
+* postcode start page test ([cf3c185](https://github.com/etchteam/recycling-locator/commit/cf3c185659c32c33cf35386869987bd881b17718))
+
 ## [1.46.0](https://github.com/etchteam/recycling-locator/compare/v1.45.0...v1.46.0) (2024-05-28)
 
 
