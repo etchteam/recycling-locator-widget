@@ -1,3 +1,10 @@
+## [1.48.0](https://github.com/etchteam/recycling-locator/compare/v1.47.0...v1.48.0) (2024-06-18)
+
+
+### Features
+
+* retain search context between places list and details ([b8c8ec4](https://github.com/etchteam/recycling-locator/commit/b8c8ec42902fa1e569ef9c76525970224bc14bc6))
+
 ## [1.47.0](https://github.com/etchteam/recycling-locator/compare/v1.46.0...v1.47.0) (2024-06-12)
 
 
