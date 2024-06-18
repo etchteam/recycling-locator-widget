@@ -187,7 +187,7 @@ export function PlacesMapPageContent({
               <diamond-grid-item small-mobile="6">
                 <diamond-button width="full-width" variant="primary" size="sm">
                   <Link
-                    to={`/${postcode}/places/${activeLocationName}/${activeLocationPostcode}`}
+                    to={`/${postcode}/places/${activeLocationName}/${activeLocationPostcode}?${searchParams.toString()}`}
                   >
                     {t('actions.viewDetails')}
                   </Link>
