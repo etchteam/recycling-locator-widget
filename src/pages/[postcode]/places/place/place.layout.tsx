@@ -2,7 +2,14 @@ import { ComponentChildren } from 'preact';
 import { Suspense } from 'preact/compat';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Await, Link, NavLink, Outlet, useParams } from 'react-router-dom';
+import {
+  Await,
+  Link,
+  NavLink,
+  Outlet,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -19,8 +26,66 @@ import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import directions from '@/lib/directions';
 import useAnalytics from '@/lib/useAnalytics';
 import useScrollRestoration from '@/lib/useScrollRestoration';
+import { Location } from '@/types/locatorApi';
 
 import { usePlaceLoaderData } from './place.loader';
+
+function PlaceMap({ location }: { readonly location: Location }) {
+  const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
+  const { postcode } = useParams();
+  const { recordEvent } = useAnalytics();
+
+  const mapSearchParams = new URLSearchParams(searchParams);
+  mapSearchParams.set('lat', String(location.latitude));
+  mapSearchParams.set('lng', String(location.longitude));
+  mapSearchParams.set('activeLocation', location.id);
+  const mapUrl = `/${postcode}/places/map?${mapSearchParams.toString()}`;
+
+  return (
+    <PlacesMap
+      latitude={location.latitude}
+      longitude={location.longitude}
+      locations={[location]}
+      activeLocationId={location.id}
+      static
+    >
+      <Link to={mapUrl} aria-label={t('actions.showMap')}>
+        <locator-places-map-scrim />
+      </Link>
+      <locator-places-map-card>
+        <diamond-grid>
+          <diamond-grid-item small-mobile="6">
+            <diamond-button width="full-width" size="sm">
+              <Link to={mapUrl}>
+                <locator-icon icon="map" />
+                {t('actions.showMap')}
+              </Link>
+            </diamond-button>
+          </diamond-grid-item>
+          <diamond-grid-item small-mobile="6">
+            <diamond-button width="full-width" size="sm">
+              <a
+                href={directions(postcode, location.address)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  recordEvent({
+                    category: 'PlaceDetails::Directions',
+                    action: location.address,
+                  });
+                }}
+              >
+                {t('actions.directions')}
+                <locator-icon icon="external" />
+              </a>
+            </diamond-button>
+          </diamond-grid-item>
+        </diamond-grid>
+      </locator-places-map-card>
+    </PlacesMap>
+  );
+}
 
 export default function PlaceLayout({
   children,
@@ -28,9 +93,9 @@ export default function PlaceLayout({
   readonly children?: ComponentChildren;
 }) {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
   const { postcode, placeName, placePostcode } = useParams();
   const { location: locationPromise } = usePlaceLoaderData();
-  const { recordEvent } = useAnalytics();
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
   const safePlaceName = encodeURIComponent(placeName);
@@ -46,7 +111,10 @@ export default function PlaceLayout({
         <locator-header-content>
           <locator-header-title>
             <diamond-button>
-              <Link to={`/${postcode}/places`} unstable_viewTransition>
+              <Link
+                to={`/${postcode}/places?${searchParams.toString()}`}
+                unstable_viewTransition
+              >
                 <locator-icon icon="arrow-left" label="Back"></locator-icon>
               </Link>
             </diamond-button>
@@ -63,7 +131,7 @@ export default function PlaceLayout({
             <ul>
               <li>
                 <NavLink
-                  to={`/${postcode}/places/${safePlaceName}/${placePostcode}`}
+                  to={`/${postcode}/places/${safePlaceName}/${placePostcode}?${searchParams.toString()}`}
                   unstable_viewTransition
                   end
                 >
@@ -72,7 +140,7 @@ export default function PlaceLayout({
               </li>
               <li>
                 <NavLink
-                  to={`/${postcode}/places/${safePlaceName}/${placePostcode}/details`}
+                  to={`/${postcode}/places/${safePlaceName}/${placePostcode}/details?${searchParams.toString()}`}
                   unstable_viewTransition
                 >
                   {t('place.nav.details')}
@@ -93,52 +161,7 @@ export default function PlaceLayout({
           <Await resolve={locationPromise}>
             {(location) =>
               location?.latitude ? (
-                <PlacesMap
-                  latitude={location.latitude}
-                  longitude={location.longitude}
-                  locations={[location]}
-                  activeLocationId={location.id}
-                  static
-                >
-                  <Link
-                    to={`/${postcode}/places/map?lat=${location.latitude}&lng=${location.longitude}&activeLocation=${location.id}`}
-                    aria-label={t('actions.showMap')}
-                  >
-                    <locator-places-map-scrim />
-                  </Link>
-                  <locator-places-map-card>
-                    <diamond-grid>
-                      <diamond-grid-item small-mobile="6">
-                        <diamond-button width="full-width" size="sm">
-                          <Link
-                            to={`/${postcode}/places/map?lat=${location.latitude}&lng=${location.longitude}&activeLocation=${location.id}`}
-                          >
-                            <locator-icon icon="map" />
-                            {t('actions.showMap')}
-                          </Link>
-                        </diamond-button>
-                      </diamond-grid-item>
-                      <diamond-grid-item small-mobile="6">
-                        <diamond-button width="full-width" size="sm">
-                          <a
-                            href={directions(postcode, location.address)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => {
-                              recordEvent({
-                                category: 'PlaceDetails::Directions',
-                                action: location.address,
-                              });
-                            }}
-                          >
-                            {t('actions.directions')}
-                            <locator-icon icon="external" />
-                          </a>
-                        </diamond-button>
-                      </diamond-grid-item>
-                    </diamond-grid>
-                  </locator-places-map-card>
-                </PlacesMap>
+                <PlaceMap location={location} />
               ) : (
                 <locator-map-svg></locator-map-svg>
               )

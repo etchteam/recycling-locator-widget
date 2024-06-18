@@ -94,6 +94,8 @@ function Places({
   const currentPage = limit / 30;
   const maxLimit = 120;
   const showLoadMore = showLocations && count >= limit && limit !== maxLimit;
+  const locationSearchParams = new URLSearchParams(searchParams);
+  locationSearchParams.set('page', String(currentPage));
 
   const handleResetSearch = () => {
     searchParams.delete('materials');
@@ -150,7 +152,7 @@ function Places({
                   return (
                     <li key={`${location.id}`}>
                       <Link
-                        to={`/${postcode}/places/${locationName}/${locationPostcode}`}
+                        to={`/${postcode}/places/${locationName}/${locationPostcode}?${locationSearchParams.toString()}`}
                       >
                         <diamond-enter type="fade">
                           <diamond-card border radius>
