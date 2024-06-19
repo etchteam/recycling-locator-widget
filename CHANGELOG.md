@@ -1,3 +1,10 @@
+## [1.48.1](https://github.com/etchteam/recycling-locator/compare/v1.48.0...v1.48.1) (2024-06-19)
+
+
+### Bug Fixes
+
+* increase limit for nearby hwrc search ([442f823](https://github.com/etchteam/recycling-locator/commit/442f8232dbc4ebd4ea911b47d4f39bf0453c428e))
+
 ## [1.48.0](https://github.com/etchteam/recycling-locator/compare/v1.47.0...v1.48.0) (2024-06-18)
 
 
