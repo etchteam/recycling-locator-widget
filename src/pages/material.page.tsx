@@ -24,18 +24,18 @@ async function getMaterialsOrCategoryNameById(
       await LocatorApi.get<MaterialWithCategory[]>('materials');
 
     if (category) {
-      const materialWithCategory = materialData.find(
-        (m) => m.category.id == category,
+      const foundMaterialWithCategory = materialData.find(
+        (m) => String(m.category.id) === category,
       );
-      return materialWithCategory.category.name;
+      return foundMaterialWithCategory?.category?.name ?? '';
     }
 
     // The user can pass multiple materials separated by commas
     // But we have no way to form a sensible search term from that
     // So we'll just use the first material instead
     const materialId = materials.split(',')[0];
-    const material = materialData.find((m) => materialId == m.id);
-    return material.name;
+    const foundMaterial = materialData.find((m) => String(m.id) === materialId);
+    return foundMaterial?.name ?? '';
   } catch (error) {
     Sentry.captureException(error, {
       tags: { component: 'MaterialStartPage' },
