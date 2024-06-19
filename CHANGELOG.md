@@ -1,3 +1,10 @@
+## [1.49.0](https://github.com/etchteam/recycling-locator/compare/v1.48.1...v1.49.0) (2024-06-19)
+
+
+### Features
+
+* populate material search term based on ID ([7d0e76a](https://github.com/etchteam/recycling-locator/commit/7d0e76aa50bcdb3d68b230f80c9fe18b0d080252))
+
 ## [1.48.1](https://github.com/etchteam/recycling-locator/compare/v1.48.0...v1.48.1) (2024-06-19)
 
 
