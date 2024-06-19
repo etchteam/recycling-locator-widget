@@ -11,7 +11,9 @@ export default async function homeRecyclingCentreLoader({
   params,
 }: LoaderFunctionArgs) {
   const postcode = params.postcode;
-  const locations = LocatorApi.get<LocationsResponse>(`locations/${postcode}`);
+  const locations = LocatorApi.get<LocationsResponse>(
+    `locations/${postcode}?limit=120&radius=25`,
+  );
 
   return {
     locations: locations,
