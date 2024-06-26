@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser';
 import { Suspense, lazy } from 'preact/compat';
 import register from 'preact-custom-element';
 
@@ -41,7 +42,14 @@ export interface IconAttributes {
 }
 
 export default function Icon({ icon, label }: IconAttributes) {
-  const IconSvg = lazy(() => import(`./svg/${icon}.svg?react`));
+  const IconSvg = lazy(() => {
+    return import(`./svg/${icon}.svg?react`).catch((error) => {
+      Sentry.captureException(error, {
+        tags: { component: 'IconSvg', iconName: icon },
+      });
+      return Promise.resolve({ default: BlankSvg });
+    });
+  });
 
   return (
     <Suspense fallback={BlankSvg}>

@@ -48,7 +48,7 @@ export type ContainerName =
   | 'Reusable Sack'
   | 'Non-Reusable Sack'
   | 'Householder Provided Carrier Bag'
-  | 'Trollibox'
+  | 'Trolibocs'
   | 'Wheeled Bin';
 
 export interface Container {

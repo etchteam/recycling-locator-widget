@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser';
 import { Suspense, lazy } from 'preact/compat';
 import register from 'preact-custom-element';
 
@@ -24,7 +25,7 @@ const containerNameToSvgName: { [key in ContainerName]: string } = {
   'Reusable Sack': 'sack',
   'Non-Reusable Sack': 'sack',
   'Wheeled Bin': 'wheeled-bin',
-  Trollibox: 'trollibox',
+  Trolibocs: 'trolibocs',
 };
 
 function ContainerSvg({
@@ -38,9 +39,16 @@ function ContainerSvg({
     '--body-colour': bodyColour,
   };
 
-  const ContainerIconSvg = lazy(
-    () => import(`./svg/${containerNameToSvgName[name]}.svg?react`),
-  );
+  const ContainerIconSvg = lazy(() => {
+    return import(`./svg/${containerNameToSvgName[name]}.svg?react`).catch(
+      (error) => {
+        Sentry.captureException(error, {
+          tags: { component: 'ContainerSvg', containerName: name },
+        });
+        return Promise.resolve({ default: BlankSvg });
+      },
+    );
+  });
 
   return (
     <Suspense fallback={BlankSvg}>
