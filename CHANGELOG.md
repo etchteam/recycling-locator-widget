@@ -1,3 +1,10 @@
+## [1.49.1](https://github.com/etchteam/recycling-locator/compare/v1.49.0...v1.49.1) (2024-06-26)
+
+
+### Bug Fixes
+
+* missing trolibocs svg crashing the app ([c01fc29](https://github.com/etchteam/recycling-locator/commit/c01fc2958a646c8f95f402d9f48c43bca7ea8be9))
+
 ## [1.49.0](https://github.com/etchteam/recycling-locator/compare/v1.48.1...v1.49.0) (2024-06-19)
 
 
