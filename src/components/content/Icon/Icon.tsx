@@ -42,6 +42,10 @@ export interface IconAttributes {
 }
 
 export default function Icon({ icon, label }: IconAttributes) {
+  if (!icon) {
+    return null;
+  }
+
   const IconSvg = lazy(() => {
     return import(`./svg/${icon}.svg?react`).catch((error) => {
       Sentry.captureException(error, {

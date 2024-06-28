@@ -41,7 +41,7 @@ export default function RootLayout() {
   // this is delayed by 50ms to give the outer page time to add an event listener
   setTimeout(() => {
     const host = document.querySelector('recycling-locator');
-    host.dispatchEvent(new CustomEvent('ready'));
+    host?.dispatchEvent(new CustomEvent('ready'));
   }, 50);
 
   return <Outlet />;
