@@ -1,3 +1,11 @@
+## [1.49.2](https://github.com/etchteam/recycling-locator/compare/v1.49.1...v1.49.2) (2024-06-28)
+
+
+### Bug Fixes
+
+* call dispatchEvent on undefined ([07442f1](https://github.com/etchteam/recycling-locator/commit/07442f167c3187aff4d2087121ae07cb353ef5a0))
+* undefined icon ([120a707](https://github.com/etchteam/recycling-locator/commit/120a707adc9cf954b20f3f7e87255511b1333adc))
+
 ## [1.49.1](https://github.com/etchteam/recycling-locator/compare/v1.49.0...v1.49.1) (2024-06-26)
 
 
