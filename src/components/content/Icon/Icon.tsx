@@ -42,7 +42,7 @@ export interface IconAttributes {
 }
 
 export default function Icon({ icon, label }: IconAttributes) {
-  if (!icon) {
+  if (!icon || (icon as string) === 'undefined') {
     return null;
   }
 
