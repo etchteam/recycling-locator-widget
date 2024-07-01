@@ -1,3 +1,10 @@
+## [1.49.3](https://github.com/etchteam/recycling-locator/compare/v1.49.2...v1.49.3) (2024-07-01)
+
+
+### Bug Fixes
+
+* missing icon alerts attempt 2 ([ca4992c](https://github.com/etchteam/recycling-locator/commit/ca4992c4b85ac44f3ef1b4fc502f1fc0b460ddd3))
+
 ## [1.49.2](https://github.com/etchteam/recycling-locator/compare/v1.49.1...v1.49.2) (2024-06-28)
 
 
