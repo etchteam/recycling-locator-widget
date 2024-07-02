@@ -44,8 +44,10 @@ async function handleRedirect(formData: FormData, path = '') {
         : 'locator.recyclenow.com';
     const url = new URL(`https://${domain}${route}`);
     url.searchParams.set('locale', locale);
+    // Open the standalone app in a new tab
     window.open(url, '_blank').focus();
-    return new Response(null, { status: 204 });
+    // Send the user back to the same page on the current tab
+    return redirect(path);
   }
 
   return redirect(route);
@@ -66,6 +68,7 @@ export async function homeRecyclingStartAction({
 export async function materialStartAction({ request }: ActionFunctionArgs) {
   try {
     const formData = await request.formData();
+    console.log(formData.get('materials'));
     const searchParams = mapSearchParams(
       ['materials', 'category', 'search'],
       formData,
