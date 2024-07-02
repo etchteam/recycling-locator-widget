@@ -68,7 +68,6 @@ export async function homeRecyclingStartAction({
 export async function materialStartAction({ request }: ActionFunctionArgs) {
   try {
     const formData = await request.formData();
-    console.log(formData.get('materials'));
     const searchParams = mapSearchParams(
       ['materials', 'category', 'search'],
       formData,
