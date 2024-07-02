@@ -1,3 +1,10 @@
+## [1.49.4](https://github.com/etchteam/recycling-locator/compare/v1.49.3...v1.49.4) (2024-07-02)
+
+
+### Bug Fixes
+
+* lost search params on start page ([3b0d508](https://github.com/etchteam/recycling-locator/commit/3b0d5088ecce09a82453bcaa1c6c3a511f8bf0dc))
+
 ## [1.49.3](https://github.com/etchteam/recycling-locator/compare/v1.49.2...v1.49.3) (2024-07-01)
 
 
