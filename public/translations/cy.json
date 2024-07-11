@@ -262,10 +262,10 @@
     "hwrc": {
       "title": "Mynd ag eitemau i Ganolfan Ailgylchu yn eich ardal",
       "content": "{{ count }} Canolfan Ailgylchu o fewn 25 milltir",
-      "content_zero": "Dim Canolfannau Ailgylchu o fewn 25 milltir",
+      "content_zero": "Ni allem ddod o hyd i unrhyw Ganolfannau Ailgylchu o fewn 25 milltir.",
       "content_one": "1 Canolfan Ailgylchu o fewn 25 milltir",
       "contentThirtyPlus": "30+ Canolfan Ailgylchu o fewn 25 milltir",
-      "info": "Mae rhai Canolfannau Ailgylchu ar agor i breswylwyr lleol yn unig. Gwiriwch cyn ichi wneud y siwrne.",
+      "info": "Mae rhai Canolfannau Ailgylchu ar agor i breswylwyr lleol yn unig, ac efallai y bydd angen drefnu apwyntiad ymlaen llaw a dangos prawf o gyfeiriad wrth gyrraedd. Gwiriwch cyn i chi wneud eich taith.",
       "nearbyPlaces": {
         "title": "Ailgylchu mewn lle cyfagos",
         "content": "{{count}} lle o fewn 25 milltir",
@@ -275,7 +275,7 @@
       }
     },
     "contact": {
-      "title": "Mwy o wybodaeth am y gwasanaethau yn eich ardal chi.",
+      "title": "Dewch o hyd i ragor o wybodaeth am wasanaethau casgliadau ailgylchu eich cartref.",
       "website": "Gwefan",
       "phone": "Ffôn",
       "address": "Cyfeiriad",
@@ -287,7 +287,8 @@
           "nad oes gennych gynhwysydd",
           "ydych yn ansicr pa un i’w ddefnyddio"
         ],
-        "paragraphTwo": "Bydd y cyngor hefyd yn gallu dweud wrthych chi pa bryd mae pob casgliad wedi’i drefnu."
+        "paragraphTwo": "Bydd y cyngor hefyd yn gallu dweud wrthych chi pa bryd mae pob casgliad wedi’i drefnu.",
+        "paragraphThree": "Cysylltwch â Chanolfannau Ailgylchu’n uniongyrchol i gael gwybodaeth am ei hamseroedd agor ac unrhyw gyfyngiadau."
       }
     },
     "error": {
