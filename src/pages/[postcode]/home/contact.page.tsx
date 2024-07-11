@@ -48,6 +48,7 @@ function HomeRecyclingContactPageContent({
                 ))}
               </ul>
               <p>{t(`${tContext}.notes.paragraphTwo`)}</p>
+              <p>{t(`${tContext}.notes.paragraphThree`)}</p>
             </dd>
           </div>
         </dl>

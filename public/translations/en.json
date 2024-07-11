@@ -275,19 +275,20 @@
       }
     },
     "contact": {
-      "title": "Find more information about the services in your area.",
+      "title": "Find more information about your home collection service.",
       "website": "Website",
       "phone": "Phone",
       "address": "Address",
       "notes": {
         "title": "Notes",
-        "paragraphOne": "Please contact your council if you:",
+        "paragraphOne": "Contact your council if you:",
         "list": [
           "are new to the area",
           "do not have a bin",
           "are unsure which one to use"
         ],
-        "paragraphTwo": "They will also be able to tell you when each collection is scheduled."
+        "paragraphTwo": "They will also be able to tell you when each collection is scheduled.",
+        "paragraphThree": "Please contact Recycling Centres directly for information on opening times and restrictions."
       }
     },
     "error": {
