@@ -1,3 +1,12 @@
+## [1.50.0](https://github.com/etchteam/recycling-locator/compare/v1.49.4...v1.50.0) (2024-07-11)
+
+
+### Features
+
+* adjust empty hwrc result copy, fixes WRAP-674 ([c656dce](https://github.com/etchteam/recycling-locator/commit/c656dcea4275acef11273b1db4039cb0c58f59e5))
+* adjust home recycling contact copy, fixes WRAP-646 ([b68c92f](https://github.com/etchteam/recycling-locator/commit/b68c92fa7bebfb4a31f15a8a2796f5c5d6c55593))
+* adjust hwrc info copy, fixes WRAP-645 ([fa40bda](https://github.com/etchteam/recycling-locator/commit/fa40bda55a84290e157679d8ba010d5c32a6077e))
+
 ## [1.49.4](https://github.com/etchteam/recycling-locator/compare/v1.49.3...v1.49.4) (2024-07-02)
 
 
