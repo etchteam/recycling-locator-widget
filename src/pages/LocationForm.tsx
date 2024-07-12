@@ -66,7 +66,7 @@ export default function LocationForm({
         (resolve, reject) => {
           navigator.geolocation.getCurrentPosition(
             ({ coords }) => resolve(coords),
-            (error) => reject(error),
+            (error) => reject(new Error(error?.message ?? 'Geolocation error')),
           );
         },
       );
