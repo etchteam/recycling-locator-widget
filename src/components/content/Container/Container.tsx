@@ -34,6 +34,10 @@ function ContainerSvg({
   'body-colour': bodyColour,
   label,
 }: ContainerSvgAttributes) {
+  if (!name || (name as string) === 'undefined') {
+    return null;
+  }
+
   const cssVariables = {
     '--lid-colour': lidColour ?? 'transparent',
     '--body-colour': bodyColour,
