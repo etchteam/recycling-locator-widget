@@ -10,7 +10,7 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/canvas/ContextHeader/ContextHeader';
-import '@/components/canvas/MapSvg/MapSvg';
+import MapSvg from '@/components/canvas/MapSvg/MapSvg';
 import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/canvas/Loading/Loading';
 import '@/components/canvas/Hero/Hero';
@@ -41,14 +41,14 @@ function MapErrorFallback({ postcode }: { readonly postcode: string }) {
   const { t } = useTranslation();
 
   return (
-    <locator-map-svg>
+    <MapSvg>
       <diamond-button width="full-width">
         <Link to={`/${postcode}/places/map`}>
           {t('postcode.exploreTheMap')}
           <locator-icon icon="map" color="primary"></locator-icon>
         </Link>
       </diamond-button>
-    </locator-map-svg>
+    </MapSvg>
   );
 }
 
