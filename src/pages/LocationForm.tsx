@@ -1,4 +1,5 @@
 import { useSignal } from '@preact/signals';
+import * as Sentry from '@sentry/browser';
 import { ComponentChildren } from 'preact';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
@@ -47,7 +48,7 @@ export default function LocationForm({
     form.submitting.value = false;
   }, [location]);
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     geolocationError.value = false;
 
     if (!geolocation.value) {
@@ -60,19 +61,33 @@ export default function LocationForm({
     const checkbox = locationForm?.querySelector('input[name="geolocation"]');
     const formData = new FormData(locationForm);
 
-    navigator.geolocation.getCurrentPosition(
-      ({ coords }) => {
-        formData.set('lat', coords.latitude.toString());
-        formData.set('lng', coords.longitude.toString());
-        submit(formData, { method: 'post', action });
-      },
-      () => {
-        geolocation.value = false;
-        form.submitting.value = false;
-        checkbox.checked = false;
-        geolocationError.value = true;
-      },
-    );
+    try {
+      const response: GeolocationCoordinates = await new Promise(
+        (resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(
+            ({ coords }) => resolve(coords),
+            (error) => reject(error),
+          );
+        },
+      );
+
+      if (!response?.latitude || !response?.longitude) {
+        throw new Error('Geolocation not found');
+      }
+
+      formData.set('lat', response.latitude.toString());
+      formData.set('lng', response.longitude.toString());
+      submit(formData, { method: 'post', action });
+    } catch (error) {
+      geolocation.value = false;
+      form.submitting.value = false;
+      checkbox.checked = false;
+      geolocationError.value = true;
+
+      Sentry.captureException(error, {
+        tags: { component: 'LocationForm geolocation' },
+      });
+    }
   }
 
   return (
