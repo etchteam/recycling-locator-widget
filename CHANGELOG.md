@@ -1,3 +1,15 @@
+## [1.51.0](https://github.com/etchteam/recycling-locator/compare/v1.50.2...v1.51.0) (2024-07-12)
+
+
+### Features
+
+* more robust geolocation error handling ([df3db2a](https://github.com/etchteam/recycling-locator/commit/df3db2a67cfd3933f793f8fd3dead92acb9629b4))
+
+
+### Bug Fixes
+
+* geolocation promise rejection reason must be an Error ([1a640a9](https://github.com/etchteam/recycling-locator/commit/1a640a958ca46373d7b4cc98b68444c3d709f8f0))
+
 ## [1.50.2](https://github.com/etchteam/recycling-locator/compare/v1.50.1...v1.50.2) (2024-07-12)
 
 
