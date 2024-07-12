@@ -1,28 +1,29 @@
 import { ComponentChildren } from 'preact';
-import register from 'preact-custom-element';
 
 import { useAppState } from '@/lib/AppState';
 import { CustomElement } from '@/types/customElement';
 
 export default function MapSvg({
   children,
-}: Readonly<{ children: ComponentChildren }>) {
+}: Readonly<{ children?: ComponentChildren }>) {
   const { publicPath } = useAppState();
+  const imgSrc = `${publicPath}images/map.svg`;
 
   return (
-    <>
-      <img part="image" src={`${publicPath}images/map.svg`} alt="" />
-      <div part="content">{children}</div>
-    </>
+    <locator-map-svg>
+      <img src={imgSrc} alt="" />
+      {children && (
+        <locator-map-svg-content>{children}</locator-map-svg-content>
+      )}
+    </locator-map-svg>
   );
 }
-
-register(MapSvg, 'locator-map-svg', [], { shadow: true });
 
 declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
       'locator-map-svg': CustomElement;
+      'locator-map-svg-content': CustomElement;
     }
   }
 }

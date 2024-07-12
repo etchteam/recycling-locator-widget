@@ -21,7 +21,7 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
-import '@/components/canvas/MapSvg/MapSvg';
+import MapSvg from '@/components/canvas/MapSvg/MapSvg';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import directions from '@/lib/directions';
 import useAnalytics from '@/lib/useAnalytics';
@@ -160,11 +160,7 @@ export default function PlaceLayout({
         <Suspense fallback={null}>
           <Await resolve={locationPromise}>
             {(location) =>
-              location?.latitude ? (
-                <PlaceMap location={location} />
-              ) : (
-                <locator-map-svg></locator-map-svg>
-              )
+              location?.latitude ? <PlaceMap location={location} /> : <MapSvg />
             }
           </Await>
         </Suspense>

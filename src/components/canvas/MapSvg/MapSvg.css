@@ -4,27 +4,28 @@ locator-map-svg {
   height: 100%;
   width: 100%;
 
-  &::part(image),
-  &::part(content) {
+  img,
+  locator-map-svg-content {
     grid-column: 1;
     grid-row: 1;
   }
 
-  &::part(image) {
+  img {
     height: 100%;
     object-fit: cover;
     width: 100%;
   }
 
-  &::part(content) {
+  locator-map-svg-content {
     box-sizing: border-box;
+    display: block;
     margin: 0 auto;
     padding: var(--diamond-spacing);
     width: min(100%, calc(var(--wrap-max-width) - var(--diamond-spacing-lg)));
   }
 
   @container (width > 768px) {
-    &::part(content) {
+    locator-map-svg-content {
       place-self: end;
       width: calc(var(--wrap-max-width) - var(--diamond-spacing-xl));
     }
