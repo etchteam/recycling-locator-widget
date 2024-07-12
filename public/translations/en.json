@@ -262,10 +262,10 @@
     "hwrc": {
       "title": "Recycling Centres in your area",
       "content": "{{ count }} Recycling Centres within 25 miles",
-      "content_zero": "We couldn’t find any Recycling Centres within 25 miles",
+      "content_zero": "We couldn’t find any Recycling Centres within 25 miles.",
       "content_one": "1 Recycling Centre within 25 miles",
       "contentThirtyPlus": "30+ Recycling Centres within 25 miles",
-      "info": "Some Recycling Centres are open to local residents only and may require pre-booking and proof of address upon arrival. Please check before you make your journey",
+      "info": "Some Recycling Centres are open to local residents only and may require pre-booking and proof of address upon arrival. Please check before you make your journey.",
       "nearbyPlaces": {
         "title": "Recycle at a nearby place",
         "content": "{{count}} places within 25 miles",
