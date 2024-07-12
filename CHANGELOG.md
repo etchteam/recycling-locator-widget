@@ -1,3 +1,10 @@
+## [1.50.2](https://github.com/etchteam/recycling-locator/compare/v1.50.1...v1.50.2) (2024-07-12)
+
+
+### Bug Fixes
+
+* container svg undefined ([00f833b](https://github.com/etchteam/recycling-locator/commit/00f833bc24a816cd5a12bde6249f6160279f5a5a))
+
 ## [1.50.1](https://github.com/etchteam/recycling-locator/compare/v1.50.0...v1.50.1) (2024-07-12)
 
 
