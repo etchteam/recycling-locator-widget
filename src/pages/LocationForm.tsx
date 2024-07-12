@@ -62,7 +62,7 @@ export default function LocationForm({
     const formData = new FormData(locationForm);
 
     try {
-      const response: GeolocationCoordinates = await new Promise(
+      const response = await new Promise<GeolocationCoordinates>(
         (resolve, reject) => {
           navigator.geolocation.getCurrentPosition(
             ({ coords }) => resolve(coords),
