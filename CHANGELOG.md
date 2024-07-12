@@ -1,3 +1,10 @@
+## [1.51.1](https://github.com/etchteam/recycling-locator/compare/v1.51.0...v1.51.1) (2024-07-12)
+
+
+### Bug Fixes
+
+* missing full-stops ([de429bb](https://github.com/etchteam/recycling-locator/commit/de429bbcfacbadd4bf74b57dd015ac5ce82645d0))
+
 ## [1.51.0](https://github.com/etchteam/recycling-locator/compare/v1.50.2...v1.51.0) (2024-07-12)
 
 
