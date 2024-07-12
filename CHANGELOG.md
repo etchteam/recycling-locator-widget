@@ -1,3 +1,10 @@
+## [1.50.1](https://github.com/etchteam/recycling-locator/compare/v1.50.0...v1.50.1) (2024-07-12)
+
+
+### Bug Fixes
+
+* use of useAppState outside preact context ([2f61495](https://github.com/etchteam/recycling-locator/commit/2f6149550ab6fc54bcc98f6b68855e065beb4b87))
+
 ## [1.50.0](https://github.com/etchteam/recycling-locator/compare/v1.49.4...v1.50.0) (2024-07-11)
 
 
