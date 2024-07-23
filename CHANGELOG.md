@@ -1,3 +1,10 @@
+## [1.51.2](https://github.com/etchteam/recycling-locator/compare/v1.51.1...v1.51.2) (2024-07-23)
+
+
+### Bug Fixes
+
+* search bar sitting on top of the header ([8c8380f](https://github.com/etchteam/recycling-locator/commit/8c8380fa998883e8e373445ffc116307a3b207e4))
+
 ## [1.51.1](https://github.com/etchteam/recycling-locator/compare/v1.51.0...v1.51.1) (2024-07-12)
 
 
