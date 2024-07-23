@@ -65,7 +65,7 @@ locator-layout {
     grid-area: header;
     position: sticky;
     top: 0;
-    z-index: var(--layer-two);
+    z-index: var(--layer-three);
   }
 
   &::part(main) {
