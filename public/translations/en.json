@@ -210,7 +210,7 @@
     },
     "nearbyPlaces": {
       "noPlaces": {
-        "title": "There are no nearby places to recycle this item.",
+        "title": "We couldn’t find any nearby places to recycle this item.",
         "content": "No places within 25 miles of {{ postcode }}"
       },
       "places": {
