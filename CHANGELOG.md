@@ -1,3 +1,10 @@
+## [1.52.0](https://github.com/etchteam/recycling-locator/compare/v1.51.2...v1.52.0) (2024-08-23)
+
+
+### Features
+
+* no nearby places -> we couldn't find any nearby places ([eef2d51](https://github.com/etchteam/recycling-locator/commit/eef2d5152d54a534b6fe3da95b07e8248ab98f2b))
+
 ## [1.51.2](https://github.com/etchteam/recycling-locator/compare/v1.51.1...v1.51.2) (2024-07-23)
 
 
