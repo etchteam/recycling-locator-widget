@@ -210,7 +210,7 @@
     },
     "nearbyPlaces": {
       "noPlaces": {
-        "title": "Nid oes unrhyw leoedd cyfagos i ailgylchu’r eitem hon.",
+        "title": "Ni allem ddod o hyd i unrhyw leoedd cyfagos i ailgylchu’r eitem hon.",
         "content": "Nid oes lle o fewn 25 milltir o {{ postcode }}"
       },
       "places": {
