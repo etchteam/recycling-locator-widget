@@ -1,3 +1,10 @@
+## [1.52.1](https://github.com/etchteam/recycling-locator/compare/v1.52.0...v1.52.1) (2024-09-03)
+
+
+### Bug Fixes
+
+* allow alternative cases in material search input ([a176bdd](https://github.com/etchteam/recycling-locator/commit/a176bdd894915a774b41f6a32dfb0ee53cae2e37))
+
 ## [1.52.0](https://github.com/etchteam/recycling-locator/compare/v1.51.2...v1.52.0) (2024-08-23)
 
 
