@@ -107,10 +107,21 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
 
   handleButtonClick = (event: Event) => {
     const query = this.inputRef.current.value;
-    const isRealMaterial =
-      this.materialSuggestions.value?.some?.(
-        (material) => material.name === query,
-      ) ?? [];
+
+    const matchingMaterialNames =
+      this.materialSuggestions.value
+        ?.filter?.(
+          (material) =>
+            material.name.toLocaleLowerCase() === query.toLocaleLowerCase(),
+        )
+        .map((material) => material.name) ?? [];
+
+    const isRealMaterial = matchingMaterialNames?.length > 0;
+
+    // Allow for the input being a real material but the query case not matching the suggestion
+    if (isRealMaterial && !matchingMaterialNames.includes(query)) {
+      this.inputRef.current.value = matchingMaterialNames[0];
+    }
 
     if (!isRealMaterial && query) {
       event.preventDefault();
