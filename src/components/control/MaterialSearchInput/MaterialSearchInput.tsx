@@ -118,7 +118,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
 
     const isRealMaterial = matchingMaterialNames?.length > 0;
 
-    // Allow for the input being a real material but the query case not matching the suggestion
+    // Update the query value when it matches a real material but the capitalisation is different
     if (isRealMaterial && !matchingMaterialNames.includes(query)) {
       this.inputRef.current.value = matchingMaterialNames[0];
     }
