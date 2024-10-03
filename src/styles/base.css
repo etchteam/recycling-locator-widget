@@ -10,6 +10,7 @@ article {
   font-size: var(--diamond-font-size-base);
   overflow-y: auto;
   position: relative;
+  transform: scale(1);
 }
 
 .recycling-locator-variant-widget {
