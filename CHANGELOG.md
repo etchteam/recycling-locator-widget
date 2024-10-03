@@ -1,3 +1,10 @@
+## [1.52.2](https://github.com/etchteam/recycling-locator/compare/v1.52.1...v1.52.2) (2024-10-03)
+
+
+### Bug Fixes
+
+* map button out of position ([52aa2ae](https://github.com/etchteam/recycling-locator/commit/52aa2aeae8043d290dd6c0d8581c1410fb24c74d))
+
 ## [1.52.1](https://github.com/etchteam/recycling-locator/compare/v1.52.0...v1.52.1) (2024-09-03)
 
 
