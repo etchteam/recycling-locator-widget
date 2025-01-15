@@ -1,0 +1,5 @@
+rl.localhost {
+  reverse_proxy {
+    to http://localhost:3020
+  }
+}

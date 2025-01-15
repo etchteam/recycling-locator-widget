@@ -47,6 +47,12 @@ chmod +x caddy_darwin_arm64
 ./caddy_darwin_arm64 reverse-proxy --to :3020 --from rl.localhost
 ```
 
+If Caddy is installed as a service, you can run the following command from the root of the project
+
+```bash
+caddy run
+```
+
 Navigate to [rl.localhost](rl.localhost) in the browser
 
 ## Folder structure
