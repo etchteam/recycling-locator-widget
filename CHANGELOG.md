@@ -1,3 +1,10 @@
+## [1.52.3](https://github.com/etchteam/recycling-locator/compare/v1.52.2...v1.52.3) (2025-01-15)
+
+
+### Bug Fixes
+
+* align bottom on map pin with location co-ords ([c8b2b02](https://github.com/etchteam/recycling-locator/commit/c8b2b02e6f7712d2acb606045007e5c17e9f0ce6))
+
 ## [1.52.2](https://github.com/etchteam/recycling-locator/compare/v1.52.1...v1.52.2) (2024-10-03)
 
 
