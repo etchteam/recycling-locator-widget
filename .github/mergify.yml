@@ -5,13 +5,6 @@ pull_request_rules:
       - and:
           - author=dependabot[bot]
           - label!=wontfix
-          - check-success=SonarCloud Code Analysis
-          - check-success=Build
-          - check-success=MegaLinter
-          - check-success=Test
-          - or:
-              - check-success=CodeQL
-              - check-neutral=CodeQL
     actions:
       review:
         type: APPROVE
@@ -22,28 +15,19 @@ pull_request_rules:
     conditions:
       - and:
           - "#approved-reviews-by>=1"
-          - check-success=SonarCloud Code Analysis
-          - check-success=Build
-          - check-success=MegaLinter
-          - check-success=Test
-          - or:
-              - check-success=CodeQL
-              - check-neutral=CodeQL
+          - "#changes-requested-reviews-by=0"
     actions:
       merge:
         method: merge
   - name: Get some eyes on it
     conditions:
+      - -closed
       - -draft
       - author!=dependabot[bot]
     actions:
       request_reviews:
-        users:
-          - JoshTheWanderer
-          - DanWebb
-          - gavmck
-          - ella-etch
-          - Carl-J-M
+        teams:
+          - devs
         random_count: 2
   - name: Assign the PR to its author
     conditions:

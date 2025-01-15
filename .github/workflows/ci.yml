@@ -36,6 +36,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [18, 20, 22]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -44,7 +47,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version-file: .nvmrc
+          node-version: ${{ matrix.version }}
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
@@ -54,7 +57,10 @@ jobs:
           VITE_HERE_MAPS_PLACES_KEY: ${{ vars.VITE_HERE_MAPS_PLACES_KEY }}
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        version: [18, 20, 22]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -63,7 +69,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version-file: .nvmrc
+          node-version: ${{ matrix.version }}
           cache: 'npm'
       - name: get-npm-version
         id: package-version
